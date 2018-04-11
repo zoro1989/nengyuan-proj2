@@ -170,9 +170,14 @@
   </scroll>
 </template>
 <script>
-import echarts from 'echarts'
 import Scroll from 'base/scroll/scroll'
 import Flip from 'base/flip/flip'
+import echarts from 'echarts/lib/echarts'
+import 'echarts/lib/chart/bar'
+import 'echarts/lib/chart/pie'
+import 'echarts/lib/chart/line'
+import 'echarts/lib/component/tooltip'
+import 'echarts/lib/component/title'
 export default {
   components: {
     Scroll,
