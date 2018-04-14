@@ -2,7 +2,7 @@
   <scroll class="home-container">
     <div class="home">
       <div class="panels row">
-        <div class="panel-l col-md-6 col-xs-12">
+          <div class="panel-l col-lg-6 col-md-12 col-xs-12">
           <div class="title xiazuan">
             能源绩效
           </div>
@@ -59,7 +59,7 @@
             </div>
           </div>
         </div>
-        <div class="panel-r col-md-6 col-xs-12">
+        <div class="panel-r col-lg-6 col-md-12 col-xs-12">
           <div class="title xiazuan">
             能耗信息
           </div>
@@ -151,18 +151,18 @@
         </div>
       </div>
       <div class="real-time row">
-        <div class="col-md-6 col-xs-12">
+        <div class="col-lg-6 col-md-12 col-xs-12">
           <div class="dosage" ref="dosage"></div>
         </div>
-        <div class="col-md-6 col-xs-12">
+        <div class="col-lg-6 col-md-12 col-xs-12">
           <div class="cost" ref="cost"></div>
         </div>
       </div>
       <div class="chart row">
-        <div class="col-md-8 col-xs-12">
+        <div class="col-lg-8 col-md-12 col-xs-12">
           <div class="energy" ref="energy"></div>
         </div>
-        <div class="col-md-4 col-xs-12">
+        <div class="col-lg-4 col-md-12 col-xs-12">
           <div class="analyze" ref="analyze"></div>
         </div>
       </div>
@@ -348,7 +348,7 @@ export default {
           {
             name: '访问来源',
             type: 'pie',
-            radius: ['10%', '55%'],
+            radius: ['13%', '70%'],
             center: ['50%', '60%'],
             data: [
               {value: 235, name: '原煤'},
@@ -617,6 +617,7 @@ export default {
       background: $color-sub-text
       display: flex
       flex-direction: column
+      min-height: 100%
       .panels
         .panel-l
           border-top: 3px solid $color-sub-text
@@ -676,7 +677,7 @@ export default {
         .dosage
           border: 3px solid $color-sub-text
           border-left: 6px solid $color-sub-text
-          height: 200px
+          min-height: 250px
           display: flex
           background: $color-background
           padding: 5px
@@ -685,7 +686,7 @@ export default {
         .cost
           border: 3px solid $color-sub-text
           border-right: 6px solid $color-sub-text
-          height: 200px
+          min-height: 250px
           display: flex
           background: $color-background
           padding: 5px
@@ -698,7 +699,8 @@ export default {
           border-bottom: 6px solid $color-sub-text
           border-left: 6px solid $color-sub-text
           border-right: 3px solid $color-sub-text
-          height: 280px
+          min-height: 250px
+          height: 100%
           display: flex
           background: $color-background
           padding: 5px
@@ -714,5 +716,6 @@ export default {
           padding: 5px
           border-radius: 5px
           justify-content: flex-start
-          height: 280px
+          height: 100%
+          min-height: 250px
 </style>
