@@ -2,7 +2,8 @@
   <div class="notice">
     <div class="n-left">
       <i class="fa fa-caret-left" ref="navicon"></i><i class="pc fa fa-navicon" @click="toggleMenu"></i><i class="mobile fa fa-navicon" @click="toggleHMenu"></i>
-      <span class="news">公告:系统服务电话:15519911107;QQ:121256722.v1.0.5版本更新内容</span>
+      <span class="news">中国一汽集团能源管理分析系统</span>
+      <img src="../../../static/logo.png" width="35" />
     </div>
     <div class="n-right">
       <span class="time">{{time}}</span>
@@ -97,9 +98,9 @@ export default {
   .notice
     height: 60px
     line-height: 60px
-    display: flex
+    display: none
     justify-content: space-between
-    border-bottom: 3px solid $color-sub-text
+    border-bottom: 1px solid $color-sub-text
     .n-left
       display: flex
       align-items: center
@@ -120,8 +121,8 @@ export default {
         no-wrap()
         font-size: 14px
         color: #8b8f8b
-        padding-left: 15px
-        border-left: 3px solid $color-sub-text
+        padding: 0 15px
+        border-left: 6px solid $color-sub-text
     .n-right
       display: flex
       align-items: center

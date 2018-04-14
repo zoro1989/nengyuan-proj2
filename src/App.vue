@@ -49,7 +49,7 @@ export default {
     .container
       display: flex
       position: fixed
-      top: 90px
+      top: 70px
       bottom: 0
       left: 0
       right: 0

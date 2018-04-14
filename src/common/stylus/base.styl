@@ -9,16 +9,19 @@ body, html
   color: $color-text
   @media screen and (min-width:1200px)
     .h-menu
-      display: none
+      display: none!important
   @media screen and (max-width:1200px) and (min-width: 800px)
     .menu
-      display: none
+      display: none!important
     .notice
+      display: flex !important
       .n-left
         .mobile
           display: block !important
         .pc
-          display: none
+          display: none!important
+    .home-container
+      top: 60px!important
   @media screen and (max-width:800px)
     .header
       display: none !important
@@ -31,15 +34,37 @@ body, html
         .bg-cover
           top: 60px !important
       .menu
-        display: none
+        display: none!important
       .notice
+        display: flex !important
         .n-left
           .mobile
             display: block !important
           .pc
-            display: none
+            display: none!important
         .n-right
-          display: none
-      .home
-        .panel-r,panel-l
-          display: block !important
+          display: none!important
+      .home-container
+        top: 60px!important
+        .home
+          .panel-r, .panel-l
+            display: block !important
+            border: 3px solid $color-sub-text !important
+          .panel-l
+            border-bottom: none !important
+          .panel-r
+            border-top: none !important
+          .real-time
+            .dosage
+              border: 6px solid $color-sub-text!important
+              border-top: none!important
+            .cost
+              border: 6px solid $color-sub-text!important
+              border-top: none!important
+          .chart
+            .energy
+              border: 6px solid $color-sub-text!important
+              border-top: none!important
+            .analyze
+              border: 6px solid $color-sub-text!important
+              border-top: none!important

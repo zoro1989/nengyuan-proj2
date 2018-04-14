@@ -204,10 +204,10 @@ export default {
           text: '能源用量与节能指标同比分析',
           x: 'center',
           textStyle: {
-            color: '#666'
+            color: '#0965bd'
           }
         },
-        color: ['#5faee3', '#fdb944', '#ee672d', '#144ba6', '#b47913', '#eb0709'],
+        color: ['#23a9f6', '#095db1', '#ff6600', '#a9d051'],
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -283,14 +283,14 @@ export default {
               barBorderRadius: [3, 3, 0, 0]
             }
           },
-          {
-            name: '计划能源用量',
-            type: 'bar',
-            data: [28.0, 21.0, 28.0, 28.0, 28.0, 16.0, 28.0, 22.0, 28.0, 21.0, 28.0, 28.0],
-            itemStyle: {
-              barBorderRadius: [3, 3, 0, 0]
-            }
-          },
+          // {
+          //  name: '计划能源用量',
+          //  type: 'bar',
+          //  data: [28.0, 21.0, 28.0, 28.0, 28.0, 16.0, 28.0, 22.0, 28.0, 21.0, 28.0, 28.0],
+          //  itemStyle: {
+          //    barBorderRadius: [3, 3, 0, 0]
+          //  }
+          // },
           {
             name: '上年同期能源用量',
             type: 'bar',
@@ -329,12 +329,12 @@ export default {
 
       // 指定图表的配置项和数据
       const option = {
-        color: ['#e9aefc', '#3572f0', '#5faee3', '#fdb944', '#ee672d', '#81f2bb'],
+        color: ['#00a6fa', '#4dbff3', '#00cf41', '#f75709', '#98d84c', '#0054b4'],
         title: {
           text: '分公司产量占总产量比重',
           x: 'center',
           textStyle: {
-            color: '#666'
+            color: '#0965bd'
           }
         },
         tooltip: {
@@ -348,16 +348,17 @@ export default {
           {
             name: '访问来源',
             type: 'pie',
-            radius: '55%',
+            radius: ['10%', '55%'],
             center: ['50%', '60%'],
             data: [
-              {value: 325, name: '水'},
+              {value: 235, name: '原煤'},
+              {value: 274, name: '水'},
+              {value: 310, name: '天然气'},
               {value: 168, name: '其他'},
-              {value: 168, name: '原煤'},
-              {value: 325, name: '高温水'},
-              {value: 325, name: '天然气'},
-              {value: 325, name: '电'}
+              {value: 335, name: '高温水'},
+              {value: 400, name: '电'}
             ],
+            roseType: 'angle',
             itemStyle: {
               emphasis: {
                 shadowBlur: 10,
@@ -377,12 +378,12 @@ export default {
 
       // 指定图表的配置项和数据
       const option = {
-        color: ['#5faee3'],
+        color: ['#23a9f6'],
         title: {
           text: '能源用量(小时)',
           x: 'center',
           textStyle: {
-            color: '#666'
+            color: '#0965bd'
           }
         },
         tooltip: {
@@ -478,12 +479,12 @@ export default {
 
       // 指定图表的配置项和数据
       const option = {
-        color: ['#e9aefc', '#3572f0', '#5faee3', '#fdb944', '#ee672d', '#81f2bb'],
+        color: ['#095db1'],
         title: {
           text: '能源费用(小时)',
           x: 'center',
           textStyle: {
-            color: '#666'
+            color: '#0965bd'
           }
         },
         tooltip: {
@@ -608,12 +609,21 @@ export default {
   .home-container
     overflow: hidden
     position: absolute
-    top: 60px
+    top: 0
     left: 0
     right: 0
     bottom: 0
     .home
+      background: $color-sub-text
+      display: flex
+      flex-direction: column
       .panels
+        .panel-l
+          border-top: 3px solid $color-sub-text
+          border-left: 3px solid $color-sub-text
+        .panel-r
+          border-top: 3px solid $color-sub-text
+          border-right: 3px solid $color-sub-text
         .panel-l,.panel-r
           display: flex
           flex-direction: column
@@ -622,14 +632,16 @@ export default {
             height: 50px
             line-height: 50px
             background: $color-background
-            border: 1px solid $color-sub-text
+            border: 3px solid $color-sub-text
+            border-radius: 5px
             cursor: pointer
             &.xiazuan:hover
               color: #fc3507
           .panel
             flex: 1
             .panel-item
-              border: 1px solid $color-sub-text
+              border-radius: 5px
+              border: 3px solid $color-sub-text
               box-sizing: border-box
               cursor: pointer
               background: $color-background
@@ -662,33 +674,45 @@ export default {
                 color: #ffffff
       .real-time
         .dosage
-          border: 1px solid $color-sub-text
+          border: 3px solid $color-sub-text
+          border-left: 6px solid $color-sub-text
           height: 200px
           display: flex
           background: $color-background
           padding: 5px
+          border-radius: 5px
           justify-content: flex-start
         .cost
-          border: 1px solid $color-sub-text
+          border: 3px solid $color-sub-text
+          border-right: 6px solid $color-sub-text
           height: 200px
           display: flex
           background: $color-background
           padding: 5px
+          border-radius: 5px
           justify-content: flex-end
       .chart
-        padding-bottom: 5px
+        flex: 1
         .energy
-          border: 1px solid $color-sub-text
+          border-top: 3px solid $color-sub-text
+          border-bottom: 6px solid $color-sub-text
+          border-left: 6px solid $color-sub-text
+          border-right: 3px solid $color-sub-text
           height: 280px
           display: flex
           background: $color-background
           padding: 5px
+          border-radius: 5px
           justify-content: flex-start
         .analyze
-          border: 1px solid $color-sub-text
+          border-top: 3px solid $color-sub-text
+          border-bottom: 6px solid $color-sub-text
+          border-left: 3px solid $color-sub-text
+          border-right: 6px solid $color-sub-text
           display: flex
           background: $color-background
           padding: 5px
+          border-radius: 5px
           justify-content: flex-start
           height: 280px
 </style>
