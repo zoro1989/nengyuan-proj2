@@ -37,9 +37,16 @@
           </ul>
           </transition>
         </li>
-        <router-link tag="li" to="/device-effic-analyze" class="group-title">
-          <div class="menu-item">设备能效分析<i class="angle fa" :class="selectMenuIndex === 2 ? 'fa-angle-up': 'fa-angle-down'"></i></div>
-        </router-link>
+        <li class="group-title">
+          <div class="menu-item" @click="toggleMenuItemShow(4)">设备能效分析<i class="angle fa" :class="selectMenuIndex === 4 ? 'fa-angle-up': 'fa-angle-down'"></i></div>
+          <transition name="slide">
+            <ul class="item-group h3" v-show="selectMenuIndex === 4">
+              <router-link tag="li" to="/device-effic-analyze"><div class="item">设备能效分析</div></router-link>
+              <router-link tag="li" to="/realtime-tripping"><div class="item">实时下钻</div></router-link>
+              <router-link tag="li" to="/cost-info"><div class="item">能耗信息</div></router-link>
+            </ul>
+          </transition>
+        </li>
       </ul>
     </div>
   </transition>
@@ -70,7 +77,7 @@ export default {
   @import "~common/stylus/variable"
   .menu
     flex: 0 0 170px
-    background: #002f67
+    background: #005d8f
     overflow: hidden
     color: #fff
     &.slide-enter-active, &.slide-leave-active
@@ -103,7 +110,7 @@ export default {
             font-size: $font-size-large-x
             font-weight: bold
           .angle
-            color: #ff6600
+            color: #06e56d
             padding-left: 5px
             font-size: $font-size-large-x
             font-weight: bold

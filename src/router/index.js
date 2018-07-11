@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+const Login = () => import('components/login/login')
 const Home = () => import('components/home/home')
 const EnergyCostStructure = () => import('components/energy-cost-structure/energy-cost-structure')
 const EnergyFeeStructure = () => import('components/energy-fee-structure/energy-fee-structure')
@@ -14,13 +15,21 @@ const ConstIndicatorAnalyze = () => import('components/const-indicator-analyze/c
 const KpiIndicatorExamine = () => import('components/kpi-indicator-examine/kpi-indicator-examine')
 const DeviceEfficAnalyze = () => import('components/device-effic-analyze/device-effic-analyze')
 
+const RealtimeTripping = () => import('components/realtime-tripping/realtime-tripping')
+const CostInfo = () => import('components/cost-info/cost-info')
+
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/home'
+      redirect: '/login'
+    },
+    {
+      path: '/login',
+      name: '登录',
+      component: Login
     },
     {
       path: '/home',
@@ -86,6 +95,16 @@ export default new Router({
       path: '/device-effic-analyze',
       name: '设备能效分析',
       component: DeviceEfficAnalyze
+    },
+    {
+      path: '/realtime-tripping',
+      name: '实时下钻',
+      component: RealtimeTripping
+    },
+    {
+      path: '/cost-info',
+      name: '能耗信息',
+      component: CostInfo
     }
   ]
 })
