@@ -10,8 +10,12 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
-
+    proxyTable: {
+      '/sshblog': {
+        target: 'http://192.168.2.228:8090/',
+        changeOrigin: true
+      }
+    },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 3367, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined

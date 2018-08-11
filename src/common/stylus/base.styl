@@ -7,6 +7,14 @@ body, html
   -webkit-tap-highlight-color: transparent
   background: $color-background
   color: $color-text
+  .el-submenu
+    .el-submenu__title
+      height: 40px
+      line-height: 40px
+    &.is-active
+      .el-submenu__title
+        border-top: 2px solid #2b87b7
+        border-bottom: 2px solid #083f60
   @media screen and (min-width:1200px)
     .h-menu
       display: none!important

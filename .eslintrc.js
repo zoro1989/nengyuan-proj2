@@ -27,5 +27,6 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'eol-last':0,//不检测新文件末尾是否有空行
     'space-before-function-paren':0,// 要求或禁止函数圆括号之前有一个空格
+    'indent': 0
   }
 }

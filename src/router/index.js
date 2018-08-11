@@ -17,6 +17,7 @@ const DeviceEfficAnalyze = () => import('components/device-effic-analyze/device-
 
 const RealtimeTripping = () => import('components/realtime-tripping/realtime-tripping')
 const CostInfo = () => import('components/cost-info/cost-info')
+const AllCost = () => import('components/all-cost/all-cost')
 
 Vue.use(Router)
 
@@ -100,6 +101,11 @@ export default new Router({
       path: '/realtime-tripping',
       name: '实时下钻',
       component: RealtimeTripping
+    },
+    {
+      path: '/all-cost',
+      name: '综合能耗',
+      component: AllCost
     },
     {
       path: '/cost-info',

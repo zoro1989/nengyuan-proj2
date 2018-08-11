@@ -1,6 +1,7 @@
 <template>
   <div class="data-panel-title xiazuan">
-    {{title}}
+    <template v-if="!!link"><router-link :to="link">{{title}}</router-link></template>
+    <template v-else>{{title}}</template>
   </div>
 </template>
 <script>
@@ -9,6 +10,10 @@ export default {
     title: {
       type: String,
       default: '标题'
+    },
+    link: {
+      type: String,
+      default: ''
     }
   }
 }
@@ -22,6 +27,9 @@ export default {
     background: $color-background
     cursor: pointer
     border-bottom: 1px solid $color-sub-text
+    a
+      color: $color-text
     &.xiazuan:hover
-      color: #fc3507
+      a
+        color: #fc3507
 </style>

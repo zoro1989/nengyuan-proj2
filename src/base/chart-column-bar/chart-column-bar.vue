@@ -1,5 +1,5 @@
 <template>
-  <div class="chart-bar" ref="chart"></div>
+  <div class="chart-column-bar" ref="chart"></div>
 </template>
 <script>
 import echarts from 'echarts'
@@ -17,21 +17,17 @@ export default {
       type: String,
       default: '#006195'
     },
-    yAxisTitle: {
+    xAxisTitle: {
       type: String,
-      default: 'Y轴'
+      default: 'X轴'
     },
     seriesName: {
       type: String,
-      default: 'X轴'
+      default: '系列名'
     },
     showArea: {
       type: Boolean,
       default: false
-    },
-    showOrientation: {
-      type: String,
-      default: 'horizontal'
     }
   },
   created() {
@@ -65,7 +61,7 @@ export default {
           start: 0,
           end: 100
         },
-        xAxis: [
+        yAxis: [
           {
             type: 'category',
             boundaryGap: true,
@@ -77,11 +73,11 @@ export default {
             data: ['4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7']
           }
         ],
-        yAxis: [
+        xAxis: [
           {
             type: 'value',
             scale: true,
-            name: this.yAxisTitle,
+            name: this.xAxisTitle,
             boundaryGap: [0.2, 0.2],
             axisLine: {
               lineStyle: {
@@ -97,7 +93,7 @@ export default {
             barWidth: '60%',
             data: [180, 200, 120, 300, 250, 310, 290],
             itemStyle: {
-              barBorderRadius: [3, 3, 0, 0]
+              barBorderRadius: [0, 3, 3, 0]
             }
           }
         ]

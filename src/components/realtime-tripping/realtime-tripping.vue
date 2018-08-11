@@ -5,11 +5,11 @@
         <div class="title-l">
           <span>选择日期</span>
           <select>
-            <option></option>
+            <option>第十四周4.2-4.8</option>
           </select>
           <span>用能单位</span>
           <select>
-            <option></option>
+            <option>单选或多选</option>
           </select>
         </div>
         <div class="title-r">
@@ -197,7 +197,7 @@ export default {
   data() {
     return {
       showArea: true,
-      showflag: '0'
+      showflag: '1'
     }
   },
   methods: {

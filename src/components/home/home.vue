@@ -4,30 +4,30 @@
       <div class="panels row">
         <div class="panel-l col-lg-5 col-md-12 col-xs-12">
           <div class="panel-box">
-            <data-panel-title title="三月能源绩效"></data-panel-title>
+            <data-panel-title title="三月能源绩效" link="/all-cost"></data-panel-title>
             <div class="panel row">
               <div class="col-md-6 col-xs-12">
                 <data-panel
                   class="border-right border-bottom"
                   title="产值综合能耗"
-                  data="0.0321"
+                  :data="data.czzhnh"
                   unit="吨标煤/万元"
-                  tongbiData="53.94%"
-                  tongbiStatus="down"
-                  huanbiData="23.94%"
-                  huanbiStatus="down"
+                  :tongbiData="data.czzhnh_tb"
+                  :tongbiStatus="data.czzhnh_tb > 0 ? 'up' : 'down'"
+                  :huanbiData="data.czzhnh_hb"
+                  :huanbiStatus="data.czzhnh_hb > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
               <div class="col-md-6 col-xs-12">
                 <data-panel
                   class="border-bottom"
                   title="单车能源费用"
-                  data="1665"
+                  :data="data.je_d"
                   unit="元/辆"
-                  tongbiData="58.94%"
-                  tongbiStatus="down"
-                  huanbiData="2.96%"
-                  huanbiStatus="up"
+                  :tongbiData="data.je_d_tb"
+                  :tongbiStatus="data.je_d_tb > 0 ? 'up' : 'down'"
+                  :huanbiData="data.je_d_hb"
+                  :huanbiStatus="data.je_d_hb > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
             </div>
@@ -36,23 +36,23 @@
                 <data-panel
                   class="border-right"
                   title="单车综合标煤"
-                  data="0.442"
+                  :data="data.zhnh_d"
                   unit="吨标煤/辆"
-                  tongbiData="7.94%"
-                  tongbiStatus="down"
-                  huanbiData="58.94%"
-                  huanbiStatus="down"
+                  :tongbiData="data.zhnh_d_tb"
+                  :tongbiStatus="data.zhnh_d_tb > 0 ? 'up' : 'down'"
+                  :huanbiData="data.zhnh_d_hb"
+                  :huanbiStatus="data.zhnh_d_hb > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
               <div class="col-md-6 col-xs-12">
                 <data-panel
                   title="单车碳排放量"
-                  data="101.58"
+                  :data="data.tan_d"
                   unit="KGCO2/辆"
-                  tongbiData="2.54%"
-                  tongbiStatus="up"
-                  huanbiData="2.96%"
-                  huanbiStatus="up"
+                  :tongbiData="data.tan_d_tb"
+                  :tongbiStatus="data.tan_d_tb > 0 ? 'up' : 'down'"
+                  :huanbiData="data.tan_d_hb"
+                  :huanbiStatus="data.tan_d_hb > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
             </div>
@@ -85,30 +85,30 @@
         </div>
         <div class="panel-r col-lg-5 col-md-12 col-xs-12">
           <div class="panel-box">
-            <data-panel-title title="三月能耗信息"></data-panel-title>
+            <data-panel-title title="三月能耗信息" link="/cost-info"></data-panel-title>
             <div class="panel row">
               <div class="col-md-6 col-xs-12">
                 <data-panel
                   class="border-right border-bottom"
                   title="生产产量"
-                  data="22.9788"
+                  :data="data.cl"
                   unit="万辆"
-                  tongbiData="212.2%"
-                  tongbiStatus="down"
-                  huanbiData="2.48%"
-                  huanbiStatus="down"
+                  :tongbiData="data.cl_tb"
+                  :tongbiStatus="data.cl_tb > 0 ? 'up' : 'down'"
+                  :huanbiData="data.cl_hb"
+                  :huanbiStatus="data.cl_hb > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
               <div class="col-md-6 col-xs-12">
                 <data-panel
                   class="border-bottom"
                   title="能源用量"
-                  data="10.3514"
+                  :data="data.nh"
                   unit="万吨标煤"
-                  tongbiData="20.28%"
-                  tongbiStatus="down"
-                  huanbiData="2.73%"
-                  huanbiStatus="up"
+                  :tongbiData="data.nh_tb"
+                  :tongbiStatus="data.nh_tb > 0 ? 'up' : 'down'"
+                  :huanbiData="data.nh_hb"
+                  :huanbiStatus="data.nh_hb > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
             </div>
@@ -117,23 +117,23 @@
                 <data-panel
                   class="border-right"
                   title="碳排放量"
-                  data="33.30"
+                  :data="data.tan"
                   unit="吨CO2"
-                  tongbiData="56.2%"
-                  tongbiStatus="down"
-                  huanbiData="34.7%"
-                  huanbiStatus="up"
+                  :tongbiData="data.tan_tb"
+                  :tongbiStatus="data.tan_tb > 0 ? 'up' : 'down'"
+                  :huanbiData="data.tan_hb"
+                  :huanbiStatus="data.tan_hb > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
               <div class="col-md-6  col-xs-12">
                 <data-panel
                   title="能源费用"
-                  data="37434.71"
+                  :data="data.je"
                   unit="万元"
-                  tongbiData="17.68%"
-                  tongbiStatus="down"
-                  huanbiData="1.32%"
-                  huanbiStatus="up"
+                  :tongbiData="data.je_tb"
+                  :tongbiStatus="data.je_tb > 0 ? 'up' : 'down'"
+                  :huanbiData="data.je_hb"
+                  :huanbiStatus="data.je_hb > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
             </div>
@@ -160,6 +160,7 @@
           <chart-pie class="analyze" ref="analyze"
                      titleText="三月能源消耗结构"
                      roseType="radius"
+                     :data="strucPie"
                      :radius="analyzeChartRadius"></chart-pie>
         </div>
         <div class="col-lg-6 col-md-12 col-xs-12">
@@ -169,6 +170,7 @@
         <div class="col-lg-3 col-md-12 col-xs-12">
           <chart-pie class="fee" ref="fee"
                      titleText="三月能源费用结构"
+                     :data="costPie"
                      :radius="feeChartRadius"></chart-pie>
         </div>
       </div>
@@ -185,6 +187,9 @@ import ChartRealtimeLine from 'base/chart-realtime-line/chart-realtime-line'
 import ChartRealtimeBar from 'base/chart-realtime-bar/chart-realtime-bar'
 import ChartPie from 'base/chart-pie/chart-pie'
 import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
+
+import { api } from '@/config'
+import fetch from 'utils/fetch'
 export default {
   components: {
     Scroll,
@@ -200,10 +205,32 @@ export default {
     return {
       analyzeChartRadius: ['13%', '70%'],
       feeChartRadius: ['40%', '70%'],
-      showArea: true
+      showArea: true,
+      // 三月能耗绩效数据块数据
+      perfDataPanels: [],
+      // 三月清洁能源用量数据块数据
+      cleanDataPanels: [],
+      // 三月能耗信息数据块数据
+      infoDataPanels: [],
+      // 三月能耗结构
+      strucPie: [],
+      // 三月能耗费用
+      costPie: [],
+      // 能耗与节能指标分析
+      analyzeBarLine: [],
+      data: {}
     }
   },
   created() {
+    setTimeout(() => {
+      this.strucPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+      this.costPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+    })
+//    fetch('get', api.getHomeData, {}).then((res) => {
+//      this.data = res.data
+//      this.strucPie = res.pie1.seriesData
+//      this.costPie = res.pie2.seriesData
+//    })
   },
   methods: {
     refreshChart() {

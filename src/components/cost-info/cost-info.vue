@@ -4,11 +4,29 @@
       <div class="cost-title">
         <span>选择日期</span>
         <select>
-          <option></option>
+          <option>2017-1</option>
+          <option>2017-2</option>
+          <option>2017-3</option>
+          <option>2017-4</option>
+          <option>2017-5</option>
+          <option>2017-6</option>
+          <option>2017-7</option>
+          <option>2017-8</option>
+          <option>2017-9</option>
+          <option>2017-10</option>
+          <option>2017-11</option>
+          <option>2017-12</option>
         </select>
         <span>用能单位</span>
         <select>
-          <option></option>
+          <option>产值综合能耗</option>
+          <option>产值碳排放量</option>
+          <option>产值耗电量</option>
+          <option>产值耗天然气量</option>
+          <option>产值耗水量</option>
+          <option>产值耗热量</option>
+          <option>单车综合能耗</option>
+          <option>单车碳排放量</option>
         </select>
       </div>
       <div class="panel-box">

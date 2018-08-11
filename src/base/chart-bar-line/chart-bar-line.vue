@@ -36,6 +36,7 @@ export default {
     makeChart() {
       // 基于准备好的dom，初始化echarts实例
       this.chart = echarts.init(this.$refs.chart)
+      let _this = this
       // 指定图表的配置项和数据
       const option = {
         title: {
@@ -118,15 +119,29 @@ export default {
             type: 'bar',
             data: [20.0, 25.0, 22.0, 21.0, 25.0, 27.0, 29.0, 27.0, 20.0, 25.0, 22.0, 21.0],
             itemStyle: {
-              barBorderRadius: [3, 3, 0, 0]
+              barBorderRadius: [3, 3, 0, 0],
+              color: function (params) {
+                if (params.data > 35) {
+                  return '#e7251e'
+                } else {
+                  return _this.chartColor[0]
+                }
+              }
             }
           },
           {
             name: '实际消耗',
             type: 'bar',
-            data: [19.0, 31.0, 19.0, 29.0, 25.0, 31.0, 20.0, 17.0, 35.0, 31.0, 35.0, 29.0],
+            data: [19.0, 31.0, 19.0, 29.0, 25.0, 31.0, 20.0, 17.0, 36.0, 31.0, 35.0, 29.0],
             itemStyle: {
-              barBorderRadius: [3, 3, 0, 0]
+              barBorderRadius: [3, 3, 0, 0],
+              color: function (params) {
+                if (params.data > 35) {
+                  return '#e7251e'
+                } else {
+                  return _this.chartColor[1]
+                }
+              }
             }
           },
           {
@@ -134,26 +149,48 @@ export default {
             type: 'bar',
             data: [28.0, 21.0, 28.0, 28.0, 28.0, 16.0, 28.0, 22.0, 28.0, 21.0, 28.0, 28.0],
             itemStyle: {
-              barBorderRadius: [3, 3, 0, 0]
+              barBorderRadius: [3, 3, 0, 0],
+              color: function (params) {
+                if (params.data > 35) {
+                  return '#e7251e'
+                } else {
+                  return _this.chartColor[2]
+                }
+              }
             }
           },
           {
             name: '上年同期节能指标',
             type: 'line',
             yAxisIndex: 1,
-            data: [0.012, 0.013, 0.017, 0.016, 0.018, 0.017, 0.016, 0.015, 0.012, 0.013, 0.017, 0.016]
+            data: [0.012, 0.013, 0.017, 0.016, 0.018, 0.017, 0.016, 0.015, 0.012, 0.013, 0.017, 0.016],
+            itemStyle: {
+              color: function (params) {
+                return _this.chartColor[3]
+              }
+            }
           },
           {
             name: '实际节能指标',
             type: 'line',
             yAxisIndex: 1,
-            data: [0.007, 0.009, 0.015, 0.005, 0.007, 0.012, 0.013, 0.019, 0.007, 0.009, 0.015, 0.005]
+            data: [0.007, 0.009, 0.015, 0.005, 0.007, 0.012, 0.013, 0.019, 0.007, 0.009, 0.015, 0.005],
+            itemStyle: {
+              color: function (params) {
+                return _this.chartColor[4]
+              }
+            }
           },
           {
             name: '计划节能指标',
             type: 'line',
             yAxisIndex: 1,
-            data: [0.005, 0.012, 0.01, 0.012, 0.013, 0.018, 0.016, 0.012, 0.005, 0.012, 0.01, 0.012]
+            data: [0.005, 0.012, 0.01, 0.012, 0.013, 0.018, 0.016, 0.012, 0.005, 0.012, 0.01, 0.012],
+            itemStyle: {
+              color: function (params) {
+                return _this.chartColor[5]
+              }
+            }
           }
         ]
       }

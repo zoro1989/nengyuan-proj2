@@ -41,7 +41,9 @@ export default {
           x: 'center',
           textStyle: {
             color: this.titleTextColor
-          }
+          },
+          link: '/#/realtime-tripping',
+          target: 'self'
         },
         tooltip: {
           trigger: 'axis',

@@ -42,13 +42,24 @@ export default {
     postion: {
       type: String,
       default: 'outside'
+    },
+    data: {
+      type: Array,
+      default: function () {
+        return []
+      }
     }
   },
   created() {
     this.chart = {}
   },
+  watch: {
+    data: function (newData) {
+      this.makeChart(newData)
+    }
+  },
   methods: {
-    makeChart() {
+    makeChart(data) {
       this.chart = echarts.init(this.$refs.chart)
 
       // 指定图表的配置项和数据
@@ -74,20 +85,29 @@ export default {
             type: 'pie',
             radius: this.radius,
             center: ['50%', '60%'],
-            data: [
-              {value: 274, name: '水', label: {position: this.postion}},
-              {value: 168,
-                name: '其他',
-                label: this.othersData.length > 0 ? {
-                  position: this.postion,
+            data: (function (vm, data) {
+              var res = []
+              for (let i = 0; i < data.length; i++) {
+                let obj = {}
+                obj.value = data[i].value
+                obj.name = data[i].name
+                obj.label = (data[i].othersData && data[i].othersData.length > 0) ? {
+                  position: vm.postion,
                   normal: {
-                    formatter: [
-                      '{rate1|一汽解放：55.3%}',
-                      '{rate2|天津丰田：38.9%}',
-                      '{rate3|天津夏利：5.8%}',
-                      '{rate4|长春丰越：3%}',
-                      '{rate5|一汽通用：2%}'
-                    ].join('\n'),
+                    formatter: (function (othersData) {
+                      let res = []
+                      for (let i = 0; i < othersData.length; i++) {
+                        res.push('{rate' + i + '|' + othersData[i].name + '：' + othersData[i].value + '%}')
+                      }
+                      return res.join('\n')
+                    })(vm.data[i].othersData),
+//                    formatter: [
+//                      '{rate1|一汽解放：55.3%}',
+//                      '{rate2|天津丰田：38.9%}',
+//                      '{rate3|天津夏利：5.8%}',
+//                      '{rate4|长春丰越：3%}',
+//                      '{rate5|一汽通用：2%}'
+//                    ].join('\n'),
                     backgroundColor: '#eee',
                     borderWidth: 1,
                     borderRadius: 4,
@@ -134,12 +154,77 @@ export default {
                       }
                     }
                   }
-                } : {position: this.postion}},
-              {value: 335, name: '高温水', label: {position: this.postion}},
-              {value: 235, name: '原煤', label: {position: this.postion}},
-              {value: 310, name: '天然气', label: {position: this.postion}},
-              {value: 400, name: '电', label: {position: this.postion}}
-            ],
+                } : {position: vm.postion}
+                res.push(obj)
+              }
+              return res
+            })(this, data),
+//            data: [
+//              {value: 274, name: '水', label: {position: this.postion}},
+//              {value: 168,
+//                name: '其他',
+//                label: this.othersData.length > 0 ? {
+//                  position: this.postion,
+//                  normal: {
+//                    formatter: [
+//                      '{rate1|一汽解放：55.3%}',
+//                      '{rate2|天津丰田：38.9%}',
+//                      '{rate3|天津夏利：5.8%}',
+//                      '{rate4|长春丰越：3%}',
+//                      '{rate5|一汽通用：2%}'
+//                    ].join('\n'),
+//                    backgroundColor: '#eee',
+//                    borderWidth: 1,
+//                    borderRadius: 4,
+//                    rich: {
+//                      rate1: {
+//                        width: 100,
+//                        align: 'right',
+//                        height: 55.3,
+//                        padding: [0, 0, 0, 0],
+//                        color: '#fff',
+//                        backgroundColor: '#ffab45'
+//                      },
+//                      rate2: {
+//                        width: 100,
+//                        align: 'right',
+//                        height: 38.9,
+//                        padding: [0, 0, 0, 0],
+//                        color: '#fff',
+//                        backgroundColor: '#06e56d'
+//                      },
+//                      rate3: {
+//                        width: 100,
+//                        align: 'right',
+//                        height: 20,
+//                        padding: [0, 0, 0, 0],
+//                        color: '#fff',
+//                        backgroundColor: '#68caff'
+//                      },
+//                      rate4: {
+//                        width: 100,
+//                        align: 'right',
+//                        height: 15,
+//                        padding: [0, 0, 0, 0],
+//                        color: '#fff',
+//                        backgroundColor: '#717eff'
+//                      },
+//                      rate5: {
+//                        width: 100,
+//                        align: 'right',
+//                        height: 15,
+//                        padding: [0, 0, 0, 0],
+//                        color: '#fff',
+//                        backgroundColor: '#2436e3'
+//                      }
+//                    }
+//                  }
+//                } : {position: this.postion}},
+//              {value: 335, name: '高温水', label: {position: this.postion}},
+//              {value: 235, name: '原煤', label: {position: this.postion}},
+//              {value: 310, name: '天然气', label: {position: this.postion}},
+//              {value: 400, name: '电', label: {position: this.postion}}
+//            ],
             roseType: this.roseType ? this.roseType : false,
             itemStyle: {
               emphasis: {
@@ -158,9 +243,6 @@ export default {
     refreshChart() {
       this.chart.resize()
     }
-  },
-  mounted() {
-    this.makeChart()
   }
 }
 </script>
