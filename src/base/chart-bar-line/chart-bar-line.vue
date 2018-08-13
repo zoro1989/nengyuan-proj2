@@ -24,19 +24,44 @@ export default {
       type: String,
       default: 'Y轴'
     },
-    seriesName: {
-      type: String,
-      default: '系列名'
+    legendData: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    },
+    yAxis: {
+      type: Array,
+      default: function () {
+        return [{name: '吨标煤', min: 0.0, max: 50.0, interval: 10.0},
+          {name: '吨标煤/万元', min: 0.00, max: 0.05, interval: 0.01}]
+      }
+    },
+    xAxisData: {
+      type: Array,
+      default: function () {
+        return ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+      }
+    },
+    series: {
+      type: Array,
+      default: function () {
+        return []
+      }
     }
   },
   created() {
     this.chart = {}
   },
+  watch: {
+    series: function (newData) {
+      this.makeChart(newData)
+    }
+  },
   methods: {
-    makeChart() {
+    makeChart(newData) {
       // 基于准备好的dom，初始化echarts实例
       this.chart = echarts.init(this.$refs.chart)
-      let _this = this
       // 指定图表的配置项和数据
       const option = {
         title: {
@@ -62,7 +87,7 @@ export default {
         legend: {
           padding: [5, 0, 0, 0],
           bottom: 0,
-          data: ['上年同期消耗', '实际消耗', '计划消耗', '上年同期节能指标', '实际节能指标', '计划节能指标'],
+          data: this.legendData,
           textStyle: {
             color: '#666'
           }
@@ -70,9 +95,15 @@ export default {
         xAxis: [
           {
             type: 'category',
-            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            data: this.xAxisData,
             axisPointer: {
               type: 'shadow'
+            },
+            axisTick: {
+              alignWithLabel: true
+            },
+            axisLabel: {
+              interval: 0
             },
             axisLine: {
               lineStyle: {
@@ -81,118 +112,82 @@ export default {
             }
           }
         ],
-        yAxis: [
-          {
-            type: 'value',
-            name: '万吨标煤',
-            min: 0.0,
-            max: 50.0,
-            interval: 10.0,
-            // axisLabel: {
-            // formatter: '{value} 吨'
-            // },
-            axisLine: {
-              lineStyle: {
-                color: '#666'
+        yAxis: (() => {
+          let res = []
+          for (let i = 0; i < this.yAxis.length; i++) {
+            res.push({
+              type: 'value',
+              name: this.yAxis[i].name,
+              min: this.yAxis[i].min,
+              max: this.yAxis[i].max,
+              interval: this.yAxis[i].interval,
+              axisLine: {
+                lineStyle: {
+                  color: '#666'
+                }
               }
-            }
-          },
-          {
-            type: 'value',
-            name: '吨标煤/万元',
-            min: 0.00,
-            max: 0.05,
-            interval: 0.01,
-            // axisLabel: {
-            // formatter: '{value} 万元'
-            // },
-            axisLine: {
-              lineStyle: {
-                color: '#666'
-              }
-            }
+            })
           }
-        ],
-        series: [
-          {
-            name: '上年同期消耗',
-            type: 'bar',
-            data: [20.0, 25.0, 22.0, 21.0, 25.0, 27.0, 29.0, 27.0, 20.0, 25.0, 22.0, 21.0],
-            itemStyle: {
+          return res
+        })(),
+//        yAxis: [
+//          {
+//            type: 'value',
+//            name: '万吨标煤',
+//            min: 0.0,
+//            max: 50.0,
+//            interval: 10.0,
+//            // axisLabel: {
+//            // formatter: '{value} 吨'
+//            // },
+//            axisLine: {
+//              lineStyle: {
+//                color: '#666'
+//              }
+//            }
+//          },
+//          {
+//            type: 'value',
+//            name: '吨标煤/万元',
+//            min: 0.00,
+//            max: 0.05,
+//            interval: 0.01,
+//            // axisLabel: {
+//            // formatter: '{value} 万元'
+//            // },
+//            axisLine: {
+//              lineStyle: {
+//                color: '#666'
+//              }
+//            }
+//          }
+//        ],
+        series: ((vm, series) => {
+          let res = []
+          for (let i = 0; i < series.length; i++) {
+            let item = {}
+            item.name = series[i].name
+            item.type = series[i].type
+            if (item.type === 'line') {
+              item.yAxisIndex = 1
+            }
+            item.data = series[i].data
+            item.itemStyle = {
               barBorderRadius: [3, 3, 0, 0],
-              color: function (params) {
-                if (params.data > 35) {
+              color: (params) => {
+                if (series[i].type === 'bar' && series[i].reality === '1' &&
+                  series[i + 1] && series[i + 1].data[params.dataIndex] &&
+                  params.data > series[i + 1].data[params.dataIndex]) {
                   return '#e7251e'
                 } else {
-                  return _this.chartColor[0]
+                  return vm.chartColor[i]
                 }
               }
             }
-          },
-          {
-            name: '实际消耗',
-            type: 'bar',
-            data: [19.0, 31.0, 19.0, 29.0, 25.0, 31.0, 20.0, 17.0, 36.0, 31.0, 35.0, 29.0],
-            itemStyle: {
-              barBorderRadius: [3, 3, 0, 0],
-              color: function (params) {
-                if (params.data > 35) {
-                  return '#e7251e'
-                } else {
-                  return _this.chartColor[1]
-                }
-              }
-            }
-          },
-          {
-            name: '计划消耗',
-            type: 'bar',
-            data: [28.0, 21.0, 28.0, 28.0, 28.0, 16.0, 28.0, 22.0, 28.0, 21.0, 28.0, 28.0],
-            itemStyle: {
-              barBorderRadius: [3, 3, 0, 0],
-              color: function (params) {
-                if (params.data > 35) {
-                  return '#e7251e'
-                } else {
-                  return _this.chartColor[2]
-                }
-              }
-            }
-          },
-          {
-            name: '上年同期节能指标',
-            type: 'line',
-            yAxisIndex: 1,
-            data: [0.012, 0.013, 0.017, 0.016, 0.018, 0.017, 0.016, 0.015, 0.012, 0.013, 0.017, 0.016],
-            itemStyle: {
-              color: function (params) {
-                return _this.chartColor[3]
-              }
-            }
-          },
-          {
-            name: '实际节能指标',
-            type: 'line',
-            yAxisIndex: 1,
-            data: [0.007, 0.009, 0.015, 0.005, 0.007, 0.012, 0.013, 0.019, 0.007, 0.009, 0.015, 0.005],
-            itemStyle: {
-              color: function (params) {
-                return _this.chartColor[4]
-              }
-            }
-          },
-          {
-            name: '计划节能指标',
-            type: 'line',
-            yAxisIndex: 1,
-            data: [0.005, 0.012, 0.01, 0.012, 0.013, 0.018, 0.016, 0.012, 0.005, 0.012, 0.01, 0.012],
-            itemStyle: {
-              color: function (params) {
-                return _this.chartColor[5]
-              }
-            }
+            res.push(item)
           }
-        ]
+          return res
+        })(this, newData)
       }
 
       // 使用刚指定的配置项和数据显示图表。
@@ -201,9 +196,6 @@ export default {
     refreshChart() {
       this.chart.resize()
     }
-  },
-  mounted() {
-    this.makeChart()
   }
 }
 </script>

@@ -28,24 +28,24 @@ export default {
       default: '标题'
     },
     data: {
-      type: String,
-      default: '0'
+      type: Number,
+      default: 0
     },
     unit: {
       type: String,
       default: '单位'
     },
     tongbiData: {
-      type: String,
-      default: '0'
+      type: Number,
+      default: 0
     },
     tongbiStatus: {
       type: String,
       default: 'up'
     },
     huanbiData: {
-      type: String,
-      default: '0'
+      type: Number,
+      default: 0
     },
     huanbiStatus: {
       type: String,
@@ -82,11 +82,14 @@ export default {
     flex-direction: column
     &.border-right
       border-right: 1px solid $color-sub-text
+    &.border-left
+      border-left: 1px solid $color-sub-text
     &.border-bottom
       border-bottom: 1px solid $color-sub-text
     .row
       flex: 1
       display: flex
+      justify-content: center
       align-items: center
       &.xiazuan:hover
         color: $color-theme

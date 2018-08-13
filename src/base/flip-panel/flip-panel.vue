@@ -37,7 +37,7 @@ export default {
       clearTimeout(this.timer)
       this.timer = setTimeout(() => {
         this.toggleCard()
-      }, 4000)
+      }, 3600 * 1000)
     }
   },
   mounted() {
@@ -62,6 +62,7 @@ export default {
     .row
       flex: 1
       display: flex
+      justify-content: center
       align-items: center
       .row-item
         min-height: 35px

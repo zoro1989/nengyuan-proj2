@@ -1,54 +1,77 @@
 <template>
   <transition name="slide">
     <div class="menu">
-      <ul class="menu-group">
-        <router-link tag="li" class="group-title" :class="{active: selectMenuIndex === 0}" to="/home">
-          <!--<div class="menu-item" @click="toggleMenuItemShow(0)"><i class="arrow fa fa-caret-right"></i>首页</div>-->
-          <div class="menu-item" @click="toggleMenuItemShow(0)">首页</div>
-        </router-link>
-        <li class="group-title" :class="{active: selectMenuIndex === 1}">
-          <div class="menu-item" @click="toggleMenuItemShow(1)">能源综合分析<i class="angle fa" :class="menuIsShow(1) ? 'fa-angle-up': 'fa-angle-down'"></i></div>
-          <transition name="slide">
-          <ul class="item-group h3" v-show="menuIsShow(1)">
-            <router-link tag="li" to="/energy-cost-structure"><div class="item">能源消耗结构</div></router-link>
-            <router-link tag="li" to="/energy-fee-structure" ><div class="item">能源费用结构</div></router-link>
-            <router-link tag="li" to="/co2-distribute" ><div class="item">二氧化碳分布</div></router-link>
-          </ul>
-          </transition>
-        </li>
-        <li class="group-title" :class="{active: selectMenuIndex === 2}">
-          <div class="menu-item" @click="toggleMenuItemShow(2)">能源统计分析<i class="angle fa" :class="menuIsShow(2) ? 'fa-angle-up': 'fa-angle-down'"></i></div>
-          <transition name="slide">
-          <ul class="item-group h5" v-show="menuIsShow(2)">
-            <router-link tag="li" to="/energy-cost-analyze"><div class="item">能源用量分析</div></router-link>
-            <router-link tag="li" to="/energy-fee-analyze"><div class="item">能源费用分析</div></router-link>
-            <router-link tag="li" to="/co2-analyze"><div class="item">二氧化碳排放分析</div></router-link>
-            <router-link tag="li" to="/energy-load-analyze"><div class="item">能源负荷分析</div></router-link>
-            <router-link tag="li" to="/elec-fee-analyze"><div class="item">电价分析</div></router-link>
-          </ul>
-          </transition>
-        </li>
-        <li class="group-title" :class="{active: selectMenuIndex === 3}">
-          <div class="menu-item" @click="toggleMenuItemShow(3)">能源绩效分析<i class="angle fa" :class="menuIsShow(3) ? 'fa-angle-up': 'fa-angle-down'"></i></div>
-          <transition name="slide">
-          <ul class="item-group h3" v-show="menuIsShow(3)">
-            <router-link tag="li" to="/kpi-indicator-analyze"><div class="item">KPI指标分析</div></router-link>
-            <router-link tag="li" to="/const-indicator-analyze"><div class="item">定额指标分析</div></router-link>
-            <router-link tag="li" to="/kpi-indicator-examine"><div class="item">绩效指标考核</div></router-link>
-          </ul>
-          </transition>
-        </li>
-        <li class="group-title" :class="{active: selectMenuIndex === 4}">
-          <div class="menu-item" @click="toggleMenuItemShow(4)">设备能效分析<i class="angle fa" :class="menuIsShow(4) ? 'fa-angle-up': 'fa-angle-down'"></i></div>
-          <transition name="slide">
-            <ul class="item-group h3" v-show="menuIsShow(4)">
-              <router-link tag="li" to="/device-effic-analyze"><div class="item">设备能效分析</div></router-link>
-              <router-link tag="li" to="/realtime-tripping"><div class="item">实时下钻</div></router-link>
-              <router-link tag="li" to="/cost-info"><div class="item">能耗信息</div></router-link>
-            </ul>
-          </transition>
-        </li>
-      </ul>
+      <el-menu
+        default-active="0"
+        class="el-menu-vertical-demo"
+        @open="handleOpen"
+        @close="handleClose"
+        background-color="#005d8f"
+        text-color="#fff"
+        :unique-opened="uniqueOpened"
+        active-text-color="#fff">
+        <el-menu-item index="0">首页</el-menu-item>
+        <el-submenu index="1">
+          <template slot="title">
+            <span>能源综合分析</span>
+          </template>
+          <el-submenu index="1-1">
+            <template slot="title">能源消耗结构</template>
+            <el-menu-item index="1-1-1">能源种类分析</el-menu-item>
+            <el-menu-item index="1-1-2">能源部门分析</el-menu-item>
+          </el-submenu>
+          <el-submenu index="1-2">
+            <template slot="title">能源费用结构</template>
+            <el-menu-item index="1-2-1">能源种类分析</el-menu-item>
+            <el-menu-item index="1-2-2">能源部门分析</el-menu-item>
+          </el-submenu>
+          <el-menu-item index="1-3">二氧化碳量分布</el-menu-item>
+        </el-submenu>
+        <el-submenu index="2">
+          <template slot="title">
+            <span>能源统计分析</span>
+          </template>
+          <el-menu-item index="2-1">能源用量分析</el-menu-item>
+          <el-menu-item index="2-2">能源费用分析</el-menu-item>
+          <el-menu-item index="2-3">二氧化碳排放量分析</el-menu-item>
+          <el-menu-item index="2-4">部门用能分析</el-menu-item>
+          <el-menu-item index="2-5">能源负荷分析</el-menu-item>
+          <el-menu-item index="2-6">电价分析</el-menu-item>
+        </el-submenu>
+        <el-submenu index="3">
+          <template slot="title">
+            <span>KPI指标分析</span>
+          </template>
+          <el-menu-item index="3-1">产值综合能耗分析</el-menu-item>
+          <el-menu-item index="3-2">产值耗水量分析</el-menu-item>
+          <el-menu-item index="3-3">能源消耗总量分析</el-menu-item>
+          <el-menu-item index="3-4">单车综合能耗分析</el-menu-item>
+          <el-menu-item index="3-5">KPI评价考核表</el-menu-item>
+        </el-submenu>
+        <el-submenu index="4">
+          <template slot="title">
+            <span>设备能效分析</span>
+          </template>
+          <el-menu-item index="4-1">变压器</el-menu-item>
+          <el-menu-item index="4-2">空压机</el-menu-item>
+          <el-menu-item index="4-3">风机</el-menu-item>
+          <el-menu-item index="4-4">水泵</el-menu-item>
+        </el-submenu>
+        <el-submenu index="5">
+          <template slot="title">
+            <span>设备能效分析</span>
+          </template>
+          <el-menu-item index="5-1">工业炉窑台账</el-menu-item>
+          <el-menu-item index="5-2">锅炉台账</el-menu-item>
+          <el-menu-item index="5-3">空压机台账</el-menu-item>
+          <el-menu-item index="5-4">空调台账</el-menu-item>
+          <el-menu-item index="5-5">通风机台账</el-menu-item>
+          <el-menu-item index="5-6">水泵台账</el-menu-item>
+          <el-menu-item index="5-7">变压器台账</el-menu-item>
+          <el-menu-item index="5-8">其他台账</el-menu-item>
+        </el-submenu>
+        <el-menu-item index="6">能源预警报警</el-menu-item>
+      </el-menu>
     </div>
   </transition>
 </template>
@@ -57,30 +80,19 @@ export default {
   data() {
     return {
       selectMenuIndex: 0,
-      showsMenu: []
+      showsMenu: [],
+      uniqueOpened: true
     }
   },
   methods: {
     hideMenu() {
       this.$emit('hide-menu')
     },
-    menuIsShow(param) {
-      var fIndex = this.showsMenu.findIndex((i) => {
-        return i === param
-      })
-      return fIndex >= 0
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath)
     },
-    toggleMenuItemShow(index) {
-      var fIndex = this.showsMenu.findIndex((i) => {
-        return i === index
-      })
-      if (fIndex < 0) {
-        this.showsMenu.push(index)
-      } else {
-        this.showsMenu.splice(fIndex, 1)
-      }
-      console.log(this.showsMenu)
-      this.selectMenuIndex = index
+    handleClose(key, keyPath) {
+      console.log(key, keyPath)
     }
   }
 }
@@ -97,67 +109,4 @@ export default {
       transition: all 0.3s
     &.slide-enter, &.slide-leave-to
       flex: 0 0 0px
-    .menu-group
-      .group-title
-        overflow: hidden
-        &.active
-          border-left: 3px solid #06e56d
-          .menu-item
-            border-top: 2px solid #2b87b7
-            border-bottom: 2px solid #083f60
-            .angle
-              right: 13px
-          .item-group
-            .item
-              background: #004d75
-        &.router-link-active
-          background: $color-sub-theme
-        .menu-item:hover
-          background: $color-sub-theme
-        .menu-item
-          height: 40px
-          line-height: 40px
-          display: flex
-          align-items: center
-          padding-left: 15px
-          width: 180px
-          position: relative
-          no-wrap()
-          box-sizing: border-box
-          cursor: pointer
-          .arrow
-            position: absolute
-            left: 0
-            color: #fff
-            font-size: $font-size-large-x
-            font-weight: bold
-          .angle
-            color: #06e56d
-            position: absolute
-            right: 10px
-            font-size: $font-size-large-x
-            font-weight: bold
-        .item-group
-          &.slide-enter-active, &.slide-leave-active
-            transition: all 0.3s
-          &.slide-enter, &.slide-leave-to
-            &.h3
-              height: 0
-            &.h5
-              height: 0
-          &.h3
-            height: 90px
-          &.h5
-            height: 150px
-          .router-link-active
-            .item
-              background: $color-sub-theme
-          .item
-            font-size: $font-size-medium
-            padding-left: 30px
-            height: 30px
-            line-height: 30px
-            cursor: pointer
-          .item:hover
-            background: $color-sub-theme
 </style>

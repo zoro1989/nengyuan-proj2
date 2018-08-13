@@ -10,8 +10,10 @@ export default {
       default: '图表标题'
     },
     chartColor: {
-      type: String,
-      default: '#49b5ef'
+      type: Array,
+      default: function () {
+        return ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3']
+      }
     },
     titleTextColor: {
       type: String,
@@ -28,18 +30,40 @@ export default {
     showArea: {
       type: Boolean,
       default: false
+    },
+    yAxisData: {
+      type: Array,
+      default: function () {
+        return ['4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7']
+      }
+    },
+    series: {
+      type: Array,
+      default: function () {
+        return []
+      }
     }
   },
   created() {
     this.chart = {}
   },
+  mounted() {
+    if (this.series) {
+      this.makeChart(this.series)
+    }
+  },
+  watch: {
+    series: function (newData) {
+      this.makeChart(newData)
+    }
+  },
   methods: {
-    makeChart() {
+    makeChart(newData) {
       this.chart = echarts.init(this.$refs.chart)
 
       // 指定图表的配置项和数据
       const option = {
-        color: [this.chartColor],
+        color: this.chartColor,
         title: {
           text: this.titleText,
           x: 'center',
@@ -70,7 +94,10 @@ export default {
                 color: '#666'
               }
             },
-            data: ['4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7']
+            axisTick: {
+              alignWithLabel: true
+            },
+            data: this.yAxisData
           }
         ],
         xAxis: [
@@ -86,17 +113,33 @@ export default {
             }
           }
         ],
-        series: [
-          {
-            name: this.seriesName,
-            type: 'bar',
-            barWidth: '60%',
-            data: [180, 200, 120, 300, 250, 310, 290],
-            itemStyle: {
-              barBorderRadius: [0, 3, 3, 0]
-            }
+        series: ((vm, series) => {
+          let res = []
+          for (let i = 0; i < series.length; i++) {
+            res.push({
+              name: vm.seriesName,
+              type: 'bar',
+              barWidth: '60%',
+              stack: '1',
+              data: series[i].data,
+              itemStyle: {
+                barBorderRadius: [3, 3, 0, 0]
+              }
+            })
           }
-        ]
+          return res
+        })(this, newData)
+//        series: [
+//          {
+//            name: this.seriesName,
+//            type: 'bar',
+//            barWidth: '60%',
+//            data: [180, 200, 120, 300, 250, 310, 290],
+//            itemStyle: {
+//              barBorderRadius: [0, 3, 3, 0]
+//            }
+//          }
+//        ]
       }
 
       // 使用刚指定的配置项和数据显示图表。
@@ -105,9 +148,6 @@ export default {
     refreshChart() {
       this.chart.resize()
     }
-  },
-  mounted() {
-    this.makeChart()
   }
 }
 </script>

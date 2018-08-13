@@ -5,6 +5,25 @@ import router from './router'
 import fastclick from 'fastclick'
 import 'common/stylus/index.styl'
 
+import {
+  Menu,
+  Submenu,
+  MenuItem,
+  MenuItemGroup,
+  Cascader,
+  Select,
+  Option,
+  DatePicker
+} from 'element-ui'
+Vue.use(Menu)
+Vue.use(Submenu)
+Vue.use(MenuItem)
+Vue.use(MenuItemGroup)
+Vue.use(Cascader)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(DatePicker)
+
 Vue.config.productionTip = false
 
 fastclick.attach(document.body)

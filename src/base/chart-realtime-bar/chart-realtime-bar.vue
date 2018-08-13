@@ -3,6 +3,7 @@
 </template>
 <script>
 import echarts from 'echarts'
+import moment from 'moment'
 export default {
   props: {
     titleText: {
@@ -42,7 +43,7 @@ export default {
           textStyle: {
             color: this.titleTextColor
           },
-          link: '/#/realtime-tripping',
+          link: '/#/ssxz',
           target: 'self'
         },
         tooltip: {
@@ -67,16 +68,19 @@ export default {
               color: '#666'
             }
           },
+          axisTick: {
+            alignWithLabel: true
+          },
           axisLabel: {
-            interval: 1
+            interval: 0
           },
           data: (function () {
-            var now = new Date()
+            var now = moment()
             var res = []
-            var len = 10
+            var len = 12
             while (len--) {
-              res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''))
-              now = new Date(now - 2000)
+              res.unshift(now.format('HH:00'))
+              now = now.subtract(3600, 'seconds')
             }
             return res
           })()
@@ -101,9 +105,15 @@ export default {
             itemStyle: {
               barBorderRadius: [3, 3, 0, 0]
             },
+            label: {
+              normal: {
+                show: true,
+                position: 'top'
+              }
+            },
             data: (function () {
               var res = []
-              var len = 10
+              var len = 12
               while (len--) {
                 res.push(Math.round(Math.random() * 1000))
               }
@@ -114,16 +124,20 @@ export default {
       }
       clearInterval(this.timer)
       this.timer = setInterval(() => {
-        var axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '')
-        var data0 = option.series[0].data
-        data0.shift()
-        data0.push(Math.round(Math.random() * 1000))
+        var now = moment()
+        if (option.xAxis.data.length > 0 &&
+          option.xAxis.data[option.xAxis.data.length - 1].split(':')[0] * 1 < now.format('HH') * 1) {
+          var axisData = now.format('HH:00')
+          var data0 = option.series[0].data
+          data0.shift()
+          data0.push(Math.round(Math.random() * 1000))
 
-        option.xAxis.data.shift()
-        option.xAxis.data.push(axisData)
+          option.xAxis.data.shift()
+          option.xAxis.data.push(axisData)
 
-        this.chart.setOption(option, true)
-      }, 2100)
+          this.chart.setOption(option, true)
+        }
+      }, 60 * 1000)
 
       // 使用刚指定的配置项和数据显示图表。
       this.chart.setOption(option, true)

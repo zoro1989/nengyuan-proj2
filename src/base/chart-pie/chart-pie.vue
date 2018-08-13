@@ -61,7 +61,6 @@ export default {
   methods: {
     makeChart(data) {
       this.chart = echarts.init(this.$refs.chart)
-
       // 指定图表的配置项和数据
       const option = {
         color: this.chartColor,
@@ -101,58 +100,66 @@ export default {
                       }
                       return res.join('\n')
                     })(vm.data[i].othersData),
-//                    formatter: [
-//                      '{rate1|一汽解放：55.3%}',
-//                      '{rate2|天津丰田：38.9%}',
-//                      '{rate3|天津夏利：5.8%}',
-//                      '{rate4|长春丰越：3%}',
-//                      '{rate5|一汽通用：2%}'
-//                    ].join('\n'),
                     backgroundColor: '#eee',
                     borderWidth: 1,
                     borderRadius: 4,
-                    rich: {
-                      rate1: {
-                        width: 100,
-                        align: 'right',
-                        height: 55.3,
-                        padding: [0, 0, 0, 0],
-                        color: '#fff',
-                        backgroundColor: '#ffab45'
-                      },
-                      rate2: {
-                        width: 100,
-                        align: 'right',
-                        height: 38.9,
-                        padding: [0, 0, 0, 0],
-                        color: '#fff',
-                        backgroundColor: '#06e56d'
-                      },
-                      rate3: {
-                        width: 100,
-                        align: 'right',
-                        height: 20,
-                        padding: [0, 0, 0, 0],
-                        color: '#fff',
-                        backgroundColor: '#68caff'
-                      },
-                      rate4: {
-                        width: 100,
-                        align: 'right',
-                        height: 15,
-                        padding: [0, 0, 0, 0],
-                        color: '#fff',
-                        backgroundColor: '#717eff'
-                      },
-                      rate5: {
-                        width: 100,
-                        align: 'right',
-                        height: 15,
-                        padding: [0, 0, 0, 0],
-                        color: '#fff',
-                        backgroundColor: '#2436e3'
+                    rich: ((othersData) => {
+                      let otherDataColors = ['#ffab45', '#06e56d', '#68caff', '#717eff', '#2436e3']
+                      let res = {}
+                      for (let i = 0; i < othersData.length; i++) {
+                        res['rate' + i] = {
+                          width: 100,
+                          align: 'right',
+                          height: othersData[i].value < 20 ? 20 : othersData[i].value,
+                          padding: [0, 0, 0, 0],
+                          color: '#fff',
+                          backgroundColor: otherDataColors[i]
+                        }
                       }
-                    }
+                      return res
+                    })(vm.data[i].othersData)
+//                    rich: {
+//                      rate0: {
+//                        width: 100,
+//                        align: 'right',
+//                        height: 55.3,
+//                        padding: [0, 0, 0, 0],
+//                        color: '#fff',
+//                        backgroundColor: '#ffab45'
+//                      },
+//                      rate1: {
+//                        width: 100,
+//                        align: 'right',
+//                        height: 38.9,
+//                        padding: [0, 0, 0, 0],
+//                        color: '#fff',
+//                        backgroundColor: '#06e56d'
+//                      },
+//                      rate2: {
+//                        width: 100,
+//                        align: 'right',
+//                        height: 20,
+//                        padding: [0, 0, 0, 0],
+//                        color: '#fff',
+//                        backgroundColor: '#68caff'
+//                      },
+//                      rate3: {
+//                        width: 100,
+//                        align: 'right',
+//                        height: 20,
+//                        padding: [0, 0, 0, 0],
+//                        color: '#fff',
+//                        backgroundColor: '#717eff'
+//                      },
+//                      rate4: {
+//                        width: 100,
+//                        align: 'right',
+//                        height: 20,
+//                        padding: [0, 0, 0, 0],
+//                        color: '#fff',
+//                        backgroundColor: '#2436e3'
+//                      }
+//                    }
                   }
                 } : {position: vm.postion}
                 res.push(obj)

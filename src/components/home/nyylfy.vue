@@ -3,31 +3,21 @@
     <div class="cost-info">
       <div class="cost-title">
         <span>选择日期</span>
-        <select>
-          <option>2017-1</option>
-          <option>2017-2</option>
-          <option>2017-3</option>
-          <option>2017-4</option>
-          <option>2017-5</option>
-          <option>2017-6</option>
-          <option>2017-7</option>
-          <option>2017-8</option>
-          <option>2017-9</option>
-          <option>2017-10</option>
-          <option>2017-11</option>
-          <option>2017-12</option>
-        </select>
+          <el-date-picker
+            v-model="valueMonth"
+            type="month"
+            size="mini"
+            placeholder="选择月">
+          </el-date-picker>
         <span>用能单位</span>
-        <select>
-          <option>产值综合能耗</option>
-          <option>产值碳排放量</option>
-          <option>产值耗电量</option>
-          <option>产值耗天然气量</option>
-          <option>产值耗水量</option>
-          <option>产值耗热量</option>
-          <option>单车综合能耗</option>
-          <option>单车碳排放量</option>
-        </select>
+        <el-select v-model="valueYndw" placeholder="请选择" size="mini">
+          <el-option
+            v-for="item in options1"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
       </div>
       <div class="panel-box">
         <data-panel-title title="三月集团能源用量信息"></data-panel-title>
@@ -230,18 +220,23 @@
           <chart-pie class="quantity" ref="fee"
                      titleText="三月电量占比"
                      :radius="quantityChartRadius"
+                     :data="strucPie1"
                      postion="inside"></chart-pie>
         </div>
         <div class="col-lg-8 col-md-12 col-xs-12">
           <chart-pie class="fee" ref="fee"
                      titleText="三月电费用占比"
                      :radius="feeChartRadius"
-                     :othersData="othersData"
+                     :data="strucPie2"
                      postion="inside"></chart-pie>
         </div>
       </div>
       <div class="panel-box">
         <chart-bar-line class="energy" ref="energy"
+                        :legendData="legendData"
+                        :series="seriesData"
+                        :xAxisData="xAxisData1"
+                        :yAxis="yAxis"
                         titleText="能源用量与节能指标同比分析"></chart-bar-line>
       </div>
     </div>
@@ -266,8 +261,77 @@ export default {
     return {
       quantityChartRadius: [0, '70%'],
       feeChartRadius: [0, '70%'],
-      othersData: ['一汽解放：14%', '天津丰田：9%', '天津夏利：3%', '长春丰越：3%', '一汽通用：2%']
+      strucPie1: [],
+      strucPie2: [],
+      legendData: [],
+      seriesData: [],
+      valueMonth: '',
+      options1: [{
+        value: 'd',
+        label: '电'
+      }, {
+        value: 's',
+        label: '水'
+      }, {
+        value: 'rl',
+        label: '热力'
+      }, {
+        value: 'trq',
+        label: '天然气'
+      }, {
+        value: 'ym',
+        label: '原煤'
+      }, {
+        value: 'nyxhzl',
+        label: '能源消耗总量'
+      }],
+      valueYndw: '',
+      xAxisData1: ['红旗工厂', '一汽大众', '一汽轿车', '一汽吉林', '新能源汽车', '长春丰越', '天津夏利', '天津丰田', '一汽通用(长春)', '四川丰田(成都)', '一汽解放', '一汽客车'],
+      yAxis: [{name: '千瓦时', min: 0.0, max: 50.0, interval: 10.0},
+        {name: '万元', min: 0.00, max: 0.05, interval: 0.01}]
     }
+  },
+  created() {
+    setTimeout(() => {
+      this.strucPie1 = [{value: 274, name: '零部件、物流研发'}, {value: 168, name: '整车制造'}]
+      this.strucPie2 = [{value: 274, name: '水'}, {value: 168, name: '其他', othersData: [{value: 55.3, name: '一汽解放'}, {value: 38.9, name: '天津丰田'}, {value: 5.8, name: '天津夏利'}, {value: 3, name: '长春丰越'}, {value: 2, name: '一汽通用'}]}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+      this.legendData = ['上年同期电量', '实际电量', '计划电量', '上年同期费用', '实际费用', '计划费用']
+      this.seriesData = [
+        {
+          name: '上年同期电量',
+          type: 'bar',
+          data: [20.0, 25.0, 22.0, 21.0, 25.0, 27.0, 29.0, 27.0, 20.0, 25.0, 22.0, 21.0],
+          reality: '0'
+        },
+        {
+          name: '实际电量',
+          type: 'bar',
+          data: [19.0, 31.0, 19.0, 27.0, 25.0, 31.0, 20.0, 17.0, 26.0, 31.0, 25.0, 27.0],
+          reality: '1'
+        },
+        {
+          name: '计划电量',
+          type: 'bar',
+          data: [28.0, 21.0, 28.0, 28.0, 28.0, 32.0, 28.0, 22.0, 28.0, 41.0, 28.0, 28.0],
+          reality: '0'
+        },
+        {
+          name: '上年同期费用',
+          type: 'line',
+          data: [0.012, 0.013, 0.017, 0.016, 0.018, 0.017, 0.016, 0.015, 0.012, 0.013, 0.017, 0.016]
+        },
+        {
+          name: '实际费用',
+          type: 'line',
+          data: [0.007, 0.009, 0.015, 0.005, 0.007, 0.012, 0.013, 0.019, 0.007, 0.009, 0.015, 0.005]
+        },
+        {
+          name: '计划费用',
+          type: 'line',
+          data: [0.005, 0.012, 0.01, 0.012, 0.013, 0.018, 0.016, 0.012, 0.005, 0.012, 0.01, 0.012]
+        }
+      ]
+    })
   }
 }
 </script>

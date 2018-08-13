@@ -4,30 +4,30 @@
       <div class="panels row">
         <div class="panel-l col-lg-5 col-md-12 col-xs-12">
           <div class="panel-box">
-            <data-panel-title title="三月能源绩效" link="/all-cost"></data-panel-title>
+            <data-panel-title title="三月能源绩效" link="/zhnh"></data-panel-title>
             <div class="panel row">
               <div class="col-md-6 col-xs-12">
                 <data-panel
                   class="border-right border-bottom"
                   title="产值综合能耗"
-                  :data="data.czzhnh"
+                  :data="data.czzhnh || 0"
                   unit="吨标煤/万元"
-                  :tongbiData="data.czzhnh_tb"
-                  :tongbiStatus="data.czzhnh_tb > 0 ? 'up' : 'down'"
-                  :huanbiData="data.czzhnh_hb"
-                  :huanbiStatus="data.czzhnh_hb > 0 ? 'up' : 'down'"
+                  :tongbiData="Math.abs(data.czzhnh_tb || 0)"
+                  :tongbiStatus="(data.czzhnh_tb || 0) > 0 ? 'up' : 'down'"
+                  :huanbiData="Math.abs(data.czzhnh_hb || 0)"
+                  :huanbiStatus="(data.czzhnh_hb || 0) > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
               <div class="col-md-6 col-xs-12">
                 <data-panel
                   class="border-bottom"
                   title="单车能源费用"
-                  :data="data.je_d"
+                  :data="data.je_d || 0"
                   unit="元/辆"
-                  :tongbiData="data.je_d_tb"
-                  :tongbiStatus="data.je_d_tb > 0 ? 'up' : 'down'"
-                  :huanbiData="data.je_d_hb"
-                  :huanbiStatus="data.je_d_hb > 0 ? 'up' : 'down'"
+                  :tongbiData="Math.abs(data.je_d_tb || 0)"
+                  :tongbiStatus="(data.je_d_tb|| 0) > 0 ? 'up' : 'down'"
+                  :huanbiData="Math.abs(data.je_d_hb || 0)"
+                  :huanbiStatus="(data.je_d_hb|| 0) > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
             </div>
@@ -36,23 +36,23 @@
                 <data-panel
                   class="border-right"
                   title="单车综合标煤"
-                  :data="data.zhnh_d"
+                  :data="data.zhnh_d || 0"
                   unit="吨标煤/辆"
-                  :tongbiData="data.zhnh_d_tb"
-                  :tongbiStatus="data.zhnh_d_tb > 0 ? 'up' : 'down'"
-                  :huanbiData="data.zhnh_d_hb"
-                  :huanbiStatus="data.zhnh_d_hb > 0 ? 'up' : 'down'"
+                  :tongbiData="Math.abs(data.zhnh_d_tb || 0)"
+                  :tongbiStatus="(data.zhnh_d_tb || 0) > 0 ? 'up' : 'down'"
+                  :huanbiData="Math.abs(data.zhnh_d_hb || 0)"
+                  :huanbiStatus="(data.zhnh_d_hb || 0) > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
               <div class="col-md-6 col-xs-12">
                 <data-panel
                   title="单车碳排放量"
-                  :data="data.tan_d"
+                  :data="data.tan_d || 0"
                   unit="KGCO2/辆"
-                  :tongbiData="data.tan_d_tb"
-                  :tongbiStatus="data.tan_d_tb > 0 ? 'up' : 'down'"
-                  :huanbiData="data.tan_d_hb"
-                  :huanbiStatus="data.tan_d_hb > 0 ? 'up' : 'down'"
+                  :tongbiData="Math.abs(data.tan_d_tb || 0)"
+                  :tongbiStatus="(data.tan_d_tb || 0) > 0 ? 'up' : 'down'"
+                  :huanbiData="Math.abs(data.tan_d_hb || 0)"
+                  :huanbiStatus="(data.tan_d_hb || 0) > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
             </div>
@@ -85,30 +85,30 @@
         </div>
         <div class="panel-r col-lg-5 col-md-12 col-xs-12">
           <div class="panel-box">
-            <data-panel-title title="三月能耗信息" link="/cost-info"></data-panel-title>
+            <data-panel-title title="三月能耗信息" link="/nyylfy"></data-panel-title>
             <div class="panel row">
               <div class="col-md-6 col-xs-12">
                 <data-panel
                   class="border-right border-bottom"
                   title="生产产量"
-                  :data="data.cl"
+                  :data="data.cl || 0"
                   unit="万辆"
-                  :tongbiData="data.cl_tb"
-                  :tongbiStatus="data.cl_tb > 0 ? 'up' : 'down'"
-                  :huanbiData="data.cl_hb"
-                  :huanbiStatus="data.cl_hb > 0 ? 'up' : 'down'"
+                  :tongbiData="Math.abs(data.cl_tb || 0)"
+                  :tongbiStatus="(data.cl_tb || 0) > 0 ? 'up' : 'down'"
+                  :huanbiData="Math.abs(data.cl_hb || 0)"
+                  :huanbiStatus="(data.cl_hb || 0) > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
               <div class="col-md-6 col-xs-12">
                 <data-panel
                   class="border-bottom"
                   title="能源用量"
-                  :data="data.nh"
+                  :data="data.nh || 0"
                   unit="万吨标煤"
-                  :tongbiData="data.nh_tb"
-                  :tongbiStatus="data.nh_tb > 0 ? 'up' : 'down'"
-                  :huanbiData="data.nh_hb"
-                  :huanbiStatus="data.nh_hb > 0 ? 'up' : 'down'"
+                  :tongbiData="Math.abs(data.nh_tb || 0)"
+                  :tongbiStatus="(data.nh_tb || 0) > 0 ? 'up' : 'down'"
+                  :huanbiData="Math.abs(data.nh_hb || 0)"
+                  :huanbiStatus="(data.nh_hb || 0) > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
             </div>
@@ -117,23 +117,23 @@
                 <data-panel
                   class="border-right"
                   title="碳排放量"
-                  :data="data.tan"
+                  :data="data.tan || 0"
                   unit="吨CO2"
-                  :tongbiData="data.tan_tb"
-                  :tongbiStatus="data.tan_tb > 0 ? 'up' : 'down'"
-                  :huanbiData="data.tan_hb"
-                  :huanbiStatus="data.tan_hb > 0 ? 'up' : 'down'"
+                  :tongbiData="Math.abs(data.tan_tb || 0)"
+                  :tongbiStatus="(data.tan_tb || 0) > 0 ? 'up' : 'down'"
+                  :huanbiData="Math.abs(data.tan_hb || 0)"
+                  :huanbiStatus="(data.tan_hb || 0) > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
               <div class="col-md-6  col-xs-12">
                 <data-panel
                   title="能源费用"
-                  :data="data.je"
+                  :data="data.je || 0"
                   unit="万元"
-                  :tongbiData="data.je_tb"
-                  :tongbiStatus="data.je_tb > 0 ? 'up' : 'down'"
-                  :huanbiData="data.je_hb"
-                  :huanbiStatus="data.je_hb > 0 ? 'up' : 'down'"
+                  :tongbiData="Math.abs(data.je_tb || 0)"
+                  :tongbiStatus="(data.je_tb || 0) > 0 ? 'up' : 'down'"
+                  :huanbiData="Math.abs(data.je_hb || 0)"
+                  :huanbiStatus="(data.je_hb || 0) > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
             </div>
@@ -165,6 +165,8 @@
         </div>
         <div class="col-lg-6 col-md-12 col-xs-12">
           <chart-bar-line class="energy" ref="energy"
+                          :legendData="legendData"
+                          :series="seriesData"
                           titleText="能源用量与节能指标同比分析"></chart-bar-line>
         </div>
         <div class="col-lg-3 col-md-12 col-xs-12">
@@ -188,8 +190,8 @@ import ChartRealtimeBar from 'base/chart-realtime-bar/chart-realtime-bar'
 import ChartPie from 'base/chart-pie/chart-pie'
 import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
 
-import { api } from '@/config'
-import fetch from 'utils/fetch'
+// import { api } from '@/config'
+// import fetch from 'utils/fetch'
 export default {
   components: {
     Scroll,
@@ -206,25 +208,55 @@ export default {
       analyzeChartRadius: ['13%', '70%'],
       feeChartRadius: ['40%', '70%'],
       showArea: true,
-      // 三月能耗绩效数据块数据
-      perfDataPanels: [],
-      // 三月清洁能源用量数据块数据
-      cleanDataPanels: [],
-      // 三月能耗信息数据块数据
-      infoDataPanels: [],
       // 三月能耗结构
       strucPie: [],
       // 三月能耗费用
       costPie: [],
-      // 能耗与节能指标分析
-      analyzeBarLine: [],
-      data: {}
+      data: {},
+      legendData: [],
+      seriesData: []
     }
   },
   created() {
     setTimeout(() => {
       this.strucPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
       this.costPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+      this.legendData = ['上年同期消耗', '实际消耗', '计划消耗', '上年同期节能指标', '实际节能指标', '计划节能指标']
+      this.seriesData = [
+        {
+          name: '上年同期消耗',
+          type: 'bar',
+          data: [20.0, 25.0, 22.0, 21.0, 25.0, 27.0, 29.0, 27.0, 20.0, 25.0, 22.0, 21.0],
+          reality: '0'
+        },
+        {
+          name: '实际消耗',
+          type: 'bar',
+          data: [19.0, 31.0, 19.0, 27.0, 25.0, 31.0, 20.0, 17.0, 26.0, 31.0, 25.0, 27.0],
+          reality: '1'
+        },
+        {
+          name: '计划消耗',
+          type: 'bar',
+          data: [28.0, 21.0, 28.0, 28.0, 28.0, 32.0, 28.0, 22.0, 28.0, 41.0, 28.0, 28.0],
+          reality: '0'
+        },
+        {
+          name: '上年同期节能指标',
+          type: 'line',
+          data: [0.012, 0.013, 0.017, 0.016, 0.018, 0.017, 0.016, 0.015, 0.012, 0.013, 0.017, 0.016]
+        },
+        {
+          name: '实际节能指标',
+          type: 'line',
+          data: [0.007, 0.009, 0.015, 0.005, 0.007, 0.012, 0.013, 0.019, 0.007, 0.009, 0.015, 0.005]
+        },
+        {
+          name: '计划节能指标',
+          type: 'line',
+          data: [0.005, 0.012, 0.01, 0.012, 0.013, 0.018, 0.016, 0.012, 0.005, 0.012, 0.01, 0.012]
+        }
+      ]
     })
 //    fetch('get', api.getHomeData, {}).then((res) => {
 //      this.data = res.data
