@@ -3,7 +3,7 @@
 // let apiPath = 'http://rancode.jymenu.com/';
 let apiPath = '/'
 const api = {
-  getHomeData: apiPath + 'sshblog/queryShouYeList'
+  getHomeData: apiPath + 'yqny/queryShouYeList'
 }
 
 const apiDict = {

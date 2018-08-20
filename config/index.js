@@ -11,8 +11,8 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/sshblog': {
-        target: 'http://192.168.2.228:8090/',
+      '/yqny': {
+        target: 'http://127.0.0.1:8088/',
         changeOrigin: true
       }
     },
