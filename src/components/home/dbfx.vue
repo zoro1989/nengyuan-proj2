@@ -1,16 +1,16 @@
 <template>
-  <scroll class="realtime-tripping-container">
+  <div class="realtime-tripping-container">
     <div class="realtime-tripping">
       <div class="tripping-title">
         <div class="title-l">
-          <span>选择日期</span>
+          <span class="picker-txt">选择日期</span>
           <el-date-picker
             v-model="valueMonth"
             type="month"
             size="mini"
             placeholder="选择月">
           </el-date-picker>
-          <span>能源类别</span>
+          <span class="picker-txt">能源类别</span>
           <el-select v-model="valueNylb" placeholder="请选择" size="mini">
             <el-option
               v-for="item in options1"
@@ -21,7 +21,7 @@
           </el-select>
         </div>
         <div class="title-r">
-          <span><i class="fa fa-times"></i></span>
+          <span @click="onClose" class="ripple"><i class="fa fa-times"></i></span>
         </div>
       </div>
       <div class="tripping-content">
@@ -49,15 +49,12 @@
         </div>
       </div>
     </div>
-  </scroll>
+  </div>
 </template>
 <script>
-import Scroll from 'base/scroll/scroll'
-
 import ChartBar from 'base/chart-bar/chart-bar'
 export default {
   components: {
-    Scroll,
     ChartBar
   },
   data() {
@@ -99,6 +96,9 @@ export default {
     },
     handleChange(value) {
       console.log(value)
+    },
+    onClose() {
+      this.$router.replace('/ssxz')
     }
   },
   mounted() {
@@ -110,7 +110,8 @@ export default {
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .realtime-tripping-container
-    overflow: hidden
+    overflow: scroll
+    -webkit-overflow-scrolling: touch
     position: absolute
     top: 0
     left: 0
@@ -121,8 +122,9 @@ export default {
       display: flex
       flex-direction: column
       min-height: 100%
+      min-width: 600px
       .tripping-title
-        margin: 6px
+        margin: 10px
         height: 40px
         line-height: 40px
         background: #fff
@@ -131,6 +133,9 @@ export default {
         display: flex
         justify-content: space-between
         padding: 0 10px 0 10px
+        .title-l
+          .picker-txt
+            padding: 0 5px 0 15px
         .title-r
           .analyze-btn
             background: #899eb6
@@ -147,10 +152,10 @@ export default {
       .tripping-content
         .sub-title
           text-align: center
-          margin: 0 0 6px 0
+          margin: 0 0 10px 0
         .chart
           min-height: 250px
           background: #fff
-          margin: 0 6px 6px 6px
+          margin: 0 10px 10px 10px
           border-radius: 5px
 </style>

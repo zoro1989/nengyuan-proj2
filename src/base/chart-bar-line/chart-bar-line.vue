@@ -68,7 +68,8 @@ export default {
           text: this.titleText,
           x: 'center',
           textStyle: {
-            color: this.titleTextColor
+            color: this.titleTextColor,
+            fontWeight: 'normal'
           }
         },
         color: this.chartColor,
@@ -192,6 +193,13 @@ export default {
 
       // 使用刚指定的配置项和数据显示图表。
       this.chart.setOption(option, true)
+
+      window.addEventListener('resize', () => {
+        clearTimeout(this.resizeTimer)
+        this.resizeTimer = setTimeout(() => {
+          this.refreshChart()
+        }, 60)
+      })
     },
     refreshChart() {
       this.chart.resize()
@@ -200,4 +208,6 @@ export default {
 }
 </script>
 <style scoped lang="stylus">
+  .chart-bar-line
+    padding: 10px 0
 </style>

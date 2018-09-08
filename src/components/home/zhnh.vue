@@ -1,23 +1,28 @@
 <template>
-  <scroll class="cost-info-container">
+  <div class="cost-info-container">
     <div class="cost-info">
       <div class="cost-title">
-        <span>选择日期</span>
-        <el-date-picker
-          v-model="valueMonth"
-          type="month"
-          size="mini"
-          placeholder="选择月">
-        </el-date-picker>
-        <span>用能单位</span>
-        <el-select v-model="valueYndw" placeholder="请选择" size="mini">
-          <el-option
-            v-for="item in options1"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
+        <div class="title-l">
+          <span class="picker-txt">选择日期</span>
+          <el-date-picker
+            v-model="valueMonth"
+            type="month"
+            size="mini"
+            placeholder="选择月">
+          </el-date-picker>
+          <span class="picker-txt">用能单位</span>
+          <el-select v-model="valueYndw" placeholder="请选择" size="mini">
+            <el-option
+              v-for="item in options1"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </div>
+        <div class="title-r">
+          <span @click="onClose" class="ripple"><i class="fa fa-times"></i></span>
+        </div>
       </div>
       <div class="row">
         <div class="panel-l col-lg-5 col-md-12 col-xs-12">
@@ -234,18 +239,15 @@
                         titleText="三月零部件加工产值综合能耗"></chart-bar-line>
       </div>
     </div>
-  </scroll>
+  </div>
 </template>
 <script>
-import Scroll from 'base/scroll/scroll'
-
 import DataPanel from 'base/data-panel/data-panel'
 import DataPanelTitle from 'base/data-panel-title/data-panel-title'
 import ChartPie from 'base/chart-pie/chart-pie'
 import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
 export default {
   components: {
-    Scroll,
     DataPanel,
     DataPanelTitle,
     ChartPie,
@@ -342,6 +344,11 @@ export default {
         }
       ]
     })
+  },
+  methods: {
+    onClose() {
+      this.$router.replace('/home')
+    }
   }
 }
 </script>
@@ -349,7 +356,8 @@ export default {
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .cost-info-container
-    overflow: hidden
+    overflow: scroll
+    -webkit-overflow-scrolling: touch
     position: absolute
     top: 0
     left: 0
@@ -360,6 +368,11 @@ export default {
       display: flex
       flex-direction: column
       min-height: 100%
+      min-width: 600px
+      @media (max-width: 992px)
+        .panel-r
+          .panel-box
+            margin: 0 10px 10px 10px!important
       .cost-title
         margin: 10px 10px 0 10px
         padding: 0 10px
@@ -368,6 +381,16 @@ export default {
         background: #fff
         border-radius: 5px
         color: #333
+        display: flex
+        justify-content: space-between
+        .title-r
+          .fa
+            margin: 0 5px
+            color: #899eb6
+            font-size: $font-size-large
+            cursor: pointer
+        .picker-txt
+          padding: 0 5px 0 15px
       .panel-l
         .panel-box
           margin: 10px 10px 0 10px

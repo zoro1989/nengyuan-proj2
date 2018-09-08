@@ -7,6 +7,32 @@ body, html
   -webkit-tap-highlight-color: transparent
   background: $color-background
   color: $color-text
+  .ripple
+    position: relative
+    &:focus
+      outline: none;
+    &:after
+      border-radius: 50%
+      content: ""
+      display: block
+      position: absolute
+      top: -10px
+      left: -10px
+      right: -10px
+      bottom: -10px
+      pointer-events: none
+      background-color: #333
+      background-repeat: no-repeat
+      background-position: 50%
+      opacity: 0
+      transition: all .3s
+    &:active:after
+      opacity: .3
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      transition: 0s
   .menu > .el-menu
     .el-submenu__icon-arrow
       color: #75c4ef
@@ -36,64 +62,64 @@ body, html
         .el-menu-item
           height: 30px
           line-height: 30px
-  @media screen and (min-width:1200px)
-    .h-menu
-      display: none!important
-  @media screen and (max-width:1200px) and (min-width: 800px)
-    .menu
-      display: none!important
-    .notice
-      display: flex !important
-      .n-left
-        .mobile
-          display: block !important
-        .pc
-          display: none!important
-    .home-container
-      top: 60px!important
-  @media screen and (max-width:800px)
-    .header
-      display: none !important
-    .container
-      top: 0 !important
-      .h-menu
-        top: 60px !important
-        .menu-group
-          top: 60px !important
-        .bg-cover
-          top: 60px !important
-      .menu
-        display: none!important
-      .notice
-        display: flex !important
-        .n-left
-          .mobile
-            display: block !important
-          .pc
-            display: none!important
-        .n-right
-          display: none!important
-      .home-container
-        top: 60px!important
-        .home
-          .panel-r, .panel-l
-            display: block !important
-            border: 3px solid $color-sub-text !important
-          .panel-l
-            border-bottom: none !important
-          .panel-r
-            border-top: none !important
-          .real-time
-            .dosage
-              border: 6px solid $color-sub-text!important
-              border-top: none!important
-            .cost
-              border: 6px solid $color-sub-text!important
-              border-top: none!important
-          .chart
-            .energy
-              border: 6px solid $color-sub-text!important
-              border-top: none!important
-            .analyze
-              border: 6px solid $color-sub-text!important
-              border-top: none!important
+  //@media screen and (min-width:1200px)
+  //  .h-menu
+  //    display: none!important
+  //@media screen and (max-width:1200px) and (min-width: 800px)
+  //  .menu
+  //    display: none!important
+  //  .notice
+  //    display: flex !important
+  //    .n-left
+  //      .mobile
+  //        display: block !important
+  //      .pc
+  //        display: none!important
+  //  .home-container
+  //    top: 60px!important
+  //@media screen and (max-width:800px)
+  //  .header
+  //    display: none !important
+  //  .container
+  //    top: 0 !important
+  //    .h-menu
+  //      top: 60px !important
+  //      .menu-group
+  //        top: 60px !important
+  //      .bg-cover
+  //        top: 60px !important
+  //    .menu
+  //      display: none!important
+  //    .notice
+  //      display: flex !important
+  //      .n-left
+  //        .mobile
+  //          display: block !important
+  //        .pc
+  //          display: none!important
+  //      .n-right
+  //        display: none!important
+  //    .home-container
+  //      top: 60px!important
+  //      .home
+  //        .panel-r, .panel-l
+  //          display: block !important
+  //          border: 3px solid $color-sub-text !important
+  //        .panel-l
+  //          border-bottom: none !important
+  //        .panel-r
+  //          border-top: none !important
+  //        .real-time
+  //          .dosage
+  //            border: 6px solid $color-sub-text!important
+  //            border-top: none!important
+  //          .cost
+  //            border: 6px solid $color-sub-text!important
+  //            border-top: none!important
+  //        .chart
+  //          .energy
+  //            border: 6px solid $color-sub-text!important
+  //            border-top: none!important
+  //          .analyze
+  //            border: 6px solid $color-sub-text!important
+  //            border-top: none!important

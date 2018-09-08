@@ -13,7 +13,8 @@ import {
   Cascader,
   Select,
   Option,
-  DatePicker
+  DatePicker,
+  Button
 } from 'element-ui'
 Vue.use(Menu)
 Vue.use(Submenu)
@@ -23,6 +24,7 @@ Vue.use(Cascader)
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(DatePicker)
+Vue.use(Button)
 
 Vue.config.productionTip = false
 

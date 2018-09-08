@@ -1,12 +1,12 @@
 <template>
-  <scroll class="home-container">
+  <div class="home-container">
     <div class="home">
       <div class="panels row">
-        <div class="panel-l col-lg-5 col-md-12 col-xs-12">
+        <div class="panel-l col-lg-5 col-md-12">
           <div class="panel-box">
-            <data-panel-title title="三月能源绩效" link="/zhnh"></data-panel-title>
+            <data-panel-title :title="lastMonth + '能源绩效'" link="/zhnh"></data-panel-title>
             <div class="panel row">
-              <div class="col-md-6 col-xs-12">
+              <div class="col-md-6">
                 <data-panel
                   class="border-right border-bottom"
                   title="产值综合能耗"
@@ -18,7 +18,7 @@
                   :huanbiStatus="(data.czzhnh_hb || 0) > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
-              <div class="col-md-6 col-xs-12">
+              <div class="col-md-6">
                 <data-panel
                   class="border-bottom"
                   title="单车能源费用"
@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="panel row">
-              <div class="col-md-6 col-xs-12">
+              <div class="col-md-6">
                 <data-panel
                   class="border-right"
                   title="单车综合标煤"
@@ -44,7 +44,7 @@
                   :huanbiStatus="(data.zhnh_d_hb || 0) > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
-              <div class="col-md-6 col-xs-12">
+              <div class="col-md-6">
                 <data-panel
                   title="单车碳排放量"
                   :data="data.tan_d || 0"
@@ -58,11 +58,11 @@
             </div>
           </div>
         </div>
-        <div class="panel-c col-lg-2 col-md-12 col-xs-12">
+        <div class="panel-c col-lg-2 col-md-12">
           <div class="panel-box">
-            <data-panel-title title="三月清洁能源用量"></data-panel-title>
+            <data-panel-title :title="lastMonth + '清洁能源用量'"></data-panel-title>
             <div class="panel row">
-              <div class="col-md-12 col-xs-12">
+              <div class="col-md-12">
                 <data-panel
                   class="border-bottom"
                   title="清洁能源"
@@ -76,18 +76,18 @@
               </div>
             </div>
             <div class="panel row">
-              <div class="col-md-12 col-xs-12">
+              <div class="col-md-12">
                 <flip-panel title="光伏发电实时量(小时)">
                 </flip-panel>
               </div>
             </div>
           </div>
         </div>
-        <div class="panel-r col-lg-5 col-md-12 col-xs-12">
+        <div class="panel-r col-lg-5 col-md-12">
           <div class="panel-box">
-            <data-panel-title title="三月能耗信息" link="/nyylfy"></data-panel-title>
+            <data-panel-title :title="lastMonth + '能耗信息'" link="/nyylfy"></data-panel-title>
             <div class="panel row">
-              <div class="col-md-6 col-xs-12">
+              <div class="col-md-6">
                 <data-panel
                   class="border-right border-bottom"
                   title="生产产量"
@@ -99,7 +99,7 @@
                   :huanbiStatus="(data.cl_hb || 0) > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
-              <div class="col-md-6 col-xs-12">
+              <div class="col-md-6">
                 <data-panel
                   class="border-bottom"
                   title="能源用量"
@@ -113,7 +113,7 @@
               </div>
             </div>
             <div class="panel row">
-              <div class="col-md-6 col-xs-12">
+              <div class="col-md-6">
                 <data-panel
                   class="border-right"
                   title="碳排放量"
@@ -125,7 +125,7 @@
                   :huanbiStatus="(data.tan_hb || 0) > 0 ? 'up' : 'down'"
                 ></data-panel>
               </div>
-              <div class="col-md-6  col-xs-12">
+              <div class="col-md-6">
                 <data-panel
                   title="能源费用"
                   :data="data.je || 0"
@@ -141,35 +141,35 @@
         </div>
       </div>
       <div class="real-time row">
-        <div class="col-lg-6 col-md-12 col-xs-12">
+        <div class="col-lg-6 col-md-12">
           <chart-realtime-line class="dosage" ref="dosage"
-                               titleText="四月十六能源用量(小时)"
+                               :titleText="realTimeToday + '能源用量(小时)'"
                                yAxisTitle="吨标煤/时"
                                seriesName="能耗"
                                :showArea="showArea"></chart-realtime-line>
         </div>
-        <div class="col-lg-6 col-md-12 col-xs-12">
+        <div class="col-lg-6 col-md-12">
           <chart-realtime-bar class="cost" ref="cost"
-                              titleText="四月十六能源费用(小时)"
+                              :titleText="realTimeToday + '能源费用(小时)'"
                               yAxisTitle="万元/时"
                               seriesName="费用"></chart-realtime-bar>
         </div>
       </div>
       <div class="chart row">
-        <div class="col-lg-3 col-md-12 col-xs-12">
+        <div class="col-lg-3 col-md-12">
           <chart-pie class="analyze" ref="analyze"
                      titleText="三月能源消耗结构"
                      roseType="radius"
                      :data="strucPie"
                      :radius="analyzeChartRadius"></chart-pie>
         </div>
-        <div class="col-lg-6 col-md-12 col-xs-12">
+        <div class="col-lg-6 col-md-12 energy-box">
           <chart-bar-line class="energy" ref="energy"
                           :legendData="legendData"
                           :series="seriesData"
                           titleText="能源用量与节能指标同比分析"></chart-bar-line>
         </div>
-        <div class="col-lg-3 col-md-12 col-xs-12">
+        <div class="col-lg-3 col-md-12">
           <chart-pie class="fee" ref="fee"
                      titleText="三月能源费用结构"
                      :data="costPie"
@@ -177,11 +177,9 @@
         </div>
       </div>
     </div>
-  </scroll>
+  </div>
 </template>
 <script>
-import Scroll from 'base/scroll/scroll'
-
 import DataPanel from 'base/data-panel/data-panel'
 import DataPanelTitle from 'base/data-panel-title/data-panel-title'
 import FlipPanel from 'base/flip-panel/flip-panel'
@@ -189,12 +187,12 @@ import ChartRealtimeLine from 'base/chart-realtime-line/chart-realtime-line'
 import ChartRealtimeBar from 'base/chart-realtime-bar/chart-realtime-bar'
 import ChartPie from 'base/chart-pie/chart-pie'
 import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
-
 import { api } from '@/config'
 import fetch from 'utils/fetch'
+let moment = require('moment')
+moment.locale('zh-cn')
 export default {
   components: {
-    Scroll,
     DataPanel,
     DataPanelTitle,
     FlipPanel,
@@ -214,7 +212,8 @@ export default {
       costPie: [],
       data: {},
       legendData: [],
-      seriesData: []
+      seriesData: [],
+      lastMonth: moment().subtract(1, 'months').format('MMMM')
     }
   },
   created() {
@@ -264,22 +263,37 @@ export default {
       this.costPie = res.pie2.seriesData
     })
   },
-  methods: {
-    refreshChart() {
-      this.$refs.analyze.refreshChart()
-      this.$refs.energy.refreshChart()
-      this.$refs.fee.refreshChart()
-      this.$refs.dosage.refreshChart()
-      this.$refs.cost.refreshChart()
+  computed: {
+    realTimeToday () {
+      return moment().format('MMMM') + this.sectionToChinese(moment().format('D')) + '日'
     }
   },
-  mounted() {
-    window.addEventListener('resize', () => {
-      clearTimeout(this.resizeTimer)
-      this.resizeTimer = setTimeout(() => {
-        this.refreshChart()
-      }, 60)
-    })
+  methods: {
+    sectionToChinese(section) {
+      let chnNumChar = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+      let chnUnitChar = ['', '十', '百', '千']
+      let strIns = ''
+      let chnStr = ''
+      var unitPos = 0
+      var zero = true
+      while (section > 0) {
+        var v = section % 10
+        if (v === 0) {
+          if (!zero) {
+            zero = true
+            chnStr = chnNumChar[v] + chnStr
+          }
+        } else {
+          zero = false
+          strIns = chnNumChar[v]
+          strIns += chnUnitChar[unitPos]
+          chnStr = strIns + chnStr
+        }
+        unitPos++
+        section = Math.floor(section / 10)
+      }
+      return chnStr
+    }
   }
 }
 </script>
@@ -287,17 +301,29 @@ export default {
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .home-container
-    overflow: hidden
     position: absolute
     top: 0
     left: 0
-    right: 0
+    width: 100%
     bottom: 0
+    overflow: scroll
+    -webkit-overflow-scrolling: touch
     .home
       background: $color-sub-text
       display: flex
       flex-direction: column
       min-height: 100%
+      min-width: 600px
+      @media (max-width: 992px)
+        .panel-c
+          .panel-box
+            margin: 0 10px!important
+        .chart
+          .energy-box
+            padding: 10px
+        .real-time
+          .cost
+            margin-left: 10px!important
       .panels
         .panel-l
           .panel-box
@@ -317,11 +343,9 @@ export default {
             background: #fff
             border-radius: 5px
             flex: 1
-            .panel
-              flex: 1
       .real-time
         .dosage
-          margin: 0 5px 10px 10px
+          margin: 0 10px 10px 10px
           min-height: 250px
           display: flex
           background: $color-background
@@ -329,7 +353,7 @@ export default {
           border-radius: 5px
           justify-content: flex-start
         .cost
-          margin: 0 10px 10px 5px
+          margin: 0 10px 10px 0
           min-height: 250px
           display: flex
           background: $color-background

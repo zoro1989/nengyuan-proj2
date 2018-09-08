@@ -10,7 +10,7 @@
         text-color="#fff"
         :unique-opened="uniqueOpened"
         active-text-color="#fff">
-        <el-menu-item index="0">首页</el-menu-item>
+        <el-menu-item index="0" @click="changeRoute('/home')">首页</el-menu-item>
         <el-submenu index="1">
           <template slot="title">
             <span>能源综合分析</span>
@@ -93,6 +93,9 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath)
+    },
+    changeRoute(path) {
+      this.$router.replace(path)
     }
   }
 }
@@ -101,9 +104,12 @@ export default {
   @import "~common/stylus/mixin.styl"
   @import "~common/stylus/variable"
   .menu
-    flex: 0 0 180px
+    position: fixed
+    top: 70px
+    left: 0
+    width: 180px
+    bottom: 0
     background: #005d8f
-    overflow: hidden
     color: #fff
     &.slide-enter-active, &.slide-leave-active
       transition: all 0.3s

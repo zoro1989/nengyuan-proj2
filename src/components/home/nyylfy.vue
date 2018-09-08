@@ -1,23 +1,28 @@
 <template>
-  <scroll class="cost-info-container">
+  <div class="cost-info-container">
     <div class="cost-info">
       <div class="cost-title">
-        <span>选择日期</span>
+        <div class="title-l">
+          <span class="picker-txt">选择日期</span>
           <el-date-picker
             v-model="valueMonth"
             type="month"
             size="mini"
             placeholder="选择月">
           </el-date-picker>
-        <span>用能单位</span>
-        <el-select v-model="valueYndw" placeholder="请选择" size="mini">
-          <el-option
-            v-for="item in options1"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
+          <span class="picker-txt">用能单位</span>
+          <el-select v-model="valueYndw" placeholder="请选择" size="mini">
+            <el-option
+              v-for="item in options1"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </div>
+        <div class="title-r">
+          <span @click="onClose" class="ripple"><i class="fa fa-times"></i></span>
+        </div>
       </div>
       <div class="panel-box">
         <data-panel-title title="三月集团能源用量信息"></data-panel-title>
@@ -215,7 +220,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row top-10">
         <div class="col-lg-4 col-md-12 col-xs-12">
           <chart-pie class="quantity" ref="fee"
                      titleText="三月电量占比"
@@ -223,7 +228,7 @@
                      :data="strucPie1"
                      postion="inside"></chart-pie>
         </div>
-        <div class="col-lg-8 col-md-12 col-xs-12">
+        <div class="col-lg-8 col-md-12 col-xs-12 fee-box">
           <chart-pie class="fee" ref="fee"
                      titleText="三月电费用占比"
                      :radius="feeChartRadius"
@@ -240,18 +245,15 @@
                         titleText="能源用量与节能指标同比分析"></chart-bar-line>
       </div>
     </div>
-  </scroll>
+  </div>
 </template>
 <script>
-import Scroll from 'base/scroll/scroll'
-
 import DataPanel from 'base/data-panel/data-panel'
 import DataPanelTitle from 'base/data-panel-title/data-panel-title'
 import ChartPie from 'base/chart-pie/chart-pie'
 import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
 export default {
   components: {
-    Scroll,
     DataPanel,
     DataPanelTitle,
     ChartPie,
@@ -332,6 +334,11 @@ export default {
         }
       ]
     })
+  },
+  methods: {
+    onClose() {
+      this.$router.replace('/home')
+    }
   }
 }
 </script>
@@ -339,17 +346,25 @@ export default {
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .cost-info-container
-    overflow: hidden
+    overflow: scroll
+    -webkit-overflow-scrolling: touch
     position: absolute
     top: 0
     left: 0
     right: 0
     bottom: 0
+    .row
+      &.top-10
+        margin-top: 10px
     .cost-info
       background: $color-sub-text
       display: flex
       flex-direction: column
       min-height: 100%
+      min-width: 600px
+      @media (max-width: 992px)
+        .fee-box
+          padding: 10px 0 0 10px!important
       .cost-title
         margin: 10px 10px 0 10px
         padding: 0 10px
@@ -358,6 +373,16 @@ export default {
         background: #fff
         border-radius: 5px
         color: #333
+        display: flex
+        justify-content: space-between
+        .title-r
+          .fa
+            margin: 0 5px
+            color: #899eb6
+            font-size: $font-size-large
+            cursor: pointer
+        .picker-txt
+          padding: 0 5px 0 15px
       .panel-box
         margin: 10px 10px 0px 10px
         padding: 0 10px 10px 10px
@@ -378,13 +403,13 @@ export default {
           margin-bottom: 10px
       .quantity
         background: #fff
-        margin: 10px
+        margin: 0 10px
         min-height: 250px
         height: 100%
         border-radius: 5px
       .fee
         background: #fff
-        margin: 10px 10px 10px 0px
+        margin-right: 10px
         min-height: 250px
         height: 100%
         border-radius: 5px

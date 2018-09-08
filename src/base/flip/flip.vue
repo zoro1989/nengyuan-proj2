@@ -1,7 +1,9 @@
 <template>
   <div class="flip" ref="flip">
     <div class="flip-group" ref="flipGroup">
-      <span v-for="(item, index) in data" v-bind:key="index" class="flip-item" ref="flipItem">{{item}}</span>
+      <span v-for="(item, index) in data" v-bind:key="index" class="flip-item" ref="flipItem">
+        {{item}}<span class="flip-txt">&nbsp;&nbsp;千瓦时</span>
+      </span>
     </div>
   </div>
 </template>
@@ -77,9 +79,7 @@ export default {
         display: block
         height: 40px
         line-height: 40px
-        span
-          display: block
-          width: 100%
-          overflow: hidden
-          text-decoration: none
+        .flip-txt
+          color: #888
+          font-size: 16px
 </style>

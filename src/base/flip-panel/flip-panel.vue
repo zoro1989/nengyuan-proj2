@@ -1,11 +1,11 @@
 <template>
   <div class="data-panel">
-    <div class="row">光伏发电实时量(小时)</div>
+    <div class="row title">光伏发电实时量(小时)</div>
     <div class="row">
       <span class="row-item">
         <span class="big">
           <flip :data="flipData"></flip>
-        </span>&nbsp;&nbsp;千瓦时
+        </span>
       </span>
     </div>
   </div>
@@ -60,14 +60,10 @@ export default {
     &.border-bottom
       border-bottom: 1px solid $color-sub-text
     .row
-      flex: 1
-      display: flex
       justify-content: center
-      align-items: center
+      height: 40px
+      line-height: 40px
       .row-item
-        min-height: 35px
-        display: flex
-        align-items: center
         color: #888
         .big
           font-size: $font-size-large-x-x

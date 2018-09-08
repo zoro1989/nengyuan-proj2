@@ -1,9 +1,9 @@
 <template>
-  <scroll class="realtime-tripping-container">
+  <div class="realtime-tripping-container">
     <div class="realtime-tripping">
       <div class="tripping-title">
         <div class="title-l">
-          <span>选择日期</span>
+          <span class="picker-txt">选择日期</span>
           <el-date-picker
             size="mini"
             v-model="valueWeek"
@@ -11,7 +11,7 @@
             format="yyyy 第 WW 周"
             placeholder="选择周">
           </el-date-picker>
-          <span>用能单位</span>
+          <span class="picker-txt">用能单位</span>
           <el-cascader
             expand-trigger="hover"
             :options="options"
@@ -21,10 +21,10 @@
           </el-cascader>
         </div>
         <div class="title-r">
-          <span class="analyze-btn"><router-link to="/dbfx">对比分析</router-link></span>
-          <span @click="channgeChart('0')"><i class="fa fa-line-chart"></i></span>
-          <span @click="channgeChart('1')"><i class="fa fa-bar-chart"></i></span>
-          <span><i class="fa fa-times"></i></span>
+          <span class="analyze-btn ripple"><router-link to="/dbfx">对比分析</router-link></span>
+          <span @click="channgeChart('0')" class="ripple"><i class="fa fa-line-chart"></i></span>
+          <span @click="channgeChart('1')" class="ripple"><i class="fa fa-bar-chart"></i></span>
+          <span @click="onClose" class="ripple"><i class="fa fa-times"></i></span>
         </div>
       </div>
       <div class="tripping-content" v-if="showflag === '0'">
@@ -204,11 +204,9 @@
         </div>
       </div>
     </div>
-  </scroll>
+  </div>
 </template>
 <script>
-import Scroll from 'base/scroll/scroll'
-
 import ChartRealtimeLine from 'base/chart-realtime-line/chart-realtime-line'
 import ChartRealtimeBar from 'base/chart-realtime-bar/chart-realtime-bar'
 import ChartLine from 'base/chart-line/chart-line'
@@ -216,7 +214,6 @@ import ChartBar from 'base/chart-bar/chart-bar'
 import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
 export default {
   components: {
-    Scroll,
     ChartRealtimeLine,
     ChartRealtimeBar,
     ChartLine,
@@ -368,6 +365,9 @@ export default {
     },
     handleChange(value) {
       console.log(value)
+    },
+    onClose() {
+      this.$router.replace('/home')
     }
   },
   mounted() {
@@ -379,7 +379,8 @@ export default {
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .realtime-tripping-container
-    overflow: hidden
+    overflow: scroll
+    -webkit-overflow-scrolling: touch
     position: absolute
     top: 0
     left: 0
@@ -390,8 +391,12 @@ export default {
       display: flex
       flex-direction: column
       min-height: 100%
+      min-width: 600px
+      @media (max-width: 992px)
+        .chart-r
+          margin-left: 10px!important
       .tripping-title
-        margin: 6px
+        margin: 10px
         height: 40px
         line-height: 40px
         background: #fff
@@ -400,6 +405,9 @@ export default {
         display: flex
         justify-content: space-between
         padding: 0 10px 0 10px
+        .title-l
+          .picker-txt
+            padding: 0 5px 0 15px
         .title-r
           .analyze-btn
             background: #899eb6
@@ -418,15 +426,15 @@ export default {
       .tripping-content
         .sub-title
           text-align: center
-          margin: 0 0 6px 0
+          margin: 0 0 10px 0
         .chart-l
           min-height: 250px
           background: #fff
-          margin: 0 3px 6px 6px
+          margin: 0 10px 10px 10px
           border-radius: 5px
         .chart-r
           min-height: 250px
           background: #fff
-          margin: 0 6px 6px 3px
+          margin: 0 10px 10px 0
           border-radius: 5px
 </style>

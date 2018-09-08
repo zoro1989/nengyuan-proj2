@@ -68,7 +68,8 @@ export default {
           text: this.titleText,
           x: 'center',
           textStyle: {
-            color: this.titleTextColor
+            color: this.titleTextColor,
+            fontWeight: 'normal'
           }
         },
         tooltip: {
@@ -108,8 +109,8 @@ export default {
                       let res = {}
                       for (let i = 0; i < othersData.length; i++) {
                         res['rate' + i] = {
-                          width: 100,
-                          align: 'right',
+                          width: 120,
+                          align: 'center',
                           height: othersData[i].value < 20 ? 20 : othersData[i].value,
                           padding: [0, 0, 0, 0],
                           color: '#fff',
@@ -246,6 +247,13 @@ export default {
 
       // 使用刚指定的配置项和数据显示图表。
       this.chart.setOption(option, true)
+
+      window.addEventListener('resize', () => {
+        clearTimeout(this.resizeTimer)
+        this.resizeTimer = setTimeout(() => {
+          this.refreshChart()
+        }, 60)
+      })
     },
     refreshChart() {
       this.chart.resize()
@@ -254,4 +262,6 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+  .chart-pie
+    padding: 10px 0
 </style>

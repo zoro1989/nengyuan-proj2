@@ -2,20 +2,27 @@
   <transition name="slide">
     <div class="header">
       <div class="left">
+        <img :src="Logo" />
         <span class="title">中国一汽集团能源管理分析系统</span>
       </div>
       <div class="setting">
-        <span class="item"><i class="fa fa-gear"></i></span>
-        <span class="item"><i class="fa fa-user"></i></span>
-        <span class="item"><i class="fa fa-refresh"></i></span>
-        <span class="item"><i class="fa fa-question-circle"></i></span>
-        <span class="item" @click="onLogout"><i class="fa fa-power-off"></i></span>
+        <span class="item ripple"><i class="fa fa-gear"></i></span>
+        <span class="item ripple"><i class="fa fa-user"></i></span>
+        <span class="item ripple"><i class="fa fa-refresh"></i></span>
+        <span class="item ripple"><i class="fa fa-question-circle"></i></span>
+        <span class="item ripple" @click="onLogout"><i class="fa fa-power-off"></i></span>
       </div>
     </div>
   </transition>
 </template>
 <script>
+import Logo from './logo2.png'
 export default {
+    data() {
+      return {
+        Logo
+      }
+    },
   methods: {
     onLogout() {
       this.$router.replace('login')
@@ -46,7 +53,7 @@ export default {
       .title
         color: #f5f4f4
         font-size: 25px
-        padding-left: 100px
+        padding-left: 10px
         overflow: hidden
     .setting
       padding-right: 15px
