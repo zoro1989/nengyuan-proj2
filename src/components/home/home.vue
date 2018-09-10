@@ -203,8 +203,8 @@ export default {
   },
   data() {
     return {
-      analyzeChartRadius: ['13%', '70%'],
-      feeChartRadius: ['40%', '70%'],
+      analyzeChartRadius: ['13%', '65%'],
+      feeChartRadius: ['40%', '65%'],
       showArea: true,
       // 三月能耗结构
       strucPie: [],
