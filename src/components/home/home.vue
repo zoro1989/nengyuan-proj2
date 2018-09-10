@@ -270,33 +270,27 @@ export default {
   },
   methods: {
     sectionToChinese(section) {
-      let chnNumChar = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
-      let chnUnitChar = ['', '十', '百', '千']
-      let strIns = ''
-      let chnStr = ''
-      var unitPos = 0
-      var zero = true
-      while (section > 0) {
-        var v = section % 10
-        if (v === 0) {
-          if (!zero) {
-            zero = true
-            if (v !== 1) {
-              chnStr = chnNumChar[v] + chnStr
-            }
-          }
-        } else {
-          zero = false
-          if (v !== 1) {
-            strIns = chnNumChar[v]
-          }
-          strIns += chnUnitChar[unitPos]
-          chnStr = strIns + chnStr
+      let chinese = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+      let len = ['十']
+      // 对特殊情况进行处理.
+      section = section + ''
+      if (section.length === 2) {
+        if (section.charAt(0) === '1') {
+          if (section.charAt(1) === '0') return len[0]
+          return len[0] + chinese[section.charAt(1)]
         }
-        unitPos++
-        section = Math.floor(section / 10)
+        if (section.charAt(1) === '0') return chinese[section.charAt(0)] + len[0]
+        return chinese[section.charAt(0)] + len[0] + chinese[section.charAt(1)]
       }
-      return chnStr
+      return this.num2chinese(section)
+    },
+    num2chinese(section) {
+      let chinese = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+      var result = ''
+      for (var i = 0; i < section.length; i++) {
+        result += chinese[section.charAt(i)]
+      }
+      return result
     }
   }
 }
