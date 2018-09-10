@@ -379,7 +379,7 @@ export default {
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .realtime-tripping-container
-    overflow: scroll
+    overflow: auto
     -webkit-overflow-scrolling: touch
     position: absolute
     top: 0

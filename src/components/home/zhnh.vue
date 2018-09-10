@@ -356,7 +356,7 @@ export default {
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .cost-info-container
-    overflow: scroll
+    overflow: auto
     -webkit-overflow-scrolling: touch
     position: absolute
     top: 0

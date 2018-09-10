@@ -306,7 +306,7 @@ export default {
     left: 0
     width: 100%
     bottom: 0
-    overflow: scroll
+    overflow: auto
     -webkit-overflow-scrolling: touch
     .home
       background: $color-sub-text
