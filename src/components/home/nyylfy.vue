@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="panel-box">
-        <data-panel-title title="三月集团能源用量信息"></data-panel-title>
+        <data-panel-title :title="lastMonth + '集团能源用量信息'"></data-panel-title>
         <div class="panel row">
           <div class="col-xs-12">
             <data-panel
@@ -120,7 +120,7 @@
         </div>
       </div>
       <div class="panel-box">
-        <data-panel-title title="三月集团能源费用信息"></data-panel-title>
+        <data-panel-title :title="lastMonth + '集团能源费用信息'"></data-panel-title>
         <div class="panel row">
           <div class="col-xs-12">
             <data-panel
@@ -223,14 +223,14 @@
       <div class="row top-10">
         <div class="col-lg-4 col-md-12 col-xs-12">
           <chart-pie class="quantity" ref="fee"
-                     titleText="三月电量占比"
+                     :titleText="lastMonth + '电量占比'"
                      :radius="quantityChartRadius"
                      :data="strucPie1"
                      postion="inside"></chart-pie>
         </div>
         <div class="col-lg-8 col-md-12 col-xs-12 fee-box">
           <chart-pie class="fee" ref="fee"
-                     titleText="三月电费用占比"
+                     :titleText="lastMonth + '电费用占比'"
                      :radius="feeChartRadius"
                      :data="strucPie2"
                      postion="inside"></chart-pie>
@@ -252,6 +252,8 @@ import DataPanel from 'base/data-panel/data-panel'
 import DataPanelTitle from 'base/data-panel-title/data-panel-title'
 import ChartPie from 'base/chart-pie/chart-pie'
 import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
+let moment = require('moment')
+moment.locale('zh-cn')
 export default {
   components: {
     DataPanel,
@@ -261,6 +263,7 @@ export default {
   },
   data() {
     return {
+      lastMonth: moment().subtract(1, 'months').format('MMMM'),
       quantityChartRadius: [0, '70%'],
       feeChartRadius: [0, '70%'],
       strucPie1: [],
@@ -398,6 +401,7 @@ export default {
               flex: 1
         .energy
           min-height: 250px
+          position: relative
           height: 100%
         &:last-child
           margin-bottom: 10px
@@ -405,12 +409,14 @@ export default {
         background: #fff
         margin: 0 10px
         min-height: 250px
+        position: relative
         height: 100%
         border-radius: 5px
       .fee
         background: #fff
         margin-right: 10px
         min-height: 250px
+        position: relative
         height: 100%
         border-radius: 5px
 </style>

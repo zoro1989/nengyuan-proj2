@@ -1,13 +1,13 @@
 <template>
   <div class="data-panel">
-    <div class="row data-content">{{title}}</div>
+    <span class="row data-content">{{title}}</span>
     <div class="row data-content">
-      <span class="row-item"><span class="big">{{data}}</span>&nbsp;&nbsp;{{unit}}</span>
+      <span class="row-item"><span class="big">{{data}}</span><span v-html="unitTxt"></span></span>
     </div>
     <template v-if="showType === 'row' && showBi === 'show'">
       <div class="row bili">
         <span class="row-item bi">同比<span :class="tongbiStatus">&nbsp;<i :class="tongbiStatusCls"></i>&nbsp;</span>{{tongbiData}}</span>
-        <span class="row-item bi">&nbsp;环比<span :class="huanbiStatus">&nbsp;<i :class="huanbiStatusCls"></i>&nbsp;</span>{{huanbiData}}</span>
+        <span class="row-item bi">&nbsp;&nbsp;&nbsp;环比<span :class="huanbiStatus">&nbsp;<i :class="huanbiStatusCls"></i>&nbsp;</span>{{huanbiData}}</span>
       </div>
     </template>
     <template v-if="showType === 'column' && showBi === 'show'">
@@ -61,6 +61,9 @@ export default {
     }
   },
   computed: {
+    unitTxt() {
+      return '  ' + this.unit
+    },
     tongbiStatusCls() {
       return 'fa fa-long-arrow-' + this.tongbiStatus
     },
@@ -100,6 +103,8 @@ export default {
         color: $color-theme
       .row-item
         color: #888
+        .sub
+          font-size: 10px
         .big
           font-size: $font-size-large-x-x
           color: $color-theme

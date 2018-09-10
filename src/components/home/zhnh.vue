@@ -27,7 +27,7 @@
       <div class="row">
         <div class="panel-l col-lg-5 col-md-12 col-xs-12">
           <div class="panel-box">
-            <data-panel-title title="三月能源绩效"></data-panel-title>
+            <data-panel-title :title="lastMonth + '能源绩效'"></data-panel-title>
             <div class="panel row">
               <div class="col-md-4 col-xs-12">
                 <data-panel
@@ -47,7 +47,7 @@
                   class="border-bottom"
                   title="产值碳排放量"
                   data="1665"
-                  unit="kgco2/万元"
+                  unit="kgCO<sub>2</sub>/万元"
                   tongbiData="58.94%"
                   tongbiStatus="down"
                   huanbiData="2.96%"
@@ -113,7 +113,7 @@
         </div>
         <div class="panel-r col-lg-7 col-md-12 col-xs-12">
           <div class="panel-box">
-            <data-panel-title title="三月能耗信息"></data-panel-title>
+            <data-panel-title :title="lastMonth + '能耗信息'"></data-panel-title>
             <div class="panel row">
               <div class="col-md-3 col-xs-12">
                 <data-panel
@@ -229,14 +229,14 @@
                         :legendData="legendData"
                         :series="seriesData1"
                         :xAxisData="xAxisData1"
-                        titleText="三月整车制造产值综合能耗"></chart-bar-line>
+                        :titleText="lastMonth + '整车制造产值综合能耗'"></chart-bar-line>
       </div>
       <div class="panel-box">
         <chart-bar-line class="energy" ref="energy"
                         :legendData="legendData"
                         :series="seriesData2"
                         :xAxisData="xAxisData2"
-                        titleText="三月零部件加工产值综合能耗"></chart-bar-line>
+                        :titleText="lastMonth + '零部件加工产值综合能耗'"></chart-bar-line>
       </div>
     </div>
   </div>
@@ -246,6 +246,8 @@ import DataPanel from 'base/data-panel/data-panel'
 import DataPanelTitle from 'base/data-panel-title/data-panel-title'
 import ChartPie from 'base/chart-pie/chart-pie'
 import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
+let moment = require('moment')
+moment.locale('zh-cn')
 export default {
   components: {
     DataPanel,
@@ -255,6 +257,7 @@ export default {
   },
   data() {
     return {
+      lastMonth: moment().subtract(1, 'months').format('MMMM'),
       quantityChartRadius: [0, '70%'],
       feeChartRadius: [0, '70%'],
       legendData: [],
@@ -412,6 +415,7 @@ export default {
               flex: 1
         .energy
           min-height: 250px
+          position: relative
           height: 100%
         &:last-child
           margin-bottom: 10px
@@ -419,12 +423,14 @@ export default {
         background: #fff
         margin: 10px
         min-height: 250px
+        position: relative
         height: 100%
         border-radius: 5px
       .fee
         background: #fff
         margin: 10px 10px 10px 0px
         min-height: 250px
+        position: relative
         height: 100%
         border-radius: 5px
 </style>

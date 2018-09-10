@@ -48,7 +48,7 @@
                 <data-panel
                   title="单车碳排放量"
                   :data="data.tan_d || 0"
-                  unit="KGCO2/辆"
+                  unit="kgCO<sub>2</sub>/辆"
                   :tongbiData="Math.abs(data.tan_d_tb || 0)"
                   :tongbiStatus="(data.tan_d_tb || 0) > 0 ? 'up' : 'down'"
                   :huanbiData="Math.abs(data.tan_d_hb || 0)"
@@ -281,11 +281,15 @@ export default {
         if (v === 0) {
           if (!zero) {
             zero = true
-            chnStr = chnNumChar[v] + chnStr
+            if (v !== 1) {
+              chnStr = chnNumChar[v] + chnStr
+            }
           }
         } else {
           zero = false
-          strIns = chnNumChar[v]
+          if (v !== 1) {
+            strIns = chnNumChar[v]
+          }
           strIns += chnUnitChar[unitPos]
           chnStr = strIns + chnStr
         }
@@ -347,46 +351,41 @@ export default {
         .dosage
           margin: 0 10px 10px 10px
           min-height: 250px
-          display: flex
           background: $color-background
           padding: 5px
+          position: relative
           border-radius: 5px
-          justify-content: flex-start
         .cost
           margin: 0 10px 10px 0
           min-height: 250px
-          display: flex
           background: $color-background
           padding: 5px
+          position: relative
           border-radius: 5px
-          justify-content: flex-end
       .chart
         flex: 1
         margin-bottom: 10px
         .analyze
           margin: 0 10px
-          display: flex
+          position: relative
           background: $color-background
           padding: 5px
           border-radius: 5px
-          justify-content: flex-start
           height: 100%
           min-height: 250px
         .energy
           min-height: 250px
           height: 100%
-          display: flex
+          position: relative
           background: $color-background
           padding: 5px
           border-radius: 5px
-          justify-content: flex-start
         .fee
           margin: 0 10px
           min-height: 250px
           height: 100%
-          display: flex
+          position: relative
           background: $color-background
           padding: 5px
           border-radius: 5px
-          justify-content: flex-start
 </style>

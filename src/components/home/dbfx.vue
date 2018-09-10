@@ -26,7 +26,7 @@
       </div>
       <div class="tripping-content">
         <div class="row">
-          <div class="col-lg-12 col-md-12 col-xs-12">
+          <div class="col-lg-12 col-md-12 col-xs-12 chart-box">
             <chart-bar class="chart"
                        titleText="单车耗电日对比分析"
                        yAxisTitle="千瓦时"
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-12 col-md-12 col-xs-12">
+          <div class="col-lg-12 col-md-12 col-xs-12 chart-box">
             <chart-bar class="chart"
                        titleText="单车耗电日对比分析"
                        yAxisTitle="千瓦时"
@@ -127,6 +127,7 @@ export default {
         margin: 10px
         height: 40px
         line-height: 40px
+        flex: 0 0 40px
         background: #fff
         border-radius: 5px
         color: #333
@@ -150,12 +151,21 @@ export default {
             font-size: $font-size-large
             cursor: pointer
       .tripping-content
+        display: flex
+        flex: 1
+        flex-direction: column
+        height: 100%
+        .row
+          flex: 1
         .sub-title
           text-align: center
           margin: 0 0 10px 0
-        .chart
-          min-height: 250px
-          background: #fff
-          margin: 0 10px 10px 10px
-          border-radius: 5px
+        .chart-box
+          padding: 0 10px 10px 10px
+          .chart
+            position: relative
+            min-height: 250px
+            height: 100%
+            background: #fff
+            border-radius: 5px
 </style>

@@ -31,14 +31,14 @@
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-line class="chart-l"
-                                 titleText="四月十六能源用量(小时)"
+                                 :titleText="realTimeToday + '能源用量(小时)'"
                                  yAxisTitle="吨标煤/时"
                                  seriesName="能耗"
                                  chartColor="#2434e3" key="lineChart"></chart-realtime-line>
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-line class="chart-r"
-                                 titleText="四月十六能源费用(小时)"
+                                 :titleText="realTimeToday + '能源费用(小时)'"
                                  yAxisTitle="万元/时"
                                  seriesName="能耗"
                                  chartColor="#4b50e4"></chart-realtime-line>
@@ -115,14 +115,14 @@
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-line class="chart-l"
-                                 titleText="四月十六能源用量(小时)"
+                                 :titleText="realTimeToday + '能源用量(小时)'"
                                  yAxisTitle="吨标煤/时"
                                  seriesName="能耗"
                                  :showArea="showArea" key="barChart"></chart-realtime-line>
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-bar class="chart-r"
-                                 titleText="四月十六能源费用(小时)"
+                                 :titleText="realTimeToday + '能源费用(小时)'"
                                  yAxisTitle="万元/时"
                                  seriesName="能耗"></chart-realtime-bar>
           </div>
@@ -212,6 +212,8 @@ import ChartRealtimeBar from 'base/chart-realtime-bar/chart-realtime-bar'
 import ChartLine from 'base/chart-line/chart-line'
 import ChartBar from 'base/chart-bar/chart-bar'
 import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
+let moment = require('moment')
+moment.locale('zh-cn')
 export default {
   components: {
     ChartRealtimeLine,
@@ -359,6 +361,11 @@ export default {
       ]
     })
   },
+  computed: {
+    realTimeToday () {
+      return moment().format('MMMM') + this.sectionToChinese(moment().format('D')) + '日'
+    }
+  },
   methods: {
     channgeChart(status) {
       this.showflag = status
@@ -368,6 +375,35 @@ export default {
     },
     onClose() {
       this.$router.replace('/home')
+    },
+    sectionToChinese(section) {
+      let chnNumChar = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+      let chnUnitChar = ['', '十', '百', '千']
+      let strIns = ''
+      let chnStr = ''
+      var unitPos = 0
+      var zero = true
+      while (section > 0) {
+        var v = section % 10
+        if (v === 0) {
+          if (!zero) {
+            zero = true
+            if (v !== 1) {
+              chnStr = chnNumChar[v] + chnStr
+            }
+          }
+        } else {
+          zero = false
+          if (v !== 1) {
+            strIns = chnNumChar[v]
+          }
+          strIns += chnUnitChar[unitPos]
+          chnStr = strIns + chnStr
+        }
+        unitPos++
+        section = Math.floor(section / 10)
+      }
+      return chnStr
     }
   },
   mounted() {
@@ -429,11 +465,13 @@ export default {
           margin: 0 0 10px 0
         .chart-l
           min-height: 250px
+          position: relative
           background: #fff
           margin: 0 10px 10px 10px
           border-radius: 5px
         .chart-r
           min-height: 250px
+          position: relative
           background: #fff
           margin: 0 10px 10px 0
           border-radius: 5px

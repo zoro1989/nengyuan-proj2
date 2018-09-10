@@ -1,5 +1,8 @@
 <template>
-  <div class="chart-column-bar" ref="chart"></div>
+  <div class="chart-column-bar" >
+    <div class="title">{{titleText}}</div>
+    <div class="chart" ref="chart"></div>
+  </div>
 </template>
 <script>
 import echarts from 'echarts'
@@ -65,12 +68,13 @@ export default {
       const option = {
         color: this.chartColor,
         title: {
-          text: this.titleText,
-          x: 'center',
-          textStyle: {
-            color: '#006195',
-            fontWeight: 'normal'
-          }
+          show: false
+//          text: this.titleText,
+//          x: 'center',
+//          textStyle: {
+//            color: '#006195',
+//            fontWeight: 'normal'
+//          }
         },
         tooltip: {
           trigger: 'axis',
@@ -160,6 +164,25 @@ export default {
 }
 </script>
 <style scoped lang="stylus">
+  @import "~common/stylus/variable.styl"
   .chart-column-bar
-    padding: 10px 0
+    .chart
+      position: absolute
+      top: 10px
+      left: 0
+      bottom: 10px
+      width: 100%
+    .title
+      position: absolute
+      z-index: 1
+      top: 0
+      left: 50%
+      transform: translateX(-50%)
+      text-align: center
+      height: 50px
+      line-height: 50px
+      background: $color-background
+      cursor: pointer
+      a
+        color: $color-text
 </style>

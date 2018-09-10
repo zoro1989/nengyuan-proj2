@@ -1,5 +1,8 @@
 <template>
-  <div class="chart-realtime-line" ref="chart"></div>
+  <div class="chart-realtime-line" >
+    <div class="title" @click="titleClick">{{titleText}}</div>
+    <div class="chart" ref="chart"></div>
+  </div>
 </template>
 <script>
 import echarts from 'echarts'
@@ -35,6 +38,9 @@ export default {
     this.chart = {}
   },
   methods: {
+    titleClick() {
+      this.$router.replace('/ssxz')
+    },
     makeChart() {
       this.chart = echarts.init(this.$refs.chart)
 
@@ -42,14 +48,15 @@ export default {
       const option = {
         color: [this.chartColor],
         title: {
-          text: this.titleText,
-          x: 'center',
-          textStyle: {
-            color: '#006195',
-            fontWeight: 'normal'
-          },
-          link: '/#/ssxz',
-          target: 'self'
+          show: false
+//          text: this.titleText,
+//          x: 'center',
+//          textStyle: {
+//            color: '#006195',
+//            fontWeight: 'normal'
+//          },
+//          link: '/#/ssxz',
+//          target: 'self'
         },
         tooltip: {
           trigger: 'axis',
@@ -166,6 +173,27 @@ export default {
 }
 </script>
 <style scoped lang="stylus">
+  @import "~common/stylus/variable.styl"
   .chart-realtime-line
-    padding: 10px 0
+    .chart
+      position: absolute
+      top: 10px
+      left: 0
+      bottom: 10px
+      width: 100%
+    .title
+      position: absolute
+      z-index: 1
+      top: 0
+      left: 50%
+      transform: translateX(-50%)
+      text-align: center
+      height: 50px
+      line-height: 50px
+      background: $color-background
+      cursor: pointer
+      a
+        color: $color-text
+      &:hover
+        color: #fc3507
 </style>
