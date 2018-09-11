@@ -2,7 +2,7 @@
   <div class="home-container">
     <div class="home">
       <div class="panels row">
-        <div class="panel-l col-lg-5 col-md-12">
+        <div class="panel-l col-lg-4-4 col-md-12">
           <div class="panel-box">
             <data-panel-title :title="lastMonth + '能源绩效'" link="/zhnh"></data-panel-title>
             <div class="panel row">
@@ -58,7 +58,7 @@
             </div>
           </div>
         </div>
-        <div class="panel-c col-lg-2 col-md-12">
+        <div class="panel-c col-lg-4-2 col-md-12">
           <div class="panel-box">
             <data-panel-title :title="lastMonth + '清洁能源用量'"></data-panel-title>
             <div class="panel row">
@@ -83,7 +83,7 @@
             </div>
           </div>
         </div>
-        <div class="panel-r col-lg-5 col-md-12">
+        <div class="panel-r col-lg-4-4 col-md-12">
           <div class="panel-box">
             <data-panel-title :title="lastMonth + '能耗信息'" link="/nyylfy"></data-panel-title>
             <div class="panel row">
@@ -118,7 +118,7 @@
                   class="border-right"
                   title="碳排放量"
                   :data="data.tan || 0"
-                  unit="吨CO2"
+                  unit="吨CO<sub>2</sub>"
                   :tongbiData="Math.abs(data.tan_tb || 0)"
                   :tongbiStatus="(data.tan_tb || 0) > 0 ? 'up' : 'down'"
                   :huanbiData="Math.abs(data.tan_hb || 0)"
@@ -217,8 +217,8 @@ export default {
   },
   created() {
     setTimeout(() => {
-//      this.strucPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
-//      this.costPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+      this.strucPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+      this.costPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
       this.legendData = ['上年同期消耗', '实际消耗', '计划消耗', '上年同期节能指标', '实际节能指标', '计划节能指标']
       this.seriesData = [
         {

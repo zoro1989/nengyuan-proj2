@@ -133,7 +133,7 @@
                   class="border-right border-bottom"
                   title="单车碳排放量"
                   data="10.3514"
-                  unit="kgco2/辆"
+                  unit="kgCO<sub>2</sub>/辆"
                   tongbiData="20.28%"
                   tongbiStatus="down"
                   huanbiData="2.73%"
