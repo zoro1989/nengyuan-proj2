@@ -159,7 +159,6 @@
         <div class="col-lg-3 col-md-12">
           <chart-pie class="analyze" ref="analyze"
                      titleText="三月能源消耗结构"
-                     roseType="radius"
                      :data="strucPie"
                      :radius="analyzeChartRadius"></chart-pie>
         </div>

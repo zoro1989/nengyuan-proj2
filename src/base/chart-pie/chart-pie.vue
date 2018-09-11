@@ -237,6 +237,7 @@ export default {
 //              {value: 310, name: '天然气', label: {position: this.postion}},
 //              {value: 400, name: '电', label: {position: this.postion}}
 //            ],
+            // roseType="radius"
             roseType: this.roseType ? this.roseType : false,
             itemStyle: {
               emphasis: {
