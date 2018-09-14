@@ -272,7 +272,8 @@ export default {
     .chart
       position: absolute
       top: 10px
-      left: 0
+      left: 10px
+      right: 10px
       bottom: 10px
       width: 100%
     .title
