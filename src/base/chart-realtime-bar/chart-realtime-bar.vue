@@ -172,9 +172,9 @@ export default {
     .chart
       position: absolute
       top: 10px
-      left: 0
+      left: 0px
+      right: 0px
       bottom: 10px
-      width: 100%
     .title
       position: absolute
       z-index: 1
