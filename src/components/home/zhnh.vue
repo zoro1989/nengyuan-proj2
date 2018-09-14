@@ -419,18 +419,4 @@ export default {
           height: 100%
         &:last-child
           margin-bottom: 10px
-      .quantity
-        background: #fff
-        margin: 10px
-        min-height: 250px
-        position: relative
-        height: 100%
-        border-radius: 5px
-      .fee
-        background: #fff
-        margin: 10px 10px 10px 0px
-        min-height: 250px
-        position: relative
-        height: 100%
-        border-radius: 5px
 </style>

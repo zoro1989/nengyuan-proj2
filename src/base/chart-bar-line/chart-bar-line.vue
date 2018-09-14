@@ -96,6 +96,12 @@ export default {
             color: '#666'
           }
         },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '20%',
+          containLabel: true
+        },
         xAxis: [
           {
             type: 'category',
