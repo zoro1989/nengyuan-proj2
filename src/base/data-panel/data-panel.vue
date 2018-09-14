@@ -1,6 +1,6 @@
 <template>
   <div class="data-panel">
-    <span class="row data-content">{{title}}</span>
+    <span class="row data-title">{{title}}</span>
     <div class="row data-content">
       <span class="row-item"><span class="big">{{data}}</span><span v-html="unitTxt"></span></span>
     </div>
@@ -93,12 +93,15 @@ export default {
       justify-content: center
       overflow: hidden
       text-overflow: ellipsis
+      &.data-title
+        min-height: 40px
+        align-items: center
       &.data-content
-        height: 40px
-        line-height: 40px
+        min-height: 40px
+        align-items: flex-start
       &.bili
         min-height: 35px
-        line-height: 35px
+        align-items: center
       &.xiazuan:hover
         color: $color-theme
       .row-item

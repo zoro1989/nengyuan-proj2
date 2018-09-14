@@ -202,8 +202,8 @@ export default {
   },
   data() {
     return {
-      analyzeChartRadius: ['13%', '65%'],
-      feeChartRadius: ['40%', '65%'],
+      analyzeChartRadius: ['13%', '60%'],
+      feeChartRadius: ['30%', '60%'],
       showArea: true,
       // 三月能耗结构
       strucPie: [],
@@ -217,8 +217,8 @@ export default {
   },
   created() {
     setTimeout(() => {
-      this.strucPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
-      this.costPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+//      this.strucPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+//      this.costPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
       this.legendData = ['上年同期消耗', '实际消耗', '计划消耗', '上年同期节能指标', '实际节能指标', '计划节能指标']
       this.seriesData = [
         {
@@ -256,11 +256,11 @@ export default {
         }
       ]
     })
-//    fetch('get', api.getHomeData, {}).then((res) => {
-//      this.data = res.data
-//      this.strucPie = res.pie1.seriesData
-//      this.costPie = res.pie2.seriesData
-//    })
+    fetch('get', api.getHomeData, {}).then((res) => {
+      this.data = res.data
+      this.strucPie = res.pie1.seriesData
+      this.costPie = res.pie2.seriesData
+    })
   },
   computed: {
     realTimeToday () {
