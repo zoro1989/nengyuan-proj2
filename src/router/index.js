@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-const Login = () => import('components/login/login')
 const Home = () => import('components/home/home')
 const Zhnh = () => import('components/home/zhnh')
 const Nyylfy = () => import('components/home/nyylfy')
@@ -13,12 +12,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/login'
-    },
-    {
-      path: '/login',
-      name: '登录',
-      component: Login
+      redirect: '/home'
     },
     {
       path: '/home',

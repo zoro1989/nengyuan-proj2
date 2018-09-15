@@ -1,40 +1,43 @@
 <template>
-  <div class="login">
-    <div class="title">
-      <span class="text">中国一汽集团能源管理分析系统</span>
-    </div>
-    <div class="content">
-      <div class="box">
-        <div class="tab-box">
-          <div class="tab">
-            <div class="tab-item" :class="{ active: tabIndex === 0 }" @click="tabChange(0)">能源管理分析系统</div>
-            <div class="tab-item" :class="{ active: tabIndex === 1 }" @click="tabChange(1)">能源网络查询系统</div>
-            <div class="tab-item" :class="{ active: tabIndex === 2 }" @click="tabChange(2)">能源消耗数据直报系统</div>
-          </div>
-          <div class="tab-panel">
-            <div class="tab-title">欢迎登录</div>
-            <div class="panel-box">
-              <div class="panel-item">
-                <label class="panel-label"><i class="fa fa-user"></i></label>
-                <input class="panel-input" placeholder="登录账号"/>
+  <transition name="slide">
+    <div class="login" v-show="isShow">
+      <div class="title">
+        <span class="text">中国一汽集团能源管理分析系统</span>
+      </div>
+      <div class="content">
+        <div class="box">
+          <div class="tab-box">
+            <div class="tab">
+              <div class="tab-item" :class="{ active: tabIndex === 0 }" @click="tabChange(0)">能源管理分析系统</div>
+              <div class="tab-item" :class="{ active: tabIndex === 1 }" @click="tabChange(1)">能源网络查询系统</div>
+              <div class="tab-item" :class="{ active: tabIndex === 2 }" @click="tabChange(2)">能源消耗数据直报系统</div>
+            </div>
+            <div class="tab-panel">
+              <div class="tab-title">欢迎登录</div>
+              <div class="panel-box">
+                <div class="panel-item">
+                  <label class="panel-label"><i class="fa fa-user"></i></label>
+                  <input class="panel-input" placeholder="登录账号"/>
+                </div>
+                <div class="panel-item">
+                  <label class="panel-label"><i class="fa fa-lock"></i></label>
+                  <input class="panel-input" placeholder="输入密码"/>
+                </div>
+                <div class="btn-login" @click="onLogin">登录</div>
               </div>
-              <div class="panel-item">
-                <label class="panel-label"><i class="fa fa-lock"></i></label>
-                <input class="panel-input" placeholder="输入密码"/>
-              </div>
-              <div class="btn-login" @click="onLogin">登录</div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 <script>
 export default {
   data() {
     return {
-      tabIndex: 0
+      tabIndex: 0,
+      isShow: true
     }
   },
   methods: {
@@ -42,17 +45,22 @@ export default {
       this.tabIndex = index
     },
     onLogin() {
-      this.$router.replace('home')
+      this.isShow = false
     }
   }
 }
 </script>
 <style scoped lang="stylus">
   @import "~common/stylus/variable.styl"
+  .slide-enter-active, .slide-leave-active
+    transition: all 0.3s
+  .slide-enter, .slide-leave-to
+    transform: translate3d(0, 100%, 0)
   .login
+    z-index: 99999
     position: fixed
     left: 0
-    right: 0
+    width: 100%
     top: 0
     bottom: 0
     .title
