@@ -150,6 +150,7 @@
           <chart-bar-line class="energy" ref="energy"
                           :legendData="legendData"
                           :series="seriesData"
+                          :xAxisData="xAxisData"
                           :yAxis="y"
                           titleText="能源用量与节能指标同比分析"></chart-bar-line>
         </div>
@@ -205,6 +206,7 @@ export default {
 //      this.strucPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
 //      this.costPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
       this.legendData = ['上年同期消耗', '实际消耗', '计划消耗', '上年同期节能指标', '实际节能指标', '计划节能指标']
+      this.xAxisData = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
       this.seriesData = [
         {
           name: '上年同期消耗',
