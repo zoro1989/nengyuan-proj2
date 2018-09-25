@@ -11,8 +11,8 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/yqny': {
-        target: 'http://127.0.0.1:8088/',
+      '/': {
+        target: 'http://leanv.free.idcfengye.com/',
         changeOrigin: true
       }
     },

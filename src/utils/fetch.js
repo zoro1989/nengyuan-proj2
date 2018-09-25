@@ -6,7 +6,7 @@ axios.defaults.withCredentials = true
 
 let fetch = (type, url, params, data = false, isFormat = true) => {
   let service = axios.create({
-    timeout: 10000
+    timeout: 30000
   })
 
   axios.defaults.headers.post['Content-Type'] = isFormat ? 'application/x-www-form-urlencoded;charset=utf-8' : 'application/json;charset=utf-8'

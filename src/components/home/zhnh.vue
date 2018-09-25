@@ -8,10 +8,16 @@
             v-model="valueMonth"
             type="month"
             size="mini"
+            value-format="yyyy-MM"
+            @change="dateChange"
             placeholder="选择月">
           </el-date-picker>
           <span class="picker-txt">用能单位</span>
-          <el-select v-model="valueYndw" placeholder="请选择" size="mini">
+          <el-select
+            v-model="valueYndw"
+            placeholder="请选择"
+            size="mini"
+            @change="selectChange">
             <el-option
               v-for="item in options1"
               :key="item.value"
@@ -33,12 +39,10 @@
                 <data-panel
                   class="border-right border-bottom"
                   title="产值综合能耗"
-                  data="0.0321"
+                  :data="pData.czzhnh || 0"
                   unit="吨标煤/万元"
-                  tongbiData="53.94%"
-                  tongbiStatus="down"
-                  huanbiData="23.94%"
-                  huanbiStatus="down"
+                  :tongbiData="pData.czzhnh_tb"
+                  :huanbiData="pData.czzhnh_hb"
                   showType="column"
                 ></data-panel>
               </div>
@@ -46,12 +50,10 @@
                 <data-panel
                   class="border-bottom"
                   title="产值碳排放量"
-                  data="1665"
+                  :data="pData.cztan"
                   unit="kgCO<sub>2</sub>/万元"
-                  tongbiData="58.94%"
-                  tongbiStatus="down"
-                  huanbiData="2.96%"
-                  huanbiStatus="up"
+                  :tongbiData="pData.cztan_tb"
+                  :huanbiData="pData.cztan_hb"
                   showType="column"
                 ></data-panel>
               </div>
@@ -59,12 +61,10 @@
                 <data-panel
                   class="border-left border-bottom"
                   title="产值耗电量"
-                  data="1665"
+                  :data="pData.czd"
                   unit="千瓦时/万元"
-                  tongbiData="58.94%"
-                  tongbiStatus="down"
-                  huanbiData="2.96%"
-                  huanbiStatus="up"
+                  :tongbiData="pData.czd_tb"
+                  :huanbiData="pData.czd_hb"
                   showType="column"
                 ></data-panel>
               </div>
@@ -74,24 +74,20 @@
                 <data-panel
                   class="border-right"
                   title="产值耗天然气量"
-                  data="0.442"
+                  :data="pData.czq"
                   unit="立方米/万元"
-                  tongbiData="7.94%"
-                  tongbiStatus="down"
-                  huanbiData="58.94%"
-                  huanbiStatus="down"
+                  :tongbiData="pData.czq_tb"
+                  :huanbiData="pData.czq_hb"
                   showType="column"
                 ></data-panel>
               </div>
               <div class="col-md-4 col-xs-12">
                 <data-panel
                   title="产值耗水量"
-                  data="101.58"
+                  :data="pData.czs"
                   unit="升（水）/万元"
-                  tongbiData="2.54%"
-                  tongbiStatus="up"
-                  huanbiData="2.96%"
-                  huanbiStatus="up"
+                  :tongbiData="pData.czs_tb"
+                  :huanbiData="pData.czs_hb"
                   showType="column"
                 ></data-panel>
               </div>
@@ -99,12 +95,10 @@
                 <data-panel
                   title="产值耗热量"
                   class="border-left"
-                  data="101.58"
+                  :data="pData.czr"
                   unit="吉焦/万元"
-                  tongbiData="2.54%"
-                  tongbiStatus="up"
-                  huanbiData="2.96%"
-                  huanbiStatus="up"
+                  :tongbiData="pData.czr_tb"
+                  :huanbiData="pData.czr_hb"
                   showType="column"
                 ></data-panel>
               </div>
@@ -119,12 +113,10 @@
                 <data-panel
                   class="border-right border-bottom"
                   title="单车综合能耗"
-                  data="22.9788"
+                  :data="pData.dzhnh"
                   unit="吨标煤/辆"
-                  tongbiData="212.2%"
-                  tongbiStatus="down"
-                  huanbiData="2.48%"
-                  huanbiStatus="down"
+                  :tongbiData="pData.dzhnh_tb"
+                  :huanbiData="pData.dzhnh_hb"
                   showType="column"
                 ></data-panel>
               </div>
@@ -132,12 +124,10 @@
                 <data-panel
                   class="border-right border-bottom"
                   title="单车碳排放量"
-                  data="10.3514"
+                  :data="pData.dtan"
                   unit="kgCO<sub>2</sub>/辆"
-                  tongbiData="20.28%"
-                  tongbiStatus="down"
-                  huanbiData="2.73%"
-                  huanbiStatus="up"
+                  :tongbiData="pData.dtan_tb"
+                  :huanbiData="pData.dtan_hb"
                   showType="column"
                 ></data-panel>
               </div>
@@ -145,12 +135,10 @@
                 <data-panel
                   class="border-right border-bottom"
                   title="单车耗电量"
-                  data="10.3514"
+                  :data="pData.dd"
                   unit="千瓦时/辆"
-                  tongbiData="20.28%"
-                  tongbiStatus="down"
-                  huanbiData="2.73%"
-                  huanbiStatus="up"
+                  :tongbiData="pData.dd_tb"
+                  :huanbiData="pData.dd_hb"
                   showType="column"
                 ></data-panel>
               </div>
@@ -158,12 +146,10 @@
                 <data-panel
                   class="border-bottom"
                   title="乘用车单车能源费用"
-                  data="10.3514"
+                  :data="pData.dcyje"
                   unit="元/辆"
-                  tongbiData="20.28%"
-                  tongbiStatus="down"
-                  huanbiData="2.73%"
-                  huanbiStatus="up"
+                  :tongbiData="pData.dcyje_tb"
+                  :huanbiData="pData.dcyje_hb"
                   showType="column"
                 ></data-panel>
               </div>
@@ -173,12 +159,10 @@
                 <data-panel
                   class="border-right"
                   title="单车耗水量"
-                  data="33.30"
+                  :data="pData.ds"
                   unit="吉焦/万元"
-                  tongbiData="56.2%"
-                  tongbiStatus="down"
-                  huanbiData="34.7%"
-                  huanbiStatus="up"
+                  :tongbiData="pData.ds_tb"
+                  :huanbiData="pData.ds_hb"
                   showType="column"
                 ></data-panel>
               </div>
@@ -186,12 +170,10 @@
                 <data-panel
                   class="border-right"
                   title="单车耗天然气量"
-                  data="37434.71"
+                  :data="pData.dq"
                   unit="立方米/辆"
-                  tongbiData="17.68%"
-                  tongbiStatus="down"
-                  huanbiData="1.32%"
-                  huanbiStatus="up"
+                  :tongbiData="pData.dq_tb"
+                  :huanbiData="pData.dq_hb"
                   showType="column"
                 ></data-panel>
               </div>
@@ -199,24 +181,20 @@
                 <data-panel
                   class="border-right"
                   title="单车耗热量"
-                  data="37434.71"
+                  :data="pData.dr"
                   unit="吉焦/辆"
-                  tongbiData="17.68%"
-                  tongbiStatus="down"
-                  huanbiData="1.32%"
-                  huanbiStatus="up"
+                  :tongbiData="pData.dr_tb"
+                  :huanbiData="pData.dr_hb"
                   showType="column"
                 ></data-panel>
               </div>
               <div class="col-md-3 col-xs-12">
                 <data-panel
                   title="中重型车单车能源费用"
-                  data="37434.71"
+                  :data="pData.dzxje"
                   unit="元/辆"
-                  tongbiData="17.68%"
-                  tongbiStatus="down"
-                  huanbiData="1.32%"
-                  huanbiStatus="up"
+                  :tongbiData="pData.dzxje_tb"
+                  :huanbiData="pData.dzxje_hb"
                   showType="column"
                 ></data-panel>
               </div>
@@ -226,16 +204,18 @@
       </div>
       <div class="panel-box">
         <chart-bar-line class="energy" ref="energy"
-                        :legendData="legendData"
-                        :series="seriesData1"
-                        :xAxisData="xAxisData1"
+                        :legendData="zcData.legendData"
+                        :series="zcData.series"
+                        :xAxisData="zcData.xAxisData"
+                        :yAxis="zcData.yAxis"
                         :titleText="lastMonth + '整车制造产值综合能耗'"></chart-bar-line>
       </div>
       <div class="panel-box">
         <chart-bar-line class="energy" ref="energy"
-                        :legendData="legendData"
-                        :series="seriesData2"
-                        :xAxisData="xAxisData2"
+                        :legendData="lbjData.legendData"
+                        :series="lbjData.series"
+                        :xAxisData="lbjData.xAxisData"
+                        :yAxis="lbjData.yAxis"
                         :titleText="lastMonth + '零部件加工产值综合能耗'"></chart-bar-line>
       </div>
     </div>
@@ -246,6 +226,8 @@ import DataPanel from 'base/data-panel/data-panel'
 import DataPanelTitle from 'base/data-panel-title/data-panel-title'
 import ChartPie from 'base/chart-pie/chart-pie'
 import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
+import { api } from '@/config'
+import fetch from 'utils/fetch'
 let moment = require('moment')
 moment.locale('zh-cn')
 export default {
@@ -258,99 +240,132 @@ export default {
   data() {
     return {
       lastMonth: moment().subtract(1, 'months').format('MMMM'),
-      quantityChartRadius: [0, '70%'],
-      feeChartRadius: [0, '70%'],
+      quantityChartRadius: [0, '60%'],
+      feeChartRadius: [0, '60%'],
       legendData: [],
       seriesData: [],
       valueMonth: '',
       options1: [{
-        value: 'czzhnh',
+        value: '40',
         label: '产值综合能耗'
       }, {
-        value: 'cztpfl',
+        value: '101',
         label: '产值碳排放量'
       }, {
-        value: 'czhdl',
+        value: '33',
         label: '产值耗电量'
       }, {
-        value: 'cztrql',
+        value: '15',
         label: '产值耗天然气量'
       }, {
-        value: 'czhsl',
+        value: '00',
         label: '产值耗水量'
       }, {
-        value: 'czhrl',
+        value: '32',
         label: '产值耗热量'
       }, {
-        value: 'dczhnh',
+        value: '102',
         label: '单车综合能耗'
       }, {
-        value: 'dctpfl',
+        value: '103',
         label: '单车碳排放量'
       }],
       valueYndw: '',
       xAxisData1: ['红旗工厂', '一汽大众', '一汽轿车', '一汽吉林', '新能源汽车', '长春丰越', '天津夏利', '天津丰田', '一汽通用(长春)', '四川丰田(成都)', '一汽解放', '一汽客车'],
-      xAxisData2: ['一汽富维', '一汽模具', '一汽锻造', '一汽铸造', '长春丰田', '天津丰田', '一汽物流']
+      xAxisData2: ['一汽富维', '一汽模具', '一汽锻造', '一汽铸造', '长春丰田', '天津丰田', '一汽物流'],
+      pData: {},
+      zcData: {},
+      lbjData: {},
+      dateTime: '',
+      lx: ''
     }
   },
   created() {
-    setTimeout(() => {
-      this.legendData = ['上年同期指标', '实际指标', '计划指标', '达标率']
-      this.seriesData1 = [
-        {
-          name: '上年同期指标',
-          type: 'bar',
-          data: [20.0, 25.0, 22.0, 21.0, 25.0, 27.0, 29.0, 27.0, 20.0, 25.0, 22.0, 21.0],
-          reality: '0'
-        },
-        {
-          name: '实际指标',
-          type: 'bar',
-          data: [19.0, 31.0, 19.0, 27.0, 25.0, 31.0, 20.0, 17.0, 26.0, 31.0, 25.0, 27.0],
-          reality: '1'
-        },
-        {
-          name: '计划指标',
-          type: 'bar',
-          data: [28.0, 21.0, 28.0, 28.0, 28.0, 32.0, 28.0, 22.0, 28.0, 41.0, 28.0, 28.0],
-          reality: '0'
-        },
-        {
-          name: '达标率',
-          type: 'line',
-          data: [0.012, 0.013, 0.017, 0.016, 0.018, 0.017, 0.016, 0.015, 0.012, 0.013, 0.017, 0.016]
-        }
-      ]
-      this.seriesData2 = [
-        {
-          name: '上年同期指标',
-          type: 'bar',
-          data: [20.0, 25.0, 22.0, 21.0, 25.0, 27.0, 29.0],
-          reality: '0'
-        },
-        {
-          name: '实际指标',
-          type: 'bar',
-          data: [19.0, 31.0, 19.0, 27.0, 25.0, 31.0, 20.0],
-          reality: '1'
-        },
-        {
-          name: '计划指标',
-          type: 'bar',
-          data: [28.0, 21.0, 28.0, 28.0, 28.0, 32.0, 28.0],
-          reality: '0'
-        },
-        {
-          name: '达标率',
-          type: 'line',
-          data: [0.012, 0.013, 0.017, 0.016, 0.018, 0.017, 0.016]
-        }
-      ]
-    })
+//    setTimeout(() => {
+//      this.legendData = ['上年同期指标', '实际指标', '计划指标', '达标率']
+//      this.seriesData1 = [
+//        {
+//          name: '上年同期指标',
+//          type: 'bar',
+//          data: [20.0, 25.0, 22.0, 21.0, 25.0, 27.0, 29.0, 27.0, 20.0, 25.0, 22.0, 21.0],
+//          reality: '0'
+//        },
+//        {
+//          name: '实际指标',
+//          type: 'bar',
+//          data: [19.0, 31.0, 19.0, 27.0, 25.0, 31.0, 20.0, 17.0, 26.0, 31.0, 25.0, 27.0],
+//          reality: '1'
+//        },
+//        {
+//          name: '计划指标',
+//          type: 'bar',
+//          data: [28.0, 21.0, 28.0, 28.0, 28.0, 32.0, 28.0, 22.0, 28.0, 41.0, 28.0, 28.0],
+//          reality: '0'
+//        },
+//        {
+//          name: '达标率',
+//          type: 'line',
+//          data: [0.012, 0.013, 0.017, 0.016, 0.018, 0.017, 0.016, 0.015, 0.012, 0.013, 0.017, 0.016]
+//        }
+//      ]
+//      this.seriesData2 = [
+//        {
+//          name: '上年同期指标',
+//          type: 'bar',
+//          data: [20.0, 25.0, 22.0, 21.0, 25.0, 27.0, 29.0],
+//          reality: '0'
+//        },
+//        {
+//          name: '实际指标',
+//          type: 'bar',
+//          data: [19.0, 31.0, 19.0, 27.0, 25.0, 31.0, 20.0],
+//          reality: '1'
+//        },
+//        {
+//          name: '计划指标',
+//          type: 'bar',
+//          data: [28.0, 21.0, 28.0, 28.0, 28.0, 32.0, 28.0],
+//          reality: '0'
+//        },
+//        {
+//          name: '达标率',
+//          type: 'line',
+//          data: [0.012, 0.013, 0.017, 0.016, 0.018, 0.017, 0.016]
+//        }
+//      ]
+//    })
+    this.fetchPanelData()
+    this.fetchChartData()
   },
   methods: {
+    fetchPanelData() {
+      fetch('get', api.queryZhiBiaoList, {dateTime: this.dateTime}).then((res) => {
+        this.pData = res.data[0]
+      })
+    },
+    fetchChartData() {
+      fetch('get', api.queryNyZListZc, {dateTime: this.dateTime, lx: this.lx}).then((res) => {
+        this.zcData = JSON.parse(JSON.stringify(res.data))
+        console.log(this.zcData['xAxisData'])
+        this.zcData.yAxis = [{name: '吨标煤/万元'}, {name: '%'}]
+      })
+      fetch('get', api.queryNyZListLbj, {dateTime: this.dateTime, lx: this.lx}).then((res) => {
+        this.lbjData = JSON.parse(JSON.stringify(res.data))
+        this.lbjData.yAxis = [{name: '吨标煤/万元'}, {name: '%'}]
+      })
+    },
     onClose() {
       this.$router.replace('/home')
+    },
+    dateChange(value) {
+      this.dateTime = value
+      this.lastMonth = moment(value).format('MMMM')
+      this.fetchPanelData()
+      this.fetchChartData()
+    },
+    selectChange(value) {
+      this.lx = value
+      this.fetchChartData()
     }
   }
 }

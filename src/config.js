@@ -3,7 +3,14 @@
 // let apiPath = 'http://rancode.jymenu.com/';
 let apiPath = '/'
 const api = {
-  getHomeData: apiPath + 'yqny/queryShouYeList'
+  getHomeData: apiPath + 'queryShouYeList',
+  queryZhiBiaoList: apiPath + 'queryZhiBiaoList',
+  queryNyZListZc: apiPath + 'queryNyZList?pid=2',
+  queryNyZListLbj: apiPath + 'queryNyZList?pid=23',
+  queryXinXiList: apiPath + 'queryXinXiList',
+  queryNyYLListDl: apiPath + 'queryNyYLList?pid=1',
+  queryNyYLListDf: apiPath + 'queryNyDLList',
+  queryNyDBList: apiPath + 'queryNyDBList?pid=2'
 }
 
 const apiDict = {

@@ -35,14 +35,13 @@ export default {
     yAxis: {
       type: Array,
       default: function () {
-        return [{name: '吨标煤', min: 0.0, max: 50.0, interval: 10.0},
-          {name: '吨标煤/万元', min: 0.00, max: 0.05, interval: 0.01}]
+        return []
       }
     },
     xAxisData: {
       type: Array,
       default: function () {
-        return ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+        return []
       }
     },
     series: {
@@ -232,8 +231,8 @@ export default {
       left: 50%
       transform: translateX(-50%)
       text-align: center
-      height: 50px
-      line-height: 50px
+      height: 35px
+      line-height: 35px
       background: $color-background
       cursor: pointer
       a

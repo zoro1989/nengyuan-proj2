@@ -2,20 +2,20 @@
   <div class="data-panel">
     <span class="row data-title">{{title}}</span>
     <div class="row data-content">
-      <span class="row-item"><span class="big">{{data}}</span><span v-html="unitTxt"></span></span>
+      <span class="row-item"><span class="big">{{data || 0}}</span><span v-html="unitTxt"></span></span>
     </div>
     <template v-if="showType === 'row' && showBi === 'show'">
       <div class="row bili">
-        <span class="row-item bi">同比<span :class="tongbiStatus">&nbsp;<i :class="tongbiStatusCls"></i>&nbsp;</span>{{tongbiData}}</span>
-        <span class="row-item bi">&nbsp;&nbsp;&nbsp;环比<span :class="huanbiStatus">&nbsp;<i :class="huanbiStatusCls"></i>&nbsp;</span>{{huanbiData}}</span>
+        <span class="row-item bi">同比<span :class="tongbiStatus">&nbsp;<i :class="tongbiStatusCls"></i>&nbsp;</span>{{Math.abs(tongbiData || 0)}}</span>
+        <span class="row-item bi">&nbsp;&nbsp;&nbsp;环比<span :class="huanbiStatus">&nbsp;<i :class="huanbiStatusCls"></i>&nbsp;</span>{{Math.abs(huanbiData || 0)}}</span>
       </div>
     </template>
     <template v-if="showType === 'column' && showBi === 'show'">
       <div class="row bili">
-        <span class="row-item bi">同比<span :class="tongbiStatus">&nbsp;<i :class="tongbiStatusCls"></i>&nbsp;</span>{{tongbiData}}</span>
+        <span class="row-item bi">同比<span :class="tongbiStatus">&nbsp;<i :class="tongbiStatusCls"></i>&nbsp;</span>{{Math.abs(tongbiData || 0)}}</span>
       </div>
       <div class="row bili">
-        <span class="row-item bi">环比<span :class="huanbiStatus">&nbsp;<i :class="huanbiStatusCls"></i>&nbsp;</span>{{huanbiData}}</span>
+        <span class="row-item bi">环比<span :class="huanbiStatus">&nbsp;<i :class="huanbiStatusCls"></i>&nbsp;</span>{{Math.abs(huanbiData || 0)}}</span>
       </div>
     </template>
   </div>
@@ -39,17 +39,9 @@ export default {
       type: Number,
       default: 0
     },
-    tongbiStatus: {
-      type: String,
-      default: 'up'
-    },
     huanbiData: {
       type: Number,
       default: 0
-    },
-    huanbiStatus: {
-      type: String,
-      default: 'up'
     },
     showType: {
       type: String,
@@ -64,11 +56,17 @@ export default {
     unitTxt() {
       return '  ' + this.unit
     },
+    huanbiStatus() {
+      return (this.huanbiData || 0) > 0 ? 'up' : 'down'
+    },
+    tongbiStatus() {
+      return (this.tongbiData || 0) > 0 ? 'up' : 'down'
+    },
     tongbiStatusCls() {
-      return 'fa fa-long-arrow-' + this.tongbiStatus
+      return 'fa fa-long-arrow-' + ((this.tongbiData || 0) > 0 ? 'up' : 'down')
     },
     huanbiStatusCls() {
-      return 'fa fa-long-arrow-' + this.huanbiStatus
+      return 'fa fa-long-arrow-' + ((this.huanbiData || 0) > 0 ? 'up' : 'down')
     }
   }
 }

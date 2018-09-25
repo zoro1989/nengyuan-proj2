@@ -252,13 +252,16 @@ export default {
 
       // 使用刚指定的配置项和数据显示图表。
       this.chart.setOption(option, true)
-
+      this.chart.on('click', this.eConsole)
       window.addEventListener('resize', () => {
         clearTimeout(this.resizeTimer)
         this.resizeTimer = setTimeout(() => {
           this.refreshChart()
         }, 60)
       })
+    },
+    eConsole(param) {
+      this.$emit('pieClick', param)
     },
     refreshChart() {
       this.chart.resize()
@@ -282,8 +285,8 @@ export default {
       left: 50%
       transform: translateX(-50%)
       text-align: center
-      height: 50px
-      line-height: 50px
+      height: 35px
+      line-height: 35px
       background: $color-background
       cursor: pointer
       a
