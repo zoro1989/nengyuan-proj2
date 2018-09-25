@@ -437,7 +437,7 @@ export default {
             .sample-data-panel
               flex: 1
         .energy
-          min-height: 250px
+          min-height: 350px
           position: relative
           height: 100%
         &:last-child
@@ -445,14 +445,14 @@ export default {
       .quantity
         background: #fff
         margin: 0 10px
-        min-height: 250px
+        min-height: 350px
         position: relative
         height: 100%
         border-radius: 5px
       .fee
         background: #fff
         margin-right: 10px
-        min-height: 250px
+        min-height: 350px
         position: relative
         height: 100%
         border-radius: 5px

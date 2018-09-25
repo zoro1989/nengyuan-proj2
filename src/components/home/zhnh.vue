@@ -429,7 +429,7 @@ export default {
             .sample-data-panel
               flex: 1
         .energy
-          min-height: 250px
+          min-height: 350px
           position: relative
           height: 100%
         &:last-child

@@ -1,7 +1,7 @@
 // let apiPath = '/api/';
 // let apiPath = 'http://47.95.14.172:8088/web/';
 // let apiPath = 'http://rancode.jymenu.com/';
-let apiPath = '/'
+let apiPath = '/yqny/'
 const api = {
   getHomeData: apiPath + 'queryShouYeList',
   queryZhiBiaoList: apiPath + 'queryZhiBiaoList',

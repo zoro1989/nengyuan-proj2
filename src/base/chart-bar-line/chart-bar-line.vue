@@ -96,8 +96,8 @@ export default {
           }
         },
         grid: {
-          left: '3%',
-          right: '4%',
+          left: '0%',
+          right: '0%',
           bottom: '20%',
           containLabel: true
         },
@@ -179,6 +179,7 @@ export default {
             item.type = series[i].type
             if (item.type === 'line') {
               item.yAxisIndex = 1
+              item.lineStyle = {color: vm.chartColor[i]}
             }
             item.data = series[i].data
             item.itemStyle = {
