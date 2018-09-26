@@ -42,7 +42,7 @@ export default {
         return []
       }
     },
-    postion: {
+    position: {
       type: String,
       default: 'outside'
     },
@@ -51,6 +51,16 @@ export default {
       default: function () {
         return []
       }
+    },
+    legendData: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    },
+    isShowLabel: {
+      type: Boolean,
+      default: true
     }
   },
   created() {
@@ -83,6 +93,14 @@ export default {
         label: {
           formatter: '{b}\n{d}%'
         },
+        legend: {
+          padding: [5, 0, 0, 0],
+          bottom: 0,
+          data: this.legendData,
+          textStyle: {
+            color: '#666'
+          }
+        },
         series: [
           {
             name: '访问来源',
@@ -96,7 +114,8 @@ export default {
                 obj.value = data[i].value
                 obj.name = data[i].name
                 obj.label = (data[i].othersData && data[i].othersData.length > 0) ? {
-                  position: vm.postion,
+                  position: vm.position,
+                  show: vm.isShowLabel,
                   normal: {
                     formatter: (function (othersData) {
                       let res = []
@@ -166,17 +185,17 @@ export default {
 //                      }
 //                    }
                   }
-                } : {position: vm.postion}
+                } : {position: vm.position}
                 res.push(obj)
               }
               return res
             })(this, data),
 //            data: [
-//              {value: 274, name: '水', label: {position: this.postion}},
+//              {value: 274, name: '水', label: {position: this.position}},
 //              {value: 168,
 //                name: '其他',
 //                label: this.othersData.length > 0 ? {
-//                  position: this.postion,
+//                  position: this.position,
 //                  normal: {
 //                    formatter: [
 //                      '{rate1|一汽解放：55.3%}',
@@ -231,11 +250,11 @@ export default {
 //                      }
 //                    }
 //                  }
-//                } : {position: this.postion}},
-//              {value: 335, name: '高温水', label: {position: this.postion}},
-//              {value: 235, name: '原煤', label: {position: this.postion}},
-//              {value: 310, name: '天然气', label: {position: this.postion}},
-//              {value: 400, name: '电', label: {position: this.postion}}
+//                } : {position: this.position}},
+//              {value: 335, name: '高温水', label: {position: this.position}},
+//              {value: 235, name: '原煤', label: {position: this.position}},
+//              {value: 310, name: '天然气', label: {position: this.position}},
+//              {value: 400, name: '电', label: {position: this.position}}
 //            ],
             // roseType="radius"
             roseType: this.roseType ? this.roseType : false,

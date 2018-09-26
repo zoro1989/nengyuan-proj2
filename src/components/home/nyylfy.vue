@@ -208,12 +208,14 @@
                      :titleText="lastMonth + chartTitle + '量占比'"
                      :radius="quantityChartRadius"
                      @pieClick="pieClick"
+                     :isShowLabel="isShowLabel"
                      :data="pieDl.seriesData"></chart-pie>
         </div>
         <div class="col-lg-8 col-md-12 col-xs-12 fee-box">
           <chart-pie class="fee" ref="fee"
                      :titleText="lastMonth + chartTitle + '费用占比'"
                      :radius="feeChartRadius"
+                     :isShowLabel="isShowLabel"
                      :data="pieDf.seriesData"></chart-pie>
         </div>
       </div>
@@ -283,7 +285,8 @@ export default {
       dateTime: '',
       lx: '',
       pid: '2',
-      chartTitle: '电'
+      chartTitle: '电',
+      isShowLabel: false
     }
   },
   created() {
