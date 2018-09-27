@@ -1,6 +1,7 @@
 <template>
   <div class="chart-pie" >
     <div class="title" @click="titleClick">{{titleText}}</div>
+    <span class="back-btn ripple" v-if="showBack" @click="back"><i class="fa fa-arrow-left"></i>&nbsp;返回</span>
     <div class="chart" ref="chart"></div>
   </div>
 </template>
@@ -70,6 +71,11 @@ export default {
       default: true
     }
   },
+  data() {
+    return {
+      showBack: false
+    }
+  },
   created() {
     this.chart = {}
   },
@@ -79,9 +85,18 @@ export default {
     }
   },
   methods: {
-  titleClick() {
+    back() {
+      this.$emit('back')
+    },
+    showBackBtn() {
+      this.showBack = true
+    },
+    hideBackBtn() {
+      this.showBack = false
+    },
+    titleClick() {
         this.$emit('titleClick')
-      },
+    },
     makeChart(data) {
       this.chart = echarts.init(this.$refs.chart)
       // 指定图表的配置项和数据
@@ -309,6 +324,20 @@ export default {
       left: 0px
       right: 0px
       bottom: 10px
+    .back-btn
+      position: absolute
+      z-index: 1
+      color: #899eb6
+      font-size: 15px
+      cursor: pointer
+      display: table-cell
+      vertical-align: middle
+      text-align: center
+      padding: 3px 10px
+      border-radius: 5px
+      border: 1px solid #899eb6
+      top: 12%
+      right: 32%
     .title
       position: absolute
       z-index: 1

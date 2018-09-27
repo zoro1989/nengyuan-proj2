@@ -202,10 +202,11 @@
       </div>
       <div class="row top-10">
         <div class="col-lg-6 col-md-12 col-xs-12">
-          <chart-pie class="quantity" ref="fee"
+          <chart-pie class="quantity" ref="quantity"
                      :titleText="lastMonth + chartTitle + '量占比'"
                      :radius="quantityChartRadius"
                      @pieClick="pieClick"
+                     @back="pieBack"
                      @titleClick="pieTitleClickDl"
                      :isShowLabel="isShowLabel"
                      :legendData="pieDl.legendData"
@@ -338,6 +339,15 @@ export default {
     this.fetchPanelData()
     this.fetchChartData()
   },
+  watch: {
+    pidmain(newValue) {
+      if (newValue !== '1') {
+        this.$refs.quantity.showBackBtn()
+      } else {
+        this.$refs.quantity.hideBackBtn()
+      }
+    }
+  },
   methods: {
     fetchPanelData() {
       fetch('get', api.queryXinXiList, {dateTime: this.dateTime}).then((res) => {
@@ -391,6 +401,11 @@ export default {
       }
     },
     pieTitleClickDl() {
+      this.pid = '2'
+      this.pidmain = '1'
+      this.fetchPieData()
+    },
+    pieBack() {
       this.pid = '2'
       this.pidmain = '1'
       this.fetchPieData()
