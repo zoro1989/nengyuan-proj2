@@ -6,6 +6,7 @@
 </template>
 <script>
 import echarts from 'echarts'
+import {filterArr} from 'utils/filter'
 export default {
   props: {
     titleText: {
@@ -96,15 +97,15 @@ export default {
           }
         },
         grid: {
-          left: '0%',
-          right: '0%',
+          left: '3%',
+          right: '4%',
           bottom: '20%',
           containLabel: true
         },
         xAxis: [
           {
             type: 'category',
-            data: this.xAxisData,
+            data: filterArr(this.xAxisData),
             axisPointer: {
               type: 'shadow'
             },

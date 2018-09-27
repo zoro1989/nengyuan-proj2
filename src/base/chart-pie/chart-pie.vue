@@ -1,11 +1,12 @@
 <template>
   <div class="chart-pie" >
-    <div class="title">{{titleText}}</div>
+    <div class="title" @click="titleClick">{{titleText}}</div>
     <div class="chart" ref="chart"></div>
   </div>
 </template>
 <script>
 import echarts from 'echarts'
+import {filter, filterArr} from 'utils/filter'
 export default {
   props: {
     titleText: {
@@ -15,7 +16,7 @@ export default {
     chartColor: {
       type: Array,
       default: function () {
-        return ['#5967f1', '#06e56d', '#7dd1ff', '#ff8e06', '#1196de', '#0c1994']
+         return ['#5967f1', '#06e56d', '#7dd1ff', '#ff8e06', '#1196de', '#0c1994', '#8c6be6', '#ffc300', '#4472c6', '#838389', '#1096df']
       }
     },
     titleTextColor: {
@@ -35,6 +36,12 @@ export default {
       default: function () {
         return [0, '70%']
       }
+    },
+    center: {
+        type: Array,
+        default: function () {
+          return ['50%', '60%']
+        }
     },
     othersData: {
       type: Array,
@@ -72,6 +79,9 @@ export default {
     }
   },
   methods: {
+  titleClick() {
+        this.$emit('titleClick')
+      },
     makeChart(data) {
       this.chart = echarts.init(this.$refs.chart)
       // 指定图表的配置项和数据
@@ -95,33 +105,35 @@ export default {
         },
         legend: {
           padding: [5, 0, 0, 0],
-          bottom: 0,
-          data: this.legendData,
-          textStyle: {
-            color: '#666'
-          }
+            right: '12%',
+            top: 'middle',
+            orient: 'vertical',
+            data: filterArr(this.legendData),
+            textStyle: {
+              color: '#666'
+            }
         },
         series: [
           {
             name: '访问来源',
             type: 'pie',
             radius: this.radius,
-            center: ['50%', '60%'],
+            center: this.center,
+              label: {show: this.isShowLabel},
             data: (function (vm, data) {
               var res = []
               for (let i = 0; i < data.length; i++) {
                 let obj = {}
                 obj.value = data[i].value
-                obj.name = data[i].name
+                obj.name = filter(data[i].name)
                 obj.label = (data[i].othersData && data[i].othersData.length > 0) ? {
                   position: vm.position,
-                  show: vm.isShowLabel,
                   normal: {
                     formatter: (function (othersData) {
                       let res = []
                       for (let i = 0; i < othersData.length; i++) {
-                        res.push('{rate' + i + '|' + othersData[i].name + '：' + othersData[i].value + '%}')
-                      }
+                          res.push('{rate' + i + '|' + filter(othersData[i].name) + '：' + othersData[i].value + '%}')
+                        }
                       return res.join('\n')
                     })(vm.data[i].othersData),
                     backgroundColor: '#eee',

@@ -1,6 +1,6 @@
 <template>
   <div class="data-panel">
-    <span class="row data-title">{{title}}</span>
+    <span class="row data-title" @click="titleClick">{{title}}</span>
     <div class="row data-content">
       <span class="row-item"><span class="big">{{data || 0}}</span><span v-html="unitTxt"></span></span>
     </div>
@@ -67,6 +67,11 @@ export default {
     },
     huanbiStatusCls() {
       return 'fa fa-long-arrow-' + ((this.huanbiData || 0) > 0 ? 'up' : 'down')
+    }
+  },
+  methods: {
+    titleClick() {
+      this.$emit('titleClick')
     }
   }
 }

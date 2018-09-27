@@ -104,10 +104,8 @@
               title="清洁能源"
               data="4586"
               unit="吨标煤"
-              tongbiData="20.28%"
-              tongbiStatus="down"
-              huanbiData="2.73%"
-              huanbiStatus="up"
+              tongbiData="-20.28"
+              huanbiData="2.73"
               showType="column"
             ></data-panel>
           </div>
@@ -203,19 +201,24 @@
         </div>
       </div>
       <div class="row top-10">
-        <div class="col-lg-4 col-md-12 col-xs-12">
+        <div class="col-lg-6 col-md-12 col-xs-12">
           <chart-pie class="quantity" ref="fee"
                      :titleText="lastMonth + chartTitle + '量占比'"
                      :radius="quantityChartRadius"
                      @pieClick="pieClick"
+                     @titleClick="pieTitleClickDl"
                      :isShowLabel="isShowLabel"
+                     :legendData="pieDl.legendData"
+                     :center="pieCenter"
                      :data="pieDl.seriesData"></chart-pie>
         </div>
-        <div class="col-lg-8 col-md-12 col-xs-12 fee-box">
+        <div class="col-lg-6 col-md-12 col-xs-12 fee-box">
           <chart-pie class="fee" ref="fee"
                      :titleText="lastMonth + chartTitle + '费用占比'"
                      :radius="feeChartRadius"
                      :isShowLabel="isShowLabel"
+                     :legendData="pieDf.legendData"
+                     :center="pieCenter"
                      :data="pieDf.seriesData"></chart-pie>
         </div>
       </div>
@@ -249,8 +252,9 @@ export default {
   data() {
     return {
       lastMonth: moment().subtract(1, 'months').format('MMMM'),
-      quantityChartRadius: [0, '60%'],
-      feeChartRadius: [0, '60%'],
+      quantityChartRadius: [0, '75%'],
+      feeChartRadius: [0, '75%'],
+      pieCenter: ['40%', '50%'],
       strucPie1: [],
       strucPie2: [],
       legendData: [],
@@ -285,6 +289,7 @@ export default {
       dateTime: '',
       lx: '',
       pid: '2',
+      pidmain: '1',
       chartTitle: '电',
       isShowLabel: false
     }
@@ -340,17 +345,17 @@ export default {
       })
     },
     fetchChartData() {
-      fetch('get', api.queryNyYLListDl, {dateTime: this.dateTime, lx: this.lx}).then((res) => {
-        this.pieDl = res.data
-      })
-      this.fetchPieData()
-      fetch('get', api.queryNyDBList, {dateTime: this.dateTime, lx: this.lx}).then((res) => {
-        this.barDb = res.data
-      })
+        this.fetchPieData()
     },
     fetchPieData() {
+      fetch('get', api.queryNyYLListDl, {dateTime: this.dateTime, lx: this.lx, pid: this.pidmain}).then((res) => {
+        this.pieDl = res.data
+      })
       fetch('get', api.queryNyYLListDf, {dateTime: this.dateTime, lx: this.lx, pid: this.pid}).then((res) => {
         this.pieDf = res.data
+      })
+      fetch('get', api.queryNyDBList, {dateTime: this.dateTime, lx: this.lx, pid: this.pid}).then((res) => {
+        this.barDb = res.data
       })
     },
     onClose() {
@@ -377,9 +382,17 @@ export default {
     pieClick(param) {
       if (param.data.name === '整车制造') {
         this.pid = '2'
-      } else {
+        this.pidmain = '2'
+        this.fetchPieData()
+      } else if (param.data.name === '零部件加工') {
         this.pid = '23'
+        this.pidmain = '23'
+        this.fetchPieData()
       }
+    },
+    pieTitleClickDl() {
+      this.pid = '2'
+      this.pidmain = '1'
       this.fetchPieData()
     }
   }

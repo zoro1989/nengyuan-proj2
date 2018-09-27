@@ -60,10 +60,8 @@
                   title="清洁能源"
                   data="4586"
                   unit="吨标煤"
-                  tongbiData="12.2%"
-                  tongbiStatus="down"
-                  huanbiData="6.7%"
-                  huanbiStatus="up"
+                  tongbiData="-12.2"
+                  huanbiData="6.7"
                 ></data-panel>
               </div>
             </div>
