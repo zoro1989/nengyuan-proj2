@@ -12,7 +12,7 @@
             @change="dateChange"
             placeholder="选择月">
           </el-date-picker>
-          <span class="picker-txt">用能单位</span>
+          <span class="picker-txt">指标类别</span>
           <el-select
             v-model="valueYndw"
             placeholder="请选择"
@@ -160,7 +160,7 @@
                   class="border-right"
                   title="单车耗水量"
                   :data="pData.ds"
-                  unit="吉焦/万元"
+                  unit="升（水）/万元"
                   :tongbiData="pData.ds_tb"
                   :huanbiData="pData.ds_hb"
                   showType="column"
@@ -341,16 +341,23 @@ export default {
     fetchPanelData() {
       fetch('get', api.queryZhiBiaoList, {dateTime: this.dateTime}).then((res) => {
         this.pData = res.data[0]
+      }).catch(() => {
+        this.pData = {}
       })
     },
     fetchChartData() {
       fetch('get', api.queryNyZListZc, {dateTime: this.dateTime, lx: this.lx}).then((res) => {
-        this.zcData = JSON.parse(JSON.stringify(res.data))
-        console.log(this.zcData['xAxisData'])
+        this.zcData = res.data
+        this.zcData.yAxis = [{name: '吨标煤/万元'}, {name: '%'}]
+      }).catch(() => {
+        this.zcData = {}
         this.zcData.yAxis = [{name: '吨标煤/万元'}, {name: '%'}]
       })
       fetch('get', api.queryNyZListLbj, {dateTime: this.dateTime, lx: this.lx}).then((res) => {
-        this.lbjData = JSON.parse(JSON.stringify(res.data))
+        this.lbjData = res.data
+        this.lbjData.yAxis = [{name: '吨标煤/万元'}, {name: '%'}]
+      }).catch(() => {
+        this.lbjData = {}
         this.lbjData.yAxis = [{name: '吨标煤/万元'}, {name: '%'}]
       })
     },

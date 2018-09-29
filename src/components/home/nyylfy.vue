@@ -12,7 +12,7 @@
             @change="dateChange"
             placeholder="选择月">
           </el-date-picker>
-          <span class="picker-txt">用能单位</span>
+          <span class="picker-txt">能源种类</span>
           <el-select
             v-model="valueYndw"
             placeholder="请选择"
@@ -274,15 +274,12 @@ export default {
         value: '15',
         label: '天然气'
       }, {
-        value: '01',
-        label: '原煤'
-      }, {
         value: '40',
         label: '能源消耗总量'
       }],
       valueYndw: '',
       xAxisData1: ['红旗工厂', '一汽大众', '一汽轿车', '一汽吉林', '新能源汽车', '长春丰越', '天津夏利', '天津丰田', '一汽通用(长春)', '四川丰田(成都)', '一汽解放', '一汽客车'],
-      yAxis: [{name: '千瓦时'}, {name: '万元'}],
+      yAxis: [{name: '万千瓦时'}, {name: '万元'}],
       pData: {},
       pieDl: {},
       pieDf: {},
@@ -352,6 +349,8 @@ export default {
     fetchPanelData() {
       fetch('get', api.queryXinXiList, {dateTime: this.dateTime}).then((res) => {
         this.pData = res.data[0]
+      }).catch(() => {
+        this.pData = {}
       })
     },
     fetchChartData() {
@@ -360,12 +359,18 @@ export default {
     fetchPieData() {
       fetch('get', api.queryNyYLListDl, {dateTime: this.dateTime, lx: this.lx, pid: this.pidmain}).then((res) => {
         this.pieDl = res.data
+      }).catch(() => {
+        this.pieDl = {}
       })
       fetch('get', api.queryNyYLListDf, {dateTime: this.dateTime, lx: this.lx, pid: this.pid}).then((res) => {
         this.pieDf = res.data
+      }).catch(() => {
+        this.pieDf = {}
       })
       fetch('get', api.queryNyDBList, {dateTime: this.dateTime, lx: this.lx, pid: this.pid}).then((res) => {
         this.barDb = res.data
+      }).catch(() => {
+        this.barDb = {}
       })
     },
     onClose() {
@@ -382,10 +387,25 @@ export default {
       let index = this.options1.findIndex((item) => {
         return value === item.value
       })
+      // 能源消耗总量
       if (value === '40') {
         this.chartTitle = '能源消耗总'
+        this.yAxis = [{name: '万吨标煤'}, {name: '万元'}]
       } else {
         this.chartTitle = this.options1[index].label
+        // 电
+        if (value === '33') {
+          this.yAxis = [{name: '万千瓦时'}, {name: '万元'}]
+          // 水
+        } else if (value === '00') {
+          this.yAxis = [{name: '吨'}, {name: '万元'}]
+          // 热力
+        } else if (value === '32') {
+          this.yAxis = [{name: '吉焦'}, {name: '万元'}]
+          // 天然气
+        } else if (value === '15') {
+          this.yAxis = [{name: '万立方米'}, {name: '万元'}]
+        }
       }
       this.fetchChartData()
     },

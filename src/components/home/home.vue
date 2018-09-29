@@ -140,7 +140,7 @@
       <div class="chart row">
         <div class="col-lg-3 col-md-12">
           <chart-pie class="analyze" ref="analyze"
-                     titleText="三月能源消耗结构"
+                     :titleText="lastMonth + '能源消耗结构'"
                      :data="strucPie"
                      :radius="analyzeChartRadius"></chart-pie>
         </div>
@@ -150,11 +150,11 @@
                           :series="seriesData"
                           :xAxisData="xAxisData"
                           :yAxis="y"
-                          titleText="能源用量与节能指标同比分析"></chart-bar-line>
+                          :titleText="lastMonth + '能源用量与节能指标同比分析'"></chart-bar-line>
         </div>
         <div class="col-lg-3 col-md-12">
           <chart-pie class="fee" ref="fee"
-                     titleText="三月能源费用结构"
+                     :titleText="lastMonth + '能源费用结构'"
                      :data="costPie"
                      :radius="feeChartRadius"></chart-pie>
         </div>
@@ -247,6 +247,10 @@ export default {
       this.data = res.data
       this.strucPie = res.pie1.seriesData
       this.costPie = res.pie2.seriesData
+    }).catch(() => {
+      this.data = {}
+      this.strucPie = []
+      this.costPie = []
     })
   },
   computed: {
