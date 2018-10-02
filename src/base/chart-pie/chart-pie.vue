@@ -134,8 +134,13 @@ export default {
             type: 'pie',
             radius: this.radius,
             center: this.center,
-              label: {show: this.isShowLabel},
+            label: {
+              formatter: !this.isShowLabel ? '{d}%' : undefined
+            },
             data: (function (vm, data) {
+              data = data.sort(function (a, b) {
+                return a.value - b.value
+              })
               var res = []
               for (let i = 0; i < data.length; i++) {
                 let obj = {}

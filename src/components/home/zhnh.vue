@@ -1,217 +1,191 @@
 <template>
   <div class="cost-info-container">
     <div class="cost-info">
-      <div class="cost-title">
-        <div class="title-l">
-          <span class="picker-txt">选择日期</span>
-          <el-date-picker
-            v-model="valueMonth"
-            type="month"
-            size="mini"
-            value-format="yyyy-MM"
-            @change="dateChange"
-            placeholder="选择月">
-          </el-date-picker>
-          <span class="picker-txt">指标类别</span>
-          <el-select
-            v-model="valueYndw"
-            placeholder="请选择"
-            size="mini"
-            @change="selectChange">
-            <el-option
-              v-for="item in options1"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </div>
-        <div class="title-r">
-          <span @click="onClose" class="ripple"><i class="fa fa-times"></i></span>
+      <div class="col-lg-12 col-md-12 col-box">
+        <div class="cost-title">
+          <div class="title-l">
+            <span class="picker-txt">选择日期</span>
+            <el-date-picker
+              v-model="valueMonth"
+              type="month"
+              size="mini"
+              value-format="yyyy-MM"
+              @change="dateChange"
+              placeholder="选择月">
+            </el-date-picker>
+            <span class="picker-txt">指标类别</span>
+            <el-select
+              v-model="valueYndw"
+              placeholder="请选择"
+              size="mini"
+              @change="selectChange">
+              <el-option
+                v-for="item in options1"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </div>
+          <div class="title-r">
+            <span @click="onClose" class="ripple"><i class="fa fa-times"></i></span>
+          </div>
         </div>
       </div>
       <div class="row">
-        <div class="panel-l col-lg-5 col-md-12 col-xs-12">
+        <div class="col-lg-5 col-md-12 col-box-left">
           <div class="panel-box">
             <data-panel-title :title="lastMonth + '能源绩效'"></data-panel-title>
-            <div class="panel row">
-              <div class="col-md-4 col-xs-12">
-                <data-panel
-                  class="border-right border-bottom"
-                  title="产值综合能耗"
-                  :data="pData.czzhnh || 0"
-                  unit="吨标煤/万元"
-                  :tongbiData="pData.czzhnh_tb"
-                  :huanbiData="pData.czzhnh_hb"
-                  showType="column"
-                ></data-panel>
-              </div>
-              <div class="col-md-4 col-xs-12">
-                <data-panel
-                  class="border-bottom"
-                  title="产值碳排放量"
-                  :data="pData.cztan"
-                  unit="kgCO<sub>2</sub>/万元"
-                  :tongbiData="pData.cztan_tb"
-                  :huanbiData="pData.cztan_hb"
-                  showType="column"
-                ></data-panel>
-              </div>
-              <div class="col-md-4 col-xs-12">
-                <data-panel
-                  class="border-left border-bottom"
-                  title="产值耗电量"
-                  :data="pData.czd"
-                  unit="千瓦时/万元"
-                  :tongbiData="pData.czd_tb"
-                  :huanbiData="pData.czd_hb"
-                  showType="column"
-                ></data-panel>
-              </div>
+            <div class="row">
+              <data-panel
+                class="border-right border-bottom"
+                title="产值综合能耗"
+                :data="pData.czzhnh || 0"
+                unit="吨标煤/万元"
+                :tongbiData="pData.czzhnh_tb"
+                :huanbiData="pData.czzhnh_hb"
+                showType="column"
+              ></data-panel>
+              <data-panel
+                class="border-bottom"
+                title="产值碳排放量"
+                :data="pData.cztan"
+                unit="kgCO<sub>2</sub>/万元"
+                :tongbiData="pData.cztan_tb"
+                :huanbiData="pData.cztan_hb"
+                showType="column"
+              ></data-panel>
+              <data-panel
+                class="border-left border-bottom"
+                title="产值耗电量"
+                :data="pData.czd"
+                unit="千瓦时/万元"
+                :tongbiData="pData.czd_tb"
+                :huanbiData="pData.czd_hb"
+                showType="column"
+              ></data-panel>
             </div>
-            <div class="panel row">
-              <div class="col-md-4 col-xs-12">
-                <data-panel
-                  class="border-right"
-                  title="产值耗天然气量"
-                  :data="pData.czq"
-                  unit="立方米/万元"
-                  :tongbiData="pData.czq_tb"
-                  :huanbiData="pData.czq_hb"
-                  showType="column"
-                ></data-panel>
-              </div>
-              <div class="col-md-4 col-xs-12">
-                <data-panel
-                  title="产值耗水量"
-                  :data="pData.czs"
-                  unit="升（水）/万元"
-                  :tongbiData="pData.czs_tb"
-                  :huanbiData="pData.czs_hb"
-                  showType="column"
-                ></data-panel>
-              </div>
-              <div class="col-md-4 col-xs-12">
-                <data-panel
-                  title="产值耗热量"
-                  class="border-left"
-                  :data="pData.czr"
-                  unit="吉焦/万元"
-                  :tongbiData="pData.czr_tb"
-                  :huanbiData="pData.czr_hb"
-                  showType="column"
-                ></data-panel>
-              </div>
+            <div class="row">
+              <data-panel
+                class="border-right"
+                title="产值耗天然气量"
+                :data="pData.czq"
+                unit="立方米/万元"
+                :tongbiData="pData.czq_tb"
+                :huanbiData="pData.czq_hb"
+                showType="column"
+              ></data-panel>
+              <data-panel
+                title="产值耗水量"
+                :data="pData.czs"
+                unit="升（水）/万元"
+                :tongbiData="pData.czs_tb"
+                :huanbiData="pData.czs_hb"
+                showType="column"
+              ></data-panel>
+              <data-panel
+                title="产值耗热量"
+                class="border-left"
+                :data="pData.czr"
+                unit="吉焦/万元"
+                :tongbiData="pData.czr_tb"
+                :huanbiData="pData.czr_hb"
+                showType="column"
+              ></data-panel>
             </div>
           </div>
         </div>
-        <div class="panel-r col-lg-7 col-md-12 col-xs-12">
+        <div class="col-lg-7 col-md-12 col-box-right">
           <div class="panel-box">
             <data-panel-title :title="lastMonth + '能耗信息'"></data-panel-title>
-            <div class="panel row">
-              <div class="col-md-3 col-xs-12">
-                <data-panel
-                  class="border-right border-bottom"
-                  title="单车综合能耗"
-                  :data="pData.dzhnh"
-                  unit="吨标煤/辆"
-                  :tongbiData="pData.dzhnh_tb"
-                  :huanbiData="pData.dzhnh_hb"
-                  showType="column"
-                ></data-panel>
-              </div>
-              <div class="col-md-3 col-xs-12">
-                <data-panel
-                  class="border-right border-bottom"
-                  title="单车碳排放量"
-                  :data="pData.dtan"
-                  unit="kgCO<sub>2</sub>/辆"
-                  :tongbiData="pData.dtan_tb"
-                  :huanbiData="pData.dtan_hb"
-                  showType="column"
-                ></data-panel>
-              </div>
-              <div class="col-md-3 col-xs-12">
-                <data-panel
-                  class="border-right border-bottom"
-                  title="单车耗电量"
-                  :data="pData.dd"
-                  unit="千瓦时/辆"
-                  :tongbiData="pData.dd_tb"
-                  :huanbiData="pData.dd_hb"
-                  showType="column"
-                ></data-panel>
-              </div>
-              <div class="col-md-3 col-xs-12">
-                <data-panel
-                  class="border-bottom"
-                  title="乘用车单车能源费用"
-                  :data="pData.dcyje"
-                  unit="元/辆"
-                  :tongbiData="pData.dcyje_tb"
-                  :huanbiData="pData.dcyje_hb"
-                  showType="column"
-                ></data-panel>
-              </div>
+            <div class="row">
+              <data-panel
+                class="border-right border-bottom"
+                title="单车综合能耗"
+                :data="pData.dzhnh"
+                unit="吨标煤/辆"
+                :tongbiData="pData.dzhnh_tb"
+                :huanbiData="pData.dzhnh_hb"
+                showType="column"
+              ></data-panel>
+              <data-panel
+                class="border-right border-bottom"
+                title="单车碳排放量"
+                :data="pData.dtan"
+                unit="kgCO<sub>2</sub>/辆"
+                :tongbiData="pData.dtan_tb"
+                :huanbiData="pData.dtan_hb"
+                showType="column"
+              ></data-panel>
+              <data-panel
+                class="border-right border-bottom"
+                title="单车耗电量"
+                :data="pData.dd"
+                unit="千瓦时/辆"
+                :tongbiData="pData.dd_tb"
+                :huanbiData="pData.dd_hb"
+                showType="column"
+              ></data-panel>
+              <data-panel
+                class="border-bottom"
+                title="乘用车单车能源费用"
+                :data="pData.dcyje"
+                unit="元/辆"
+                :tongbiData="pData.dcyje_tb"
+                :huanbiData="pData.dcyje_hb"
+                showType="column"
+              ></data-panel>
             </div>
-            <div class="panel row">
-              <div class="col-md-3 col-xs-12">
-                <data-panel
-                  class="border-right"
-                  title="单车耗水量"
-                  :data="pData.ds"
-                  unit="升（水）/万元"
-                  :tongbiData="pData.ds_tb"
-                  :huanbiData="pData.ds_hb"
-                  showType="column"
-                ></data-panel>
-              </div>
-              <div class="col-md-3 col-xs-12">
-                <data-panel
-                  class="border-right"
-                  title="单车耗天然气量"
-                  :data="pData.dq"
-                  unit="立方米/辆"
-                  :tongbiData="pData.dq_tb"
-                  :huanbiData="pData.dq_hb"
-                  showType="column"
-                ></data-panel>
-              </div>
-              <div class="col-md-3 col-xs-12">
-                <data-panel
-                  class="border-right"
-                  title="单车耗热量"
-                  :data="pData.dr"
-                  unit="吉焦/辆"
-                  :tongbiData="pData.dr_tb"
-                  :huanbiData="pData.dr_hb"
-                  showType="column"
-                ></data-panel>
-              </div>
-              <div class="col-md-3 col-xs-12">
-                <data-panel
-                  title="中重型车单车能源费用"
-                  :data="pData.dzxje"
-                  unit="元/辆"
-                  :tongbiData="pData.dzxje_tb"
-                  :huanbiData="pData.dzxje_hb"
-                  showType="column"
-                ></data-panel>
-              </div>
+            <div class="row">
+              <data-panel
+                class="border-right"
+                title="单车耗水量"
+                :data="pData.ds"
+                unit="升（水）/辆"
+                :tongbiData="pData.ds_tb"
+                :huanbiData="pData.ds_hb"
+                showType="column"
+              ></data-panel>
+              <data-panel
+                class="border-right"
+                title="单车耗天然气量"
+                :data="pData.dq"
+                unit="立方米/辆"
+                :tongbiData="pData.dq_tb"
+                :huanbiData="pData.dq_hb"
+                showType="column"
+              ></data-panel>
+              <data-panel
+                class="border-right"
+                title="单车耗热量"
+                :data="pData.dr"
+                unit="吉焦/辆"
+                :tongbiData="pData.dr_tb"
+                :huanbiData="pData.dr_hb"
+                showType="column"
+              ></data-panel>
+              <data-panel
+                title="中重型车单车能源费用"
+                :data="pData.dzxje"
+                unit="元/辆"
+                :tongbiData="pData.dzxje_tb"
+                :huanbiData="pData.dzxje_hb"
+                showType="column"
+              ></data-panel>
             </div>
           </div>
         </div>
       </div>
-      <div class="panel-box">
-        <chart-bar-line class="energy" ref="energy"
+      <div class="col-lg-12 col-md-12 col-box">
+        <chart-bar-line class="chart-box"
                         :legendData="zcData.legendData"
                         :series="zcData.series"
                         :xAxisData="zcData.xAxisData"
                         :yAxis="zcData.yAxis"
                         :titleText="lastMonth + '整车制造产值综合能耗'"></chart-bar-line>
       </div>
-      <div class="panel-box">
-        <chart-bar-line class="energy" ref="energy"
+      <div class="col-lg-12 col-md-12 col-box-bottom">
+        <chart-bar-line class="chart-box"
                         :legendData="lbjData.legendData"
                         :series="lbjData.series"
                         :xAxisData="lbjData.xAxisData"
@@ -390,19 +364,12 @@ export default {
     bottom: 0
     .cost-info
       background: $color-sub-text
-      display: flex
-      flex-direction: column
-      min-height: 100%
       min-width: 600px
-      @media (max-width: 992px)
-        .panel-r
-          .panel-box
-            margin: 0 10px 10px 10px!important
       .cost-title
-        margin: 10px 10px 0 10px
         padding: 0 10px
         height: 40px
         line-height: 40px
+        width: 100%
         background: #fff
         border-radius: 5px
         color: #333
@@ -416,29 +383,6 @@ export default {
             cursor: pointer
         .picker-txt
           padding: 0 5px 0 15px
-      .panel-l
-        .panel-box
-          margin: 10px 10px 0 10px
-      .panel-r
-        .panel-box
-          margin: 10px 10px 0 0
-      .panel-box
-        margin: 0px 10px 10px 10px
-        padding: 0 10px 10px 10px
-        border-radius: 5px
-        background: #fff
-        .panel
-          display: flex
-          div
-            flex: 1
-            display: flex
-            flex-direction: column
-            .sample-data-panel
-              flex: 1
-        .energy
+        .chart-box
           min-height: 350px
-          position: relative
-          height: 100%
-        &:last-child
-          margin-bottom: 10px
 </style>

@@ -1,39 +1,41 @@
 <template>
   <div class="cost-info-container">
     <div class="cost-info">
-      <div class="cost-title">
-        <div class="title-l">
-          <span class="picker-txt">选择日期</span>
-          <el-date-picker
-            v-model="valueMonth"
-            type="month"
-            size="mini"
-            value-format="yyyy-MM"
-            @change="dateChange"
-            placeholder="选择月">
-          </el-date-picker>
-          <span class="picker-txt">能源种类</span>
-          <el-select
-            v-model="valueYndw"
-            placeholder="请选择"
-            size="mini"
-            @change="selectChange">
-            <el-option
-              v-for="item in options1"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </div>
-        <div class="title-r">
-          <span @click="onClose" class="ripple"><i class="fa fa-times"></i></span>
+      <div class="col-lg-12 col-md-12 col-xs-12 col-box">
+        <div class="cost-title">
+          <div class="title-l">
+            <span class="picker-txt">选择日期</span>
+            <el-date-picker
+              v-model="valueMonth"
+              type="month"
+              size="mini"
+              value-format="yyyy-MM"
+              @change="dateChange"
+              placeholder="选择月">
+            </el-date-picker>
+            <span class="picker-txt">能源种类</span>
+            <el-select
+              v-model="valueYndw"
+              placeholder="请选择"
+              size="mini"
+              @change="selectChange">
+              <el-option
+                v-for="item in options1"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </div>
+          <div class="title-r">
+            <span @click="onClose" class="ripple"><i class="fa fa-times"></i></span>
+          </div>
         </div>
       </div>
-      <div class="panel-box">
-        <data-panel-title :title="lastMonth + '集团能源用量信息'"></data-panel-title>
-        <div class="panel row">
-          <div class="col-xs-12">
+      <div class="col-lg-12 col-md-12 col-xs-12 col-box-left-right">
+        <div class="panel-box">
+          <data-panel-title :title="lastMonth + '集团能源用量信息'"></data-panel-title>
+          <div class="row">
             <data-panel
               class="border-right"
               title="能源消耗总量"
@@ -43,8 +45,6 @@
               :huanbiData="pData.zhnh_hb"
               showType="column"
             ></data-panel>
-          </div>
-          <div class="col-xs-12">
             <data-panel
               class="border-right"
               title="电量"
@@ -54,8 +54,6 @@
               :huanbiData="pData.d_hb"
               showType="column"
             ></data-panel>
-          </div>
-          <div class="col-xs-12">
             <data-panel
               class="border-right"
               title="热量"
@@ -65,8 +63,6 @@
               :huanbiData="pData.rl_hb"
               showType="column"
             ></data-panel>
-          </div>
-          <div class="col-xs-12">
             <data-panel
               class="border-right"
               title="水量"
@@ -76,8 +72,6 @@
               :huanbiData="pData.s_hb"
               showType="column"
             ></data-panel>
-          </div>
-          <div class="col-xs-12">
             <data-panel
               class="border-right"
               title="天然气量"
@@ -87,8 +81,6 @@
               :huanbiData="pData.trq_hb"
               showType="column"
             ></data-panel>
-          </div>
-          <div class="col-xs-12">
             <data-panel
               class="border-right"
               title="原煤量"
@@ -98,8 +90,6 @@
               :huanbiData="pData.m_hb"
               showType="column"
             ></data-panel>
-          </div>
-          <div class="col-xs-12">
             <data-panel
               title="清洁能源"
               data="4586"
@@ -111,10 +101,10 @@
           </div>
         </div>
       </div>
-      <div class="panel-box">
-        <data-panel-title :title="lastMonth + '集团能源费用信息'"></data-panel-title>
-        <div class="panel row">
-          <div class="col-xs-12">
+      <div class="col-lg-12 col-md-12 col-xs-12 col-box">
+        <div class="panel-box">
+          <data-panel-title :title="lastMonth + '集团能源费用信息'"></data-panel-title>
+          <div class="row">
             <data-panel
               class="border-right"
               title="能源总费用"
@@ -124,8 +114,6 @@
               :huanbiData="pData.zhje_hb"
               showType="column"
             ></data-panel>
-          </div>
-          <div class="col-xs-12">
             <data-panel
               class="border-right"
               title="电费"
@@ -135,8 +123,6 @@
               :huanbiData="pData.dje_hb"
               showType="column"
             ></data-panel>
-          </div>
-          <div class="col-xs-12">
             <data-panel
               class="border-right"
               title="热量费"
@@ -146,8 +132,6 @@
               :huanbiData="pData.rlje_hb"
               showType="column"
             ></data-panel>
-          </div>
-          <div class="col-xs-12">
             <data-panel
               class="border-right"
               title="水费"
@@ -157,8 +141,6 @@
               :huanbiData="pData.sje_hb"
               showType="column"
             ></data-panel>
-          </div>
-          <div class="col-xs-12">
             <data-panel
               class="border-right"
               title="天然气费"
@@ -168,8 +150,6 @@
               :huanbiData="pData.trqje_hb"
               showType="column"
             ></data-panel>
-          </div>
-          <div class="col-xs-12">
             <data-panel
               class="border-right"
               title="原煤费"
@@ -179,20 +159,18 @@
               :huanbiData="pData.mje_hb"
               showType="column"
             ></data-panel>
-          </div>
-          <div class="col-xs-12">
-            <div class="sample-data-panel">
+            <div class="row flex-column">
               <data-panel
                 title="柴油费"
                 :data="pData.cyje"
+                class="data-content-simple"
                 unit="万元"
                 showBi="hide"
               ></data-panel>
-            </div>
-            <div class="sample-data-panel">
               <data-panel
                 title="其他费"
                 :data="pData.qtje"
+                class="data-content-simple"
                 unit="万元"
                 showBi="hide"
               ></data-panel>
@@ -200,9 +178,9 @@
           </div>
         </div>
       </div>
-      <div class="row top-10">
-        <div class="col-lg-6 col-md-12 col-xs-12">
-          <chart-pie class="quantity" ref="quantity"
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-xs-12 col-box-left">
+          <chart-pie class="chart-box"
                      :titleText="lastMonth + chartTitle + '量占比'"
                      :radius="quantityChartRadius"
                      @pieClick="pieClick"
@@ -213,18 +191,25 @@
                      :center="pieCenter"
                      :data="pieDl.seriesData"></chart-pie>
         </div>
-        <div class="col-lg-6 col-md-12 col-xs-12 fee-box">
-          <chart-pie class="fee" ref="fee"
+        <div class="col-lg-6 col-md-12 col-xs-12 col-box-right">
+          <chart-pie class="chart-box"
                      :titleText="lastMonth + chartTitle + '费用占比'"
                      :radius="feeChartRadius"
                      :isShowLabel="isShowLabel"
-                     :legendData="pieDf.legendData"
+                     :legendData="legendData"
                      :center="pieCenter"
-                     :data="pieDf.seriesData"></chart-pie>
+                     :data="strucPie2"></chart-pie>
+          <!--<chart-pie class="fee" ref="fee"-->
+                     <!--:titleText="lastMonth + chartTitle + '费用占比'"-->
+                     <!--:radius="feeChartRadius"-->
+                     <!--:isShowLabel="isShowLabel"-->
+                     <!--:legendData="pieDf.legendData"-->
+                     <!--:center="pieCenter"-->
+                     <!--:data="pieDf.seriesData"></chart-pie>-->
         </div>
       </div>
-      <div class="panel-box">
-        <chart-bar-line class="energy" ref="energy"
+      <div class="col-lg-12 col-md-12 col-xs-12 col-box">
+        <chart-bar-line class="chart-box"
                         :legendData="barDb.legendData"
                         :series="barDb.series"
                         :xAxisData="barDb.xAxisData"
@@ -293,9 +278,10 @@ export default {
     }
   },
   created() {
-//    setTimeout(() => {
+    setTimeout(() => {
 //      this.strucPie1 = [{value: 274, name: '零部件、物流研发'}, {value: 168, name: '整车制造'}]
-//      this.strucPie2 = [{value: 274, name: '水'}, {value: 168, name: '其他', othersData: [{value: 55.3, name: '一汽解放'}, {value: 38.9, name: '天津丰田'}, {value: 5.8, name: '天津夏利'}, {value: 3, name: '长春丰越'}, {value: 2, name: '一汽通用'}]}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+      this.strucPie2 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+      this.legendData = ['水', '其他', '一汽解放', '天津丰田', '天津夏利', '长春丰越', '一汽通用', '高温水', '原煤', '天然气', '电']
 //      this.legendData = ['上年同期电量', '实际电量', '计划电量', '上年同期费用', '实际费用', '计划费用']
 //      this.seriesData = [
 //        {
@@ -332,7 +318,7 @@ export default {
 //          data: [0.005, 0.012, 0.01, 0.012, 0.013, 0.018, 0.016, 0.012, 0.005, 0.012, 0.01, 0.012]
 //        }
 //      ]
-//    })
+    })
     this.fetchPanelData()
     this.fetchChartData()
   },
@@ -444,23 +430,14 @@ export default {
     left: 0
     right: 0
     bottom: 0
-    .row
-      &.top-10
-        margin-top: 10px
     .cost-info
       background: $color-sub-text
-      display: flex
-      flex-direction: column
-      min-height: 100%
       min-width: 600px
-      @media (max-width: 992px)
-        .fee-box
-          padding: 10px 0 0 10px!important
       .cost-title
-        margin: 10px 10px 0 10px
         padding: 0 10px
         height: 40px
         line-height: 40px
+        width: 100%
         background: #fff
         border-radius: 5px
         color: #333
@@ -474,37 +451,6 @@ export default {
             cursor: pointer
         .picker-txt
           padding: 0 5px 0 15px
-      .panel-box
-        margin: 10px 10px 0px 10px
-        padding: 0 10px 10px 10px
-        border-radius: 5px
-        background: #fff
-        .panel
-          display: flex
-          div
-            flex: 1
-            display: flex
-            flex-direction: column
-            .sample-data-panel
-              flex: 1
-        .energy
-          min-height: 350px
-          position: relative
-          height: 100%
-        &:last-child
-          margin-bottom: 10px
-      .quantity
-        background: #fff
-        margin: 0 10px
+      .chart-box
         min-height: 350px
-        position: relative
-        height: 100%
-        border-radius: 5px
-      .fee
-        background: #fff
-        margin-right: 10px
-        min-height: 350px
-        position: relative
-        height: 100%
-        border-radius: 5px
 </style>

@@ -21,7 +21,60 @@ html {
 
 .container {
 }
-
+.col-box {
+  display: flex
+  padding: 10px
+}
+.col-box-top-bottom {
+  padding: 10px 0
+  display: flex
+}
+.col-box-left {
+  padding-left: 10px
+  padding-right: 5px
+  display: flex
+}
+.col-box-right {
+  padding-right: 10px
+  padding-left: 5px
+  display: flex
+}
+.col-box-left-right {
+  padding: 0 10px
+  display: flex
+}
+.col-box-bottom {
+  padding: 0 10px 10px 10px
+  display: flex
+}
+.panel-box {
+  padding: 0 10px 10px 10px
+  display: flex
+  flex-direction: column
+  background: #fff
+  border-radius: 5px
+  flex: 1
+}
+.chart-box {
+  min-height: 250px
+  height: 100%
+  width: 100%
+  position: relative
+  background: $color-background
+  padding: 5px
+  border-radius: 5px
+}
+@media (max-width: 992px)
+  .col-box-top-bottom {
+    padding: 0 10px
+  }
+  .col-box-left {
+    padding-right: 10px
+    padding-bottom: 10px
+  }
+  .col-box-right {
+    padding-left: 10px
+  }
 
 .container-fluid {
   width: 100%;
@@ -1530,6 +1583,7 @@ html {
 }
 
 .flex-column {
+  flex: 1
   -webkit-box-orient: vertical !important;
   -webkit-box-direction: normal !important;
   -ms-flex-direction: column !important;

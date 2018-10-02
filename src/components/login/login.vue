@@ -10,7 +10,7 @@
             <div class="tab">
               <div class="tab-item" :class="{ active: tabIndex === 0 }" @click="tabChange(0)">能源管理分析系统</div>
               <div class="tab-item" :class="{ active: tabIndex === 1 }" @click="tabChange(1)">能源网络查询系统</div>
-              <div class="tab-item" :class="{ active: tabIndex === 2 }" @click="tabChange(2)">能源消耗数据直报系统</div>
+              <div class="tab-item" :class="{ active: tabIndex === 2 }" @click="tabChange(2)">能源数据直报系统</div>
             </div>
             <div class="tab-panel">
               <div class="tab-title">欢迎登录</div>

@@ -1,159 +1,135 @@
 <template>
   <div class="home-container">
     <div class="home">
-      <div class="panels row">
-        <div class="panel-l col-lg-4-4 col-md-12">
+      <div class="row">
+        <div class="panel col-lg-4-4 col-md-12 col-box">
           <div class="panel-box">
             <data-panel-title :title="lastMonth + '能源绩效'" link="/zhnh"></data-panel-title>
-            <div class="panel row">
-              <div class="col-md-6">
-                <data-panel
-                  class="border-right border-bottom"
-                  title="产值综合能耗"
-                  :data="data.czzhnh"
-                  unit="吨标煤/万元"
-                  :tongbiData="data.czzhnh_tb"
-                  :huanbiData="data.czzhnh_hb"
-                ></data-panel>
-              </div>
-              <div class="col-md-6">
-                <data-panel
-                  class="border-bottom"
-                  title="单车能源费用"
-                  :data="data.je_d"
-                  unit="元/辆"
-                  :tongbiData="data.je_d_tb"
-                  :huanbiData="data.je_d_hb"
-                ></data-panel>
-              </div>
+            <div class="row">
+              <data-panel
+                class="border-right border-bottom"
+                title="产值综合能耗"
+                :data="data.czzhnh"
+                unit="吨标煤/万元"
+                :tongbiData="data.czzhnh_tb"
+                :huanbiData="data.czzhnh_hb"
+              ></data-panel>
+              <data-panel
+                class="border-bottom"
+                title="单车能源费用"
+                :data="data.je_d"
+                unit="元/辆"
+                :tongbiData="data.je_d_tb"
+                :huanbiData="data.je_d_hb"
+              ></data-panel>
             </div>
-            <div class="panel row">
-              <div class="col-md-6">
-                <data-panel
-                  class="border-right"
-                  title="单车综合标煤"
-                  :data="data.zhnh_d"
-                  unit="吨标煤/辆"
-                  :tongbiData="data.zhnh_d_tb"
-                  :huanbiData="data.zhnh_d_hb"
-                ></data-panel>
-              </div>
-              <div class="col-md-6">
-                <data-panel
-                  title="单车碳排放量"
-                  :data="data.tan_d"
-                  unit="kgCO<sub>2</sub>/辆"
-                  :tongbiData="data.tan_d_tb"
-                  :huanbiData="data.tan_d_hb"
-                ></data-panel>
-              </div>
+            <div class="row">
+              <data-panel
+                class="border-right"
+                title="单车综合标煤"
+                :data="data.zhnh_d"
+                unit="吨标煤/辆"
+                :tongbiData="data.zhnh_d_tb"
+                :huanbiData="data.zhnh_d_hb"
+              ></data-panel>
+              <data-panel
+                title="单车碳排放量"
+                :data="data.tan_d"
+                unit="kgCO<sub>2</sub>/辆"
+                :tongbiData="data.tan_d_tb"
+                :huanbiData="data.tan_d_hb"
+              ></data-panel>
             </div>
           </div>
         </div>
-        <div class="panel-c col-lg-4-2 col-md-12">
+        <div class="panel col-lg-4-2 col-md-12 col-box-top-bottom">
           <div class="panel-box">
             <data-panel-title :title="lastMonth + '清洁能源用量'"></data-panel-title>
-            <div class="panel row">
-              <div class="col-md-12">
-                <data-panel
-                  class="border-bottom"
-                  title="清洁能源"
-                  data="4586"
-                  unit="吨标煤"
-                  tongbiData="-12.2"
-                  huanbiData="6.7"
-                ></data-panel>
-              </div>
-            </div>
-            <div class="panel row">
-              <div class="col-md-12">
-                <flip-panel title="光伏发电实时量(小时)">
-                </flip-panel>
-              </div>
-            </div>
+            <data-panel
+              class="border-bottom"
+              title="清洁能源"
+              data="4586"
+              unit="吨标煤"
+              tongbiData="-12.2"
+              huanbiData="6.7"
+            ></data-panel>
+            <flip-panel title="光伏发电实时量(小时)">
+            </flip-panel>
           </div>
         </div>
-        <div class="panel-r col-lg-4-4 col-md-12">
+        <div class="panel col-lg-4-4 col-md-12 col-box">
           <div class="panel-box">
             <data-panel-title :title="lastMonth + '能耗信息'" link="/nyylfy"></data-panel-title>
-            <div class="panel row">
-              <div class="col-md-6">
-                <data-panel
-                  class="border-right border-bottom"
-                  title="生产产量"
-                  :data="data.cl"
-                  unit="万辆"
-                  :tongbiData="data.cl_tb"
-                  :huanbiData="data.cl_hb"
-                ></data-panel>
-              </div>
-              <div class="col-md-6">
-                <data-panel
-                  class="border-bottom"
-                  title="能源用量"
-                  :data="data.nh"
-                  unit="万吨标煤"
-                  :tongbiData="data.nh_tb"
-                  :huanbiData="data.nh_hb"
-                ></data-panel>
-              </div>
+            <div class="row">
+              <data-panel
+                class="border-right border-bottom"
+                title="生产产量"
+                :data="data.cl"
+                unit="万辆"
+                :tongbiData="data.cl_tb"
+                :huanbiData="data.cl_hb"
+              ></data-panel>
+              <data-panel
+                class="border-bottom"
+                title="能源用量"
+                :data="data.nh"
+                unit="万吨标煤"
+                :tongbiData="data.nh_tb"
+                :huanbiData="data.nh_hb"
+              ></data-panel>
             </div>
-            <div class="panel row">
-              <div class="col-md-6">
-                <data-panel
-                  class="border-right"
-                  title="碳排放量"
-                  :data="data.tan"
-                  unit="吨CO<sub>2</sub>"
-                  :tongbiData="data.tan_tb"
-                  :huanbiData="data.tan_hb"
-                ></data-panel>
-              </div>
-              <div class="col-md-6">
-                <data-panel
-                  title="能源费用"
-                  :data="data.je"
-                  unit="万元"
-                  :tongbiData="data.je_tb"
-                  :huanbiData="data.je_hb"
-                ></data-panel>
-              </div>
+            <div class="row">
+              <data-panel
+                class="border-right"
+                title="碳排放量"
+                :data="data.tan"
+                unit="吨CO<sub>2</sub>"
+                :tongbiData="data.tan_tb"
+                :huanbiData="data.tan_hb"
+              ></data-panel>
+              <data-panel
+                title="能源费用"
+                :data="data.je"
+                unit="万元"
+                :tongbiData="data.je_tb"
+                :huanbiData="data.je_hb"
+              ></data-panel>
             </div>
           </div>
         </div>
       </div>
-      <div class="real-time row">
-        <div class="col-lg-6 col-md-12">
-          <chart-realtime-line class="dosage" ref="dosage"
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-box-left">
+          <chart-realtime-line class="chart-box"
                                :titleText="realTimeToday + '能源用量(小时)'"
                                yAxisTitle="吨标煤/时"
                                seriesName="能耗"
                                :showArea="showArea"></chart-realtime-line>
         </div>
-        <div class="col-lg-6 col-md-12">
-          <chart-realtime-bar class="cost" ref="cost"
+        <div class="col-lg-6 col-md-12 col-box-right">
+          <chart-realtime-bar class="chart-box"
                               :titleText="realTimeToday + '能源费用(小时)'"
                               yAxisTitle="万元/时"
                               seriesName="费用"></chart-realtime-bar>
         </div>
       </div>
-      <div class="chart row">
-        <div class="col-lg-3 col-md-12">
-          <chart-pie class="analyze" ref="analyze"
+      <div class="row">
+        <div class="col-lg-3 col-md-12 col-box">
+          <chart-pie class="chart-box"
                      :titleText="lastMonth + '能源消耗结构'"
                      :data="strucPie"
                      :radius="analyzeChartRadius"></chart-pie>
         </div>
-        <div class="col-lg-6 col-md-12 energy-box">
-          <chart-bar-line class="energy" ref="energy"
+        <div class="col-lg-6 col-md-12 col-box-top-bottom">
+          <chart-bar-line class="chart-box"
                           :legendData="legendData"
                           :series="seriesData"
                           :xAxisData="xAxisData"
                           :yAxis="y"
                           :titleText="lastMonth + '能源用量与节能指标同比分析'"></chart-bar-line>
         </div>
-        <div class="col-lg-3 col-md-12">
-          <chart-pie class="fee" ref="fee"
+        <div class="col-lg-3 col-md-12 col-box">
+          <chart-pie class="chart-box"
                      :titleText="lastMonth + '能源费用结构'"
                      :data="costPie"
                      :radius="feeChartRadius"></chart-pie>
@@ -298,78 +274,5 @@ export default {
     -webkit-overflow-scrolling: touch
     .home
       background: $color-sub-text
-      display: flex
-      flex-direction: column
-      min-height: 100%
       min-width: 600px
-      @media (max-width: 992px)
-        .panel-c
-          .panel-box
-            margin: 0 10px!important
-        .chart
-          .energy-box
-            padding: 10px
-        .real-time
-          .cost
-            margin-left: 10px!important
-      .panels
-        .panel-l
-          .panel-box
-            margin: 10px
-        .panel-c
-          .panel-box
-            margin: 10px 0 10px 0
-        .panel-r
-          .panel-box
-            margin: 10px
-        .panel-l,.panel-c,.panel-r
-          display: flex
-          .panel-box
-            display: flex
-            flex-direction: column
-            padding: 0 10px 10px 10px
-            background: #fff
-            border-radius: 5px
-            flex: 1
-      .real-time
-        .dosage
-          margin: 0 10px 10px 10px
-          min-height: 250px
-          background: $color-background
-          padding: 5px
-          position: relative
-          border-radius: 5px
-        .cost
-          margin: 0 10px 10px 0
-          min-height: 250px
-          background: $color-background
-          padding: 5px
-          position: relative
-          border-radius: 5px
-      .chart
-        flex: 1
-        margin-bottom: 10px
-        .analyze
-          margin: 0 10px
-          position: relative
-          background: $color-background
-          padding: 5px
-          border-radius: 5px
-          height: 100%
-          min-height: 250px
-        .energy
-          min-height: 250px
-          height: 100%
-          position: relative
-          background: $color-background
-          padding: 5px
-          border-radius: 5px
-        .fee
-          margin: 0 10px
-          min-height: 250px
-          height: 100%
-          position: relative
-          background: $color-background
-          padding: 5px
-          border-radius: 5px
 </style>

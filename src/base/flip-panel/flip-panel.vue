@@ -54,6 +54,8 @@ export default {
     padding: 5px
     height: 100%
     display: flex
+    flex: 1
+    width: 100%
     flex-direction: column
     &.border-right
       border-right: 1px solid $color-sub-text
