@@ -24,28 +24,39 @@ html {
 .col-box {
   display: flex
   padding: 10px
+  box-sizing: border-box
 }
 .col-box-top-bottom {
   padding: 10px 0
   display: flex
+  box-sizing: border-box
 }
 .col-box-left {
   padding-left: 10px
   padding-right: 5px
   display: flex
+  box-sizing: border-box
 }
 .col-box-right {
   padding-right: 10px
   padding-left: 5px
   display: flex
+  box-sizing: border-box
 }
 .col-box-left-right {
   padding: 0 10px
   display: flex
+  box-sizing: border-box
+}
+.col-box-left-right-bottom {
+  padding: 0 10px 10px 10px
+  display: flex
+  box-sizing: border-box
 }
 .col-box-bottom {
   padding: 0 10px 10px 10px
   display: flex
+  box-sizing: border-box
 }
 .panel-box {
   padding: 0 10px 10px 10px
@@ -60,9 +71,16 @@ html {
   height: 100%
   width: 100%
   position: relative
-  background: $color-background
+  background: #fff
   padding: 5px
   border-radius: 5px
+}
+.table-box {
+  background: #fff
+}
+.table-box.box-right {
+  border-left: 1px solid #75c4ef
+  padding-left: 10px
 }
 @media (max-width: 992px)
   .col-box-top-bottom {
@@ -90,6 +108,7 @@ html {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  width: 100%
 }
 
 .no-gutters {

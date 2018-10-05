@@ -17,8 +17,8 @@
             <li>
               <a href="#"><i class="fa fa-battery-half"></i>能源消耗结构</a>
               <ul>
-                <li><a href="#"><i class="fa fa-list"></i>能源种类分析</a></li>
-                <li><a href="#"><i class="fa fa-institution"></i>能源部门分析</a></li>
+                <li><a href="#" @click="changeRoute('/nyzlfx')"><i class="fa fa-list"></i>能源种类分析</a></li>
+                <li><a href="#" @click="changeRoute('/nybmfx')"><i class="fa fa-institution"></i>能源部门分析</a></li>
               </ul>
             </li>
             <li>
@@ -126,7 +126,7 @@
   @import "~common/stylus/variable"
   .menu
     position: fixed
-    z-index: 1
+    z-index: 999
     top: 70px
     left: 0
     width: 180px

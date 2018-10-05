@@ -117,7 +117,7 @@
         <div class="col-lg-3 col-md-12 col-box">
           <chart-pie class="chart-box"
                      :titleText="lastMonth + '能源消耗结构'"
-                     :data="strucPie"
+                     :seriesData="strucPie"
                      :radius="analyzeChartRadius"></chart-pie>
         </div>
         <div class="col-lg-6 col-md-12 col-box-top-bottom">
@@ -131,7 +131,7 @@
         <div class="col-lg-3 col-md-12 col-box">
           <chart-pie class="chart-box"
                      :titleText="lastMonth + '能源费用结构'"
-                     :data="costPie"
+                     :seriesData="costPie"
                      :radius="feeChartRadius"></chart-pie>
         </div>
       </div>
@@ -177,8 +177,6 @@ export default {
   },
   created() {
     setTimeout(() => {
-//      this.strucPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
-//      this.costPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
       this.legendData = ['上年同期消耗', '实际消耗', '计划消耗', '上年同期节能指标', '实际节能指标', '计划节能指标']
       this.xAxisData = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
       this.seriesData = [
@@ -218,6 +216,8 @@ export default {
       ]
       this.y = [{name: '吨标煤', min: 0.0, max: 50.0, interval: 10.0},
         {name: '吨标煤/万元', min: 0.00, max: 0.05, interval: 0.01}]
+      this.strucPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+      this.costPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
     })
     fetch('get', api.getHomeData, {}).then((res) => {
       this.data = res.data

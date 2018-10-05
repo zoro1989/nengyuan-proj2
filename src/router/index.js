@@ -5,6 +5,8 @@ const Zhnh = () => import('components/home/zhnh')
 const Nyylfy = () => import('components/home/nyylfy')
 const Ssxz = () => import('components/home/ssxz')
 const Dbfx = () => import('components/home/dbfx')
+const Nyzlfx = () => import('components/nyzhfx/nyfyjg/nyzlfx')
+const Nybmfx = () => import('components/nyzhfx/nyfyjg/nybmfx')
 
 Vue.use(Router)
 
@@ -38,6 +40,16 @@ export default new Router({
       path: '/dbfx',
       name: '对比分析',
       component: Dbfx
+    },
+    {
+      path: '/nyzlfx',
+      name: '能源种类分析',
+      component: Nyzlfx
+    },
+    {
+      path: '/nybmfx',
+      name: '能源部门分析',
+      component: Nybmfx
     }
   ]
 })

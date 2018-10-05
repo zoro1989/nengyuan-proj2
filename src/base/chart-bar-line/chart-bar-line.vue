@@ -233,8 +233,8 @@ export default {
       left: 50%
       transform: translateX(-50%)
       text-align: center
-      height: 35px
-      line-height: 35px
+      height: 50px
+      line-height: 50px
       background: $color-background
       cursor: pointer
       a

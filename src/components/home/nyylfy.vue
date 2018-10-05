@@ -2,35 +2,30 @@
   <div class="cost-info-container">
     <div class="cost-info">
       <div class="col-lg-12 col-md-12 col-xs-12 col-box">
-        <div class="cost-title">
-          <div class="title-l">
-            <span class="picker-txt">选择日期</span>
-            <el-date-picker
-              v-model="valueMonth"
-              type="month"
-              size="mini"
-              value-format="yyyy-MM"
-              @change="dateChange"
-              placeholder="选择月">
-            </el-date-picker>
-            <span class="picker-txt">能源种类</span>
-            <el-select
-              v-model="valueYndw"
-              placeholder="请选择"
-              size="mini"
-              @change="selectChange">
-              <el-option
-                v-for="item in options1"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </div>
-          <div class="title-r">
-            <span @click="onClose" class="ripple"><i class="fa fa-times"></i></span>
-          </div>
-        </div>
+        <select-title title1="选择日期" title2="能源种类">
+          <el-date-picker
+            slot="title1"
+            v-model="valueMonth"
+            type="month"
+            size="mini"
+            value-format="yyyy-MM"
+            @change="dateChange"
+            placeholder="选择月">
+          </el-date-picker>
+          <el-select
+            slot="title2"
+            v-model="valueSelect"
+            placeholder="请选择"
+            size="mini"
+            @change="selectChange">
+            <el-option
+              v-for="item in options1"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </select-title>
       </div>
       <div class="col-lg-12 col-md-12 col-xs-12 col-box-left-right">
         <div class="panel-box">
@@ -189,7 +184,7 @@
                      :isShowLabel="isShowLabel"
                      :legendData="pieDl.legendData"
                      :center="pieCenter"
-                     :data="pieDl.seriesData"></chart-pie>
+                     :seriesData="pieDl.seriesData"></chart-pie>
         </div>
         <div class="col-lg-6 col-md-12 col-xs-12 col-box-right">
           <chart-pie class="chart-box"
@@ -198,14 +193,14 @@
                      :isShowLabel="isShowLabel"
                      :legendData="legendData"
                      :center="pieCenter"
-                     :data="strucPie2"></chart-pie>
+                     :seriesData="strucPie2"></chart-pie>
           <!--<chart-pie class="fee" ref="fee"-->
                      <!--:titleText="lastMonth + chartTitle + '费用占比'"-->
                      <!--:radius="feeChartRadius"-->
                      <!--:isShowLabel="isShowLabel"-->
                      <!--:legendData="pieDf.legendData"-->
                      <!--:center="pieCenter"-->
-                     <!--:data="pieDf.seriesData"></chart-pie>-->
+                     <!--:seriesData="pieDf.seriesData"></chart-pie>-->
         </div>
       </div>
       <div class="col-lg-12 col-md-12 col-xs-12 col-box">
@@ -224,6 +219,7 @@ import DataPanel from 'base/data-panel/data-panel'
 import DataPanelTitle from 'base/data-panel-title/data-panel-title'
 import ChartPie from 'base/chart-pie/chart-pie'
 import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
+import SelectTitle from 'base/select-title/select-title'
 import { api } from '@/config'
 import fetch from 'utils/fetch'
 let moment = require('moment')
@@ -233,19 +229,17 @@ export default {
     DataPanel,
     DataPanelTitle,
     ChartPie,
-    ChartBarLine
+    ChartBarLine,
+    SelectTitle
   },
   data() {
     return {
       lastMonth: moment().subtract(1, 'months').format('MMMM'),
-      quantityChartRadius: [0, '75%'],
-      feeChartRadius: [0, '75%'],
+      quantityChartRadius: [0, '70%'],
+      feeChartRadius: [0, '70%'],
       pieCenter: ['40%', '50%'],
-      strucPie1: [],
-      strucPie2: [],
-      legendData: [],
-      seriesData: [],
       valueMonth: '',
+      valueSelect: '',
       options1: [{
         value: '33',
         label: '电'
@@ -262,8 +256,6 @@ export default {
         value: '40',
         label: '能源消耗总量'
       }],
-      valueYndw: '',
-      xAxisData1: ['红旗工厂', '一汽大众', '一汽轿车', '一汽吉林', '新能源汽车', '长春丰越', '天津夏利', '天津丰田', '一汽通用(长春)', '四川丰田(成都)', '一汽解放', '一汽客车'],
       yAxis: [{name: '万千瓦时'}, {name: '万元'}],
       pData: {},
       pieDl: {},
@@ -282,42 +274,6 @@ export default {
 //      this.strucPie1 = [{value: 274, name: '零部件、物流研发'}, {value: 168, name: '整车制造'}]
       this.strucPie2 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
       this.legendData = ['水', '其他', '一汽解放', '天津丰田', '天津夏利', '长春丰越', '一汽通用', '高温水', '原煤', '天然气', '电']
-//      this.legendData = ['上年同期电量', '实际电量', '计划电量', '上年同期费用', '实际费用', '计划费用']
-//      this.seriesData = [
-//        {
-//          name: '上年同期电量',
-//          type: 'bar',
-//          data: [20.0, 25.0, 22.0, 21.0, 25.0, 27.0, 29.0, 27.0, 20.0, 25.0, 22.0, 21.0],
-//          reality: '0'
-//        },
-//        {
-//          name: '实际电量',
-//          type: 'bar',
-//          data: [19.0, 31.0, 19.0, 27.0, 25.0, 31.0, 20.0, 17.0, 26.0, 31.0, 25.0, 27.0],
-//          reality: '1'
-//        },
-//        {
-//          name: '计划电量',
-//          type: 'bar',
-//          data: [28.0, 21.0, 28.0, 28.0, 28.0, 32.0, 28.0, 22.0, 28.0, 41.0, 28.0, 28.0],
-//          reality: '0'
-//        },
-//        {
-//          name: '上年同期费用',
-//          type: 'line',
-//          data: [0.012, 0.013, 0.017, 0.016, 0.018, 0.017, 0.016, 0.015, 0.012, 0.013, 0.017, 0.016]
-//        },
-//        {
-//          name: '实际费用',
-//          type: 'line',
-//          data: [0.007, 0.009, 0.015, 0.005, 0.007, 0.012, 0.013, 0.019, 0.007, 0.009, 0.015, 0.005]
-//        },
-//        {
-//          name: '计划费用',
-//          type: 'line',
-//          data: [0.005, 0.012, 0.01, 0.012, 0.013, 0.018, 0.016, 0.012, 0.005, 0.012, 0.01, 0.012]
-//        }
-//      ]
     })
     this.fetchPanelData()
     this.fetchChartData()
@@ -432,25 +388,10 @@ export default {
     bottom: 0
     .cost-info
       background: $color-sub-text
+      display: flex
+      flex-direction: column
+      min-height: 100%
       min-width: 600px
-      .cost-title
-        padding: 0 10px
-        height: 40px
-        line-height: 40px
-        width: 100%
-        background: #fff
-        border-radius: 5px
-        color: #333
-        display: flex
-        justify-content: space-between
-        .title-r
-          .fa
-            margin: 0 5px
-            color: #899eb6
-            font-size: $font-size-large
-            cursor: pointer
-        .picker-txt
-          padding: 0 5px 0 15px
       .chart-box
         min-height: 350px
 </style>

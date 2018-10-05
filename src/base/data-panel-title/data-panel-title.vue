@@ -1,5 +1,5 @@
 <template>
-  <div class="data-panel-title xiazuan">
+  <div class="data-panel-title xiazuan" :class="noBorder ? 'no-border' : ''">
     <template v-if="!!link"><router-link :to="link">{{title}}</router-link></template>
     <template v-else>{{title}}</template>
   </div>
@@ -14,6 +14,10 @@ export default {
     link: {
       type: String,
       default: ''
+    },
+    noBorder: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -27,6 +31,8 @@ export default {
     background: $color-background
     cursor: pointer
     border-bottom: 1px solid $color-sub-text
+    &.no-border
+      border-bottom: none
     a
       color: $color-text
     &.xiazuan:hover

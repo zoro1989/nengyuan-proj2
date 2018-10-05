@@ -2,35 +2,30 @@
   <div class="cost-info-container">
     <div class="cost-info">
       <div class="col-lg-12 col-md-12 col-box">
-        <div class="cost-title">
-          <div class="title-l">
-            <span class="picker-txt">选择日期</span>
-            <el-date-picker
-              v-model="valueMonth"
-              type="month"
-              size="mini"
-              value-format="yyyy-MM"
-              @change="dateChange"
-              placeholder="选择月">
-            </el-date-picker>
-            <span class="picker-txt">指标类别</span>
-            <el-select
-              v-model="valueYndw"
-              placeholder="请选择"
-              size="mini"
-              @change="selectChange">
-              <el-option
-                v-for="item in options1"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </div>
-          <div class="title-r">
-            <span @click="onClose" class="ripple"><i class="fa fa-times"></i></span>
-          </div>
-        </div>
+        <select-title title1="选择日期" title2="指标类别">
+          <el-date-picker
+            slot="title1"
+            v-model="valueMonth"
+            type="month"
+            size="mini"
+            value-format="yyyy-MM"
+            @change="dateChange"
+            placeholder="选择月">
+          </el-date-picker>
+          <el-select
+            slot="title2"
+            v-model="valueSelect"
+            placeholder="请选择"
+            size="mini"
+            @change="selectChange">
+            <el-option
+              v-for="item in options1"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </select-title>
       </div>
       <div class="row">
         <div class="col-lg-5 col-md-12 col-box-left">
@@ -181,7 +176,7 @@
                         :legendData="zcData.legendData"
                         :series="zcData.series"
                         :xAxisData="zcData.xAxisData"
-                        :yAxis="zcData.yAxis"
+                        :yAxis="yAxis"
                         :titleText="lastMonth + '整车制造产值综合能耗'"></chart-bar-line>
       </div>
       <div class="col-lg-12 col-md-12 col-box-bottom">
@@ -189,7 +184,7 @@
                         :legendData="lbjData.legendData"
                         :series="lbjData.series"
                         :xAxisData="lbjData.xAxisData"
-                        :yAxis="lbjData.yAxis"
+                        :yAxis="yAxis"
                         :titleText="lastMonth + '零部件加工产值综合能耗'"></chart-bar-line>
       </div>
     </div>
@@ -200,6 +195,7 @@ import DataPanel from 'base/data-panel/data-panel'
 import DataPanelTitle from 'base/data-panel-title/data-panel-title'
 import ChartPie from 'base/chart-pie/chart-pie'
 import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
+import SelectTitle from 'base/select-title/select-title'
 import { api } from '@/config'
 import fetch from 'utils/fetch'
 let moment = require('moment')
@@ -209,16 +205,16 @@ export default {
     DataPanel,
     DataPanelTitle,
     ChartPie,
-    ChartBarLine
+    ChartBarLine,
+    SelectTitle
   },
   data() {
     return {
       lastMonth: moment().subtract(1, 'months').format('MMMM'),
       quantityChartRadius: [0, '60%'],
       feeChartRadius: [0, '60%'],
-      legendData: [],
-      seriesData: [],
       valueMonth: '',
+      valueSelect: '',
       options1: [{
         value: '40',
         label: '产值综合能耗'
@@ -244,70 +240,15 @@ export default {
         value: '103',
         label: '单车碳排放量'
       }],
-      valueYndw: '',
-      xAxisData1: ['红旗工厂', '一汽大众', '一汽轿车', '一汽吉林', '新能源汽车', '长春丰越', '天津夏利', '天津丰田', '一汽通用(长春)', '四川丰田(成都)', '一汽解放', '一汽客车'],
-      xAxisData2: ['一汽富维', '一汽模具', '一汽锻造', '一汽铸造', '长春丰田', '天津丰田', '一汽物流'],
       pData: {},
       zcData: {},
       lbjData: {},
       dateTime: '',
-      lx: ''
+      lx: '',
+      yAxis: [{name: '吨标煤/万元'}, {name: '%'}]
     }
   },
   created() {
-//    setTimeout(() => {
-//      this.legendData = ['上年同期指标', '实际指标', '计划指标', '达标率']
-//      this.seriesData1 = [
-//        {
-//          name: '上年同期指标',
-//          type: 'bar',
-//          data: [20.0, 25.0, 22.0, 21.0, 25.0, 27.0, 29.0, 27.0, 20.0, 25.0, 22.0, 21.0],
-//          reality: '0'
-//        },
-//        {
-//          name: '实际指标',
-//          type: 'bar',
-//          data: [19.0, 31.0, 19.0, 27.0, 25.0, 31.0, 20.0, 17.0, 26.0, 31.0, 25.0, 27.0],
-//          reality: '1'
-//        },
-//        {
-//          name: '计划指标',
-//          type: 'bar',
-//          data: [28.0, 21.0, 28.0, 28.0, 28.0, 32.0, 28.0, 22.0, 28.0, 41.0, 28.0, 28.0],
-//          reality: '0'
-//        },
-//        {
-//          name: '达标率',
-//          type: 'line',
-//          data: [0.012, 0.013, 0.017, 0.016, 0.018, 0.017, 0.016, 0.015, 0.012, 0.013, 0.017, 0.016]
-//        }
-//      ]
-//      this.seriesData2 = [
-//        {
-//          name: '上年同期指标',
-//          type: 'bar',
-//          data: [20.0, 25.0, 22.0, 21.0, 25.0, 27.0, 29.0],
-//          reality: '0'
-//        },
-//        {
-//          name: '实际指标',
-//          type: 'bar',
-//          data: [19.0, 31.0, 19.0, 27.0, 25.0, 31.0, 20.0],
-//          reality: '1'
-//        },
-//        {
-//          name: '计划指标',
-//          type: 'bar',
-//          data: [28.0, 21.0, 28.0, 28.0, 28.0, 32.0, 28.0],
-//          reality: '0'
-//        },
-//        {
-//          name: '达标率',
-//          type: 'line',
-//          data: [0.012, 0.013, 0.017, 0.016, 0.018, 0.017, 0.016]
-//        }
-//      ]
-//    })
     this.fetchPanelData()
     this.fetchChartData()
   },
@@ -322,17 +263,13 @@ export default {
     fetchChartData() {
       fetch('get', api.queryNyZListZc, {dateTime: this.dateTime, lx: this.lx}).then((res) => {
         this.zcData = res.data
-        this.zcData.yAxis = [{name: '吨标煤/万元'}, {name: '%'}]
       }).catch(() => {
         this.zcData = {}
-        this.zcData.yAxis = [{name: '吨标煤/万元'}, {name: '%'}]
       })
       fetch('get', api.queryNyZListLbj, {dateTime: this.dateTime, lx: this.lx}).then((res) => {
         this.lbjData = res.data
-        this.lbjData.yAxis = [{name: '吨标煤/万元'}, {name: '%'}]
       }).catch(() => {
         this.lbjData = {}
-        this.lbjData.yAxis = [{name: '吨标煤/万元'}, {name: '%'}]
       })
     },
     onClose() {
@@ -345,6 +282,25 @@ export default {
       this.fetchChartData()
     },
     selectChange(value) {
+      // 产值综合能耗
+      if (value === '40') {
+        this.yAxis = [{name: '吨标煤/万元'}, {name: '%'}]
+        // 产值碳排放量
+      } else if (value === '101') {
+        this.yAxis = [{name: 'kgCO2/万元'}, {name: '%'}]
+      } else if (value === '33') {
+        this.yAxis = [{name: '千瓦时/万元'}, {name: '%'}]
+      } else if (value === '15') {
+        this.yAxis = [{name: '立方米/万元'}, {name: '%'}]
+      } else if (value === '00') {
+        this.yAxis = [{name: '升（水）/万元'}, {name: '%'}]
+      } else if (value === '32') {
+        this.yAxis = [{name: '吉焦/万元'}, {name: '%'}]
+      } else if (value === '102') {
+        this.yAxis = [{name: '吨标煤/辆'}, {name: '%'}]
+      } else if (value === '103') {
+        this.yAxis = [{name: 'kgCO2/辆'}, {name: '%'}]
+      }
       this.lx = value
       this.fetchChartData()
     }
@@ -364,25 +320,10 @@ export default {
     bottom: 0
     .cost-info
       background: $color-sub-text
+      display: flex
+      flex-direction: column
+      min-height: 100%
       min-width: 600px
-      .cost-title
-        padding: 0 10px
-        height: 40px
-        line-height: 40px
-        width: 100%
-        background: #fff
-        border-radius: 5px
-        color: #333
-        display: flex
-        justify-content: space-between
-        .title-r
-          .fa
-            margin: 0 5px
-            color: #899eb6
-            font-size: $font-size-large
-            cursor: pointer
-        .picker-txt
-          padding: 0 5px 0 15px
-        .chart-box
-          min-height: 350px
+      .chart-box
+        min-height: 350px
 </style>

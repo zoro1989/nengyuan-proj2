@@ -34,84 +34,61 @@
               <div class="row">
                 <div class="col-lg-6 col-md-12">
                   <chart-pie class="chart-box"
-                             titleText="一汽大众能源消耗结构"
+                             titleText="2015年整车制造能源消耗结构"
                              :radius="pieRadius"
                              :seriesData="strucPie1"></chart-pie>
                 </div>
                 <div class="col-lg-6 col-md-12">
                   <chart-pie class="chart-box"
-                             titleText="一汽大众能源消耗结构"
+                             titleText="2014年整车制造能源消耗结构"
                              :radius="pieRadius"
                              :seriesData="strucPie2"></chart-pie>
                 </div>
               </div>
               <div class="row">
-                <div class="col-lg-6 col-md-12">
+                <div class="col-lg-12 col-md-12">
                   <el-table
                     :data="tableData"
                     border
                     header-cell-class-name="header-cell-class-name"
-                    style="width: 98%">
+                    style="width: 99%">
                     <el-table-column
-                      prop="date"
-                      label="能源种类">
+                      prop="department"
+                      min-width="150"
+                      label="用能部门">
+                      <template slot-scope="scope">
+                        <span class="department-block" :style="departmentStyle(scope.$index)"></span>
+                        <span>{{ scope.row.department }}</span>
+                      </template>
                     </el-table-column>
                     <el-table-column
-                      prop="name"
-                      label="计量单位">
+                      label="2015年占比">
+                      <el-table-column
+                        prop="nyxhl1"
+                        label="能源消耗量（吨标煤）">
+                      </el-table-column>
+                      <el-table-column
+                        prop="percent1"
+                        label="占集团公司总量百分比">
+                      </el-table-column>
                     </el-table-column>
                     <el-table-column
-                      prop="address"
-                      label="2017年1月">
-                    </el-table-column>
-                    <el-table-column
-                      prop="percent"
-                      label="占比（%）">
-                    </el-table-column>
-                  </el-table>
-                </div>
-                <div class="col-lg-6 col-md-12">
-                  <el-table
-                    :data="tableData"
-                    border
-                    header-cell-class-name="header-cell-class-name"
-                    style="width: 98%">
-                    <el-table-column
-                      prop="date"
-                      label="能源种类">
-                    </el-table-column>
-                    <el-table-column
-                      prop="name"
-                      label="计量单位">
-                    </el-table-column>
-                    <el-table-column
-                      prop="address"
-                      label="2017年1月">
-                    </el-table-column>
-                    <el-table-column
-                      prop="percent"
-                      label="占比（%）">
+                      label="2014年占比">
+                      <el-table-column
+                        prop="nyxhl2"
+                        label="能源消耗量（吨标煤）">
+                      </el-table-column>
+                      <el-table-column
+                        prop="percent2"
+                        label="占集团公司总量百分比">
+                      </el-table-column>
                     </el-table-column>
                   </el-table>
                 </div>
               </div>
             </div>
             <div class="col-lg-4 col-md-12 table-box box-right">
-              <data-panel-title title="能源消耗结构同比增幅分析" :noBorder="noBorder"></data-panel-title>
-              <el-table
-                :data="tableData1"
-                border
-                header-cell-class-name="header-cell-class-name"
-                style="width: 100%">
-                <el-table-column
-                  prop="date"
-                  label="能源种类">
-                </el-table-column>
-                <el-table-column
-                  prop="name"
-                  label="同比增幅率">
-                </el-table-column>
-              </el-table>
+              <data-panel-title title="分析结果" :noBorder="noBorder"></data-panel-title>
             </div>
           </div>
         </div>
@@ -179,75 +156,62 @@
           label: '一汽富维'
         }],
         tableData: [{
-          date: '原煤',
-          name: '吨标煤',
-          address: '43206.0',
-          percent: '26.7'
+          department: '一汽大众汽车有限公司',
+          nyxhl1: '吨标煤',
+          percent1: '43206.0',
+          nyxhl2: '26.7',
+          percent2: '26.7'
         }, {
-          date: '原煤',
-          name: '吨标煤',
-          address: '43206.0',
-          percent: '26.7'
+          department: '一汽大众汽车有限公司',
+          nyxhl1: '吨标煤',
+          percent1: '43206.0',
+          nyxhl2: '26.7',
+          percent2: '26.7'
         }, {
-          date: '原煤',
-          name: '吨标煤',
-          address: '43206.0',
-          percent: '26.7'
+          department: '一汽大众汽车有限公司',
+          nyxhl1: '吨标煤',
+          percent1: '43206.0',
+          nyxhl2: '26.7',
+          percent2: '26.7'
         }, {
-          date: '原煤',
-          name: '吨标煤',
-          address: '43206.0',
-          percent: '26.7'
+          department: '一汽大众汽车有限公司',
+          nyxhl1: '吨标煤',
+          percent1: '43206.0',
+          nyxhl2: '26.7',
+          percent2: '26.7'
         }, {
-          date: '原煤',
-          name: '吨标煤',
-          address: '43206.0',
-          percent: '26.7'
+          department: '一汽大众汽车有限公司',
+          nyxhl1: '吨标煤',
+          percent1: '43206.0',
+          nyxhl2: '26.7',
+          percent2: '26.7'
         }, {
-          date: '原煤',
-          name: '吨标煤',
-          address: '43206.0',
-          percent: '26.7'
+          department: '一汽大众汽车有限公司',
+          nyxhl1: '吨标煤',
+          percent1: '43206.0',
+          nyxhl2: '26.7',
+          percent2: '26.7'
         }, {
-          date: '原煤',
-          name: '吨标煤',
-          address: '43206.0',
-          percent: '26.7'
+          department: '一汽大众汽车有限公司',
+          nyxhl1: '吨标煤',
+          percent1: '43206.0',
+          nyxhl2: '26.7',
+          percent2: '26.7'
         }, {
-          date: '原煤',
-          name: '吨标煤',
-          address: '43206.0',
-          percent: '26.7'
+          department: '一汽大众汽车有限公司',
+          nyxhl1: '吨标煤',
+          percent1: '43206.0',
+          nyxhl2: '26.7',
+          percent2: '26.7'
         }],
-        tableData1: [{
-          date: '原煤',
-          name: '27.1'
-        }, {
-          date: '原煤',
-          name: '27.1'
-        }, {
-          date: '原煤',
-          name: '27.1'
-        }, {
-          date: '原煤',
-          name: '27.1'
-        }, {
-          date: '原煤',
-          name: '27.1'
-        }, {
-          date: '原煤',
-          name: '27.1'
-        }, {
-          date: '原煤',
-          name: '27.1'
-        }, {
-          date: '原煤',
-          name: '27.1'
-        }],
+        colors: ['#5967f1', '#06e56d', '#7dd1ff', '#ff8e06', '#1196de', '#0c1994', '#8c6be6', '#ffc300', '#4472c6', '#838389', '#1096df'],
         noBorder: true
       }
     },
     methods: {
+      departmentStyle(index) {
+        return `background: ${this.colors[index]}`
+      },
       dateChange(value) {
         this.dateTime = value
       },
@@ -272,6 +236,10 @@
       flex-direction: column
       min-height: 100%
       min-width: 600px
+      .department-block
+        display: inline-block
+        width: 25px
+        height: 10px
       .col-box-left-right-bottom
         flex: 1
         .panel-box >.row

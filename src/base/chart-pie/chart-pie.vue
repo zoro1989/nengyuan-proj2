@@ -54,7 +54,7 @@ export default {
       type: String,
       default: 'outside'
     },
-    data: {
+    seriesData: {
       type: Array,
       default: function () {
         return []
@@ -80,7 +80,7 @@ export default {
     this.chart = {}
   },
   watch: {
-    data: function (newData) {
+    seriesData: function (newData) {
       this.makeChart(newData)
     }
   },
@@ -97,7 +97,7 @@ export default {
     titleClick() {
         this.$emit('titleClick')
     },
-    makeChart(data) {
+    makeChart(seriesData) {
       this.chart = echarts.init(this.$refs.chart)
       // 指定图表的配置项和数据
       const option = {
@@ -137,8 +137,9 @@ export default {
             label: {
               formatter: !this.isShowLabel ? '{d}%' : undefined
             },
-            data: (function (vm, data) {
-              data = data.sort(function (a, b) {
+            data: (function (vm, seriesData) {
+              let copyData = JSON.parse(JSON.stringify(seriesData))
+              let data = copyData.sort(function (a, b) {
                 return a.value - b.value
               })
               var res = []
@@ -221,7 +222,7 @@ export default {
                 res.push(obj)
               }
               return res
-            })(this, data),
+            })(this, seriesData),
 //            data: [
 //              {value: 274, name: '水', label: {position: this.position}},
 //              {value: 168,
@@ -329,6 +330,7 @@ export default {
       left: 0px
       right: 0px
       bottom: 10px
+      z-index: 2
     .back-btn
       position: absolute
       z-index: 1
@@ -350,8 +352,8 @@ export default {
       left: 50%
       transform: translateX(-50%)
       text-align: center
-      height: 35px
-      line-height: 35px
+      height: 50px
+      line-height: 50px
       background: $color-background
       cursor: pointer
       a
