@@ -60,84 +60,84 @@
                              :seriesData="rData.bjq_pie && rData.bjq_pie.seriesData"></chart-pie>
                 </div>
               </div>
-              <div class="row">
-                <el-table
-                  v-if="type === 'nh'"
-                  :data="sortTable(rData.list)"
-                  border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
+              <el-table
+                v-if="type === 'nh'"
+                height="calc(100% - 350px)"
+                :data="sortTable(rData.list)"
+                border
+                header-cell-class-name="header-cell-class-name"
+                style="width: 100%">
+                <el-table-column
+                  prop="ynbm"
+                  min-width="150"
+                  label="用能部门">
+                  <template slot-scope="scope">
+                    <span class="department-block" :style="departmentStyle(scope.$index)"></span>
+                    <span>{{ filterName(scope.row.ynbm) }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  :label="jcqFormat + '占比'">
                   <el-table-column
-                    prop="ynbm"
-                    min-width="150"
-                    label="用能部门">
-                    <template slot-scope="scope">
-                      <span class="department-block" :style="departmentStyle(scope.$index)"></span>
-                      <span>{{ filterName(scope.row.ynbm) }}</span>
-                    </template>
+                    prop="nyxhjq"
+                    label="能源消耗量（吨标煤）">
                   </el-table-column>
                   <el-table-column
-                    :label="jcqFormat + '占比'">
-                    <el-table-column
-                      prop="nyxhjq"
-                      label="能源消耗量（吨标煤）">
-                    </el-table-column>
-                    <el-table-column
-                      prop="zbjq"
-                      label="占集团公司总量百分比（%）">
-                    </el-table-column>
+                    prop="zbjq"
+                    label="占集团公司总量百分比（%）">
+                  </el-table-column>
+                </el-table-column>
+                <el-table-column
+                  :label="bjqFormat + '占比'">
+                  <el-table-column
+                    prop="nyxhbjq"
+                    label="能源消耗量（吨标煤）">
                   </el-table-column>
                   <el-table-column
-                    :label="bjqFormat + '占比'">
-                    <el-table-column
-                      prop="nyxhbjq"
-                      label="能源消耗量（吨标煤）">
-                    </el-table-column>
-                    <el-table-column
-                      prop="zbbjq"
-                      label="占集团公司总量百分比（%）">
-                    </el-table-column>
+                    prop="zbbjq"
+                    label="占集团公司总量百分比（%）">
                   </el-table-column>
-                </el-table>
-                <el-table
-                  v-if="type === 'fy'"
-                  :data="sortTable(rData.list)"
-                  border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
+                </el-table-column>
+              </el-table>
+              <el-table
+                v-if="type === 'fy'"
+                height="calc(100% - 350px)"
+                :data="sortTable(rData.list)"
+                border
+                header-cell-class-name="header-cell-class-name"
+                style="width: 100%">
+                <el-table-column
+                  prop="ynbm"
+                  min-width="150"
+                  label="用能部门">
+                  <template slot-scope="scope">
+                    <span class="department-block" :style="departmentStyle(scope.$index)"></span>
+                    <span>{{ filterName(scope.row.ynbm) }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  :label="jcqFormat + '占比'">
                   <el-table-column
-                    prop="ynbm"
-                    min-width="150"
-                    label="用能部门">
-                    <template slot-scope="scope">
-                      <span class="department-block" :style="departmentStyle(scope.$index)"></span>
-                      <span>{{ filterName(scope.row.ynbm) }}</span>
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    :label="jcqFormat + '占比'">
-                    <el-table-column
-                      prop="fyjq"
-                      label="能源费用（万元）">
-                    </el-table-column>
-                    <el-table-column
-                      prop="zbjq"
-                      label="占集团公司总量百分比（%）">
-                    </el-table-column>
+                    prop="fyjq"
+                    label="能源费用（万元）">
                   </el-table-column>
                   <el-table-column
-                    :label="bjqFormat + '占比'">
-                    <el-table-column
-                      prop="fybjq"
-                      label="能源费用（万元）">
-                    </el-table-column>
-                    <el-table-column
-                      prop="zbbjq"
-                      label="占集团公司总量百分比（%）">
-                    </el-table-column>
+                    prop="zbjq"
+                    label="占集团公司总量百分比（%）">
                   </el-table-column>
-                </el-table>
-              </div>
+                </el-table-column>
+                <el-table-column
+                  :label="bjqFormat + '占比'">
+                  <el-table-column
+                    prop="fybjq"
+                    label="能源费用（万元）">
+                  </el-table-column>
+                  <el-table-column
+                    prop="zbbjq"
+                    label="占集团公司总量百分比（%）">
+                  </el-table-column>
+                </el-table-column>
+              </el-table>
             </div>
             <!--<div class="col-lg-4 col-md-12 table-box box-right">-->
               <!--<data-panel-title title="分析结果" :noBorder="noBorder"></data-panel-title>-->
@@ -275,12 +275,16 @@
       background: $color-sub-text
       display: flex
       flex-direction: column
-      min-height: 100%
+      height: 100%
       min-width: 600px
       .department-block
         display: inline-block
         width: 25px
         height: 10px
+      .col-box-left-right-bottom
+        height: 100%
+      .panel-box > .row
+        height: 100%
       .chart-box
         min-height: 350px
         border-radius: 0px
