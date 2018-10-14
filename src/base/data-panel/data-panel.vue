@@ -118,7 +118,7 @@ export default {
           font-size: 10px
         .big
           font-size: $font-size-large-x-x
-          color: $color-theme
+          color: #333
         .big2
           font-size: $font-size-large-x
         .down

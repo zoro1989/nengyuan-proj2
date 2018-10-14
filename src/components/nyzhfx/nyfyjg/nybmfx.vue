@@ -1,8 +1,8 @@
 <template>
   <div class="info-container">
     <div class="info">
-      <div class="col-lg-12 col-md-12 col-box">
-        <select-title title1="用能单位" title2="基期">
+      <div class="col-box">
+        <select-title title1="用能单位" title2="基期" title3="比较期" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
             v-model="valueSelect"
@@ -18,7 +18,16 @@
           </el-select>
           <el-date-picker
             slot="title2"
-            v-model="valueMonth"
+            v-model="jcq_sj"
+            type="month"
+            size="mini"
+            value-format="yyyy-MM"
+            @change="dateChange"
+            placeholder="选择月">
+          </el-date-picker>
+          <el-date-picker
+            slot="title3"
+            v-model="bjq_sj"
             type="month"
             size="mini"
             value-format="yyyy-MM"
@@ -27,69 +36,112 @@
           </el-date-picker>
         </select-title>
       </div>
-      <div class="col-lg-12 col-md-12 col-box-left-right-bottom">
-        <div class="panel-box">
+      <div class="col-box-left-right-bottom">
+        <div class="panel-box" v-loading="loading">
           <div class="row">
-            <div class="col-lg-8 col-md-12 table-box">
+            <div class="table-box">
               <div class="row">
                 <div class="col-lg-6 col-md-12">
                   <chart-pie class="chart-box"
-                             titleText="2015年整车制造能源消耗结构"
+                             :titleText="type === 'nh' ? jcqFormat + dwFormat + '能源消耗结构' : jcqFormat + dwFormat + '能源费用结构'"
                              :radius="pieRadius"
-                             :seriesData="strucPie1"></chart-pie>
+                             :center="pieCenter"
+                             :isShowLabel="isShowLabel"
+                             :legendData="rData.jcq_pie && rData.jcq_pie.legendData"
+                             :seriesData="rData.jcq_pie && rData.jcq_pie.seriesData"></chart-pie>
                 </div>
                 <div class="col-lg-6 col-md-12">
                   <chart-pie class="chart-box"
-                             titleText="2014年整车制造能源消耗结构"
+                             :titleText="type === 'nh' ? bjqFormat + dwFormat + '能源消耗结构' : bjqFormat + dwFormat + '能源费用结构'"
                              :radius="pieRadius"
-                             :seriesData="strucPie2"></chart-pie>
+                             :center="pieCenter"
+                             :isShowLabel="isShowLabel"
+                             :legendData="rData.bjq_pie && rData.bjq_pie.legendData"
+                             :seriesData="rData.bjq_pie && rData.bjq_pie.seriesData"></chart-pie>
                 </div>
               </div>
               <div class="row">
-                <div class="col-lg-12 col-md-12">
-                  <el-table
-                    :data="tableData"
-                    border
-                    header-cell-class-name="header-cell-class-name"
-                    style="width: 99%">
+                <el-table
+                  v-if="type === 'nh'"
+                  :data="sortTable(rData.list)"
+                  border
+                  header-cell-class-name="header-cell-class-name"
+                  style="width: 99%">
+                  <el-table-column
+                    prop="ynbm"
+                    min-width="150"
+                    label="用能部门">
+                    <template slot-scope="scope">
+                      <span class="department-block" :style="departmentStyle(scope.$index)"></span>
+                      <span>{{ filterName(scope.row.ynbm) }}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    :label="jcqFormat + '占比'">
                     <el-table-column
-                      prop="department"
-                      min-width="150"
-                      label="用能部门">
-                      <template slot-scope="scope">
-                        <span class="department-block" :style="departmentStyle(scope.$index)"></span>
-                        <span>{{ scope.row.department }}</span>
-                      </template>
+                      prop="nyxhjq"
+                      label="能源消耗量（吨标煤）">
                     </el-table-column>
                     <el-table-column
-                      label="2015年占比">
-                      <el-table-column
-                        prop="nyxhl1"
-                        label="能源消耗量（吨标煤）">
-                      </el-table-column>
-                      <el-table-column
-                        prop="percent1"
-                        label="占集团公司总量百分比">
-                      </el-table-column>
+                      prop="zbjq"
+                      label="占集团公司总量百分比（%）">
+                    </el-table-column>
+                  </el-table-column>
+                  <el-table-column
+                    :label="bjqFormat + '占比'">
+                    <el-table-column
+                      prop="nyxhbjq"
+                      label="能源消耗量（吨标煤）">
                     </el-table-column>
                     <el-table-column
-                      label="2014年占比">
-                      <el-table-column
-                        prop="nyxhl2"
-                        label="能源消耗量（吨标煤）">
-                      </el-table-column>
-                      <el-table-column
-                        prop="percent2"
-                        label="占集团公司总量百分比">
-                      </el-table-column>
+                      prop="zbbjq"
+                      label="占集团公司总量百分比（%）">
                     </el-table-column>
-                  </el-table>
-                </div>
+                  </el-table-column>
+                </el-table>
+                <el-table
+                  v-if="type === 'fy'"
+                  :data="sortTable(rData.list)"
+                  border
+                  header-cell-class-name="header-cell-class-name"
+                  style="width: 99%">
+                  <el-table-column
+                    prop="ynbm"
+                    min-width="150"
+                    label="用能部门">
+                    <template slot-scope="scope">
+                      <span class="department-block" :style="departmentStyle(scope.$index)"></span>
+                      <span>{{ filterName(scope.row.ynbm) }}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    :label="jcqFormat + '占比'">
+                    <el-table-column
+                      prop="fyjq"
+                      label="能源费用（万元）">
+                    </el-table-column>
+                    <el-table-column
+                      prop="zbjq"
+                      label="占集团公司总量百分比（%）">
+                    </el-table-column>
+                  </el-table-column>
+                  <el-table-column
+                    :label="bjqFormat + '占比'">
+                    <el-table-column
+                      prop="fybjq"
+                      label="能源费用（万元）">
+                    </el-table-column>
+                    <el-table-column
+                      prop="zbbjq"
+                      label="占集团公司总量百分比（%）">
+                    </el-table-column>
+                  </el-table-column>
+                </el-table>
               </div>
             </div>
-            <div class="col-lg-4 col-md-12 table-box box-right">
-              <data-panel-title title="分析结果" :noBorder="noBorder"></data-panel-title>
-            </div>
+            <!--<div class="col-lg-4 col-md-12 table-box box-right">-->
+              <!--<data-panel-title title="分析结果" :noBorder="noBorder"></data-panel-title>-->
+            <!--</div>-->
           </div>
         </div>
       </div>
@@ -100,6 +152,9 @@
   import SelectTitle from 'base/select-title/select-title'
   import DataPanelTitle from 'base/data-panel-title/data-panel-title'
   import ChartPie from 'base/chart-pie/chart-pie'
+  import {filter} from 'utils/filter'
+  import { api } from '@/config'
+  import fetch from 'utils/fetch'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -109,113 +164,99 @@
       DataPanelTitle
     },
     created() {
-      setTimeout(() => {
-        this.strucPie1 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
-        this.strucPie2 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
-      }, 20)
+//      setTimeout(() => {
+//        this.strucPie1 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+//        this.strucPie2 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+//      }, 20)
+//      this.fetchData()
     },
     data() {
       return {
+        loading: false,
+        type: this.$route.params.type || 'nh',
+        rData: {},
         strucPie1: [],
         strucPie2: [],
-        pieRadius: ['13%', '60%'],
+        jcq_sj: '',
+        bjq_sj: '',
+        isShowLabel: false,
+        pieRadius: ['0%', '60%'],
+        pieCenter: ['40%', '55%'],
         valueMonth: '',
         valueSelect: '',
         options1: [{
-          value: '1',
-          label: '集团公司'
-        }, {
           value: '2',
-          label: '红旗工厂'
+          label: '整车制造'
         }, {
-          value: '3',
-          label: '一汽轿车股份有限公司'
+          value: '23',
+          label: '零部件'
         }, {
-          value: '4',
-          label: '一汽解放汽车有限公司'
-        }, {
-          value: '5',
-          label: '一汽客车有限公司'
-        }, {
-          value: '6',
-          label: '长春丰越'
-        }, {
-          value: '7',
-          label: '一汽大众公司'
-        }, {
-          value: '8',
-          label: '天津夏利'
-        }, {
-          value: '9',
-          label: '一汽通用轻型商用汽车有限公司'
-        }, {
-          value: '10',
-          label: '四川丰田'
-        }, {
-          value: '11',
-          label: '一汽富维'
-        }],
-        tableData: [{
-          department: '一汽大众汽车有限公司',
-          nyxhl1: '吨标煤',
-          percent1: '43206.0',
-          nyxhl2: '26.7',
-          percent2: '26.7'
-        }, {
-          department: '一汽大众汽车有限公司',
-          nyxhl1: '吨标煤',
-          percent1: '43206.0',
-          nyxhl2: '26.7',
-          percent2: '26.7'
-        }, {
-          department: '一汽大众汽车有限公司',
-          nyxhl1: '吨标煤',
-          percent1: '43206.0',
-          nyxhl2: '26.7',
-          percent2: '26.7'
-        }, {
-          department: '一汽大众汽车有限公司',
-          nyxhl1: '吨标煤',
-          percent1: '43206.0',
-          nyxhl2: '26.7',
-          percent2: '26.7'
-        }, {
-          department: '一汽大众汽车有限公司',
-          nyxhl1: '吨标煤',
-          percent1: '43206.0',
-          nyxhl2: '26.7',
-          percent2: '26.7'
-        }, {
-          department: '一汽大众汽车有限公司',
-          nyxhl1: '吨标煤',
-          percent1: '43206.0',
-          nyxhl2: '26.7',
-          percent2: '26.7'
-        }, {
-          department: '一汽大众汽车有限公司',
-          nyxhl1: '吨标煤',
-          percent1: '43206.0',
-          nyxhl2: '26.7',
-          percent2: '26.7'
-        }, {
-          department: '一汽大众汽车有限公司',
-          nyxhl1: '吨标煤',
-          percent1: '43206.0',
-          nyxhl2: '26.7',
-          percent2: '26.7'
+          value: '30',
+          label: '物流'
         }],
         colors: ['#5967f1', '#06e56d', '#7dd1ff', '#ff8e06', '#1196de', '#0c1994', '#8c6be6', '#ffc300', '#4472c6', '#838389', '#1096df'],
-        noBorder: true
+        noBorder: true,
+        dwFormat: '',
+        jcqFormat: moment().format('YYYY年MM月'),
+        bjqFormat: moment().format('YYYY年MM月')
       }
     },
     methods: {
+      computedFormat() {
+        let index = this.options1.findIndex((item) => {
+          return this.valueSelect === item.value
+        })
+        this.dwFormat = this.options1[index] ? this.options1[index].label : ''
+        this.jcqFormat = this.jcq_sj ? moment(this.jcq_sj).format('YYYY年MM月') : moment().format('YYYY年MM月')
+        this.bjqFormat = this.bjq_sj ? moment(this.bjq_sj).format('YYYY年MM月') : moment().format('YYYY年MM月')
+      },
+      fetchData() {
+        this.loading = true
+        this.computedFormat()
+        if (this.type === 'nh') {
+          fetch('get', api.queryNyZcZzYl, {org_pid: this.valueSelect, jcq_sj: this.jcq_sj, bjq_sj: this.bjq_sj}).then((res) => {
+            this.rData = res.data
+            this.loading = false
+          }).catch(() => {
+            this.rData = {}
+            this.loading = false
+          })
+        } else {
+          fetch('get', api.queryNyZcFyDb, {org_pid: this.valueSelect, jcq_sj: this.jcq_sj, bjq_sj: this.bjq_sj}).then((res) => {
+            this.rData = res.data
+            this.loading = false
+          }).catch(() => {
+            this.rData = {}
+            this.loading = false
+          })
+        }
+      },
       departmentStyle(index) {
-        return `background: ${this.colors[index]}`
+        if (index === this.rData.list.length - 1) {
+          return ''
+        } else {
+          return `background: ${this.colors[index]}`
+        }
       },
       dateChange(value) {
         this.dateTime = value
       },
-      selectChange(value) {}
+      selectChange(value) {},
+      onSearch() {
+        this.fetchData()
+      },
+      filterName(name) {
+        return filter(name)
+      },
+      sortTable(list) {
+        if (!list) {
+          return []
+        }
+        let copyData = JSON.parse(JSON.stringify(list))
+        return copyData.sort(function (a, b) {
+          return a.nyxhjq - b.nyxhjq
+        })
+      }
     }
   }
 </script>
@@ -240,10 +281,6 @@
         display: inline-block
         width: 25px
         height: 10px
-      .col-box-left-right-bottom
-        flex: 1
-        .panel-box >.row
-          height: 100%
       .chart-box
         min-height: 350px
         border-radius: 0px

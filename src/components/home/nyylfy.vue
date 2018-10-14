@@ -1,10 +1,11 @@
 <template>
   <div class="cost-info-container">
     <div class="cost-info">
-      <div class="col-lg-12 col-md-12 col-xs-12 col-box">
+      <div class="col-box">
         <select-title title1="选择日期" title2="能源种类">
           <el-date-picker
             slot="title1"
+            :clearable="false"
             v-model="valueMonth"
             type="month"
             size="mini"
@@ -27,7 +28,7 @@
           </el-select>
         </select-title>
       </div>
-      <div class="col-lg-12 col-md-12 col-xs-12 col-box-left-right">
+      <div class="col-box-left-right">
         <div class="panel-box">
           <data-panel-title :title="lastMonth + '集团能源用量信息'"></data-panel-title>
           <div class="row">
@@ -96,7 +97,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-12 col-md-12 col-xs-12 col-box">
+      <div class="col-box">
         <div class="panel-box">
           <data-panel-title :title="lastMonth + '集团能源费用信息'"></data-panel-title>
           <div class="row">
@@ -203,7 +204,7 @@
                      <!--:seriesData="pieDf.seriesData"></chart-pie>-->
         </div>
       </div>
-      <div class="col-lg-12 col-md-12 col-xs-12 col-box">
+      <div class="col-box">
         <chart-bar-line class="chart-box"
                         :legendData="barDb.legendData"
                         :series="barDb.series"

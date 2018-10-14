@@ -1,11 +1,11 @@
 <template>
   <div class="info-container">
     <div class="info">
-      <div class="col-lg-12 col-md-12 col-box">
-        <select-title title1="用能单位" title2="基期">
+      <div class="col-box">
+        <select-title title1="用能单位" title2="基期" title3="比较期" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
-            v-model="valueSelect"
+            v-model="system_id"
             placeholder="请选择"
             size="mini"
             @change="selectChange">
@@ -18,7 +18,16 @@
           </el-select>
           <el-date-picker
             slot="title2"
-            v-model="valueMonth"
+            v-model="jcq_sj"
+            type="month"
+            size="mini"
+            value-format="yyyy-MM"
+            @change="dateChange"
+            placeholder="选择月">
+          </el-date-picker>
+          <el-date-picker
+            slot="title3"
+            v-model="bjq_sj"
             type="month"
             size="mini"
             value-format="yyyy-MM"
@@ -27,69 +36,117 @@
           </el-date-picker>
         </select-title>
       </div>
-      <div class="col-lg-12 col-md-12 col-box-left-right-bottom">
-        <div class="panel-box">
+      <div class="col-box-left-right-bottom">
+        <div class="panel-box" v-loading="loading">
           <div class="row">
             <div class="col-lg-8 col-md-12 table-box">
               <div class="row">
                 <div class="col-lg-6 col-md-12">
                   <chart-pie class="chart-box"
-                             titleText="一汽大众能源消耗结构"
+                             :titleText="type === 'nh' ? jcqFormat + dwFormat + '能源消耗结构' : jcqFormat + dwFormat + '能源费用结构'"
                              :radius="pieRadius"
-                             :seriesData="strucPie1"></chart-pie>
+                             :seriesData="rData.bjq_pie && rData.bjq_pie.seriesData"></chart-pie>
                 </div>
                 <div class="col-lg-6 col-md-12">
                   <chart-pie class="chart-box"
-                             titleText="一汽大众能源消耗结构"
+                             :titleText="type === 'nh' ? bjqFormat + dwFormat + '能源消耗结构' : bjqFormat + dwFormat + '能源费用结构'"
                              :radius="pieRadius"
-                             :seriesData="strucPie2"></chart-pie>
+                             :seriesData="rData.bjq_pie && rData.jcq_pie.seriesData"></chart-pie>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6 col-md-12">
                   <el-table
-                    :data="tableData"
+                    v-if="type === 'nh'"
+                    :data="rData.list_jcq"
                     border
                     header-cell-class-name="header-cell-class-name"
                     style="width: 98%">
                     <el-table-column
-                      prop="date"
+                      prop="nyzl"
                       label="能源种类">
                     </el-table-column>
                     <el-table-column
-                      prop="name"
+                      prop="jldw"
                       label="计量单位">
                     </el-table-column>
                     <el-table-column
-                      prop="address"
-                      label="2017年1月">
+                      prop="yl"
+                      :label="jcqFormat">
                     </el-table-column>
                     <el-table-column
-                      prop="percent"
+                      prop="zb"
+                      label="占比（%）">
+                    </el-table-column>
+                  </el-table>
+                  <el-table
+                    v-if="type === 'fy'"
+                    :data="rData.list_jcq"
+                    border
+                    header-cell-class-name="header-cell-class-name"
+                    style="width: 98%">
+                    <el-table-column
+                      prop="fyzl"
+                      label="费用种类">
+                    </el-table-column>
+                    <el-table-column
+                      prop="jldw"
+                      label="计量单位">
+                    </el-table-column>
+                    <el-table-column
+                      prop="fy"
+                      :label="jcqFormat">
+                    </el-table-column>
+                    <el-table-column
+                      prop="zb"
                       label="占比（%）">
                     </el-table-column>
                   </el-table>
                 </div>
                 <div class="col-lg-6 col-md-12">
                   <el-table
-                    :data="tableData"
+                    v-if="type === 'nh'"
+                    :data="rData.list_bjq"
                     border
                     header-cell-class-name="header-cell-class-name"
                     style="width: 98%">
                     <el-table-column
-                      prop="date"
+                      prop="nyzl"
                       label="能源种类">
                     </el-table-column>
                     <el-table-column
-                      prop="name"
+                      prop="jldw"
                       label="计量单位">
                     </el-table-column>
                     <el-table-column
-                      prop="address"
-                      label="2017年1月">
+                      prop="yl"
+                      :label="bjqFormat">
                     </el-table-column>
                     <el-table-column
-                      prop="percent"
+                      prop="zb"
+                      label="占比（%）">
+                    </el-table-column>
+                  </el-table>
+                  <el-table
+                    v-if="type === 'fy'"
+                    :data="rData.list_bjq"
+                    border
+                    header-cell-class-name="header-cell-class-name"
+                    style="width: 98%">
+                    <el-table-column
+                      prop="fyzl"
+                      label="费用种类">
+                    </el-table-column>
+                    <el-table-column
+                      prop="jldw"
+                      label="计量单位">
+                    </el-table-column>
+                    <el-table-column
+                      prop="fy"
+                      :label="bjqFormat">
+                    </el-table-column>
+                    <el-table-column
+                      prop="zb"
                       label="占比（%）">
                     </el-table-column>
                   </el-table>
@@ -99,16 +156,32 @@
             <div class="col-lg-4 col-md-12 table-box box-right">
               <data-panel-title title="能源消耗结构同比增幅分析" :noBorder="noBorder"></data-panel-title>
               <el-table
-                :data="tableData1"
+                v-if="type === 'nh'"
+                :data="rData.list_zf"
                 border
                 header-cell-class-name="header-cell-class-name"
                 style="width: 100%">
                 <el-table-column
-                  prop="date"
+                  prop="nyzl"
                   label="能源种类">
                 </el-table-column>
                 <el-table-column
-                  prop="name"
+                  prop="zf"
+                  label="同比增幅率">
+                </el-table-column>
+              </el-table>
+              <el-table
+                v-if="type === 'fy'"
+                :data="rData.list_zf"
+                border
+                header-cell-class-name="header-cell-class-name"
+                style="width: 100%">
+                <el-table-column
+                  prop="fyzl"
+                  label="费用种类">
+                </el-table-column>
+                <el-table-column
+                  prop="zf"
                   label="同比增幅率">
                 </el-table-column>
               </el-table>
@@ -123,6 +196,8 @@
   import SelectTitle from 'base/select-title/select-title'
   import DataPanelTitle from 'base/data-panel-title/data-panel-title'
   import ChartPie from 'base/chart-pie/chart-pie'
+  import { api } from '@/config'
+  import fetch from 'utils/fetch'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -132,124 +207,128 @@
       DataPanelTitle
     },
     created() {
-      setTimeout(() => {
-        this.strucPie1 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
-        this.strucPie2 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
-      }, 20)
+//      setTimeout(() => {
+//        this.strucPie1 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+//        this.strucPie2 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+//      }, 20)
+//      this.fetchData()
     },
     data() {
       return {
+        loading: false,
+        type: this.$route.params.type || 'nh',
+        rData: {},
+        system_id: '',
+        jcq_sj: '',
+        bjq_sj: '',
         strucPie1: [],
         strucPie2: [],
         pieRadius: ['13%', '60%'],
-        valueMonth: '',
-        valueSelect: '',
         options1: [{
-          value: '1',
-          label: '集团公司'
-        }, {
-          value: '2',
+          value: '42052',
           label: '红旗工厂'
         }, {
-          value: '3',
-          label: '一汽轿车股份有限公司'
-        }, {
-          value: '4',
-          label: '一汽解放汽车有限公司'
-        }, {
-          value: '5',
-          label: '一汽客车有限公司'
-        }, {
-          value: '6',
-          label: '长春丰越'
-        }, {
-          value: '7',
+          value: '41951',
           label: '一汽大众公司'
         }, {
-          value: '8',
-          label: '天津夏利'
+          value: '41949',
+          label: '一汽轿车股份有限公司'
         }, {
-          value: '9',
+          value: '41954',
+          label: '四川一汽丰田汽车有限公司'
+        }, {
+          value: '904489',
+          label: '一汽丰越公司'
+        }, {
+          value: '41937',
+          label: '一汽解放汽车有限公司'
+        }, {
+          value: '41939',
+          label: '一汽吉林汽车有限公司'
+        }, {
+          value: '41953',
+          label: '天津一汽丰田汽车有限公司'
+        }, {
+          value: '41950',
+          label: '天津一汽夏利汽车有限公司'
+        }, {
+          value: '41952',
           label: '一汽通用轻型商用汽车有限公司'
         }, {
-          value: '10',
-          label: '四川丰田'
+          value: '41938',
+          label: '一汽客车有限公司'
         }, {
-          value: '11',
-          label: '一汽富维'
+          value: '41917',
+          label: '一汽新能源汽车有限公司'
+        }, {
+          value: '41924',
+          label: '长春一汽富维汽车零部件股份有限公司'
+        }, {
+          value: '41944',
+          label: '一汽铸锻有限公司'
+        }, {
+          value: '41945',
+          label: '一汽模具制造有限公司'
+        }, {
+          value: '41955',
+          label: '一汽丰田（长春）发动机有限公司'
+        }, {
+          value: '41956',
+          label: '天津一汽丰田发动机有限公司'
+        }, {
+          value: '41992',
+          label: '无锡泽根弹簧有限公司'
+        }, {
+          value: '42018',
+          label: '一汽国际物流'
+        }, {
+          value: '41947',
+          label: '一汽物流'
+        }, {
+          value: '41934',
+          label: '动能分公司'
         }],
-        tableData: [{
-          date: '原煤',
-          name: '吨标煤',
-          address: '43206.0',
-          percent: '26.7'
-        }, {
-          date: '原煤',
-          name: '吨标煤',
-          address: '43206.0',
-          percent: '26.7'
-        }, {
-          date: '原煤',
-          name: '吨标煤',
-          address: '43206.0',
-          percent: '26.7'
-        }, {
-          date: '原煤',
-          name: '吨标煤',
-          address: '43206.0',
-          percent: '26.7'
-        }, {
-          date: '原煤',
-          name: '吨标煤',
-          address: '43206.0',
-          percent: '26.7'
-        }, {
-          date: '原煤',
-          name: '吨标煤',
-          address: '43206.0',
-          percent: '26.7'
-        }, {
-          date: '原煤',
-          name: '吨标煤',
-          address: '43206.0',
-          percent: '26.7'
-        }, {
-          date: '原煤',
-          name: '吨标煤',
-          address: '43206.0',
-          percent: '26.7'
-        }],
-        tableData1: [{
-          date: '原煤',
-          name: '27.1'
-        }, {
-          date: '原煤',
-          name: '27.1'
-        }, {
-          date: '原煤',
-          name: '27.1'
-        }, {
-          date: '原煤',
-          name: '27.1'
-        }, {
-          date: '原煤',
-          name: '27.1'
-        }, {
-          date: '原煤',
-          name: '27.1'
-        }, {
-          date: '原煤',
-          name: '27.1'
-        }, {
-          date: '原煤',
-          name: '27.1'
-        }],
-        noBorder: true
+        noBorder: true,
+        dwFormat: '',
+        jcqFormat: moment().format('YYYY年MM月'),
+        bjqFormat: moment().format('YYYY年MM月')
       }
     },
     methods: {
+      computedFormat() {
+        let index = this.options1.findIndex((item) => {
+          return this.system_id === item.value
+        })
+        this.dwFormat = this.options1[index] ? this.options1[index].label : ''
+        this.jcqFormat = this.jcq_sj ? moment(this.jcq_sj).format('YYYY年MM月') : moment().format('YYYY年MM月')
+        this.bjqFormat = this.bjq_sj ? moment(this.bjq_sj).format('YYYY年MM月') : moment().format('YYYY年MM月')
+      },
+      fetchData() {
+        this.loading = true
+        this.computedFormat()
+        if (this.type === 'nh') {
+          fetch('get', api.queryNyZlFx, {system_id: this.system_id, jcq_sj: this.jcq_sj, bjq_sj: this.bjq_sj}).then((res) => {
+            this.rData = res.data
+            this.loading = false
+          }).catch(() => {
+            this.rData = {}
+            this.loading = false
+          })
+        } else {
+          fetch('get', api.queryNyFyJg, {system_id: this.system_id, jcq_sj: this.jcq_sj, bjq_sj: this.bjq_sj}).then((res) => {
+            this.rData = res.data
+            this.loading = false
+          }).catch(() => {
+            this.rData = {}
+            this.loading = false
+          })
+        }
+      },
       dateChange(value) {
         this.dateTime = value
+      },
+      onSearch() {
+        this.fetchData()
       },
       selectChange(value) {}
     }
@@ -272,10 +351,6 @@
       flex-direction: column
       min-height: 100%
       min-width: 600px
-      .col-box-left-right-bottom
-        flex: 1
-        .panel-box >.row
-          height: 100%
       .chart-box
         min-height: 350px
         border-radius: 0px

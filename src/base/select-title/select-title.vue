@@ -5,6 +5,9 @@
       <slot name="title1"></slot>
       <span class="picker-txt">{{title2}}</span>
       <slot name="title2"></slot>
+      <span class="picker-txt">{{title3}}</span>
+      <slot name="title3"></slot>
+      <el-button class="search-btn" v-if="showSearch" type="primary" icon="el-icon-search" size="mini" @click="onSearch">搜索</el-button>
     </div>
     <div class="title-r">
       <span @click="onClose" class="ripple"><i class="fa fa-times"></i></span>
@@ -21,11 +24,22 @@
       title2: {
         type: String,
         default: ''
+      },
+      title3: {
+        type: String,
+        default: ''
+      },
+      showSearch: {
+        type: Boolean,
+        default: false
       }
     },
     methods: {
       onClose() {
         this.$router.replace('/home')
+      },
+      onSearch() {
+        this.$emit('search')
       }
     }
   }
@@ -49,4 +63,6 @@
         cursor: pointer
     .picker-txt
       padding: 0 5px 0 15px
+    .search-btn
+      margin-left: 15px
 </style>

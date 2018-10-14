@@ -3,13 +3,13 @@
     <div class="menu">
       <ul class="mcd-menu">
         <li>
-          <a href="#" class="active" @click="changeRoute('/home')">
+          <a href="#" :class="selectMenuIndex === 0 ? 'active' : ''" @click="changeRoute('/home', 0)">
             <i class="fa fa-home"></i>
             <strong>首页</strong>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" :class="selectMenuIndex === 1 ? 'active' : ''">
             <i class="fa fa-search"></i>
             <strong>能源综合分析</strong>
           </a>
@@ -17,18 +17,18 @@
             <li>
               <a href="#"><i class="fa fa-battery-half"></i>能源消耗结构</a>
               <ul>
-                <li><a href="#" @click="changeRoute('/nyzlfx')"><i class="fa fa-list"></i>能源种类分析</a></li>
-                <li><a href="#" @click="changeRoute('/nybmfx')"><i class="fa fa-institution"></i>能源部门分析</a></li>
+                <li><a href="#" @click="changeRoute('/nyzlfx/nh', 1)"><i class="fa fa-list"></i>能源种类分析</a></li>
+                <li><a href="#" @click="changeRoute('/nybmfx/nh', 1)"><i class="fa fa-institution"></i>能源部门分析</a></li>
               </ul>
             </li>
             <li>
               <a href="#"><i class="fa fa-yen"></i>能源费用结构</a>
               <ul>
-                <li><a href="#"><i class="fa fa-list"></i>能源种类分析</a></li>
-                <li><a href="#"><i class="fa fa-institution"></i>能源部门分析</a></li>
+                <li><a href="#" @click="changeRoute('/nyzlfx/fy', 1)"><i class="fa fa-list"></i>能源种类分析</a></li>
+                <li><a href="#" @click="changeRoute('/nybmfx/fy', 1)"><i class="fa fa-institution"></i>能源部门分析</a></li>
               </ul>
             </li>
-            <li><a href="#"><i class="fa fa-pie-chart"></i>二氧化碳量分布</a></li>
+            <li><a href="#" @click="changeRoute('/eyhtfx', 1)"><i class="fa fa-pie-chart"></i>二氧化碳量分布</a></li>
           </ul>
         </li>
         <li>
@@ -37,7 +37,7 @@
             <strong>能源统计分析</strong>
           </a>
           <ul>
-            <li><a href="#"><i class="fa fa-bar-chart"></i>能源用量分析</a></li>
+            <li><a href="#" @click="changeRoute('/nyylfx', 1)"><i class="fa fa-bar-chart"></i>能源用量分析</a></li>
             <li><a href="#"><i class="fa fa-yen"></i>能源费用分析</a></li>
             <li><a href="#"><i class="fa fa-envira"></i>二氧化碳排放量分析</a></li>
             <li><a href="#"><i class="fa fa-institution"></i>部门用能分析</a></li>
@@ -115,7 +115,8 @@
       handleClose(key, keyPath) {
         console.log(key, keyPath)
       },
-      changeRoute(path) {
+      changeRoute(path, index) {
+        this.selectMenuIndex = index
         this.$router.replace(path)
       }
     }

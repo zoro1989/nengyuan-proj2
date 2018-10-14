@@ -69,6 +69,10 @@ export default {
     isShowLabel: {
       type: Boolean,
       default: true
+    },
+    isSort: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -139,9 +143,12 @@ export default {
             },
             data: (function (vm, seriesData) {
               let copyData = JSON.parse(JSON.stringify(seriesData))
-              let data = copyData.sort(function (a, b) {
-                return a.value - b.value
-              })
+              let data = copyData
+              if (vm.isSort) {
+                data = copyData.sort(function (a, b) {
+                  return a.value - b.value
+                })
+              }
               var res = []
               for (let i = 0; i < data.length; i++) {
                 let obj = {}
@@ -333,7 +340,7 @@ export default {
       z-index: 2
     .back-btn
       position: absolute
-      z-index: 1
+      z-index: 10
       color: #899eb6
       font-size: 15px
       cursor: pointer
@@ -349,12 +356,11 @@ export default {
       position: absolute
       z-index: 1
       top: 0
-      left: 50%
-      transform: translateX(-50%)
+      left: 0
+      width: 100%
       text-align: center
       height: 50px
       line-height: 50px
-      background: $color-background
       cursor: pointer
       a
         color: $color-text

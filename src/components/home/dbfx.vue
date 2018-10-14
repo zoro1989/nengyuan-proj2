@@ -26,8 +26,8 @@
       </div>
       <div class="tripping-content">
         <div class="row">
-          <div class="col-lg-12 col-md-12 col-xs-12 chart-box">
-            <chart-bar class="chart"
+          <div class="col-lg-12 col-md-12 col-xs-12 col-box-left-right-bottom">
+            <chart-bar class="chart-box"
                        titleText="单车耗电日对比分析"
                        yAxisTitle="千瓦时"
                        seriesName="能耗"
@@ -37,8 +37,8 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-12 col-md-12 col-xs-12 chart-box">
-            <chart-bar class="chart"
+          <div class="col-lg-12 col-md-12 col-xs-12 col-box-left-right-bottom">
+            <chart-bar class="chart-box"
                        titleText="单车耗电日对比分析"
                        yAxisTitle="千瓦时"
                        seriesName="耗电"

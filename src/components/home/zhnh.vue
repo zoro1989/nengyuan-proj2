@@ -1,10 +1,11 @@
 <template>
   <div class="cost-info-container">
     <div class="cost-info">
-      <div class="col-lg-12 col-md-12 col-box">
+      <div class="col-box">
         <select-title title1="选择日期" title2="指标类别">
           <el-date-picker
             slot="title1"
+            :clearable="false"
             v-model="valueMonth"
             type="month"
             size="mini"
@@ -171,7 +172,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-12 col-md-12 col-box">
+      <div class="col-box">
         <chart-bar-line class="chart-box"
                         :legendData="zcData.legendData"
                         :series="zcData.series"
@@ -179,7 +180,7 @@
                         :yAxis="yAxis"
                         :titleText="lastMonth + '整车制造产值综合能耗'"></chart-bar-line>
       </div>
-      <div class="col-lg-12 col-md-12 col-box-bottom">
+      <div class="col-box-bottom">
         <chart-bar-line class="chart-box"
                         :legendData="lbjData.legendData"
                         :series="lbjData.series"

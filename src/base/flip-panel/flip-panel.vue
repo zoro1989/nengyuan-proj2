@@ -69,5 +69,5 @@ export default {
         color: #888
         .big
           font-size: $font-size-large-x-x
-          color: $color-theme
+          color: #333
 </style>

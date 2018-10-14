@@ -7,6 +7,8 @@ const Ssxz = () => import('components/home/ssxz')
 const Dbfx = () => import('components/home/dbfx')
 const Nyzlfx = () => import('components/nyzhfx/nyfyjg/nyzlfx')
 const Nybmfx = () => import('components/nyzhfx/nyfyjg/nybmfx')
+const Eyhtfx = () => import('components/nyzhfx/eyhtfx')
+const Nyylfx = () => import('components/nytjfx/nyylfx')
 
 Vue.use(Router)
 
@@ -42,14 +44,24 @@ export default new Router({
       component: Dbfx
     },
     {
-      path: '/nyzlfx',
+      path: '/nyzlfx/:type',
       name: '能源种类分析',
       component: Nyzlfx
     },
     {
-      path: '/nybmfx',
+      path: '/nybmfx/:type',
       name: '能源部门分析',
       component: Nybmfx
+    },
+    {
+      path: '/nyylfx',
+      name: '能源用量分析',
+      component: Nyylfx
+    },
+    {
+      path: '/eyhtfx',
+      name: '二氧化碳分析',
+      component: Eyhtfx
     }
   ]
 })

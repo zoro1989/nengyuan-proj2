@@ -122,9 +122,9 @@
         </div>
         <div class="col-lg-6 col-md-12 col-box-top-bottom">
           <chart-bar-line class="chart-box"
-                          :legendData="legendData"
-                          :series="seriesData"
-                          :xAxisData="xAxisData"
+                          :legendData="jnBar.legendData"
+                          :series="jnBar.series"
+                          :xAxisData="jnBar.xAxisData"
                           :yAxis="y"
                           :titleText="lastMonth + '能源用量与节能指标同比分析'"></chart-bar-line>
         </div>
@@ -172,53 +172,11 @@ export default {
       data: {},
       legendData: [],
       seriesData: [],
-      lastMonth: moment().subtract(1, 'months').format('MMMM')
+      lastMonth: moment().subtract(1, 'months').format('MMMM'),
+      jnBar: {}
     }
   },
   created() {
-    setTimeout(() => {
-      this.legendData = ['上年同期消耗', '实际消耗', '计划消耗', '上年同期节能指标', '实际节能指标', '计划节能指标']
-      this.xAxisData = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
-      this.seriesData = [
-        {
-          name: '上年同期消耗',
-          type: 'bar',
-          data: [20.0, 25.0, 22.0, 21.0, 25.0, 27.0, 29.0, 27.0, 20.0, 25.0, 22.0, 21.0],
-          reality: '0'
-        },
-        {
-          name: '实际消耗',
-          type: 'bar',
-          data: [19.0, 31.0, 19.0, 27.0, 25.0, 31.0, 20.0, 17.0, 26.0, 31.0, 25.0, 27.0],
-          reality: '1'
-        },
-        {
-          name: '计划消耗',
-          type: 'bar',
-          data: [28.0, 21.0, 28.0, 28.0, 28.0, 32.0, 28.0, 22.0, 28.0, 41.0, 28.0, 28.0],
-          reality: '0'
-        },
-        {
-          name: '上年同期节能指标',
-          type: 'line',
-          data: [0.012, 0.013, 0.017, 0.016, 0.018, 0.017, 0.016, 0.015, 0.012, 0.013, 0.017, 0.016]
-        },
-        {
-          name: '实际节能指标',
-          type: 'line',
-          data: [0.007, 0.009, 0.015, 0.005, 0.007, 0.012, 0.013, 0.019, 0.007, 0.009, 0.015, 0.005]
-        },
-        {
-          name: '计划节能指标',
-          type: 'line',
-          data: [0.005, 0.012, 0.01, 0.012, 0.013, 0.018, 0.016, 0.012, 0.005, 0.012, 0.01, 0.012]
-        }
-      ]
-      this.y = [{name: '吨标煤', min: 0.0, max: 50.0, interval: 10.0},
-        {name: '吨标煤/万元', min: 0.00, max: 0.05, interval: 0.01}]
-      this.strucPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
-      this.costPie = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
-    })
     fetch('get', api.getHomeData, {}).then((res) => {
       this.data = res.data
       this.strucPie = res.pie1.seriesData
@@ -227,6 +185,12 @@ export default {
       this.data = {}
       this.strucPie = []
       this.costPie = []
+    })
+    fetch('get', api.queryShouYeNhJn, {}).then((res) => {
+      this.y = [{name: '吨标煤'}, {name: '吨标煤/万元'}]
+      this.jnBar = res.data
+    }).catch(() => {
+      this.jnBar = {}
     })
   },
   computed: {

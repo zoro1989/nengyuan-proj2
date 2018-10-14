@@ -11,6 +11,24 @@ body, html
     font-size: $font-size-small-s
   .el-table th
     background-color: rgb(238, 245, 250)!important
+  .vue-calendar-header
+    border-top: 1px solid #e8ebee
+    border-left: 1px solid #e8ebee
+    border-right: 1px solid #e8ebee
+  .vue-calendar-body
+    .vue-calendar-body-row > .vue-calendar-day-item
+      &:first-child, &:last-child
+        background: rgba(144, 209, 251, 0.1)
+  .vue-calendar-week-title, .vue-calendar-body
+    border-right: 1px solid #e8ebee
+    .vue-calendar-week-title-item
+      color: #909399
+      background-color: rgb(238, 245, 250)!important
+      height: 48px
+      line-height: 48px
+      border-left: 1px solid #e8ebee
+      &:first-child
+        border-left: none
   .ripple
     position: relative
     &:focus

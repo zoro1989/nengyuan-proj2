@@ -12,13 +12,11 @@
             placeholder="选择周">
           </el-date-picker>
           <span class="picker-txt">用能单位</span>
-          <el-cascader
-            expand-trigger="hover"
+          <multi-cascader
             :options="options"
-            v-model="selectedOptions"
-            size="mini"
-            @change="handleChange">
-          </el-cascader>
+            @on-selected="getSelected"
+            :inputValue="configTips"
+          ></multi-cascader>
         </div>
         <div class="title-r">
           <span class="analyze-btn ripple"><router-link to="/dbfx">对比分析</router-link></span>
@@ -212,6 +210,8 @@ import ChartRealtimeBar from 'base/chart-realtime-bar/chart-realtime-bar'
 import ChartLine from 'base/chart-line/chart-line'
 import ChartBar from 'base/chart-bar/chart-bar'
 import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
+import DepartmentSelect from 'base/department-select/department-select'
+import MultiCascader from 'base/department-select/MulCheckCascader'
 let moment = require('moment')
 moment.locale('zh-cn')
 export default {
@@ -220,7 +220,9 @@ export default {
     ChartRealtimeBar,
     ChartLine,
     ChartBar,
-    ChartBarLine
+    ChartBarLine,
+    DepartmentSelect,
+    MultiCascader
   },
   data() {
     return {
@@ -229,100 +231,122 @@ export default {
       valueWeek: '',
       value: '',
       options: [{
-        value: 'zczz',
+        value: '1',
         label: '整车制造',
+        checked: false,
         children: [{
-          value: 'hqgc',
-          label: '红旗工厂'
+          value: '5',
+          label: '红旗工厂',
+          checked: false
         }, {
-          value: 'yqdz',
+          value: '6',
           label: '一汽大众',
           children: [{
-            value: 'ccgc',
-            label: '长春工厂'
+            value: '25',
+            label: '长春工厂',
+            checked: false
           }, {
-            value: 'tjgc',
-            label: '天津工厂'
+            value: '26',
+            label: '天津工厂',
+            checked: false
           }, {
-            value: 'qdgc',
-            label: '青岛工厂'
+            value: '27',
+            label: '青岛工厂',
+            checked: false
           }, {
-            value: 'fsgc',
-            label: '佛山工厂'
+            value: '28',
+            label: '佛山工厂',
+            checked: false
           }, {
-            value: 'cdgc',
-            label: '成都工厂'
+            value: '29',
+            label: '成都工厂',
+            checked: false
           }]
         }, {
-          value: 'yqjcgfyxgs',
-          label: '一汽轿车股份有限公司'
+          value: '7',
+          label: '一汽轿车股份有限公司',
+          checked: false
         }, {
-          value: 'yqjfqcyxgs',
-          label: '一汽解放汽车有限公司'
+          value: '8',
+          label: '一汽解放汽车有限公司',
+          checked: false
         }, {
-          value: 'yqjlqcyxgs',
-          label: '一汽吉林汽车有限公司'
+          value: '9',
+          label: '一汽吉林汽车有限公司',
+          checked: false
         }, {
-          value: 'yqkcyxgs',
-          label: '一汽客车有限公司'
+          value: '10',
+          label: '一汽客车有限公司',
+          checked: false
         }, {
-          value: 'yqfy',
-          label: '一汽丰越'
+          value: '11',
+          label: '一汽丰越',
+          checked: false
         }, {
-          value: 'tjxl',
-          label: '天津夏利'
+          value: '12',
+          label: '天津夏利',
+          checked: false
         }, {
-          value: 'yqft',
-          label: '一汽丰田'
+          value: '13',
+          label: '一汽丰田',
+          checked: false
         }, {
-          value: 'yqtysxqcyxgs',
-          label: '一汽通用轻型商用汽车有限公司'
+          value: '14',
+          label: '一汽通用轻型商用汽车有限公司',
+          checked: false
         }, {
-          value: 'scft',
-          label: '四川丰田'
+          value: '15',
+          label: '四川丰田',
+          checked: false
         }]
       },
         {
-        value: 'lbjjg',
+        value: '2',
         label: '零部件加工',
         children: [{
-          value: 'yqfw',
-          label: '一汽富维'
+          value: '16',
+          label: '一汽富维',
+          checked: false
         }, {
-          value: 'yqmjzzyxgs',
-          label: '一汽模具制造有限公司'
+          value: '17',
+          label: '一汽模具制造有限公司',
+          checked: false
         }, {
-          value: 'yqfw',
-          label: '一汽富维'
+          value: '18',
+          label: '一汽锻造吉林有限公司',
+          checked: false
         }, {
-          value: 'yqdzjlyxgs',
-          label: '一汽锻造吉林有限公司'
+          value: '19',
+          label: '一汽铸造有限公司',
+          checked: false
         }, {
-          value: 'yqzzyxgs',
-          label: '一汽铸造有限公司'
+          value: '20',
+          label: '一汽丰发',
+          checked: false
         }, {
-          value: 'yqfw',
-          label: '一汽丰发'
+          value: '21',
+          label: '天津丰发',
+          checked: false
         }, {
-          value: 'tjfw',
-          label: '天津丰发'
-        }, {
-          value: 'wxzgthyxgs',
-          label: '无锡泽根弹簧有限公司'
+          value: '22',
+          label: '无锡泽根弹簧有限公司',
+          checked: false
         }]
       },
         {
-        value: 'qt',
+        value: '3',
         label: '其他',
         children: [{
-          value: 'dnfgs',
-          label: '动能分公司'
+          value: '23',
+          label: '动能分公司',
+          checked: false
         }, {
-          value: 'yqwlgs',
-          label: '一汽物流公司'
+          value: '24',
+          label: '一汽物流公司',
+          checked: false
         }]
       }, {
-        value: 'jt',
+        value: '4',
         label: '集团'
       }],
       selectedOptions: [],
@@ -331,7 +355,49 @@ export default {
       seriesData2: [],
       chartColor10: ['#8c6be6', '#4a14dd'],
       legendData: ['生产能耗', '非生产能耗'],
-      seriesData10: []
+      seriesData10: [],
+      data2: [{
+        id: 1,
+        label: '一级 1',
+        children: [{
+          id: 4,
+          label: '二级 1-1',
+          children: [{
+            id: 9,
+            label: '三级 1-1-1'
+          }, {
+            id: 10,
+            label: '三级 1-1-2'
+          }]
+        }]
+      }, {
+        id: 2,
+        label: '一级 2',
+        children: [{
+          id: 5,
+          label: '二级 2-1'
+        }, {
+          id: 6,
+          label: '二级 2-2'
+        }]
+      }, {
+        id: 3,
+        label: '一级 3',
+        children: [{
+          id: 7,
+          label: '二级 3-1'
+        }, {
+          id: 8,
+          label: '二级 3-2'
+        }]
+      }],
+      defaultProps: {
+        children: 'children',
+        label: 'label'
+      },
+      trees: [],
+      selectGroups: '',
+      configTips: ''
     }
   },
   created() {
@@ -367,14 +433,29 @@ export default {
     }
   },
   methods: {
+    getSelected(val) {
+      this.selectGroups = val
+      console.log(this.selectGroups)
+      if (val.length === 0) {
+        this.configTips = ''
+      } else {
+        this.configTips = `已选择${val.length}个公司`
+      }
+    },
     channgeChart(status) {
       this.showflag = status
     },
     handleChange(value) {
-      console.log(value)
+      this.trees.push(value[value.length - 1])
     },
     onClose() {
       this.$router.replace('/home')
+    },
+    handleClose(tag) {
+      let index = this.trees.findIndex((item) => {
+        return item === tag
+      })
+      this.trees.splice(index, 1)
     },
     sectionToChinese(section) {
       let chinese = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
@@ -436,6 +517,8 @@ export default {
         justify-content: space-between
         padding: 0 10px 0 10px
         .title-l
+          .tags
+            display: inline-block
           .picker-txt
             padding: 0 5px 0 15px
         .title-r
