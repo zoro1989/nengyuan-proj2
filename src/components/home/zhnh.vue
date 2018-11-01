@@ -178,7 +178,7 @@
                         :series="zcData.series"
                         :xAxisData="zcData.xAxisData"
                         :yAxis="yAxis"
-                        :titleText="lastMonth + '整车制造产值综合能耗'"></chart-bar-line>
+                        :titleText="lastMonth + '整车制造' + chartTitle"></chart-bar-line>
       </div>
       <div class="col-box-bottom">
         <chart-bar-line class="chart-box"
@@ -186,7 +186,7 @@
                         :series="lbjData.series"
                         :xAxisData="lbjData.xAxisData"
                         :yAxis="yAxis"
-                        :titleText="lastMonth + '零部件加工产值综合能耗'"></chart-bar-line>
+                        :titleText="lastMonth + '零部件加工' + chartTitle"></chart-bar-line>
       </div>
     </div>
   </div>
@@ -246,7 +246,8 @@ export default {
       lbjData: {},
       dateTime: '',
       lx: '',
-      yAxis: [{name: '吨标煤/万元'}, {name: '%'}]
+      yAxis: [{name: '吨标煤/万元'}, {name: '%'}],
+      chartTitle: '产值综合能耗'
     }
   },
   created() {
@@ -283,6 +284,10 @@ export default {
       this.fetchChartData()
     },
     selectChange(value) {
+      let index = this.options1.findIndex((item) => {
+        return value === item.value
+      })
+      this.chartTitle = this.options1[index].label
       // 产值综合能耗
       if (value === '40') {
         this.yAxis = [{name: '吨标煤/万元'}, {name: '%'}]

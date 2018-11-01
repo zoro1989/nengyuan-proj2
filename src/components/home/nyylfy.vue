@@ -179,6 +179,7 @@
           <chart-pie class="chart-box"
                      :titleText="lastMonth + chartTitle + '量占比'"
                      :radius="quantityChartRadius"
+                     ref="quantity"
                      @pieClick="pieClick"
                      @back="pieBack"
                      @titleClick="pieTitleClickDl"
@@ -192,9 +193,9 @@
                      :titleText="lastMonth + chartTitle + '费用占比'"
                      :radius="feeChartRadius"
                      :isShowLabel="isShowLabel"
-                     :legendData="legendData"
+                     :legendData="pieDf.legendData"
                      :center="pieCenter"
-                     :seriesData="strucPie2"></chart-pie>
+                     :seriesData="pieDf.seriesData"></chart-pie>
           <!--<chart-pie class="fee" ref="fee"-->
                      <!--:titleText="lastMonth + chartTitle + '费用占比'"-->
                      <!--:radius="feeChartRadius"-->
@@ -238,7 +239,7 @@ export default {
       lastMonth: moment().subtract(1, 'months').format('MMMM'),
       quantityChartRadius: [0, '70%'],
       feeChartRadius: [0, '70%'],
-      pieCenter: ['40%', '50%'],
+      pieCenter: ['40%', '60%'],
       valueMonth: '',
       valueSelect: '',
       options1: [{
@@ -271,11 +272,11 @@ export default {
     }
   },
   created() {
-    setTimeout(() => {
+//    setTimeout(() => {
 //      this.strucPie1 = [{value: 274, name: '零部件、物流研发'}, {value: 168, name: '整车制造'}]
-      this.strucPie2 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
-      this.legendData = ['水', '其他', '一汽解放', '天津丰田', '天津夏利', '长春丰越', '一汽通用', '高温水', '原煤', '天然气', '电']
-    })
+//      this.strucPie2 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+//      this.legendData = ['水', '其他', '一汽解放', '天津丰田', '天津夏利', '长春丰越', '一汽通用', '高温水', '原煤', '天然气', '电']
+//    })
     this.fetchPanelData()
     this.fetchChartData()
   },
@@ -360,6 +361,10 @@ export default {
       } else if (param.data.name === '零部件加工') {
         this.pid = '23'
         this.pidmain = '23'
+        this.fetchPieData()
+      } else if (param.data.name === '物流') {
+        this.pid = '30'
+        this.pidmain = '30'
         this.fetchPieData()
       }
     },
