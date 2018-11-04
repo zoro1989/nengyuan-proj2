@@ -77,7 +77,42 @@
             </div>
           </div>
           <div class="col-lg-4 col-md-12 table-box box-right">
-            <data-panel-title title="分析结果" :noBorder="noBorder"></data-panel-title>
+            <data-panel-title title="分析结果" :noBorder="noBorder">
+            </data-panel-title>
+            <el-table
+              :data="rData.zf"
+              border
+              header-cell-class-name="header-cell-class-name"
+              style="width: 99%">
+              <el-table-column
+                prop="yue"
+                label="月">
+              </el-table-column>
+              <el-table-column
+                prop="ylhbzf"
+                label="用量环比增幅">
+              </el-table-column>
+              <el-table-column
+                prop="clhbzf"
+                label="产量环比增幅">
+              </el-table-column>
+              <el-table-column
+                prop="yltbzf"
+                label="用量同比增幅">
+              </el-table-column>
+              <el-table-column
+                prop="cltbzf"
+                label="产量同比增幅">
+              </el-table-column>
+              <el-table-column
+                prop="dylhbzf"
+                label="单车环比增幅">
+              </el-table-column>
+              <el-table-column
+                prop="dyltbzf"
+                label="单车同比增幅">
+              </el-table-column>
+            </el-table>
           </div>
         </div>
       </div>
@@ -217,7 +252,7 @@
             let obj = {}
             obj.projectName = '用量'
             for (let i = 0; i < res.data.yl.length; i++) {
-              let key = i + 1 + 'yue'
+              let key = res.data.xAxisData[i] + 'yue'
               obj[key] = res.data.yl[i]
             }
             this.tableData.push(obj)
@@ -231,7 +266,7 @@
             let obj = {}
             obj.projectName = '同期用量'
             for (let i = 0; i < res.data.tqyl.length; i++) {
-              let key = i + 1 + 'yue'
+              let key = res.data.xAxisData[i] + 'yue'
               obj[key] = res.data.tqyl[i]
             }
             this.tableData.push(obj)
@@ -245,7 +280,7 @@
             let obj = {}
             obj.projectName = '上月用量'
             for (let i = 0; i < res.data.syyl.length; i++) {
-              let key = i + 1 + 'yue'
+              let key = res.data.xAxisData[i] + 'yue'
               obj[key] = res.data.syyl[i]
             }
             this.tableData.push(obj)
@@ -259,7 +294,7 @@
             let obj = {}
             obj.projectName = '产量'
             for (let i = 0; i < res.data.cl.length; i++) {
-              let key = i + 1 + 'yue'
+              let key = res.data.xAxisData[i] + 'yue'
               obj[key] = res.data.cl[i]
             }
             this.tableData.push(obj)
@@ -273,7 +308,7 @@
             let obj = {}
             obj.projectName = '同期产量'
             for (let i = 0; i < res.data.tqcl.length; i++) {
-              let key = i + 1 + 'yue'
+              let key = res.data.xAxisData[i] + 'yue'
               obj[key] = res.data.tqcl[i]
             }
             this.tableData.push(obj)
@@ -287,7 +322,7 @@
             let obj = {}
             obj.projectName = '上月产量'
             for (let i = 0; i < res.data.sycl.length; i++) {
-              let key = i + 1 + 'yue'
+              let key = res.data.xAxisData[i] + 'yue'
               obj[key] = res.data.sycl[i]
             }
             this.tableData.push(obj)

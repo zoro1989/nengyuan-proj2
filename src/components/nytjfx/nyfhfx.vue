@@ -1,21 +1,21 @@
 <template>
-  <div class="info">
-    <div class="col-lg-12 col-md-12 col-box">
-      <select-title title1="用能单位" title2="基期" title3="能源类型" @search="onSearch" :showSearch="true">
-        <el-select
-          slot="title1"
-          v-model="system_id"
-          placeholder="请选择"
-          size="mini"
-          @change="selectChange">
-          <el-option
-            v-for="item in options1"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <span slot="title2">
+  <div class="info-container">
+    <div class="info">
+      <div class="col-lg-12 col-md-12 col-box">
+        <select-title title1="用能单位" title2="基期" title3="能源类型" @search="onSearch" :showSearch="true">
+          <el-select
+            slot="title1"
+            v-model="system_id"
+            placeholder="请选择"
+            size="mini">
+            <el-option
+              v-for="item in options1"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+          <span slot="title2">
           <el-date-picker
             v-model="year"
             class="date-year"
@@ -39,111 +39,71 @@
             </el-option>
           </el-select>
         </span>
-        <el-select
-          slot="title3"
-          v-model="lx"
-          placeholder="请选择"
-          size="mini">
-          <el-option
-            v-for="item in options2"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-      </select-title>
-    </div>
-    <div class="col-lg-12 col-md-12 col-box-left-right-bottom">
-      <div class="panel-box">
-        <div class="row">
-          <div class="col-lg-12 col-md-12 table-box">
-            <div class="row">
-              <div class="col-lg-12 col-md-12">
-                <chart-bar-line class="chart-box"
-                                :legendData="legendData"
-                                :series="seriesData"
-                                :xAxisData="rData.xAxisData"
-                                :yAxis="y"
-                                titleText="一汽大众公司2017年一月份产量与电量日趋势分析"></chart-bar-line>
+          <el-select
+            slot="title3"
+            v-model="lx"
+            placeholder="请选择"
+            size="mini">
+            <el-option
+              v-for="item in options2"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </select-title>
+      </div>
+      <div class="col-lg-12 col-md-12 col-box-left-right-bottom">
+        <div class="panel-box">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 table-box">
+              <div class="row">
+                <div class="col-lg-12 col-md-12">
+                  <chart-bar-line class="chart-box"
+                                  :legendData="legendData"
+                                  :series="seriesData"
+                                  :xAxisData="rData.xAxisData"
+                                  :yAxis="y"
+                                  titleText="一汽大众公司2017年一月份产量与电量日趋势分析"></chart-bar-line>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-md-12" style="height: 50px; line-height: 50px">
+                  <span>最大值：{{maxVal}}</span>
+                  <span>最小值：{{minVal}}</span>
+                  <span>平均值：{{avgVal}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-md-12">
+                  <el-table
+                    :data="tableData"
+                    border
+                    header-cell-class-name="header-cell-class-name"
+                    style="width: 99%">
+                    <el-table-column
+                      prop="projectName"
+                      min-width="200"
+                      label="项目名称">
+                      <template slot-scope="scope">
+                        <span class="department-block" :style="departmentStyle(scope.$index)"></span>
+                        <span>{{ scope.row.projectName }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      v-for="item in rData.xAxisData"
+                      :key="item"
+                      :prop="month ? item + 'ri' : item + 'yue'"
+                      :label="month ? item + '日' : item + '月'">
+                    </el-table-column>
+                  </el-table>
+                </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-12 col-md-12" style="height: 50px; line-height: 50px">
-                <span>最大值：{{maxVal}}</span>
-                <span>最小值：{{minVal}}</span>
-                <span>平均值：{{avgVal}}</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-12 col-md-12">
-                <!--<Calendar v-if="month" locale="zh-cn" :dateData="calendarData" class="ui-calendar">-->
-                  <!--<div slot="header-left">-->
-                    <!--<div style="height: 20px;line-height: 20px">-->
-                      <!--<span style="display: inline-block; background: #5967f1; height: 2px; width: 20px; margin-right: 5px;"></span><span>实际电量（兆瓦时）</span>-->
-                    <!--</div>-->
-                    <!--<div style="height: 20px;line-height: 20px">-->
-                      <!--<span style="display: inline-block; background: #06e56d; height: 8px; width: 20px; margin-right: 5px;"></span><span>实际产量（辆）</span>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                  <!--<div-->
-                    <!--:class="[-->
-                        <!--'ui-calendar-item',-->
-                        <!--{-->
-                          <!--'is-otherMonth': item.isPrevMonth || item.isNextMonth,-->
-                          <!--'is-today': item.isToday-->
-                        <!--},-->
-                      <!--]"-->
-                    <!--slot-scope="item"-->
-                  <!--&gt;-->
-                    <!--<div-->
-                      <!--:class="['ui-calendar-item-date']">-->
-                      <!--{{item.date.date}}-->
-                    <!--</div>-->
-                    <!--<div-->
-                      <!--class="ui-calendar-item-name"-->
-                      <!--v-for="(item, index) in item.data"-->
-                      <!--:key="index"-->
-                    <!--&gt;-->
-                      <!--<el-tooltip class="item" effect="dark" content="实际电量（兆瓦时）" placement="top-start">-->
-                        <!--<div style="height: 20px;line-height: 20px">-->
-                          <!--<span style="display: inline-block; background: #5967f1; height: 2px; width: 20px; margin-right: 5px;"></span><span>{{item.dl}}</span>-->
-                        <!--</div>-->
-                      <!--</el-tooltip>-->
-                      <!--<el-tooltip class="item" effect="dark" content="实际产量（辆）" placement="top-start">-->
-                        <!--<div style="height: 20px;line-height: 20px">-->
-                          <!--<span style="display: inline-block; background: #06e56d; height: 8px; width: 20px; margin-right: 5px;"></span><span>{{item.cl}}</span>-->
-                        <!--</div>-->
-                      <!--</el-tooltip>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</Calendar>-->
-                <el-table
-                  :data="tableData"
-                  border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
-                  <el-table-column
-                    prop="projectName"
-                    min-width="200"
-                    label="项目名称">
-                    <template slot-scope="scope">
-                      <span class="department-block" :style="departmentStyle(scope.$index)"></span>
-                      <span>{{ scope.row.projectName }}</span>
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    v-for="item in rData.xAxisData"
-                    :key="item"
-                    :prop="month ? item + 'ri' : item + 'yue'"
-                    :label="month ? item + '日' : item + '月'">
-                  </el-table-column>
-                </el-table>
-              </div>
-            </div>
+            <!--<div class="col-lg-4 col-md-12 table-box box-right">-->
+              <!--<data-panel-title title="分析结果" :noBorder="noBorder"></data-panel-title>-->
+            <!--</div>-->
           </div>
-          <!--<div class="col-lg-4 col-md-12 table-box box-right">-->
-            <!--<data-panel-title title="分析结果" :noBorder="noBorder"></data-panel-title>-->
-          <!--</div>-->
         </div>
       </div>
     </div>
@@ -169,16 +129,7 @@
     },
     data() {
       return {
-        strucPie1: [],
-        strucPie2: [],
-        legendData: ['用量'],
-        seriesData: [],
-        xAxisData: [],
-        y: [{name: '产量'}],
         pieRadius: ['13%', '60%'],
-        valueYear: '',
-        valueMonth: '',
-        valueSelect: '',
         options1: [
           {
             value: '42052',
@@ -247,36 +198,17 @@
         ],
         options2: [
           {
-            value: '33',
-            label: '电'
-          }, {
-            value: '00',
-            label: '水'
-          }, {
             value: '32',
             label: '热力'
           }, {
             value: '15',
             label: '天然气'
           }, {
-            value: '40',
-            label: '能源消耗总量'
-          },
-          {
-            value: '33_d',
-            label: '单车电'
-          }, {
-            value: '00_d',
-            label: '单车水'
-          }, {
             value: '32_d',
             label: '单车热力'
           }, {
             value: '15_d',
             label: '单车天然气'
-          }, {
-            value: '40_d',
-            label: '单车能源消耗总量'
           }
         ],
         options3: [
@@ -330,21 +262,26 @@
           }
         ],
         tableData: [],
-        colors: ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3'],
+        colors: ['#5967f1', '#06e56d', '#7dd1ff', '#ff8e06', '#1196de', '#0c1994', '#8c6be6', '#ffc300', '#4472c6', '#838389', '#1096df'],
         noBorder: true,
-        calendarData: [],
         lx: '',
         system_id: '',
         year: '',
         month: '',
         rData: {},
+        legendData: ['用量'],
+        seriesData: [],
+        y: [{name: '产量'}],
         maxVal: 0,
         minVal: 0,
         avgVal: 0
       }
     },
     methods: {
-      fetchData() {
+      departmentStyle(index) {
+        return `background: ${this.colors[index]}`
+      },
+      onSearch() {
         fetch('get', api.nyylfxDay, {id: this.system_id, year: this.year, month: this.month}).then((res) => {
           this.rData = res.data
           // 电
@@ -569,117 +506,38 @@
           }
         }).catch(() => {
         })
-      },
-      onSearch() {
-        this.fetchData()
-      },
-      departmentStyle(index) {
-        return `background: ${this.colors[index]}`
-      },
-      dateChange(value) {
-        this.dateTime = value
-      },
-      selectChange(value) {}
+      }
     }
   }
 </script>
 <style lang="stylus" scoped>
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
-  .info
-    background: $color-sub-text
-    display: flex
-    flex-direction: column
-    min-height: 100%
-    min-width: 600px
-    .date-year
-      width: 100px
-    .date-month
-      width: 90px
-    .department-block
-      display: inline-block
-      width: 25px
-      height: 10px
-    .col-box-left-right-bottom
-      flex: 1
-      .panel-box >.row
-        height: 100%
-    .chart-box
-      min-height: 350px
-      border-radius: 0px
-    .ui-calendar
-      margin: 0 10px 0 0;
-      border-radius: 5px;
-      height: 90%
-      &-header
-        &__left
-          > button
-            font-size: 12px;
-            &:nth-child(2)
-              margin-left: -4px
-      &-modeBtn
-        position: relative;
-        display: inline-block;
-        background: #fff;
-        border: 1px solid #75c4ef;
-        color: #75c4ef;
-        padding: 5px 1em;
-        font-size: 13px;
-        line-height: 1;
-        box-shadow: 0 1px 3px lighten(#75c4ef, 15%);
-        min-width: 5em;
-        margin-right: -1px;
-        // text-indent: 0.5em;
-        text-align: center
-        cursor: pointer
-        &:first-child
-          border-top-left-radius: 3px;
-          border-bottom-left-radius: 3px;
-        &:last-child
-          // left: -.5em;
-          border-bottom-right-radius: 3px;
-          border-top-right-radius: 3px
-        &:active,
-        &:focus
-          outline: none
-        &.active,
-        &:active
-          background: #75c4ef;
-          color: #fff;
-          z-index: 2
-      & .k-calendar
-        &-header-center
-          color: #75c4ef
-        &-week-title-item
-          color: #75c4ef
-      &-item
-        padding: 5px 10px;
-        color: #666;
-        &.is
-          &-otherMonth
-            color: #bbb
-          &-today
-            .ui-calendar-item-date
-              position: relative;
-              display: inline-block;
-              background: #75c4ef;
-              color: #fff;
-              width: 20px;
-              height: 20px;
-              border-radius: 50%;
-              text-align: center;
-              line-height: 20px;
-              top: -1px
-        &-name
-          font-size: 12px;
-          > *
-            vertical-align: middle
-          .del
-            display: inline-block;
-            cursor: pointer;
-            color: inherit;
-            margin-bottom: -2px
-
-      .vue-calendar-body-row
-        height: auto
+  .info-container
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    .info
+      background: $color-sub-text
+      display: flex
+      flex-direction: column
+      min-height: 100%
+      min-width: 600px
+      .date-type
+        width: 60px
+      .department-block
+        display: inline-block
+        width: 25px
+        height: 10px
+      .col-box-left-right-bottom
+        flex: 1
+        .panel-box >.row
+          height: 100%
+      .chart-box
+        min-height: 350px
+        border-radius: 0px
 </style>

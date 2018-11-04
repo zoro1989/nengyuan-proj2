@@ -3,15 +3,6 @@
     <div class="realtime-tripping">
       <div class="tripping-title">
         <div class="title-l">
-          <span class="picker-txt">用能单位</span>
-          <el-cascader
-            :options="options"
-            v-model="selectedOptions"
-            change-on-select
-            size="mini"
-            @change="selectUnitChange"
-            :show-all-levels="false"
-          ></el-cascader>
           <span class="picker-txt">选择日期</span>
           <el-date-picker
             v-model="time"
@@ -44,7 +35,7 @@
             <chart-bar class="chart-box"
                        :titleText="'单车耗' + chartTitle + '日对比分析'"
                        :yAxis="yAxis"
-                       :series="data1.seriesData"
+                       :series="seriesData1"
                        :xAxisData="data1.xAxisData"
                        chartColor="#48daf6"></chart-bar>
           </div>
@@ -54,7 +45,7 @@
             <chart-bar class="chart-box"
                        :titleText="'单车耗' + chartTitle + '日对比分析'"
                        :yAxis="yAxis"
-                       :series="data2.seriesData"
+                       :series="seriesData2"
                        :xAxisData="data2.xAxisData"
                        chartColor="#916fe9"></chart-bar>
           </div>
@@ -223,28 +214,27 @@ export default {
       ],
       selectedOptions: [],
       options1: [{
-        value: '33',
-        label: '电'
+        value: 'D_D',
+        label: '单车电'
       }, {
-        value: '00',
-        label: '水'
+        value: 'S_D',
+        label: '单车水'
       }, {
-        value: '32',
-        label: '热力'
+        value: 'R_D',
+        label: '单车热'
       }, {
-        value: '15',
-        label: '天然气'
-      }, {
-        value: '40',
-        label: '能源消耗总量'
+        value: 'Q_D',
+        label: '单车气'
       }],
-      yAxis: [{name: '万千瓦时'}, {name: '万元'}],
+      yAxis: [{name: '千瓦时'}],
       time: moment().format('YYYY-MM-DD'),
-      lx: '33',
+      lx: 'D_D',
       data1: {},
       data2: {},
       chartTitle: '电',
-      system_id: '41951'
+      system_id: '41951',
+      seriesData1: [],
+      seriesData2: []
     }
   },
   created() {
@@ -252,9 +242,21 @@ export default {
   },
   methods: {
     fetchData() {
-      fetch('get', api.yueNy, {system_id: this.system_id, time: this.time, lx: this.lx}).then((res) => {
-        this.data1 = res.data1
-        this.data2 = res.data2
+      fetch('get', api.dayolumnOrder, {time: this.time, column_name: this.lx}).then((res) => {
+        this.data1 = res.data.data1
+        this.seriesData1 = [
+            {
+              name: '用量',
+              data: res.data.data1.seriesData
+            }
+        ]
+        this.data2 = res.data.data2
+        this.seriesData2 = [
+          {
+            name: '用量',
+            data: res.data.data2.seriesData
+          }
+        ]
       }).catch(() => {
         this.data1 = {}
         this.data2 = {}
@@ -270,30 +272,6 @@ export default {
       this.fetchData()
     },
     selectChange(value) {
-      this.lx = value
-      let index = this.options1.findIndex((item) => {
-        return value === item.value
-      })
-      // 能源消耗总量
-      if (value === '40') {
-        this.chartTitle = '能源消耗总'
-        this.yAxis = [{name: '万吨标煤'}, {name: '万元'}]
-      } else {
-        this.chartTitle = this.options1[index].label
-        // 电
-        if (value === '33') {
-          this.yAxis = [{name: '万千瓦时'}, {name: '万元'}]
-          // 水
-        } else if (value === '00') {
-          this.yAxis = [{name: '吨'}, {name: '万元'}]
-          // 热力
-        } else if (value === '32') {
-          this.yAxis = [{name: '吉焦'}, {name: '万元'}]
-          // 天然气
-        } else if (value === '15') {
-          this.yAxis = [{name: '万立方米'}, {name: '万元'}]
-        }
-      }
     },
     handleChange(value) {
       console.log(value)

@@ -2,7 +2,7 @@
   <div class="info-container">
     <div class="info">
       <div class="col-lg-12 col-md-12 col-box">
-        <select-title title1="用能单位" title2="基期" title3="能源类型" @search="onSearch" :showSearch="true">
+        <select-title title1="用能单位" title2="基期" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
             v-model="system_id"
@@ -23,18 +23,6 @@
             value-format="yyyy"
             placeholder="选择年">
           </el-date-picker>
-          <el-select
-            slot="title3"
-            v-model="lx"
-            placeholder="请选择"
-            size="mini">
-            <el-option
-              v-for="item in options2"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
         </select-title>
       </div>
       <div class="col-lg-12 col-md-12 col-box-left-right-bottom">
@@ -89,20 +77,28 @@
                   label="月">
                 </el-table-column>
                 <el-table-column
-                  prop="fyhbzf"
-                  label="用量环比增幅">
-                </el-table-column>
-                <el-table-column
                   prop="clhbzf"
                   label="产量环比增幅">
                 </el-table-column>
                 <el-table-column
-                  prop="fytbzf"
-                  label="用量同比增幅">
-                </el-table-column>
-                <el-table-column
                   prop="cltbzf"
                   label="产量同比增幅">
+                </el-table-column>
+                <el-table-column
+                  prop="tanhbzf"
+                  label="碳环比增幅">
+                </el-table-column>
+                <el-table-column
+                  prop="tantbzf"
+                  label="碳同比增幅">
+                </el-table-column>
+                <el-table-column
+                  prop="dtanhbzf"
+                  label="单车碳环比增幅">
+                </el-table-column>
+                <el-table-column
+                  prop="dtantbzf"
+                  label="单车碳同比增幅">
                 </el-table-column>
               </el-table>
             </div>
@@ -222,7 +218,6 @@
         noBorder: true,
         system_id: '',
         year: '',
-        lx: '',
         rData: {},
         legendData: ['用量', '同期用量', '上月用量', '产量', '同期产量', '上月产量'],
         seriesData: [],
@@ -234,47 +229,47 @@
         return `background: ${this.colors[index]}`
       },
       onSearch() {
-        fetch('get', api.nyfyfx, {id: this.system_id, year: this.year, lx: this.lx}).then((res) => {
+        fetch('get', api.tanfx, {id: this.system_id, year: this.year}).then((res) => {
           let series = []
-          if (res.data.fy && res.data.fy.length > 0) {
+          if (res.data.tan && res.data.tan.length > 0) {
             series.push({
-              name: '费用',
+              name: '碳',
               type: 'bar',
-              data: res.data.fy
+              data: res.data.tan
             })
             let obj = {}
-            obj.projectName = '费用'
-            for (let i = 0; i < res.data.fy.length; i++) {
+            obj.projectName = '碳'
+            for (let i = 0; i < res.data.tan.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.fy[i]
+              obj[key] = res.data.tan[i]
             }
             this.tableData.push(obj)
           }
-          if (res.data.tqfy && res.data.tqfy.length > 0) {
+          if (res.data.tqtan && res.data.tqtan.length > 0) {
             series.push({
-              name: '同期费用',
+              name: '同期碳',
               type: 'bar',
-              data: res.data.tqfy
+              data: res.data.tqtan
             })
             let obj = {}
-            obj.projectName = '同期费用'
-            for (let i = 0; i < res.data.tqfy.length; i++) {
+            obj.projectName = '同期碳'
+            for (let i = 0; i < res.data.tqtan.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.tqfy[i]
+              obj[key] = res.data.tqtan[i]
             }
             this.tableData.push(obj)
           }
-          if (res.data.syfy && res.data.syfy.length > 0) {
+          if (res.data.sytan && res.data.sytan.length > 0) {
             series.push({
-              name: '上月费用',
+              name: '上月碳',
               type: 'bar',
-              data: res.data.syfy
+              data: res.data.sytan
             })
             let obj = {}
-            obj.projectName = '上月费用'
-            for (let i = 0; i < res.data.syfy.length; i++) {
+            obj.projectName = '上月碳'
+            for (let i = 0; i < res.data.sytan.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.syfy[i]
+              obj[key] = res.data.sytan[i]
             }
             this.tableData.push(obj)
           }

@@ -39,10 +39,10 @@
           <ul>
             <li><a href="#" @click="changeRoute('/nyylfx', 2)"><i class="fa fa-bar-chart"></i>能源用量分析</a></li>
             <li><a href="#" @click="changeRoute('/nyfyfx', 2)"><i class="fa fa-yen"></i>能源费用分析</a></li>
-            <li><a href="#"><i class="fa fa-envira"></i>二氧化碳排放量分析</a></li>
-            <li><a href="#"><i class="fa fa-institution"></i>部门用能分析</a></li>
-            <li><a href="#"><i class="fa fa-bell-o"></i>能源负荷分析</a></li>
-            <li><a href="#"><i class="fa fa-flash"></i>电价分析</a></li>
+            <li><a href="#" @click="changeRoute('/tjeyhtfx', 2)"><i class="fa fa-envira"></i>二氧化碳排放量分析</a></li>
+            <li><a href="#" @click="changeRoute('/bmynfx', 2)"><i class="fa fa-institution"></i>部门用能分析</a></li>
+            <li><a href="#" @click="changeRoute('/nyfhfx', 2)"><i class="fa fa-bell-o"></i>能源负荷分析</a></li>
+            <li><a href="#" @click="changeRoute('/djfx', 2)"><i class="fa fa-flash"></i>电价分析</a></li>
           </ul>
         </li>
         <li>
