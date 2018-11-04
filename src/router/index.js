@@ -18,6 +18,11 @@ const Byq = () => import('components/sblr/byq')
 const Kyj = () => import('components/sblr/kyj')
 const Dj = () => import('components/sblr/dj')
 
+const Nxbyq = () => import('components/sbnxfx/byq')
+const Nxkyj = () => import('components/sbnxfx/kyj')
+const Nxfj = () => import('components/sbnxfx/fj')
+const Nxsb = () => import('components/sbnxfx/sb')
+
 Vue.use(Router)
 
 export default new Router({
@@ -95,6 +100,26 @@ export default new Router({
       path: '/nyfhfx',
       name: '能源负荷分析',
       component: Nyfhfx
+    },
+    {
+      path: '/nxbyq',
+      name: '变压器',
+      component: Nxbyq
+    },
+    {
+      path: '/nxkyj',
+      name: '空压机',
+      component: Nxkyj
+    },
+    {
+      path: '/nxfj',
+      name: '风机',
+      component: Nxfj
+    },
+    {
+      path: '/nxsb',
+      name: '水泵',
+      component: Nxsb
     },
     {
       path: '/byq',

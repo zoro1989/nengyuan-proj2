@@ -22,6 +22,9 @@ let fetch = (type, url, params, data = false, isFormat = true) => {
   service.interceptors.response.use(response => {
     // 如果服务器出错，做出相应的处理，response.data后面的内容根据后端接口修改
     let res = response.data
+    if (!res.status) {
+      return res
+    }
     if (res.status !== apiStatus.success) {
       Message({
         message: '错误：' + res.msg,

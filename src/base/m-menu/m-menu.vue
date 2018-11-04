@@ -64,10 +64,10 @@
             <strong>设备能效分析</strong>
           </a>
           <ul>
-            <li><a href="#"><i class="fa fa-gear"></i>变压器</a></li>
-            <li><a href="#"><i class="fa fa-gear"></i>空压机</a></li>
-            <li><a href="#"><i class="fa fa-gear"></i>风机</a></li>
-            <li><a href="#"><i class="fa fa-gear"></i>水泵</a></li>
+            <li><a href="#" @click="changeRoute('/nxbyq', 4)"><i class="fa fa-gear"></i>变压器</a></li>
+            <li><a href="#" @click="changeRoute('/nxkyj', 4)"><i class="fa fa-gear"></i>空压机</a></li>
+            <li><a href="#" @click="changeRoute('/nxfj', 4)"><i class="fa fa-gear"></i>风机</a></li>
+            <li><a href="#" @click="changeRoute('/nxsb', 4)"><i class="fa fa-gear"></i>水泵</a></li>
           </ul>
         </li>
         <li>
