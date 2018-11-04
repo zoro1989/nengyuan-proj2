@@ -1,6 +1,6 @@
 <template>
   <div class="info">
-    <div class="col-lg-12 col-md-12 col-box">
+    <div class="col-box">
       <select-title title1="用能单位" title2="基期" title3="能源类型" @search="onSearch" :showSearch="true">
         <el-select
           slot="title1"
@@ -36,44 +36,40 @@
         </el-select>
       </select-title>
     </div>
-    <div class="col-lg-12 col-md-12 col-box-left-right-bottom">
+    <div class="col-box-left-right-bottom">
       <div class="panel-box">
         <div class="row">
           <div class="col-lg-8 col-md-12 table-box">
             <div class="row">
-              <div class="col-lg-12 col-md-12">
-                <chart-bar-line class="chart-box"
-                                :legendData="legendData"
-                                :series="seriesData"
-                                :xAxisData="rData.xAxisData"
-                                :yAxis="y"
-                                titleText="一汽大众公司2017年一月份产量与电量日趋势分析"></chart-bar-line>
-              </div>
+              <chart-bar-line class="chart-box"
+                              :legendData="legendData"
+                              :series="seriesData"
+                              :xAxisData="rData.xAxisData"
+                              :yAxis="y"
+                              titleText="一汽大众公司2017年一月份产量与电量日趋势分析"></chart-bar-line>
             </div>
             <div class="row">
-              <div class="col-lg-12 col-md-12">
-                <el-table
-                  :data="tableData"
-                  border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
-                  <el-table-column
-                    prop="projectName"
-                    min-width="200"
-                    label="项目名称">
-                    <template slot-scope="scope">
-                      <span class="department-block" :style="departmentStyle(scope.$index)"></span>
-                      <span>{{ scope.row.projectName }}</span>
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    v-for="item in rData.xAxisData"
-                    :key="item"
-                    :prop="item + 'yue'"
-                    :label="item + '月'">
-                  </el-table-column>
-                </el-table>
-              </div>
+              <el-table
+                :data="tableData"
+                border
+                header-cell-class-name="header-cell-class-name"
+                style="width: 99%">
+                <el-table-column
+                  prop="projectName"
+                  min-width="200"
+                  label="项目名称">
+                  <template slot-scope="scope">
+                    <span class="department-block" :style="departmentStyle(scope.$index)"></span>
+                    <span>{{ scope.row.projectName }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  v-for="item in rData.xAxisData"
+                  :key="item"
+                  :prop="item + 'yue'"
+                  :label="item + '月'">
+                </el-table-column>
+              </el-table>
             </div>
           </div>
           <div class="col-lg-4 col-md-12 table-box box-right">
@@ -89,10 +85,12 @@
                 label="月">
               </el-table-column>
               <el-table-column
+                v-if="lx.split('_').length !== 2"
                 prop="ylhbzf"
                 label="用量环比增幅">
               </el-table-column>
               <el-table-column
+                v-if="lx.split('_').length !== 2"
                 prop="clhbzf"
                 label="产量环比增幅">
               </el-table-column>
@@ -105,10 +103,12 @@
                 label="产量同比增幅">
               </el-table-column>
               <el-table-column
+                v-if="lx.split('_').length === 2"
                 prop="dylhbzf"
                 label="单车环比增幅">
               </el-table-column>
               <el-table-column
+                v-if="lx.split('_').length === 2"
                 prop="dyltbzf"
                 label="单车同比增幅">
               </el-table-column>
@@ -222,6 +222,22 @@
             }, {
               value: '40',
               label: '能源消耗总量'
+            },
+            {
+              value: '33_d',
+              label: '单车电'
+            }, {
+              value: '00_d',
+              label: '单车水'
+            }, {
+              value: '32_d',
+              label: '单车热力'
+            }, {
+              value: '15_d',
+              label: '单车天然气'
+            }, {
+              value: '40_d',
+              label: '单车能源消耗总量'
             }
         ],
         tableData: [],
@@ -241,7 +257,8 @@
         return `background: ${this.colors[index]}`
       },
       onSearch() {
-        fetch('get', api.nyylfxJituan, {id: this.system_id, year: this.year, lx: this.lx}).then((res) => {
+        let lxInput = this.lx.split('_').length > 0 ? this.lx.split('_')[0] : ''
+        fetch('get', api.nyylfxJituan, {id: this.system_id, year: this.year, lx: lxInput}).then((res) => {
           let series = []
           if (res.data.yl && res.data.yl.length > 0) {
             series.push({
@@ -342,7 +359,7 @@
     background: $color-sub-text
     display: flex
     flex-direction: column
-    min-height: 100%
+    height: 100%
     min-width: 600px
     .date-type
       width: 60px
@@ -351,9 +368,11 @@
       width: 25px
       height: 10px
     .col-box-left-right-bottom
-      flex: 1
+      height: 100%
       .panel-box >.row
         height: 100%
+        .table-box > .row:last-child
+          height: calc(100% - 350px)
     .chart-box
       min-height: 350px
       border-radius: 0px

@@ -1,7 +1,7 @@
 <template>
   <div class="info-container">
     <div class="info">
-      <div class="col-lg-12 col-md-12 col-box">
+      <div class="col-box">
         <select-title title1="用能单位" title2="基期" title3="能源类型" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
@@ -53,51 +53,47 @@
           </el-select>
         </select-title>
       </div>
-      <div class="col-lg-12 col-md-12 col-box-left-right-bottom">
+      <div class="col-box-left-right-bottom">
         <div class="panel-box">
           <div class="row">
-            <div class="col-lg-12 col-md-12 table-box">
+            <div class="table-box">
               <div class="row">
-                <div class="col-lg-12 col-md-12">
-                  <chart-bar-line class="chart-box"
-                                  :legendData="legendData"
-                                  :series="seriesData"
-                                  :xAxisData="rData.xAxisData"
-                                  :yAxis="y"
-                                  titleText="一汽大众公司2017年一月份产量与电量日趋势分析"></chart-bar-line>
-                </div>
+                <chart-bar-line class="chart-box"
+                                :legendData="legendData"
+                                :series="seriesData"
+                                :xAxisData="rData.xAxisData"
+                                :yAxis="y"
+                                titleText="一汽大众公司2017年一月份产量与电量日趋势分析"></chart-bar-line>
               </div>
               <div class="row">
-                <div class="col-lg-12 col-md-12" style="height: 50px; line-height: 50px">
+                <div style="height: 50px; line-height: 50px">
                   <span>最大值：{{maxVal}}</span>
                   <span>最小值：{{minVal}}</span>
                   <span>平均值：{{avgVal}}</span>
                 </div>
               </div>
               <div class="row">
-                <div class="col-lg-12 col-md-12">
-                  <el-table
-                    :data="tableData"
-                    border
-                    header-cell-class-name="header-cell-class-name"
-                    style="width: 99%">
-                    <el-table-column
-                      prop="projectName"
-                      min-width="200"
-                      label="项目名称">
-                      <template slot-scope="scope">
-                        <span class="department-block" :style="departmentStyle(scope.$index)"></span>
-                        <span>{{ scope.row.projectName }}</span>
-                      </template>
-                    </el-table-column>
-                    <el-table-column
-                      v-for="item in rData.xAxisData"
-                      :key="item"
-                      :prop="month ? item + 'ri' : item + 'yue'"
-                      :label="month ? item + '日' : item + '月'">
-                    </el-table-column>
-                  </el-table>
-                </div>
+                <el-table
+                  :data="tableData"
+                  border
+                  header-cell-class-name="header-cell-class-name"
+                  style="width: 99%">
+                  <el-table-column
+                    prop="projectName"
+                    min-width="200"
+                    label="项目名称">
+                    <template slot-scope="scope">
+                      <span class="department-block" :style="departmentStyle(scope.$index)"></span>
+                      <span>{{ scope.row.projectName }}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    v-for="item in rData.xAxisData"
+                    :key="item"
+                    :prop="month ? item + 'ri' : item + 'yue'"
+                    :label="month ? item + '日' : item + '月'">
+                  </el-table-column>
+                </el-table>
               </div>
             </div>
             <!--<div class="col-lg-4 col-md-12 table-box box-right">-->
@@ -262,7 +258,7 @@
           }
         ],
         tableData: [],
-        colors: ['#5967f1', '#06e56d', '#7dd1ff', '#ff8e06', '#1196de', '#0c1994', '#8c6be6', '#ffc300', '#4472c6', '#838389', '#1096df'],
+        colors: ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3'],
         noBorder: true,
         lx: '',
         system_id: '',
@@ -525,8 +521,12 @@
       background: $color-sub-text
       display: flex
       flex-direction: column
-      min-height: 100%
+      height: 100%
       min-width: 600px
+      .date-year
+        width: 100px
+      .date-month
+        width: 90px
       .date-type
         width: 60px
       .department-block
@@ -534,9 +534,11 @@
         width: 25px
         height: 10px
       .col-box-left-right-bottom
-        flex: 1
+        height: 100%
         .panel-box >.row
           height: 100%
+          .table-box > .row:last-child
+            height: calc(100% - 400px)
       .chart-box
         min-height: 350px
         border-radius: 0px

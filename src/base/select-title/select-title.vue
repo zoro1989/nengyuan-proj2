@@ -3,9 +3,9 @@
     <div class="title-l">
       <span class="picker-txt">{{title1}}</span>
       <slot name="title1"></slot>
-      <span class="picker-txt">{{title2}}</span>
+      <span class="picker-txt" v-if="title2">{{title2}}</span>
       <slot name="title2"></slot>
-      <span class="picker-txt">{{title3}}</span>
+      <span class="picker-txt" v-if="title3">{{title3}}</span>
       <slot name="title3"></slot>
       <el-button class="search-btn" v-if="showSearch" type="primary" icon="el-icon-search" size="mini" @click="onSearch">搜索</el-button>
     </div>

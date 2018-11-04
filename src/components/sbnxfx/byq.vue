@@ -1,7 +1,7 @@
 <template>
   <div class="info-container">
     <div class="info">
-      <div class="col-lg-12 col-md-12 col-box">
+      <div class="col-box">
         <select-title title1="用能单位" title2="基期" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
@@ -26,183 +26,189 @@
           </el-date-picker>
         </select-title>
       </div>
-      <div class="col-lg-12 col-md-12 col-box-left-right-bottom">
+      <div class="col-box-left-right-bottom">
         <div class="panel-box">
-          <data-panel-title title="集团公司变压器能效分析" :noBorder="noBorder"></data-panel-title>
-          <el-table
-          :data="rData"
-          v-if="!system_id"
-          border
-          header-cell-class-name="header-cell-class-name"
-          style="width: 99%">
-          <el-table-column
-            prop="org"
-            min-width="200"
-            label="部门名称">
-            <template slot-scope="scope">
-              <span class="org-title" @click="orgClick(scope.$index)">{{ scope.row.org }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="sl"
-            label="数量（台）">
-          </el-table-column>
-          <el-table-column
-            prop="edszgl"
-            label="容量（KVA）">
-          </el-table-column>
-          <el-table-column
-            label="负载率（β%）">
-            <el-table-column
-              prop="hege"
-              label="合格">
-            </el-table-column>
-            <el-table-column
-              prop="buhege"
-              label="不合格">
-            </el-table-column>
-            <el-table-column
-              prop="jinggao"
-              label="警告">
-            </el-table-column>
-          </el-table-column>
-          </el-table>
-          <data-panel-title
-            v-if="rData2 && rData2.length > 0 && !system_id"
-            :title="subTitle + '部门变压器能效分析'"
-            :noBorder="noBorder"></data-panel-title>
-          <el-table
-            v-if="rData2 && rData2.length > 0"
-            :data="rData2"
-            border
-            header-cell-class-name="header-cell-class-name"
-            style="width: 99%">
-            <el-table-column
-              prop="org"
-              min-width="200"
-              label="部门名称">
-              <template slot-scope="scope">
-                <span class="org-title" @click="orgGsClick(scope.$index)">{{ scope.row.org }}</span>
-                <span></span>
-              </template>
-            </el-table-column>
-            <el-table-column
-              prop="sl"
-              label="数量（台）">
-            </el-table-column>
-            <el-table-column
-              prop="edszgl"
-              label="容量（KVA）">
-            </el-table-column>
-            <el-table-column
-              label="负载率（β%）">
-              <el-table-column
-                prop="hege"
-                label="合格">
-              </el-table-column>
-              <el-table-column
-                prop="buhege"
-                label="不合格">
-              </el-table-column>
-              <el-table-column
-                prop="jinggao"
-                label="警告">
-              </el-table-column>
-            </el-table-column>
-          </el-table>
-          <el-table
-            v-if="system_id || (rData3 && rData3.length > 0)"
-            :data="rData3"
-            border
-            header-cell-class-name="header-cell-class-name"
-            style="width: 99%">
-            <el-table-column
-              prop="code"
-              label="变压器编号">
-            </el-table-column>
-            <el-table-column
-              prop="wz"
-              label="所在位置">
-            </el-table-column>
-            <el-table-column
-              prop="value"
-              label="用电单耗">
-            </el-table-column>
-            <el-table-column
-              label="一月">
-              <template slot-scope="scope">
-                <span :style="cellStyle(scope.$index, 3)">{{ scope.row['1yue'] }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column
-              label="二月">
-              <template slot-scope="scope">
-                <span :style="cellStyle(scope.$index, 4)">{{ scope.row['2yue'] }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column
-              label="三月">
-              <template slot-scope="scope">
-                <span :style="cellStyle(scope.$index, 5)">{{ scope.row['3yue'] }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column
-              label="四月">
-              <template slot-scope="scope">
-                <span :style="cellStyle(scope.$index, 6)">{{ scope.row['4yue'] }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column
-              label="五月">
-              <template slot-scope="scope">
-                <span :style="cellStyle(scope.$index, 7)">{{ scope.row['5yue'] }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column
-              prop="6yue"
-              label="六月">
-              <template slot-scope="scope">
-                <span :style="cellStyle(scope.$index, 8)">{{ scope.row['6yue'] }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column
-              prop="7yue"
-              label="七月">
-              <template slot-scope="scope">
-                <span :style="cellStyle(scope.$index, 9)">{{ scope.row['7yue'] }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column
-              label="八月">
-              <template slot-scope="scope">
-                <span :style="cellStyle(scope.$index, 10)">{{ scope.row['8yue'] }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column
-              label="九月">
-              <template slot-scope="scope">
-                <span :style="cellStyle(scope.$index, 11)">{{ scope.row['9yue'] }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column
-              label="十月">
-              <template slot-scope="scope">
-                <span :style="cellStyle(scope.$index, 12)">{{ scope.row['10yue'] }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column
-              label="十一月">
-              <template slot-scope="scope">
-                <span :style="cellStyle(scope.$index, 13)">{{ scope.row['11yue'] }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column
-              label="十二月">
-              <template slot-scope="scope">
-                <span :style="cellStyle(scope.$index, 14)">{{ scope.row['12yue'] }}</span>
-              </template>
-            </el-table-column>
-          </el-table>
+          <div class="row">
+            <div class="table-box">
+              <data-panel-title title="集团公司变压器能效分析" :noBorder="noBorder"></data-panel-title>
+              <el-table
+                :data="rData"
+                v-if="!system_id"
+                border
+                :header-cell-style="headerCellStyle"
+                header-cell-class-name="header-cell-class-name"
+                style="width: 99%">
+                <el-table-column
+                  prop="org"
+                  min-width="200"
+                  label="部门名称">
+                  <template slot-scope="scope">
+                    <span class="org-title" @click="orgClick(scope.$index)">{{ scope.row.org }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  prop="sl"
+                  label="数量（台）">
+                </el-table-column>
+                <el-table-column
+                  prop="edszgl"
+                  label="容量（KVA）">
+                </el-table-column>
+                <el-table-column
+                  label="负载率（β%）">
+                  <el-table-column
+                    prop="hege"
+                    label="合格">
+                  </el-table-column>
+                  <el-table-column
+                    prop="buhege"
+                    label="不合格">
+                  </el-table-column>
+                  <el-table-column
+                    prop="jinggao"
+                    label="警告">
+                  </el-table-column>
+                </el-table-column>
+              </el-table>
+              <data-panel-title
+                v-if="rData2 && rData2.length > 0 && !system_id"
+                :title="subTitle + '部门变压器能效分析'"
+                :noBorder="noBorder"></data-panel-title>
+              <el-table
+                v-if="rData2 && rData2.length > 0"
+                :data="rData2"
+                border
+                :header-cell-style="headerCellStyle"
+                header-cell-class-name="header-cell-class-name"
+                style="width: 99%">
+                <el-table-column
+                  prop="org"
+                  min-width="200"
+                  label="部门名称">
+                  <template slot-scope="scope">
+                    <span class="org-title" @click="orgGsClick(scope.$index)">{{ scope.row.org }}</span>
+                    <span></span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  prop="sl"
+                  label="数量（台）">
+                </el-table-column>
+                <el-table-column
+                  prop="edszgl"
+                  label="容量（KVA）">
+                </el-table-column>
+                <el-table-column
+                  label="负载率（β%）">
+                  <el-table-column
+                    prop="hege"
+                    label="合格">
+                  </el-table-column>
+                  <el-table-column
+                    prop="buhege"
+                    label="不合格">
+                  </el-table-column>
+                  <el-table-column
+                    prop="jinggao"
+                    label="警告">
+                  </el-table-column>
+                </el-table-column>
+              </el-table>
+              <el-table
+                v-if="system_id || (rData3 && rData3.length > 0)"
+                :data="rData3"
+                border
+                header-cell-class-name="header-cell-class-name"
+                style="width: 99%">
+                <el-table-column
+                  prop="code"
+                  label="变压器编号">
+                </el-table-column>
+                <el-table-column
+                  prop="wz"
+                  label="所在位置">
+                </el-table-column>
+                <el-table-column
+                  prop="value"
+                  label="用电单耗">
+                </el-table-column>
+                <el-table-column
+                  label="一月">
+                  <template slot-scope="scope">
+                    <span :style="cellStyle(scope.$index, 3)">{{ scope.row['1yue'] }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  label="二月">
+                  <template slot-scope="scope">
+                    <span :style="cellStyle(scope.$index, 4)">{{ scope.row['2yue'] }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  label="三月">
+                  <template slot-scope="scope">
+                    <span :style="cellStyle(scope.$index, 5)">{{ scope.row['3yue'] }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  label="四月">
+                  <template slot-scope="scope">
+                    <span :style="cellStyle(scope.$index, 6)">{{ scope.row['4yue'] }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  label="五月">
+                  <template slot-scope="scope">
+                    <span :style="cellStyle(scope.$index, 7)">{{ scope.row['5yue'] }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  prop="6yue"
+                  label="六月">
+                  <template slot-scope="scope">
+                    <span :style="cellStyle(scope.$index, 8)">{{ scope.row['6yue'] }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  prop="7yue"
+                  label="七月">
+                  <template slot-scope="scope">
+                    <span :style="cellStyle(scope.$index, 9)">{{ scope.row['7yue'] }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  label="八月">
+                  <template slot-scope="scope">
+                    <span :style="cellStyle(scope.$index, 10)">{{ scope.row['8yue'] }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  label="九月">
+                  <template slot-scope="scope">
+                    <span :style="cellStyle(scope.$index, 11)">{{ scope.row['9yue'] }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  label="十月">
+                  <template slot-scope="scope">
+                    <span :style="cellStyle(scope.$index, 12)">{{ scope.row['10yue'] }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  label="十一月">
+                  <template slot-scope="scope">
+                    <span :style="cellStyle(scope.$index, 13)">{{ scope.row['11yue'] }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  label="十二月">
+                  <template slot-scope="scope">
+                    <span :style="cellStyle(scope.$index, 14)">{{ scope.row['12yue'] }}</span>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -309,6 +315,15 @@
       }
     },
     methods: {
+      headerCellStyle(cell) {
+        if (cell.rowIndex === 1 && cell.columnIndex === 0) {
+          return 'background: #67C23A; color: #fff'
+        } else if (cell.rowIndex === 1 && cell.columnIndex === 1) {
+          return 'background: #F56C6C; color: #fff'
+        } else if (cell.rowIndex === 1 && cell.columnIndex === 2) {
+          return 'background: #E6A23C; color: #fff'
+        }
+      },
       departmentStyle(index) {
         return `background: ${this.colors[index]}`
       },
@@ -341,11 +356,11 @@
           return item.row === row && item.column === column
         })
         if (ihege >= 0) {
-          return 'background: green; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center;'
+          return 'background: #67C23A; color: #fff; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center;'
         } else if (ibuhege >= 0) {
-          return 'background: red; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center;'
+          return 'background: #F56C6C; color: #fff; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center;'
         } else if (ijinggao >= 0) {
-          return 'background: yellow; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center;'
+          return 'background: #E6A23C; color: #fff; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center;'
         }
       },
       orgGsClick(index) {
@@ -425,7 +440,7 @@
       background: $color-sub-text
       display: flex
       flex-direction: column
-      min-height: 100%
+      height: 100%
       min-width: 600px
       .org-title
         &:hover
@@ -438,9 +453,9 @@
         width: 25px
         height: 10px
       .col-box-left-right-bottom
-        flex: 1
-        .panel-box >.row
-          height: 100%
+        height: 100%
+      .panel-box >.row
+        height: 100%
       .chart-box
         min-height: 350px
         border-radius: 0px

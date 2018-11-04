@@ -37,10 +37,8 @@
     left: 0
     right: 0
     bottom: 0
-    .info
-      background: $color-sub-text
-      display: flex
-      flex-direction: column
-      min-height: 100%
-      min-width: 600px
+    .el-tabs
+      height: 100%
+      .el-tabs__content
+        height: calc(100% - 55px)
 </style>

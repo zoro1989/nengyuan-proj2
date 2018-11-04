@@ -65,6 +65,7 @@
             <chart-line class="chart-l"
                         titleText="单车综合能耗"
                         yAxisTitle="吨标煤"
+                        :yAxis="bData.dnys && bData.dnys.y"
                         :xAxisData="bData.dnys && bData.dnys.xAxisData"
                         :series="bData.dnys && bData.dnys.seriesData"
                         chartColor="#48daf6"></chart-line>
@@ -73,6 +74,7 @@
             <chart-line class="chart-r"
                         titleText="单车能源费用"
                         yAxisTitle="元/辆"
+                        :yAxis="bData.dfys && bData.dfys.y"
                         :xAxisData="bData.dfys && bData.dfys.xAxisData"
                         :series="bData.dfys && bData.dfys.seriesData"
                         chartColor="#916fe9"></chart-line>
@@ -83,6 +85,7 @@
             <chart-line class="chart-l"
                         titleText="单车耗电"
                         yAxisTitle="千瓦时/量"
+                        :yAxis="bData.dds && bData.dds.y"
                         :xAxisData="bData.dds && bData.dds.xAxisData"
                         :series="bData.dds && bData.dds.seriesData "
                         chartColor="#916fe9"></chart-line>
@@ -91,6 +94,7 @@
             <chart-line class="chart-r"
                         titleText="单车耗水"
                         yAxisTitle="升/辆"
+                        :yAxis="bData.dss && bData.dss.y"
                         :xAxisData="bData.dss && bData.dss.xAxisData"
                         :series="bData.dss && bData.dss.seriesData"
                         chartColor="#5de49c"></chart-line>
@@ -101,6 +105,7 @@
             <chart-line class="chart-l"
                         titleText="单车耗热"
                         yAxisTitle="吉焦/辆"
+                        :yAxis="bData.drs && bData.drs.y"
                         :xAxisData="bData.drs && bData.drs.xAxisData"
                         :series="bData.drs && bData.drs.seriesData"
                         chartColor="#ff930f"></chart-line>
@@ -109,6 +114,7 @@
             <chart-line class="chart-r"
                         titleText="单车耗天然气"
                         yAxisTitle="立方米/辆"
+                        :yAxis="bData.dqs && bData.dqs.y"
                         :xAxisData="bData.dqs && bData.dqs.xAxisData"
                         :series="bData.dqs && bData.dqs.seriesData"
                         chartColor="#82828a"></chart-line>
@@ -119,17 +125,10 @@
             <chart-line class="chart-l"
                         titleText="能源消耗总量"
                         yAxisTitle="吨/标煤"
+                        :yAxis="bData.nys && bData.nys.y"
                         :xAxisData="bData.nys && bData.nys.xAxisData"
                         :series="bData.nys && bData.nys.seriesData"
                         chartColor="#5a63ee"></chart-line>
-          </div>
-          <div class="col-lg-6 col-md-12 col-xs-12">
-            <chart-line class="chart-r"
-                        titleText="能源非生产消耗"
-                        yAxisTitle="吨/标煤"
-                        :xAxisData="bData.fnys && bData.fnys.xAxisData"
-                        :series="bData.fnys && bData.fnys.seriesData"
-                        chartColor="#4a14dd"></chart-line>
           </div>
         </div>
       </div>
@@ -160,7 +159,7 @@
                         titleText="单车综合能耗"
                         yAxisTitle="吨标煤"
                         seriesName="能耗"
-                        :yAxis="yAxis"
+                        :yAxis="bData.dnys && bData.dnys.y"
                         :xAxisData="bData.dnys && bData.dnys.xAxisData"
                         :series="bData.dnys && bData.dnys.seriesData"
                         chartColor="#48d9f5"></chart-bar>
@@ -170,7 +169,7 @@
                         titleText="单车能源费用"
                         yAxisTitle="元/辆"
                         seriesName="费用"
-                        :yAxis="yAxis"
+                        :yAxis="bData.dfys && bData.dfys.y"
                         :xAxisData="bData.dfys && bData.dfys.xAxisData"
                         :series="bData.dfys && bData.dfys.seriesData"
                         chartColor="#8c6be6"></chart-bar>
@@ -182,6 +181,7 @@
                         titleText="单车耗电"
                         yAxisTitle="千瓦时/量"
                         seriesName="耗电"
+                       :yAxis="bData.dds && bData.dds.y"
                         :xAxisData="bData.dds && bData.dds.xAxisData"
                         :series="bData.dds && bData.dds.seriesData"
                         chartColor="#8c6be6"></chart-bar>
@@ -191,6 +191,7 @@
                         titleText="单车耗水"
                         yAxisTitle="升/辆"
                         seriesName="耗水"
+                       :yAxis="bData.dss && bData.dss.y"
                         :xAxisData="bData.dss && bData.dss.xAxisData"
                         :series="bData.dss && bData.dss.seriesData"
                         chartColor="#56e197"></chart-bar>
@@ -202,6 +203,7 @@
                         titleText="单车耗热"
                         yAxisTitle="吉焦/辆"
                         seriesName="耗热"
+                       :yAxis="bData.drs && bData.drs.y"
                         :xAxisData="bData.drs && bData.drs.xAxisData"
                         :series="bData.drs && bData.drs.seriesData"
                         chartColor="#ff8f06"></chart-bar>
@@ -211,6 +213,7 @@
                         titleText="单车耗天然气"
                         yAxisTitle="立方米/辆"
                         seriesName="耗天然气"
+                       :yAxis="bData.dqs && bData.dqs.y"
                         :xAxisData="bData.dqs && bData.dqs.xAxisData"
                         :series="bData.dqs && bData.dqs.seriesData"
                         chartColor="#838389"></chart-bar>
@@ -218,21 +221,13 @@
         </div>
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
-            <chart-bar class="chart-l"
-                        titleText="能源消耗总量"
-                        yAxisTitle="吨标煤"
-                        seriesName="耗天然气"
-                        :xAxisData="bData.nys && bData.nys.xAxisData"
-                        :series="bData.nys && bData.nys.seriesData"
-                        chartColor="#5967f1"></chart-bar>
-          </div>
-          <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-bar class="chart-r"
                         titleText="一汽大众能源消耗总量"
                         :legendData="legendData"
                         yAxisTitle="吨标煤"
-                        :xAxisData="bData.fnys && bData.fnys.xAxisData"
-                        :series="bData.fnys && bData.fnys.seriesData"
+                        :yAxis="bData.nys && bData.nys.y"
+                        :xAxisData="bData.nys && bData.nys.xAxisData"
+                        :series="bData.nys && bData.nys.seriesData"
                         chartColor="#4a14dd"
                         :stack="'1'"></chart-bar>
           </div>
@@ -479,48 +474,56 @@ export default {
             name: '单车综合能耗',
             data: data.dnys.seriesData
           }]
+          data.dnys.y = [{name: '吨标煤'}]
         }
         if (data.dfys && data.dfys.seriesData) {
           data.dfys.seriesData = [{
             name: '单车费用',
             data: data.dfys.seriesData
           }]
+          data.dfys.y = [{name: '元/辆'}]
         }
         if (data.dds && data.dds.seriesData) {
           data.dds.seriesData = [{
             name: '单车电',
             data: data.dds.seriesData
           }]
+          data.dds.y = [{name: '千瓦时/量'}]
         }
         if (data.dss && data.dss.seriesData) {
           data.dss.seriesData = [{
             name: '单车水',
             data: data.dds.seriesData
           }]
+          data.dds.y = [{name: '升/辆'}]
         }
         if (data.drs && data.drs.seriesData) {
           data.drs.seriesData = [{
             name: '单车热',
             data: data.drs.seriesData
           }]
+          data.drs.y = [{name: '吉焦/辆'}]
         }
         if (data.dqs && data.dqs.seriesData) {
           data.dqs.seriesData = [{
             name: '单车天然气',
             data: data.dqs.seriesData
           }]
+          data.dqs.y = [{name: '立方米/辆'}]
         }
-        if (data.nys && data.nys.seriesData) {
-          data.nys.seriesData = [{
-            name: '能源消耗总量',
-            data: data.nys.seriesData
-          }]
-        }
-        if (data.fnys && data.fnys.seriesData) {
-          data.fnys.seriesData = [{
-            name: '能源非生产消耗',
-            data: data.fnys.seriesData
-          }]
+        if (data.nys && data.nys.seriesData &&
+          data.fnys && data.fnys.seriesData) {
+          data.nys.seriesData = [
+            {
+              name: '生产消耗',
+              data: data.nys.seriesData
+            },
+            {
+              name: '非生产消耗',
+              data: data.fnys.seriesData
+            }
+          ]
+          data.fnys.y = [{name: '吨标煤'}]
         }
         this.bData = data
       }).catch(() => {

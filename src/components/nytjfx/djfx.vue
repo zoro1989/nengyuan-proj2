@@ -1,7 +1,7 @@
 <template>
   <div class="info-container">
     <div class="info">
-      <div class="col-lg-12 col-md-12 col-box">
+      <div class="col-box">
         <select-title title1="用能单位" title2="基期" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
@@ -26,45 +26,41 @@
           </el-date-picker>
         </select-title>
       </div>
-      <div class="col-lg-12 col-md-12 col-box-left-right-bottom">
+      <div class="col-box-left-right-bottom">
         <div class="panel-box">
           <div class="row">
-            <div class="col-lg-12 col-md-12 table-box">
+            <div class="table-box">
               <div class="row">
-                <div class="col-lg-12 col-md-12">
-                  <chart-bar-line class="chart-box"
-                                  :legendData="legendData"
-                                  :series="seriesData"
-                                  :xAxisData="rData.chart && rData.chart.xAxisData"
-                                  :yAxis="y"
-                                  titleText="一汽大众公司2017年一月份产量与电量日趋势分析"></chart-bar-line>
-                </div>
+                <chart-bar-line class="chart-box"
+                                :legendData="legendData"
+                                :series="seriesData"
+                                :xAxisData="rData.chart && rData.chart.xAxisData"
+                                :yAxis="y"
+                                titleText="一汽大众公司2017年一月份产量与电量日趋势分析"></chart-bar-line>
               </div>
               <div class="row">
-                <div class="col-lg-12 col-md-12">
-                  <el-table
-                    :data="rData.list"
-                    border
-                    header-cell-class-name="header-cell-class-name"
-                    style="width: 99%">
-                    <el-table-column
-                      prop="org"
-                      label="用能部门">
-                    </el-table-column>
-                    <el-table-column
-                      prop="df"
-                      label="电费">
-                    </el-table-column>
-                    <el-table-column
-                      prop="dj"
-                      label="电价">
-                    </el-table-column>
-                    <el-table-column
-                      prop="d"
-                      label="电量">
-                    </el-table-column>
-                  </el-table>
-                </div>
+                <el-table
+                  :data="rData.list"
+                  border
+                  header-cell-class-name="header-cell-class-name"
+                  style="width: 99%">
+                  <el-table-column
+                    prop="org"
+                    label="用能部门">
+                  </el-table-column>
+                  <el-table-column
+                    prop="df"
+                    label="电费">
+                  </el-table-column>
+                  <el-table-column
+                    prop="dj"
+                    label="电价">
+                  </el-table-column>
+                  <el-table-column
+                    prop="d"
+                    label="电量">
+                  </el-table-column>
+                </el-table>
               </div>
             </div>
           </div>
@@ -229,7 +225,7 @@
       background: $color-sub-text
       display: flex
       flex-direction: column
-      min-height: 100%
+      height: 100%
       min-width: 600px
       .date-type
         width: 60px
@@ -238,9 +234,11 @@
         width: 25px
         height: 10px
       .col-box-left-right-bottom
-        flex: 1
+        height: 100%
         .panel-box >.row
           height: 100%
+          .table-box > .row:last-child
+            height: calc(100% - 350px)
       .chart-box
         min-height: 350px
         border-radius: 0px

@@ -1,7 +1,7 @@
 <template>
   <div class="info-container">
     <div class="info">
-      <div class="col-lg-12 col-md-12 col-box">
+      <div class="col-box">
         <select-title title1="用能单位" title2="基期" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
@@ -25,62 +25,64 @@
           </el-date-picker>
         </select-title>
       </div>
-      <div class="col-lg-12 col-md-12 col-box-left-right-bottom">
+      <div class="col-box-left-right-bottom">
         <div class="panel-box">
-          <el-table
-            :data="rData"
-            border
-            header-cell-class-name="header-cell-class-name"
-            style="width: 99%">
-            <el-table-column
-              prop="org"
-              label="用能单位">
-            </el-table-column>
-            <el-table-column
-              label="产品综合能耗（标煤/万元）">
+          <div class="row">
+            <el-table
+              :data="rData"
+              border
+              header-cell-class-name="header-cell-class-name"
+              style="width: 99%">
               <el-table-column
-                prop="czzhnh"
-                label="实际值">
+                prop="org"
+                label="用能单位">
               </el-table-column>
               <el-table-column
-                prop="tqczzhnh"
-                label="同期值">
-              </el-table-column>
-            </el-table-column>
-            <el-table-column
-              label="产品耗水（吨/万元）">
-              <el-table-column
-                prop="s"
-                label="实际值">
-              </el-table-column>
-              <el-table-column
-                prop="tqs"
-                label="同期值">
-              </el-table-column>
-            </el-table-column>
-            <el-table-column
-              label="能源消耗总量（吨标煤）">
-              <el-table-column
-                prop="zhnh"
-                label="实际值">
+                label="产品综合能耗（标煤/万元）">
+                <el-table-column
+                  prop="czzhnh"
+                  label="实际值">
+                </el-table-column>
+                <el-table-column
+                  prop="tqczzhnh"
+                  label="同期值">
+                </el-table-column>
               </el-table-column>
               <el-table-column
-                prop="tqzhnh"
-                label="同期值">
+                label="产品耗水（吨/万元）">
+                <el-table-column
+                  prop="s"
+                  label="实际值">
+                </el-table-column>
+                <el-table-column
+                  prop="tqs"
+                  label="同期值">
+                </el-table-column>
               </el-table-column>
-            </el-table-column>
-            <el-table-column
-              label="单车综合能耗（吨标煤/辆）">
               <el-table-column
-                prop="dczzhnh"
-                label="实际值">
+                label="能源消耗总量（吨标煤）">
+                <el-table-column
+                  prop="zhnh"
+                  label="实际值">
+                </el-table-column>
+                <el-table-column
+                  prop="tqzhnh"
+                  label="同期值">
+                </el-table-column>
               </el-table-column>
               <el-table-column
-                prop="tqdczzhnh"
-                label="同期值">
+                label="单车综合能耗（吨标煤/辆）">
+                <el-table-column
+                  prop="dczzhnh"
+                  label="实际值">
+                </el-table-column>
+                <el-table-column
+                  prop="tqdczzhnh"
+                  label="同期值">
+                </el-table-column>
               </el-table-column>
-            </el-table-column>
-          </el-table>
+            </el-table>
+          </div>
         </div>
       </div>
     </div>
@@ -219,7 +221,7 @@
       background: $color-sub-text
       display: flex
       flex-direction: column
-      min-height: 100%
+      height: 100%
       min-width: 600px
       .date-type
         width: 60px
@@ -228,9 +230,11 @@
         width: 25px
         height: 10px
       .col-box-left-right-bottom
-        flex: 1
+        height: 100%
         .panel-box >.row
           height: 100%
+          .table-box > .row:last-child
+            height: calc(100% - 350px)
       .chart-box
         min-height: 350px
         border-radius: 0px
