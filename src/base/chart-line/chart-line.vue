@@ -41,7 +41,7 @@ export default {
     xAxisData: {
       type: Array,
       default: function () {
-        return ['4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7']
+        return []
       }
     },
     series: {
@@ -55,9 +55,7 @@ export default {
     this.chart = {}
   },
   mounted() {
-    if (this.series) {
-      this.makeChart(this.series)
-    }
+    this.makeChart(this.series)
   },
   watch: {
     series: function (newData) {
@@ -67,7 +65,6 @@ export default {
   methods: {
     makeChart(newData) {
       this.chart = echarts.init(this.$refs.chart)
-
       // 指定图表的配置项和数据
       const option = {
         color: [this.chartColor, '#8c6be6'],

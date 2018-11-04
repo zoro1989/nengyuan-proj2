@@ -32,13 +32,13 @@
           </ul>
         </li>
         <li>
-          <a href="#">
+          <a href="#" :class="selectMenuIndex === 2 ? 'active' : ''">
             <i class="fa fa-edit"></i>
             <strong>能源统计分析</strong>
           </a>
           <ul>
-            <li><a href="#" @click="changeRoute('/nyylfx', 1)"><i class="fa fa-bar-chart"></i>能源用量分析</a></li>
-            <li><a href="#"><i class="fa fa-yen"></i>能源费用分析</a></li>
+            <li><a href="#" @click="changeRoute('/nyylfx', 2)"><i class="fa fa-bar-chart"></i>能源用量分析</a></li>
+            <li><a href="#" @click="changeRoute('/nyfyfx', 2)"><i class="fa fa-yen"></i>能源费用分析</a></li>
             <li><a href="#"><i class="fa fa-envira"></i>二氧化碳排放量分析</a></li>
             <li><a href="#"><i class="fa fa-institution"></i>部门用能分析</a></li>
             <li><a href="#"><i class="fa fa-bell-o"></i>能源负荷分析</a></li>
@@ -59,7 +59,7 @@
           </ul>
         </li>
         <li>
-          <a href="#">
+          <a href="#" :class="selectMenuIndex === 4 ? 'active' : ''">
             <i class="fa fa-gears"></i>
             <strong>设备能效分析</strong>
           </a>
@@ -91,6 +91,17 @@
             <i class="fa fa-bell-o"></i>
             <strong>能源预警报警</strong>
           </a>
+        </li>
+        <li>
+          <a href="#" :class="selectMenuIndex === 7 ? 'active' : ''">
+            <i class="fa fa-gears"></i>
+            <strong>设备录入</strong>
+          </a>
+          <ul>
+            <li><a href="#" @click="changeRoute('/byq', 7)"><i class="fa fa-gear"></i>变压器</a></li>
+            <li><a href="#" @click="changeRoute('/kyj', 7)"><i class="fa fa-gear"></i>空压机</a></li>
+            <li><a href="#" @click="changeRoute('/dj', 7)"><i class="fa fa-gear"></i>电机</a></li>
+          </ul>
         </li>
       </ul>
     </div>

@@ -104,12 +104,16 @@
                                :titleText="realTimeToday + '能源用量(小时)'"
                                yAxisTitle="吨标煤/时"
                                seriesName="能耗"
+                               :xAxisData="ny.xAxisData"
+                               :seriesData="ny.seriesData"
                                :showArea="showArea"></chart-realtime-line>
         </div>
         <div class="col-lg-6 col-md-12 col-box-right">
           <chart-realtime-bar class="chart-box"
                               :titleText="realTimeToday + '能源费用(小时)'"
                               yAxisTitle="万元/时"
+                              :xAxisData="fy.xAxisData"
+                              :seriesData="fy.seriesData"
                               seriesName="费用"></chart-realtime-bar>
         </div>
       </div>
@@ -170,10 +174,11 @@ export default {
       // 三月能耗费用
       costPie: [],
       data: {},
-      legendData: [],
-      seriesData: [],
       lastMonth: moment().subtract(1, 'months').format('MMMM'),
-      jnBar: {}
+      y: [{name: '吨标煤'}, {name: '吨标煤/万元'}],
+      jnBar: {},
+      ny: {},
+      fy: {}
     }
   },
   created() {
@@ -187,10 +192,16 @@ export default {
       this.costPie = []
     })
     fetch('get', api.queryShouYeNhJn, {}).then((res) => {
-      this.y = [{name: '吨标煤'}, {name: '吨标煤/万元'}]
       this.jnBar = res.data
     }).catch(() => {
       this.jnBar = {}
+    })
+    fetch('get', api.hourNy, {}).then((res) => {
+      this.ny = res.data.ny
+      this.fy = res.data.fy
+    }).catch(() => {
+      this.ny = {}
+      this.fy = {}
     })
   },
   computed: {

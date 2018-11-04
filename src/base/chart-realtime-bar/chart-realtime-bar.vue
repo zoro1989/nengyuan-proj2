@@ -6,7 +6,7 @@
 </template>
 <script>
 import echarts from 'echarts'
-import moment from 'moment'
+// import moment from 'moment'
 export default {
   props: {
     titleText: {
@@ -28,16 +28,33 @@ export default {
     seriesName: {
       type: String,
       default: '系列名'
+    },
+    xAxisData: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    },
+    seriesData: {
+      type: Array,
+      default: function () {
+        return []
+      }
     }
   },
   created() {
     this.chart = {}
   },
+  watch: {
+    seriesData: function (newData) {
+      this.makeChart(newData)
+    }
+  },
   methods: {
     titleClick() {
       this.$router.replace('/ssxz')
     },
-    makeChart() {
+    makeChart(newData) {
       this.chart = echarts.init(this.$refs.chart)
 
       // 指定图表的配置项和数据
@@ -82,22 +99,23 @@ export default {
           axisLabel: {
             interval: 0
           },
-          data: (function () {
-            var now = moment()
-            var res = []
-            var len = 12
-            while (len--) {
-              res.unshift(now.format('HH:00'))
-              now = now.subtract(3600, 'seconds')
-            }
-            return res
-          })()
+          data: this.xAxisData
+//          data: (function () {
+//            var now = moment()
+//            var res = []
+//            var len = 12
+//            while (len--) {
+//              res.unshift(now.format('HH:00'))
+//              now = now.subtract(3600, 'seconds')
+//            }
+//            return res
+//          })()
         },
         yAxis: {
           type: 'value',
           scale: true,
           name: this.yAxisTitle,
-          max: 1200,
+//          max: 1200,
           min: 0,
           boundaryGap: [0.2, 0.2],
           axisLine: {
@@ -119,33 +137,34 @@ export default {
                 position: 'top'
               }
             },
-            data: (function () {
-              var res = []
-              var len = 12
-              while (len--) {
-                res.push(Math.round(Math.random() * 1000))
-              }
-              return res
-            })()
+            data: newData
+//            data: (function () {
+//              var res = []
+//              var len = 12
+//              while (len--) {
+//                res.push(Math.round(Math.random() * 1000))
+//              }
+//              return res
+//            })()
           }
         ]
       }
-      clearInterval(this.timer)
-      this.timer = setInterval(() => {
-        var now = moment()
-        if (option.xAxis.data.length > 0 &&
-          option.xAxis.data[option.xAxis.data.length - 1].split(':')[0] * 1 < now.format('HH') * 1) {
-          var axisData = now.format('HH:00')
-          var data0 = option.series[0].data
-          data0.shift()
-          data0.push(Math.round(Math.random() * 1000))
-
-          option.xAxis.data.shift()
-          option.xAxis.data.push(axisData)
-
-          this.chart.setOption(option, true)
-        }
-      }, 60 * 1000)
+//      clearInterval(this.timer)
+//      this.timer = setInterval(() => {
+//        var now = moment()
+//        if (option.xAxis.data.length > 0 &&
+//          option.xAxis.data[option.xAxis.data.length - 1].split(':')[0] * 1 < now.format('HH') * 1) {
+//          var axisData = now.format('HH:00')
+//          var data0 = option.series[0].data
+//          data0.shift()
+//          data0.push(Math.round(Math.random() * 1000))
+//
+//          option.xAxis.data.shift()
+//          option.xAxis.data.push(axisData)
+//
+//          this.chart.setOption(option, true)
+//        }
+//      }, 60 * 1000)
 
       // 使用刚指定的配置项和数据显示图表。
       this.chart.setOption(option, true)

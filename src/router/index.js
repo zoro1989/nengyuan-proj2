@@ -9,6 +9,10 @@ const Nyzlfx = () => import('components/nyzhfx/nyfyjg/nyzlfx')
 const Nybmfx = () => import('components/nyzhfx/nyfyjg/nybmfx')
 const Eyhtfx = () => import('components/nyzhfx/eyhtfx')
 const Nyylfx = () => import('components/nytjfx/nyylfx')
+const Nyfyfx = () => import('components/nytjfx/nyfyfx')
+const Byq = () => import('components/sblr/byq')
+const Kyj = () => import('components/sblr/kyj')
+const Dj = () => import('components/sblr/dj')
 
 Vue.use(Router)
 
@@ -54,14 +58,34 @@ export default new Router({
       component: Nybmfx
     },
     {
+      path: '/eyhtfx',
+      name: '二氧化碳分析',
+      component: Eyhtfx
+    },
+    {
       path: '/nyylfx',
       name: '能源用量分析',
       component: Nyylfx
     },
     {
-      path: '/eyhtfx',
-      name: '二氧化碳分析',
-      component: Eyhtfx
+      path: '/nyfyfx',
+      name: '能源费用分析',
+      component: Nyfyfx
+    },
+    {
+      path: '/byq',
+      name: '变压器',
+      component: Byq
+    },
+    {
+      path: '/kyj',
+      name: '空压机',
+      component: Kyj
+    },
+    {
+      path: '/dj',
+      name: '电机',
+      component: Dj
     }
   ]
 })

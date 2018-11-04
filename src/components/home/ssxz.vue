@@ -5,18 +5,31 @@
         <div class="title-l">
           <span class="picker-txt">选择日期</span>
           <el-date-picker
+            v-model="valueDate"
+            type="daterange"
+            align="right"
+            unlink-panels
             size="mini"
-            v-model="valueWeek"
-            type="week"
-            format="yyyy 第 WW 周"
-            placeholder="选择周">
+            value-format="yyyy-MM-dd"
+            range-separator="至"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期"
+            :picker-options="pickerOptions2">
           </el-date-picker>
           <span class="picker-txt">用能单位</span>
-          <multi-cascader
+          <el-cascader
             :options="options"
-            @on-selected="getSelected"
-            :inputValue="configTips"
-          ></multi-cascader>
+            v-model="selectedOptions"
+            change-on-select
+            size="mini"
+            :show-all-levels="false"
+          ></el-cascader>
+          <!--<multi-cascader-->
+            <!--:options="options"-->
+            <!--@on-selected="getSelected"-->
+            <!--:inputValue="configTips"-->
+          <!--&gt;</multi-cascader>-->
+          <el-button class="search-btn" type="primary" icon="el-icon-search" size="mini" @click="onSearch">搜索</el-button>
         </div>
         <div class="title-r">
           <span class="analyze-btn ripple"><router-link to="/dbfx">对比分析</router-link></span>
@@ -25,13 +38,15 @@
           <span @click="onClose" class="ripple"><i class="fa fa-times"></i></span>
         </div>
       </div>
-      <div class="tripping-content" v-if="showflag === '0'">
+      <div class="tripping-content" v-if="showflag === '0'" key="line">
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-line class="chart-l"
                                  :titleText="realTimeToday + '能源用量(小时)'"
                                  yAxisTitle="吨标煤/时"
                                  seriesName="能耗"
+                                 :xAxisData="ny.xAxisData"
+                                 :seriesData="ny.seriesData"
                                  chartColor="#2434e3" key="lineChart"></chart-realtime-line>
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
@@ -39,6 +54,8 @@
                                  :titleText="realTimeToday + '能源费用(小时)'"
                                  yAxisTitle="万元/时"
                                  seriesName="能耗"
+                                 :xAxisData="fy.xAxisData"
+                                 :seriesData="fy.seriesData"
                                  chartColor="#4b50e4"></chart-realtime-line>
           </div>
         </div>
@@ -48,14 +65,16 @@
             <chart-line class="chart-l"
                         titleText="单车综合能耗"
                         yAxisTitle="吨标煤"
-                        :series="seriesData1"
+                        :xAxisData="bData.dnys && bData.dnys.xAxisData"
+                        :series="bData.dnys && bData.dnys.seriesData"
                         chartColor="#48daf6"></chart-line>
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-line class="chart-r"
                         titleText="单车能源费用"
                         yAxisTitle="元/辆"
-                        :series="seriesData1"
+                        :xAxisData="bData.dfys && bData.dfys.xAxisData"
+                        :series="bData.dfys && bData.dfys.seriesData"
                         chartColor="#916fe9"></chart-line>
           </div>
         </div>
@@ -64,14 +83,16 @@
             <chart-line class="chart-l"
                         titleText="单车耗电"
                         yAxisTitle="千瓦时/量"
-                        :series="seriesData1"
+                        :xAxisData="bData.dds && bData.dds.xAxisData"
+                        :series="bData.dds && bData.dds.seriesData "
                         chartColor="#916fe9"></chart-line>
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-line class="chart-r"
                         titleText="单车耗水"
                         yAxisTitle="升/辆"
-                        :series="seriesData1"
+                        :xAxisData="bData.dss && bData.dss.xAxisData"
+                        :series="bData.dss && bData.dss.seriesData"
                         chartColor="#5de49c"></chart-line>
           </div>
         </div>
@@ -80,48 +101,55 @@
             <chart-line class="chart-l"
                         titleText="单车耗热"
                         yAxisTitle="吉焦/辆"
-                        :series="seriesData1"
+                        :xAxisData="bData.drs && bData.drs.xAxisData"
+                        :series="bData.drs && bData.drs.seriesData"
                         chartColor="#ff930f"></chart-line>
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-line class="chart-r"
                         titleText="单车耗天然气"
                         yAxisTitle="立方米/辆"
-                        :series="seriesData1"
+                        :xAxisData="bData.dqs && bData.dqs.xAxisData"
+                        :series="bData.dqs && bData.dqs.seriesData"
                         chartColor="#82828a"></chart-line>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-line class="chart-l"
-                        titleText="一汽大众日能源消耗总量"
+                        titleText="能源消耗总量"
                         yAxisTitle="吨/标煤"
-                        :series="seriesData1"
+                        :xAxisData="bData.nys && bData.nys.xAxisData"
+                        :series="bData.nys && bData.nys.seriesData"
                         chartColor="#5a63ee"></chart-line>
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-line class="chart-r"
-                        titleText="一汽大众能源消耗总量"
+                        titleText="能源非生产消耗"
                         yAxisTitle="吨/标煤"
-                        :legendData="legendData"
-                        :series="seriesData10"
+                        :xAxisData="bData.fnys && bData.fnys.xAxisData"
+                        :series="bData.fnys && bData.fnys.seriesData"
                         chartColor="#4a14dd"></chart-line>
           </div>
         </div>
       </div>
-      <div class="tripping-content" v-if="showflag === '1'">
+      <div class="tripping-content" v-if="showflag === '1'" key="bar">
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-line class="chart-l"
                                  :titleText="realTimeToday + '能源用量(小时)'"
                                  yAxisTitle="吨标煤/时"
                                  seriesName="能耗"
+                                 :xAxisData="ny.xAxisData"
+                                 :seriesData="ny.seriesData"
                                  :showArea="showArea" key="barChart"></chart-realtime-line>
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-bar class="chart-r"
                                  :titleText="realTimeToday + '能源费用(小时)'"
                                  yAxisTitle="万元/时"
+                                 :xAxisData="fy.xAxisData"
+                                 :seriesData="fy.xAxisData"
                                  seriesName="能耗"></chart-realtime-bar>
           </div>
         </div>
@@ -132,7 +160,9 @@
                         titleText="单车综合能耗"
                         yAxisTitle="吨标煤"
                         seriesName="能耗"
-                        :series="seriesData2"
+                        :yAxis="yAxis"
+                        :xAxisData="bData.dnys && bData.dnys.xAxisData"
+                        :series="bData.dnys && bData.dnys.seriesData"
                         chartColor="#48d9f5"></chart-bar>
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
@@ -140,7 +170,9 @@
                         titleText="单车能源费用"
                         yAxisTitle="元/辆"
                         seriesName="费用"
-                        :series="seriesData2"
+                        :yAxis="yAxis"
+                        :xAxisData="bData.dfys && bData.dfys.xAxisData"
+                        :series="bData.dfys && bData.dfys.seriesData"
                         chartColor="#8c6be6"></chart-bar>
           </div>
         </div>
@@ -150,7 +182,8 @@
                         titleText="单车耗电"
                         yAxisTitle="千瓦时/量"
                         seriesName="耗电"
-                        :series="seriesData2"
+                        :xAxisData="bData.dds && bData.dds.xAxisData"
+                        :series="bData.dds && bData.dds.seriesData"
                         chartColor="#8c6be6"></chart-bar>
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
@@ -158,7 +191,8 @@
                         titleText="单车耗水"
                         yAxisTitle="升/辆"
                         seriesName="耗水"
-                        :series="seriesData2"
+                        :xAxisData="bData.dss && bData.dss.xAxisData"
+                        :series="bData.dss && bData.dss.seriesData"
                         chartColor="#56e197"></chart-bar>
           </div>
         </div>
@@ -168,7 +202,8 @@
                         titleText="单车耗热"
                         yAxisTitle="吉焦/辆"
                         seriesName="耗热"
-                        :series="seriesData2"
+                        :xAxisData="bData.drs && bData.drs.xAxisData"
+                        :series="bData.drs && bData.drs.seriesData"
                         chartColor="#ff8f06"></chart-bar>
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
@@ -176,26 +211,28 @@
                         titleText="单车耗天然气"
                         yAxisTitle="立方米/辆"
                         seriesName="耗天然气"
-                        :series="seriesData2"
+                        :xAxisData="bData.dqs && bData.dqs.xAxisData"
+                        :series="bData.dqs && bData.dqs.seriesData"
                         chartColor="#838389"></chart-bar>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-bar class="chart-l"
-                        titleText="一汽大众日能源消耗总量"
+                        titleText="能源消耗总量"
                         yAxisTitle="吨标煤"
                         seriesName="耗天然气"
-                        :series="seriesData2"
+                        :xAxisData="bData.nys && bData.nys.xAxisData"
+                        :series="bData.nys && bData.nys.seriesData"
                         chartColor="#5967f1"></chart-bar>
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-bar class="chart-r"
                         titleText="一汽大众能源消耗总量"
                         :legendData="legendData"
-                        :series="seriesData10"
                         yAxisTitle="吨标煤"
-                        :xAxisData="xAxisData"
+                        :xAxisData="bData.fnys && bData.fnys.xAxisData"
+                        :series="bData.fnys && bData.fnys.seriesData"
                         chartColor="#4a14dd"
                         :stack="'1'"></chart-bar>
           </div>
@@ -212,6 +249,8 @@ import ChartBar from 'base/chart-bar/chart-bar'
 import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
 import DepartmentSelect from 'base/department-select/department-select'
 import MultiCascader from 'base/department-select/MulCheckCascader'
+import { api } from '@/config'
+import fetch from 'utils/fetch'
 let moment = require('moment')
 moment.locale('zh-cn')
 export default {
@@ -228,204 +267,196 @@ export default {
     return {
       showArea: true,
       showflag: '1',
-      valueWeek: '',
+      valueDate: '',
+      pickerOptions2: {
+        shortcuts: [{
+          text: '最近一周',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近一个月',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近三个月',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+            picker.$emit('pick', [start, end])
+          }
+        }]
+      },
       value: '',
-      options: [{
-        value: '1',
-        label: '整车制造',
-        checked: false,
-        children: [{
-          value: '5',
-          label: '红旗工厂',
-          checked: false
-        }, {
-          value: '6',
-          label: '一汽大众',
-          children: [{
-            value: '25',
-            label: '长春工厂',
-            checked: false
-          }, {
-            value: '26',
-            label: '天津工厂',
-            checked: false
-          }, {
-            value: '27',
-            label: '青岛工厂',
-            checked: false
-          }, {
-            value: '28',
-            label: '佛山工厂',
-            checked: false
-          }, {
-            value: '29',
-            label: '成都工厂',
-            checked: false
-          }]
-        }, {
-          value: '7',
-          label: '一汽轿车股份有限公司',
-          checked: false
-        }, {
-          value: '8',
-          label: '一汽解放汽车有限公司',
-          checked: false
-        }, {
-          value: '9',
-          label: '一汽吉林汽车有限公司',
-          checked: false
-        }, {
-          value: '10',
-          label: '一汽客车有限公司',
-          checked: false
-        }, {
-          value: '11',
-          label: '一汽丰越',
-          checked: false
-        }, {
-          value: '12',
-          label: '天津夏利',
-          checked: false
-        }, {
-          value: '13',
-          label: '一汽丰田',
-          checked: false
-        }, {
-          value: '14',
-          label: '一汽通用轻型商用汽车有限公司',
-          checked: false
-        }, {
-          value: '15',
-          label: '四川丰田',
-          checked: false
-        }]
-      },
+      options: [
         {
-        value: '2',
-        label: '零部件加工',
-        children: [{
-          value: '16',
-          label: '一汽富维',
-          checked: false
-        }, {
-          value: '17',
-          label: '一汽模具制造有限公司',
-          checked: false
-        }, {
-          value: '18',
-          label: '一汽锻造吉林有限公司',
-          checked: false
-        }, {
-          value: '19',
-          label: '一汽铸造有限公司',
-          checked: false
-        }, {
-          value: '20',
-          label: '一汽丰发',
-          checked: false
-        }, {
-          value: '21',
-          label: '天津丰发',
-          checked: false
-        }, {
-          value: '22',
-          label: '无锡泽根弹簧有限公司',
-          checked: false
-        }]
-      },
+          value: '2',
+          label: '整车制造',
+          children: [
+            {
+              value: '42052',
+              label: '红旗工厂'
+            },
+            {
+              value: '41951',
+              label: '一汽大众公司',
+              children: [
+                {
+                  value: '1546481',
+                  label: '一汽大众长春工厂'
+                },
+                {
+                  value: '2601331',
+                  label: '一汽大众天津工厂'
+                },
+                {
+                  value: '2601332',
+                  label: '一汽大众青岛工厂'
+                },
+                {
+                  value: '1546527',
+                  label: '一汽大众佛山工厂'
+                },
+                {
+                  value: '42073',
+                  label: '一汽大众成都工厂'
+                }
+              ]
+            },
+            {
+              value: '41949',
+              label: '一汽轿车股份有限公司',
+              children: [
+                {
+                  value: '42054',
+                  label: '一工厂'
+                },
+                {
+                  value: '42055',
+                  label: '二工厂'
+                },
+                {
+                  value: '42056',
+                  label: '发传中心'
+                },
+                {
+                  value: '41954',
+                  label: '四川一汽丰田汽车有限公司'
+                }
+              ]
+            },
+            {
+              value: '41954',
+              label: '四川一汽丰田汽车有限公司'
+            },
+            {
+              value: '904489',
+              label: '一汽丰越公司'
+            },
+            {
+              value: '41937',
+              label: '一汽解放汽车有限公司'
+            },
+            {
+              value: '41939',
+              label: '一汽吉林汽车有限公司'
+            },
+            {
+              value: '41953',
+              label: '天津一汽丰田汽车有限公司'
+            },
+            {
+              value: '41950',
+              label: '天津一汽夏利汽车有限公司'
+            },
+            {
+              value: '41952',
+              label: '一汽通用轻型商用汽车有限公司'
+            },
+            {
+              value: '41938',
+              label: '一汽客车有限公司'
+            },
+            {
+              value: '41917',
+              label: '一汽新能源汽车有限公司'
+            }
+          ]
+        },
         {
-        value: '3',
-        label: '其他',
-        children: [{
           value: '23',
-          label: '动能分公司',
-          checked: false
-        }, {
-          value: '24',
-          label: '一汽物流公司',
-          checked: false
-        }]
-      }, {
-        value: '4',
-        label: '集团'
-      }],
+          label: '零部件',
+          children: [
+            {
+              value: '41924',
+              label: '长春一汽富维汽车零部件股份有限公司'
+            },
+            {
+              value: '41944',
+              label: '一汽铸锻有限公司'
+            },
+            {
+              value: '41945',
+              label: '一汽模具制造有限公司'
+            },
+            {
+              value: '41955',
+              label: '一汽丰田（长春）发动机有限公司'
+            },
+            {
+              value: '41956',
+              label: '天津一汽丰田发动机有限公司'
+            },
+            {
+              value: '41992',
+              label: '无锡泽根弹簧有限公司'
+            }
+          ]
+        },
+        {
+          value: '30',
+          label: '物流',
+          children: [
+            {
+              value: '42018',
+              label: '一汽国际物流'
+            },
+            {
+              value: '41947',
+              label: '一汽物流'
+            },
+            {
+              value: '41934',
+              label: '动能分公司'
+            }
+          ]
+        }
+
+      ],
       selectedOptions: [],
-      xAxisData: ['4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7'],
-      seriesData1: [],
-      seriesData2: [],
       chartColor10: ['#8c6be6', '#4a14dd'],
       legendData: ['生产能耗', '非生产能耗'],
-      seriesData10: [],
-      data2: [{
-        id: 1,
-        label: '一级 1',
-        children: [{
-          id: 4,
-          label: '二级 1-1',
-          children: [{
-            id: 9,
-            label: '三级 1-1-1'
-          }, {
-            id: 10,
-            label: '三级 1-1-2'
-          }]
-        }]
-      }, {
-        id: 2,
-        label: '一级 2',
-        children: [{
-          id: 5,
-          label: '二级 2-1'
-        }, {
-          id: 6,
-          label: '二级 2-2'
-        }]
-      }, {
-        id: 3,
-        label: '一级 3',
-        children: [{
-          id: 7,
-          label: '二级 3-1'
-        }, {
-          id: 8,
-          label: '二级 3-2'
-        }]
-      }],
-      defaultProps: {
-        children: 'children',
-        label: 'label'
-      },
-      trees: [],
       selectGroups: '',
-      configTips: ''
+      configTips: '',
+      system_id: '41951',
+      begin_time: '',
+      end_time: '',
+      bData: {},
+      ny: {},
+      fy: {},
+      yAxis: [{name: '万千瓦时'}]
     }
   },
   created() {
-    setTimeout(() => {
-      this.seriesData1 = [
-        {
-          name: '消耗总量',
-          data: [180, 200, 120, 300, 250, 310, 290]
-        }
-      ]
-      this.seriesData2 = [
-        {
-          name: '消耗总量',
-          data: [180, 200, 120, 300, 250, 310, 290]
-        }
-      ]
-
-      this.seriesData10 = [
-        {
-          name: '生产能耗',
-          data: [130, 150, 60, 200, 150, 110, 190]
-        },
-        {
-          name: '非生产能耗',
-          data: [80, 20, 40, 10, 60, 20, 10]
-        }
-      ]
-    })
+//    this.fetchData()
   },
   computed: {
     realTimeToday () {
@@ -433,6 +464,79 @@ export default {
     }
   },
   methods: {
+    fetchData() {
+      if (this.valueDate.length === 2) {
+        this.begin_time = this.valueDate[0]
+        this.end_time = this.valueDate[1]
+      }
+      if (this.selectedOptions.length > 0) {
+        this.system_id = this.selectedOptions[this.selectedOptions.length - 1]
+      }
+      fetch('get', api.dayNy, {system_id: this.system_id, begin_time: this.begin_time, end_time: this.end_time}).then((res) => {
+        let data = res.data
+        if (data.dnys && data.dnys.seriesData) {
+          data.dnys.seriesData = [{
+            name: '单车综合能耗',
+            data: data.dnys.seriesData
+          }]
+        }
+        if (data.dfys && data.dfys.seriesData) {
+          data.dfys.seriesData = [{
+            name: '单车费用',
+            data: data.dfys.seriesData
+          }]
+        }
+        if (data.dds && data.dds.seriesData) {
+          data.dds.seriesData = [{
+            name: '单车电',
+            data: data.dds.seriesData
+          }]
+        }
+        if (data.dss && data.dss.seriesData) {
+          data.dss.seriesData = [{
+            name: '单车水',
+            data: data.dds.seriesData
+          }]
+        }
+        if (data.drs && data.drs.seriesData) {
+          data.drs.seriesData = [{
+            name: '单车热',
+            data: data.drs.seriesData
+          }]
+        }
+        if (data.dqs && data.dqs.seriesData) {
+          data.dqs.seriesData = [{
+            name: '单车天然气',
+            data: data.dqs.seriesData
+          }]
+        }
+        if (data.nys && data.nys.seriesData) {
+          data.nys.seriesData = [{
+            name: '能源消耗总量',
+            data: data.nys.seriesData
+          }]
+        }
+        if (data.fnys && data.fnys.seriesData) {
+          data.fnys.seriesData = [{
+            name: '能源非生产消耗',
+            data: data.fnys.seriesData
+          }]
+        }
+        this.bData = data
+      }).catch(() => {
+        this.bData = {}
+      })
+      fetch('get', api.hourNy, {system_id: this.system_id}).then((res) => {
+        this.ny = res.data.ny
+        this.fy = res.data.fy
+      }).catch(() => {
+        this.ny = {}
+        this.fy = {}
+      })
+    },
+    onSearch() {
+      this.fetchData()
+    },
     getSelected(val) {
       this.selectGroups = val
       console.log(this.selectGroups)
@@ -445,17 +549,8 @@ export default {
     channgeChart(status) {
       this.showflag = status
     },
-    handleChange(value) {
-      this.trees.push(value[value.length - 1])
-    },
     onClose() {
       this.$router.replace('/home')
-    },
-    handleClose(tag) {
-      let index = this.trees.findIndex((item) => {
-        return item === tag
-      })
-      this.trees.splice(index, 1)
     },
     sectionToChinese(section) {
       let chinese = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']

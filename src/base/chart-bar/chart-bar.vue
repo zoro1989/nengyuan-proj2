@@ -49,10 +49,16 @@ export default {
     xAxisData: {
       type: Array,
       default: function () {
-        return ['4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7']
+        return []
       }
     },
     series: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    },
+    yAxis: {
       type: Array,
       default: function () {
         return []
@@ -63,9 +69,7 @@ export default {
     this.chart = {}
   },
   mounted() {
-    if (this.series) {
-      this.makeChart(this.series)
-    }
+    this.makeChart(this.series)
   },
   watch: {
     series: function (newData) {
@@ -75,7 +79,6 @@ export default {
   methods: {
     makeChart(newData) {
       this.chart = echarts.init(this.$refs.chart)
-
       // 指定图表的配置项和数据
       const option = {
         color: [this.chartColor, '#8c6be6'],
@@ -125,19 +128,37 @@ export default {
             data: this.xAxisData
           }
         ],
-        yAxis: [
-          {
-            type: 'value',
-            scale: true,
-            name: this.yAxisTitle,
-            boundaryGap: [0.2, 0.2],
-            axisLine: {
-              lineStyle: {
-                color: '#666'
+//        yAxis: {
+//          type: 'value',
+//          scale: true,
+//          name: this.yAxisTitle,
+//          max: 1200,
+//          min: 0,
+//          boundaryGap: [0.2, 0.2],
+//          axisLine: {
+//            lineStyle: {
+//              color: '#666'
+//            }
+//          }
+//        },
+        yAxis: (() => {
+          let res = []
+          for (let i = 0; i < this.yAxis.length; i++) {
+            res.push({
+              type: 'value',
+              name: this.yAxis[i].name,
+              min: this.yAxis[i].min,
+              max: this.yAxis[i].max,
+              interval: this.yAxis[i].interval,
+              axisLine: {
+                lineStyle: {
+                  color: '#666'
+                }
               }
-            }
+            })
           }
-        ],
+          return res
+        })(),
         series: ((vm, series) => {
           let res = []
           for (let i = 0; i < series.length; i++) {
