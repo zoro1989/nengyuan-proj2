@@ -48,10 +48,10 @@
             <data-panel
               class="border-bottom"
               title="清洁能源"
-              data="4586"
+              :data="4586"
               unit="吨标煤"
-              tongbiData="-12.2"
-              huanbiData="6.7"
+              :tongbiData="-12.2"
+              :huanbiData="6.7"
             ></data-panel>
             <flip-panel title="光伏发电实时量(小时)">
             </flip-panel>

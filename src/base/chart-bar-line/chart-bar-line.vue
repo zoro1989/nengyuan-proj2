@@ -186,8 +186,9 @@ export default {
             item.itemStyle = {
               barBorderRadius: [3, 3, 0, 0],
               color: (params) => {
-                if (series[i].type === 'bar' && series[i].reality === '1' &&
+                if (series[i].type === 'bar' && series[i].name.indexOf('实际') >= 0 &&
                   series[i + 1] && series[i + 1].data[params.dataIndex] &&
+                  params.data !== 0 && series[i + 1].data[params.dataIndex] !== 0 &&
                   params.data > series[i + 1].data[params.dataIndex]) {
                   return '#e7251e'
                 } else {

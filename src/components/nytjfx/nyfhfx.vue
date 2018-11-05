@@ -2,7 +2,7 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <select-title title1="用能单位" title2="基期" title3="能源类型" @search="onSearch" :showSearch="true">
+        <select-title title1="用能单位" title2="选择时间" title3="能源类型" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
             v-model="system_id"
@@ -54,16 +54,16 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box">
+        <div class="panel-box" v-loading="loading">
           <div class="row">
             <div class="table-box">
               <div class="row">
                 <chart-bar-line class="chart-box"
                                 :legendData="legendData"
                                 :series="seriesData"
-                                :xAxisData="rData.xAxisData"
-                                :yAxis="y"
-                                titleText="一汽大众公司2017年一月份产量与电量日趋势分析"></chart-bar-line>
+                                :xAxisData="xAxisData"
+                                :yAxis="yAxis"
+                                :titleText="chartTitle"></chart-bar-line>
               </div>
               <div class="row">
                 <div style="height: 50px; line-height: 50px">
@@ -112,6 +112,7 @@
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
+  import {orgSystemIdDic, lxrdDic, monthDic} from 'utils/dic'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -125,138 +126,11 @@
     },
     data() {
       return {
+        loading: false,
         pieRadius: ['13%', '60%'],
-        options1: [
-          {
-            value: '42052',
-            label: '红旗工厂'
-          }, {
-            value: '41951',
-            label: '一汽大众公司'
-          }, {
-            value: '41949',
-            label: '一汽轿车股份有限公司'
-          }, {
-            value: '41954',
-            label: '四川一汽丰田汽车有限公司'
-          }, {
-            value: '904489',
-            label: '一汽丰越公司'
-          }, {
-            value: '41937',
-            label: '一汽解放汽车有限公司'
-          }, {
-            value: '41939',
-            label: '一汽吉林汽车有限公司'
-          }, {
-            value: '41953',
-            label: '天津一汽丰田汽车有限公司'
-          }, {
-            value: '41950',
-            label: '天津一汽夏利汽车有限公司'
-          }, {
-            value: '41952',
-            label: '一汽通用轻型商用汽车有限公司'
-          }, {
-            value: '41938',
-            label: '一汽客车有限公司'
-          }, {
-            value: '41917',
-            label: '一汽新能源汽车有限公司'
-          }, {
-            value: '41924',
-            label: '长春一汽富维汽车零部件股份有限公司'
-          }, {
-            value: '41944',
-            label: '一汽铸锻有限公司'
-          }, {
-            value: '41945',
-            label: '一汽模具制造有限公司'
-          }, {
-            value: '41955',
-            label: '一汽丰田（长春）发动机有限公司'
-          }, {
-            value: '41956',
-            label: '天津一汽丰田发动机有限公司'
-          }, {
-            value: '41992',
-            label: '无锡泽根弹簧有限公司'
-          }, {
-            value: '42018',
-            label: '一汽国际物流'
-          }, {
-            value: '41947',
-            label: '一汽物流'
-          }, {
-            value: '41934',
-            label: '动能分公司'
-          }
-        ],
-        options2: [
-          {
-            value: '32',
-            label: '热力'
-          }, {
-            value: '15',
-            label: '天然气'
-          }, {
-            value: '32_d',
-            label: '单车热力'
-          }, {
-            value: '15_d',
-            label: '单车天然气'
-          }
-        ],
-        options3: [
-          {
-            value: '01',
-            label: '一月'
-          },
-          {
-            value: '02',
-            label: '二月'
-          },
-          {
-            value: '03',
-            label: '三月'
-          },
-          {
-            value: '04',
-            label: '四月'
-          },
-          {
-            value: '05',
-            label: '五月'
-          },
-          {
-            value: '06',
-            label: '六月'
-          },
-          {
-            value: '07',
-            label: '七月'
-          },
-          {
-            value: '08',
-            label: '八月'
-          },
-          {
-            value: '09',
-            label: '九月'
-          },
-          {
-            value: '10',
-            label: '十月'
-          },
-          {
-            value: '11',
-            label: '十一月'
-          },
-          {
-            value: '12',
-            label: '十二月'
-          }
-        ],
+        options1: orgSystemIdDic,
+        options2: lxrdDic,
+        options3: monthDic,
         tableData: [],
         colors: ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3'],
         noBorder: true,
@@ -273,12 +147,74 @@
         avgVal: 0
       }
     },
+    computed: {
+      yAxis() {
+        if (this.lx === '33') {
+          return [{name: '万千瓦时'}]
+        } else if (this.lx === '00') {
+          return [{name: '吨'}]
+        } else if (this.lx === '32') {
+          return [{name: '吉焦'}]
+        } else if (this.lx === '15') {
+          return [{name: '万立方米'}]
+        } else if (this.lx === '40') {
+          return [{name: '万吨标煤'}]
+        } else if (this.lx === '33_d') {
+          return [{name: '万千瓦时'}]
+        } else if (this.lx === '00_d') {
+          return [{name: '吨'}]
+        } else if (this.lx === '32_d') {
+          return [{name: '吉焦'}]
+        } else if (this.lx === '15_d') {
+          return [{name: '万立方米'}]
+        } else if (this.lx === '40_d') {
+          return [{name: '万吨标煤'}]
+        } else {
+          return []
+        }
+      },
+      chartTitle() {
+        let orgId = this.options1.findIndex((item) => {
+          return this.system_id === item.value
+        })
+        let orgName = orgId >= 0 ? this.options1[orgId].label : ''
+        let lxId = this.options2.findIndex((item) => {
+          return this.lx === item.value
+        })
+        let lxName = lxId >= 0 ? this.options2[lxId].label : ''
+        if (this.year && orgName && lxName) {
+          let monthId = this.options3.findIndex((item) => {
+            return this.month === item.value
+          })
+          let monthText = monthId >= 0 ? this.options3[monthId].label : ''
+          return orgName + this.year + '年' + monthText + lxName + '负荷分析'
+        } else {
+          return ''
+        }
+      },
+      xAxisData() {
+        if (this.rData.xAxisData && this.rData.xAxisData.length > 0) {
+          let copyArr = JSON.parse(JSON.stringify(this.rData.xAxisData))
+          return copyArr.map((item) => {
+            if (this.month) {
+              return item + '日'
+            } else {
+              return item + '月'
+            }
+          })
+        } else {
+          return []
+        }
+      }
+    },
     methods: {
       departmentStyle(index) {
         return `background: ${this.colors[index]}`
       },
       onSearch() {
+        this.loading = true
         fetch('get', api.nyylfxDay, {id: this.system_id, year: this.year, month: this.month}).then((res) => {
+          this.tableData = []
           this.rData = res.data
           // 电
           if (this.lx === '33' && res.data.d) {
@@ -500,7 +436,9 @@
             }
             this.tableData = [obj]
           }
+          this.loading = false
         }).catch(() => {
+          this.loading = false
         })
       }
     }

@@ -40,6 +40,7 @@
               :tongbiData="pData.zhnh_tb"
               :huanbiData="pData.zhnh_hb"
               showType="column"
+              :isMathRound="true"
             ></data-panel>
             <data-panel
               class="border-right"
@@ -49,6 +50,7 @@
               :tongbiData="pData.d_tb"
               :huanbiData="pData.d_hb"
               showType="column"
+              :isMathRound="true"
             ></data-panel>
             <data-panel
               class="border-right"
@@ -58,6 +60,7 @@
               :tongbiData="pData.rl_tb"
               :huanbiData="pData.rl_hb"
               showType="column"
+              :isMathRound="true"
             ></data-panel>
             <data-panel
               class="border-right"
@@ -67,6 +70,7 @@
               :tongbiData="pData.s_tb"
               :huanbiData="pData.s_hb"
               showType="column"
+              :isMathRound="true"
             ></data-panel>
             <data-panel
               class="border-right"
@@ -76,6 +80,7 @@
               :tongbiData="pData.trq_tb"
               :huanbiData="pData.trq_hb"
               showType="column"
+              :isMathRound="true"
             ></data-panel>
             <data-panel
               class="border-right"
@@ -85,14 +90,16 @@
               :tongbiData="pData.m_tb"
               :huanbiData="pData.m_hb"
               showType="column"
+              :isMathRound="true"
             ></data-panel>
             <data-panel
               title="清洁能源"
-              data="4586"
+              :data="4586"
               unit="吨标煤"
-              tongbiData="-20.28"
-              huanbiData="2.73"
+              :tongbiData="-20.28"
+              :huanbiData="2.73"
               showType="column"
+              :isMathRound="true"
             ></data-panel>
           </div>
         </div>
@@ -109,6 +116,7 @@
               :tongbiData="pData.zhje_tb"
               :huanbiData="pData.zhje_hb"
               showType="column"
+              :isMathRound="true"
             ></data-panel>
             <data-panel
               class="border-right"
@@ -118,6 +126,7 @@
               :tongbiData="pData.dje_tb"
               :huanbiData="pData.dje_hb"
               showType="column"
+              :isMathRound="true"
             ></data-panel>
             <data-panel
               class="border-right"
@@ -127,6 +136,7 @@
               :tongbiData="pData.rlje_tb"
               :huanbiData="pData.rlje_hb"
               showType="column"
+              :isMathRound="true"
             ></data-panel>
             <data-panel
               class="border-right"
@@ -136,6 +146,7 @@
               :tongbiData="pData.sje_tb"
               :huanbiData="pData.sje_hb"
               showType="column"
+              :isMathRound="true"
             ></data-panel>
             <data-panel
               class="border-right"
@@ -145,6 +156,7 @@
               :tongbiData="pData.trqje_tb"
               :huanbiData="pData.trqje_hb"
               showType="column"
+              :isMathRound="true"
             ></data-panel>
             <data-panel
               class="border-right"
@@ -154,11 +166,13 @@
               :tongbiData="pData.mje_tb"
               :huanbiData="pData.mje_hb"
               showType="column"
+              :isMathRound="true"
             ></data-panel>
             <div class="row flex-column">
               <data-panel
                 title="柴油费"
                 :data="pData.cyje"
+                :isMathRound="true"
                 class="data-content-simple"
                 unit="万元"
                 showBi="hide"
@@ -166,6 +180,7 @@
               <data-panel
                 title="其他费"
                 :data="pData.qtje"
+                :isMathRound="true"
                 class="data-content-simple"
                 unit="万元"
                 showBi="hide"

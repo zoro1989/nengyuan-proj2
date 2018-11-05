@@ -2,10 +2,11 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <select-title title1="用能单位" title2="基期" @search="onSearch" :showSearch="true">
+        <select-title title1="用能单位" title2="选择时间" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
             v-model="system_id"
+            multiple
             placeholder="请选择"
             size="mini">
             <el-option
@@ -26,7 +27,7 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box">
+        <div class="panel-box" v-loading="loading">
           <div class="row">
             <el-table
               :data="rData"
@@ -95,6 +96,7 @@
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
+  import {orgIdDic} from 'utils/dic'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -108,73 +110,9 @@
     },
     data() {
       return {
+        loading: false,
         pieRadius: ['13%', '60%'],
-        options1: [
-          {
-            value: '3',
-            label: '红旗工厂'
-          }, {
-            value: '4',
-            label: '一汽大众公司'
-          }, {
-            value: '10',
-            label: '一汽轿车股份有限公司'
-          }, {
-            value: '14',
-            label: '四川一汽丰田汽车有限公司'
-          }, {
-            value: '15',
-            label: '一汽丰越公司'
-          }, {
-            value: '16',
-            label: '一汽解放汽车有限公司'
-          }, {
-            value: '17',
-            label: '一汽吉林汽车有限公司'
-          }, {
-            value: '18',
-            label: '天津一汽丰田汽车有限公司'
-          }, {
-            value: '19',
-            label: '天津一汽夏利汽车有限公司'
-          }, {
-            value: '20',
-            label: '一汽通用轻型商用汽车有限公司'
-          }, {
-            value: '21',
-            label: '一汽客车有限公司'
-          }, {
-            value: '22',
-            label: '一汽新能源汽车有限公司'
-          }, {
-            value: '24',
-            label: '长春一汽富维汽车零部件股份有限公司'
-          }, {
-            value: '25',
-            label: '一汽铸锻有限公司'
-          }, {
-            value: '26',
-            label: '一汽模具制造有限公司'
-          }, {
-            value: '27',
-            label: '一汽丰田（长春）发动机有限公司'
-          }, {
-            value: '28',
-            label: '天津一汽丰田发动机有限公司'
-          }, {
-            value: '29',
-            label: '无锡泽根弹簧有限公司'
-          }, {
-            value: '31',
-            label: '一汽国际物流'
-          }, {
-            value: '32',
-            label: '一汽物流'
-          }, {
-            value: '33',
-            label: '动能分公司'
-          }
-        ],
+        options1: orgIdDic,
         tableData: [],
         colors: ['#5967f1', '#06e56d', '#7dd1ff', '#ff8e06', '#1196de', '#0c1994', '#8c6be6', '#ffc300', '#4472c6', '#838389', '#1096df'],
         noBorder: true,
@@ -198,9 +136,12 @@
           this.year = dateArr[0]
           this.month = dateArr[1]
         }
-        fetch('get', api.bumenyongnengfx, {id: this.system_id, year: this.year, month: this.month}).then((res) => {
+        this.loading = true
+        fetch('get', api.bumenyongnengfx, {id: this.system_id.join(','), year: this.year, month: this.month}).then((res) => {
           this.rData = res.data
+          this.loading = false
         }).catch(() => {
+          this.loading = false
         })
       }
     }

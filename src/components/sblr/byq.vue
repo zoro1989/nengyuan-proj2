@@ -125,6 +125,7 @@
   import ChartPie from 'base/chart-pie/chart-pie'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
+  import {orgSystemIdDic} from 'utils/dic'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -140,72 +141,7 @@
       return {
         loading: false,
         tableData: [],
-        options1: [
-          {
-            value: '42052',
-            label: '红旗工厂'
-          }, {
-            value: '41951',
-            label: '一汽大众公司'
-          }, {
-            value: '41949',
-            label: '一汽轿车股份有限公司'
-          }, {
-            value: '41954',
-            label: '四川一汽丰田汽车有限公司'
-          }, {
-            value: '904489',
-            label: '一汽丰越公司'
-          }, {
-            value: '41937',
-            label: '一汽解放汽车有限公司'
-          }, {
-            value: '41939',
-            label: '一汽吉林汽车有限公司'
-          }, {
-            value: '41953',
-            label: '天津一汽丰田汽车有限公司'
-          }, {
-            value: '41950',
-            label: '天津一汽夏利汽车有限公司'
-          }, {
-            value: '41952',
-            label: '一汽通用轻型商用汽车有限公司'
-          }, {
-            value: '41938',
-            label: '一汽客车有限公司'
-          }, {
-            value: '41917',
-            label: '一汽新能源汽车有限公司'
-          }, {
-            value: '41924',
-            label: '长春一汽富维汽车零部件股份有限公司'
-          }, {
-            value: '41944',
-            label: '一汽铸锻有限公司'
-          }, {
-            value: '41945',
-            label: '一汽模具制造有限公司'
-          }, {
-            value: '41955',
-            label: '一汽丰田（长春）发动机有限公司'
-          }, {
-            value: '41956',
-            label: '天津一汽丰田发动机有限公司'
-          }, {
-            value: '41992',
-            label: '无锡泽根弹簧有限公司'
-          }, {
-            value: '42018',
-            label: '一汽国际物流'
-          }, {
-            value: '41947',
-            label: '一汽物流'
-          }, {
-            value: '41934',
-            label: '动能分公司'
-          }
-        ],
+        options1: orgSystemIdDic,
         system_id: '',
         formLabelWidth: '120px',
         isFormReadOnly: false,

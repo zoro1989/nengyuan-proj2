@@ -127,10 +127,6 @@
       DataPanelTitle
     },
     created() {
-//      setTimeout(() => {
-//        this.strucPie1 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
-//        this.strucPie2 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
-//      }, 20)
       this.fetchData()
     },
     data() {

@@ -2,7 +2,7 @@
   <div class="data-panel">
     <span class="row data-title" @click="titleClick">{{title}}</span>
     <div class="row data-content">
-      <span class="row-item"><span class="big">{{data || 0}}</span><span v-html="unitTxt"></span></span>
+      <span class="row-item"><span class="big">{{dataText}}</span><span v-html="unitTxt"></span></span>
     </div>
     <template v-if="showType === 'row' && showBi === 'show'">
       <div class="row bili">
@@ -50,11 +50,26 @@ export default {
     showBi: {
       type: String,
       default: 'show'
+    },
+    isMathRound: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
     unitTxt() {
       return '  ' + this.unit
+    },
+    dataText() {
+      if (Number.isNaN(this.data)) {
+        return 0
+      } else {
+        if (this.isMathRound) {
+          return Math.round(this.data)
+        } else {
+          return this.data
+        }
+      }
     },
     huanbiStatus() {
       return (this.huanbiData || 0) > 0 ? 'up' : 'down'

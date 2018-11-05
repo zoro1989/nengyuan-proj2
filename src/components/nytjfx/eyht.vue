@@ -2,7 +2,7 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <select-title title1="用能单位" title2="基期" @search="onSearch" :showSearch="true">
+        <select-title title1="用能单位" title2="选择时间" title3="能源类型" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
             v-model="system_id"
@@ -23,19 +23,31 @@
             value-format="yyyy"
             placeholder="选择年">
           </el-date-picker>
+          <el-select
+            slot="title3"
+            v-model="lx"
+            placeholder="请选择"
+            size="mini">
+            <el-option
+              v-for="item in options2"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box">
+        <div class="panel-box" v-loading="loading">
           <div class="row">
             <div class="col-lg-8 col-md-12 table-box">
               <div class="row">
                 <chart-bar-line class="chart-box"
                                 :legendData="legendData"
                                 :series="seriesData"
-                                :xAxisData="rData.xAxisData"
-                                :yAxis="y"
-                                titleText="一汽大众公司2017年一月份产量与电量日趋势分析"></chart-bar-line>
+                                :xAxisData="xAxisData"
+                                :yAxis="yAxis"
+                                :titleText="chartTitle"></chart-bar-line>
               </div>
               <div class="row">
                 <el-table
@@ -81,18 +93,22 @@
                   label="产量同比增幅">
                 </el-table-column>
                 <el-table-column
+                  v-if="lx !== 'dtan'"
                   prop="tanhbzf"
                   label="碳环比增幅">
                 </el-table-column>
                 <el-table-column
+                  v-if="lx !== 'dtan'"
                   prop="tantbzf"
                   label="碳同比增幅">
                 </el-table-column>
                 <el-table-column
+                  v-if="lx === 'dtan'"
                   prop="dtanhbzf"
                   label="单车碳环比增幅">
                 </el-table-column>
                 <el-table-column
+                  v-if="lx === 'dtan'"
                   prop="dtantbzf"
                   label="单车碳同比增幅">
                 </el-table-column>
@@ -111,6 +127,7 @@
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
+  import {orgIdDic, lxTanDic} from 'utils/dic'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -124,100 +141,56 @@
     },
     data() {
       return {
+        loading: false,
         pieRadius: ['13%', '60%'],
-        options1: [
-          {
-            value: '3',
-            label: '红旗工厂'
-          }, {
-            value: '4',
-            label: '一汽大众公司'
-          }, {
-            value: '10',
-            label: '一汽轿车股份有限公司'
-          }, {
-            value: '14',
-            label: '四川一汽丰田汽车有限公司'
-          }, {
-            value: '15',
-            label: '一汽丰越公司'
-          }, {
-            value: '16',
-            label: '一汽解放汽车有限公司'
-          }, {
-            value: '17',
-            label: '一汽吉林汽车有限公司'
-          }, {
-            value: '18',
-            label: '天津一汽丰田汽车有限公司'
-          }, {
-            value: '19',
-            label: '天津一汽夏利汽车有限公司'
-          }, {
-            value: '20',
-            label: '一汽通用轻型商用汽车有限公司'
-          }, {
-            value: '21',
-            label: '一汽客车有限公司'
-          }, {
-            value: '22',
-            label: '一汽新能源汽车有限公司'
-          }, {
-            value: '24',
-            label: '长春一汽富维汽车零部件股份有限公司'
-          }, {
-            value: '25',
-            label: '一汽铸锻有限公司'
-          }, {
-            value: '26',
-            label: '一汽模具制造有限公司'
-          }, {
-            value: '27',
-            label: '一汽丰田（长春）发动机有限公司'
-          }, {
-            value: '28',
-            label: '天津一汽丰田发动机有限公司'
-          }, {
-            value: '29',
-            label: '无锡泽根弹簧有限公司'
-          }, {
-            value: '31',
-            label: '一汽国际物流'
-          }, {
-            value: '32',
-            label: '一汽物流'
-          }, {
-            value: '33',
-            label: '动能分公司'
-          }
-        ],
-        options2: [
-          {
-            value: '33',
-            label: '电'
-          }, {
-            value: '00',
-            label: '水'
-          }, {
-            value: '32',
-            label: '热力'
-          }, {
-            value: '15',
-            label: '天然气'
-          }, {
-            value: '40',
-            label: '能源消耗总量'
-          }
-        ],
+        options1: orgIdDic,
+        options2: lxTanDic,
         tableData: [],
         colors: ['#5967f1', '#06e56d', '#7dd1ff', '#ff8e06', '#1196de', '#0c1994', '#8c6be6', '#ffc300', '#4472c6', '#838389', '#1096df'],
         noBorder: true,
         system_id: '',
         year: '',
         rData: {},
+        lx: 'tan',
         legendData: ['碳', '同期碳', '上月碳', '产量', '同期产量', '上月产量'],
         seriesData: [],
         y: [{name: '辆'}, {name: '亿元'}]
+      }
+    },
+    computed: {
+      yAxis() {
+        if (this.lx === 'tan') {
+          return [{name: '二氧化碳（吨CO2）'}, {name: '产量（辆）'}]
+        } else if (this.lx === 'dtan') {
+          return [{name: '二氧化碳（吨CO2）'}, {name: '产量（辆）'}]
+        } else {
+          return []
+        }
+      },
+      chartTitle() {
+        let orgId = this.options1.findIndex((item) => {
+          return this.system_id === item.value
+        })
+        let orgName = orgId >= 0 ? this.options1[orgId].label : ''
+        let lxId = this.options2.findIndex((item) => {
+          return this.lx === item.value
+        })
+        let lxName = lxId >= 0 ? this.options2[lxId].label : ''
+        if (this.year && orgName && lxName) {
+          return orgName + this.year + '年产量与' + lxName + '排放量分析'
+        } else {
+          return ''
+        }
+      },
+      xAxisData() {
+        if (this.rData.xAxisData && this.rData.xAxisData.length > 0) {
+          let copyArr = JSON.parse(JSON.stringify(this.rData.xAxisData))
+          return copyArr.map((item) => {
+            return item + '月'
+          })
+        } else {
+          return []
+        }
       }
     },
     methods: {
@@ -225,7 +198,9 @@
         return `background: ${this.colors[index]}`
       },
       onSearch() {
+        this.loading = true
         fetch('get', api.tanfx, {id: this.system_id, year: this.year}).then((res) => {
+          this.tableData = []
           let series = []
           if (res.data.tan && res.data.tan.length > 0) {
             series.push({
@@ -313,7 +288,9 @@
           }
           this.seriesData = series
           this.rData = res.data
+          this.loading = false
         }).catch(() => {
+          this.loading = false
         })
       }
     }
