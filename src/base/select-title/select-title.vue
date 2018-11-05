@@ -46,7 +46,7 @@
 </script>
 <style scoped lang="stylus">
   .select-title
-    padding: 0 10px
+    padding: 10px
     min-height: 40px
     line-height: 40px
     width: 100%

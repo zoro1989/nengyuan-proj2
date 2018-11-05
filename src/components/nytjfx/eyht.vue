@@ -146,7 +146,7 @@
         options1: orgIdDic,
         options2: lxTanDic,
         tableData: [],
-        colors: ['#5967f1', '#06e56d', '#7dd1ff', '#ff8e06', '#1196de', '#0c1994', '#8c6be6', '#ffc300', '#4472c6', '#838389', '#1096df'],
+        colors: ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3'],
         noBorder: true,
         system_id: '',
         year: '',

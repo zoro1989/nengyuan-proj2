@@ -188,6 +188,7 @@ export default {
               color: (params) => {
                 if (series[i].type === 'bar' && series[i].name.indexOf('实际') >= 0 &&
                   series[i + 1] && series[i + 1].data[params.dataIndex] &&
+                  series[i + 1].name.indexOf('计划') >= 0 &&
                   params.data !== 0 && series[i + 1].data[params.dataIndex] !== 0 &&
                   params.data > series[i + 1].data[params.dataIndex]) {
                   return '#e7251e'

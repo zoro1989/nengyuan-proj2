@@ -6,6 +6,7 @@
           <el-select
             slot="title1"
             v-model="system_id"
+            class="multiple-org"
             multiple
             placeholder="请选择"
             size="mini">
@@ -94,7 +95,7 @@
         pieRadius: ['13%', '60%'],
         options1: orgIdDic,
         tableData: [],
-        colors: ['#5967f1', '#06e56d', '#7dd1ff', '#ff8e06', '#1196de', '#0c1994', '#8c6be6', '#ffc300', '#4472c6', '#838389', '#1096df'],
+        colors: ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3'],
         noBorder: true,
         system_id: '',
         selectDate: '',
@@ -163,6 +164,10 @@
       flex-direction: column
       height: 100%
       min-width: 600px
+      .col-box
+        display: block
+      .multiple-org
+        width: 250px
       .date-type
         width: 60px
       .department-block
