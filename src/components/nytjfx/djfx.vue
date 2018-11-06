@@ -43,6 +43,7 @@
                 <el-table
                   :data="rData.list"
                   border
+                  height="100%"
                   header-cell-class-name="header-cell-class-name"
                   style="width: 99%">
                   <el-table-column

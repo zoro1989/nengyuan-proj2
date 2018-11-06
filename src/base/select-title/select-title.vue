@@ -48,12 +48,12 @@
   .select-title
     padding: 10px
     min-height: 40px
-    line-height: 40px
+    display: flex
+    align-items: center
     width: 100%
     background: #fff
     border-radius: 5px
     color: #333
-    display: flex
     justify-content: space-between
     .title-r
       .fa

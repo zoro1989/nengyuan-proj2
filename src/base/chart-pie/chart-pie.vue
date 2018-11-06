@@ -360,7 +360,9 @@ export default {
       width: 100%
       text-align: center
       height: 50px
-      line-height: 50px
+      display: flex
+      align-items: center
+      justify-content: center
       cursor: pointer
       a
         color: $color-text

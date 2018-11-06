@@ -12,7 +12,6 @@
           </el-date-picker>
           <span class="picker-txt">能源类别</span>
           <el-select
-            @change="selectChange"
             v-model="lx"
             placeholder="请选择"
             size="mini">
@@ -33,7 +32,7 @@
         <div>
           <div class="col-box-left-right-bottom">
             <chart-bar class="chart-box"
-                       :titleText="'单车耗' + chartTitle + '日对比分析'"
+                       :titleText="chartTitle"
                        :yAxis="yAxis"
                        :series="seriesData1"
                        :xAxisData="data1.xAxisData"
@@ -43,7 +42,7 @@
         <div>
           <div class="col-box-left-right-bottom">
             <chart-bar class="chart-box"
-                       :titleText="'单车耗' + chartTitle + '日对比分析'"
+                       :titleText="chartTitle"
                        :yAxis="yAxis"
                        :series="seriesData2"
                        :xAxisData="data2.xAxisData"
@@ -67,171 +66,24 @@ export default {
   data() {
     return {
       showArea: true,
-      options: [
-        {
-          value: '2',
-          label: '整车制造',
-          children: [
-            {
-              value: '42052',
-              label: '红旗工厂'
-            },
-            {
-              value: '41951',
-              label: '一汽大众公司',
-              children: [
-                {
-                  value: '1546481',
-                  label: '一汽大众长春工厂'
-                },
-                {
-                  value: '2601331',
-                  label: '一汽大众天津工厂'
-                },
-                {
-                  value: '2601332',
-                  label: '一汽大众青岛工厂'
-                },
-                {
-                  value: '1546527',
-                  label: '一汽大众佛山工厂'
-                },
-                {
-                  value: '42073',
-                  label: '一汽大众成都工厂'
-                }
-              ]
-            },
-            {
-              value: '41949',
-              label: '一汽轿车股份有限公司',
-              children: [
-                {
-                  value: '42054',
-                  label: '一工厂'
-                },
-                {
-                  value: '42055',
-                  label: '二工厂'
-                },
-                {
-                  value: '42056',
-                  label: '发传中心'
-                },
-                {
-                  value: '41954',
-                  label: '四川一汽丰田汽车有限公司'
-                }
-              ]
-            },
-            {
-              value: '41954',
-              label: '四川一汽丰田汽车有限公司'
-            },
-            {
-              value: '904489',
-              label: '一汽丰越公司'
-            },
-            {
-              value: '41937',
-              label: '一汽解放汽车有限公司'
-            },
-            {
-              value: '41939',
-              label: '一汽吉林汽车有限公司'
-            },
-            {
-              value: '41953',
-              label: '天津一汽丰田汽车有限公司'
-            },
-            {
-              value: '41950',
-              label: '天津一汽夏利汽车有限公司'
-            },
-            {
-              value: '41952',
-              label: '一汽通用轻型商用汽车有限公司'
-            },
-            {
-              value: '41938',
-              label: '一汽客车有限公司'
-            },
-            {
-              value: '41917',
-              label: '一汽新能源汽车有限公司'
-            }
-          ]
-        },
-        {
-          value: '23',
-          label: '零部件',
-          children: [
-            {
-              value: '41924',
-              label: '长春一汽富维汽车零部件股份有限公司'
-            },
-            {
-              value: '41944',
-              label: '一汽铸锻有限公司'
-            },
-            {
-              value: '41945',
-              label: '一汽模具制造有限公司'
-            },
-            {
-              value: '41955',
-              label: '一汽丰田（长春）发动机有限公司'
-            },
-            {
-              value: '41956',
-              label: '天津一汽丰田发动机有限公司'
-            },
-            {
-              value: '41992',
-              label: '无锡泽根弹簧有限公司'
-            }
-          ]
-        },
-        {
-          value: '30',
-          label: '物流',
-          children: [
-            {
-              value: '42018',
-              label: '一汽国际物流'
-            },
-            {
-              value: '41947',
-              label: '一汽物流'
-            },
-            {
-              value: '41934',
-              label: '动能分公司'
-            }
-          ]
-        }
-
-      ],
       selectedOptions: [],
       options1: [{
         value: 'D_D',
-        label: '单车电'
+        label: '单车耗电'
       }, {
         value: 'S_D',
-        label: '单车水'
+        label: '单车耗水'
       }, {
         value: 'R_D',
-        label: '单车热'
+        label: '单车耗热'
       }, {
         value: 'Q_D',
-        label: '单车气'
+        label: '单车耗气'
       }],
-      yAxis: [{name: '千瓦时'}],
       time: moment().format('YYYY-MM-DD'),
-      lx: 'D_D',
+      lx: '',
       data1: {},
       data2: {},
-      chartTitle: '电',
       system_id: '41951',
       seriesData1: [],
       seriesData2: []
@@ -239,6 +91,33 @@ export default {
   },
   created() {
     this.fetchData()
+  },
+  computed: {
+    yAxis() {
+      if (this.lx === 'D_D') {
+        return [{name: '万千瓦时'}]
+      } else if (this.lx === 'S_D') {
+        return [{name: '吨'}]
+      } else if (this.lx === 'R_D') {
+        return [{name: '吉焦'}]
+      } else if (this.lx === 'Q_D') {
+        return [{name: '万立方米'}]
+      } else {
+        return []
+      }
+    },
+    chartTitle() {
+      let orgId = this.options1.findIndex((item) => {
+        return this.lx === item.value
+      })
+      let orgName = orgId >= 0 ? this.options1[orgId].label : ''
+      if (this.time && this.lx) {
+        let monthText = moment(this.time).format('YYYY年MM月DD')
+        return monthText + orgName + '日对比分析'
+      } else {
+        return ''
+      }
+    }
   },
   methods: {
     fetchData() {
@@ -270,11 +149,6 @@ export default {
     },
     onSearch() {
       this.fetchData()
-    },
-    selectChange(value) {
-    },
-    handleChange(value) {
-      console.log(value)
     },
     onClose() {
       this.$router.replace('/ssxz')

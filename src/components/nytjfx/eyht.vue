@@ -53,6 +53,7 @@
                 <el-table
                   :data="tableData"
                   border
+                  height="100%"
                   header-cell-class-name="header-cell-class-name"
                   style="width: 99%">
                   <el-table-column
@@ -78,6 +79,7 @@
               <el-table
                 :data="rData.zf"
                 border
+                height="calc(100% - 50px)"
                 header-cell-class-name="header-cell-class-name"
                 style="width: 99%">
                 <el-table-column

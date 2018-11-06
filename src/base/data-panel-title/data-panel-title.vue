@@ -27,7 +27,9 @@ export default {
   .data-panel-title
     text-align: center
     height: 50px
-    line-height: 50px
+    display: flex
+    align-items: center
+    justify-content: center
     background: $color-background
     cursor: pointer
     border-bottom: 1px solid $color-sub-text

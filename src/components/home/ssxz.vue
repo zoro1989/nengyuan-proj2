@@ -42,7 +42,7 @@
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-line class="chart-l"
-                                 :titleText="realTimeToday + '能源用量(小时)'"
+                                 :titleText="chartTitle + realTimeToday + '能源用量(小时)'"
                                  yAxisTitle="吨标煤/时"
                                  seriesName="能耗"
                                  :xAxisData="ny.xAxisData"
@@ -51,7 +51,7 @@
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-line class="chart-r"
-                                 :titleText="realTimeToday + '能源费用(小时)'"
+                                 :titleText="chartTitle + realTimeToday + '能源费用(小时)'"
                                  yAxisTitle="万元/时"
                                  seriesName="能耗"
                                  :xAxisData="fy.xAxisData"
@@ -63,7 +63,7 @@
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-line class="chart-l"
-                        titleText="单车综合能耗"
+                        :titleText="chartTitle + '单车综合能耗'"
                         yAxisTitle="吨标煤"
                         :yAxis="bData.dnys && bData.dnys.y"
                         :xAxisData="bData.dnys && bData.dnys.xAxisData"
@@ -72,7 +72,7 @@
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-line class="chart-r"
-                        titleText="单车能源费用"
+                        :titleText="chartTitle + '单车能源费用'"
                         yAxisTitle="元/辆"
                         :yAxis="bData.dfys && bData.dfys.y"
                         :xAxisData="bData.dfys && bData.dfys.xAxisData"
@@ -83,7 +83,7 @@
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-line class="chart-l"
-                        titleText="单车耗电"
+                        :titleText="chartTitle + '单车耗电'"
                         yAxisTitle="千瓦时/量"
                         :yAxis="bData.dds && bData.dds.y"
                         :xAxisData="bData.dds && bData.dds.xAxisData"
@@ -92,7 +92,7 @@
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-line class="chart-r"
-                        titleText="单车耗水"
+                        :titleText="chartTitle + '单车耗水'"
                         yAxisTitle="升/辆"
                         :yAxis="bData.dss && bData.dss.y"
                         :xAxisData="bData.dss && bData.dss.xAxisData"
@@ -103,7 +103,7 @@
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-line class="chart-l"
-                        titleText="单车耗热"
+                        :titleText="chartTitle + '单车耗热'"
                         yAxisTitle="吉焦/辆"
                         :yAxis="bData.drs && bData.drs.y"
                         :xAxisData="bData.drs && bData.drs.xAxisData"
@@ -112,7 +112,7 @@
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-line class="chart-r"
-                        titleText="单车耗天然气"
+                        :titleText="chartTitle + '单车耗天然气'"
                         yAxisTitle="立方米/辆"
                         :yAxis="bData.dqs && bData.dqs.y"
                         :xAxisData="bData.dqs && bData.dqs.xAxisData"
@@ -123,7 +123,7 @@
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-line class="chart-l"
-                        titleText="能源消耗总量"
+                        :titleText="chartTitle + '能源消耗总量'"
                         yAxisTitle="吨/标煤"
                         :yAxis="bData.nys && bData.nys.y"
                         :xAxisData="bData.nys && bData.nys.xAxisData"
@@ -136,7 +136,7 @@
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-line class="chart-l"
-                                 :titleText="realTimeToday + '能源用量(小时)'"
+                                 :titleText="chartTitle + realTimeToday + '能源用量(小时)'"
                                  yAxisTitle="吨标煤/时"
                                  seriesName="能耗"
                                  :xAxisData="ny.xAxisData"
@@ -145,18 +145,17 @@
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-bar class="chart-r"
-                                 :titleText="realTimeToday + '能源费用(小时)'"
+                                 :titleText="chartTitle + realTimeToday + '能源费用(小时)'"
                                  yAxisTitle="万元/时"
                                  :xAxisData="fy.xAxisData"
                                  :seriesData="fy.xAxisData"
                                  seriesName="能耗"></chart-realtime-bar>
           </div>
         </div>
-        <div class="sub-title">一汽大众单车日耗</div>
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-bar class="chart-l"
-                        titleText="单车综合能耗"
+                        :titleText="chartTitle + '单车综合能耗'"
                         yAxisTitle="吨标煤"
                         seriesName="能耗"
                         :yAxis="bData.dnys && bData.dnys.y"
@@ -166,7 +165,7 @@
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-bar class="chart-r"
-                        titleText="单车能源费用"
+                        :titleText="chartTitle + '单车能源费用'"
                         yAxisTitle="元/辆"
                         seriesName="费用"
                         :yAxis="bData.dfys && bData.dfys.y"
@@ -178,7 +177,7 @@
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-bar class="chart-l"
-                        titleText="单车耗电"
+                        :titleText="chartTitle + '单车耗电'"
                         yAxisTitle="千瓦时/量"
                         seriesName="耗电"
                        :yAxis="bData.dds && bData.dds.y"
@@ -188,7 +187,7 @@
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-bar class="chart-r"
-                        titleText="单车耗水"
+                        :titleText="chartTitle + '单车耗水'"
                         yAxisTitle="升/辆"
                         seriesName="耗水"
                        :yAxis="bData.dss && bData.dss.y"
@@ -200,7 +199,7 @@
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-bar class="chart-l"
-                        titleText="单车耗热"
+                        :titleText="chartTitle + '单车耗热'"
                         yAxisTitle="吉焦/辆"
                         seriesName="耗热"
                        :yAxis="bData.drs && bData.drs.y"
@@ -210,7 +209,7 @@
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-bar class="chart-r"
-                        titleText="单车耗天然气"
+                        :titleText="chartTitle + '单车耗天然气'"
                         yAxisTitle="立方米/辆"
                         seriesName="耗天然气"
                        :yAxis="bData.dqs && bData.dqs.y"
@@ -222,7 +221,7 @@
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-bar class="chart-r"
-                        titleText="一汽大众能源消耗总量"
+                        :titleText="chartTitle + '一汽大众能源消耗总量'"
                         :legendData="legendData"
                         yAxisTitle="吨标煤"
                         :yAxis="bData.nys && bData.nys.y"
@@ -244,6 +243,7 @@ import ChartBar from 'base/chart-bar/chart-bar'
 import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
 import DepartmentSelect from 'base/department-select/department-select'
 import MultiCascader from 'base/department-select/MulCheckCascader'
+import {orgTree, orgTreeList} from 'utils/dic'
 import { api } from '@/config'
 import fetch from 'utils/fetch'
 let moment = require('moment')
@@ -291,151 +291,7 @@ export default {
         }]
       },
       value: '',
-      options: [
-        {
-          value: '2',
-          label: '整车制造',
-          children: [
-            {
-              value: '42052',
-              label: '红旗工厂'
-            },
-            {
-              value: '41951',
-              label: '一汽大众公司',
-              children: [
-                {
-                  value: '1546481',
-                  label: '一汽大众长春工厂'
-                },
-                {
-                  value: '2601331',
-                  label: '一汽大众天津工厂'
-                },
-                {
-                  value: '2601332',
-                  label: '一汽大众青岛工厂'
-                },
-                {
-                  value: '1546527',
-                  label: '一汽大众佛山工厂'
-                },
-                {
-                  value: '42073',
-                  label: '一汽大众成都工厂'
-                }
-              ]
-            },
-            {
-              value: '41949',
-              label: '一汽轿车股份有限公司',
-              children: [
-                {
-                  value: '42054',
-                  label: '一工厂'
-                },
-                {
-                  value: '42055',
-                  label: '二工厂'
-                },
-                {
-                  value: '42056',
-                  label: '发传中心'
-                },
-                {
-                  value: '41954',
-                  label: '四川一汽丰田汽车有限公司'
-                }
-              ]
-            },
-            {
-              value: '41954',
-              label: '四川一汽丰田汽车有限公司'
-            },
-            {
-              value: '904489',
-              label: '一汽丰越公司'
-            },
-            {
-              value: '41937',
-              label: '一汽解放汽车有限公司'
-            },
-            {
-              value: '41939',
-              label: '一汽吉林汽车有限公司'
-            },
-            {
-              value: '41953',
-              label: '天津一汽丰田汽车有限公司'
-            },
-            {
-              value: '41950',
-              label: '天津一汽夏利汽车有限公司'
-            },
-            {
-              value: '41952',
-              label: '一汽通用轻型商用汽车有限公司'
-            },
-            {
-              value: '41938',
-              label: '一汽客车有限公司'
-            },
-            {
-              value: '41917',
-              label: '一汽新能源汽车有限公司'
-            }
-          ]
-        },
-        {
-          value: '23',
-          label: '零部件',
-          children: [
-            {
-              value: '41924',
-              label: '长春一汽富维汽车零部件股份有限公司'
-            },
-            {
-              value: '41944',
-              label: '一汽铸锻有限公司'
-            },
-            {
-              value: '41945',
-              label: '一汽模具制造有限公司'
-            },
-            {
-              value: '41955',
-              label: '一汽丰田（长春）发动机有限公司'
-            },
-            {
-              value: '41956',
-              label: '天津一汽丰田发动机有限公司'
-            },
-            {
-              value: '41992',
-              label: '无锡泽根弹簧有限公司'
-            }
-          ]
-        },
-        {
-          value: '30',
-          label: '物流',
-          children: [
-            {
-              value: '42018',
-              label: '一汽国际物流'
-            },
-            {
-              value: '41947',
-              label: '一汽物流'
-            },
-            {
-              value: '41934',
-              label: '动能分公司'
-            }
-          ]
-        }
-
-      ],
+      options: orgTree,
       selectedOptions: [],
       chartColor10: ['#8c6be6', '#4a14dd'],
       legendData: ['生产能耗', '非生产能耗'],
@@ -456,6 +312,13 @@ export default {
   computed: {
     realTimeToday () {
       return moment().format('MMMM') + this.sectionToChinese(moment().format('D')) + '日'
+    },
+    chartTitle() {
+      let orgId = orgTreeList.findIndex((item) => {
+        return this.system_id === item['SYSTEM_ID']
+      })
+      let orgName = orgId >= 0 ? orgTreeList[orgId]['NAME'] : ''
+      return orgName
     }
   },
   methods: {

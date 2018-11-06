@@ -32,6 +32,7 @@
           <div class="row">
             <el-table
               :data="rData"
+              height="100%"
               border
               header-cell-class-name="header-cell-class-name"
               style="width: 99%">

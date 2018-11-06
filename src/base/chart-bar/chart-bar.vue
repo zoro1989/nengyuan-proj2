@@ -221,7 +221,9 @@ export default {
       transform: translateX(-50%)
       text-align: center
       height: 50px
-      line-height: 50px
+      display: flex
+      align-items: center
+      justify-content: center
       background: $color-background
       cursor: pointer
       a
