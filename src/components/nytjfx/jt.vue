@@ -128,7 +128,7 @@
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-  import {orgIdDic, lxdDic} from 'utils/dic'
+  import {orgIdDic, lxdDic, getYAxis} from 'utils/dic'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -159,29 +159,7 @@
     },
     computed: {
       yAxis() {
-        if (this.lx === '33') {
-          return [{name: '万千瓦时'}, {name: '万元'}]
-        } else if (this.lx === '00') {
-          return [{name: '吨'}, {name: '万元'}]
-        } else if (this.lx === '32') {
-          return [{name: '吉焦'}, {name: '万元'}]
-        } else if (this.lx === '15') {
-          return [{name: '万立方米'}, {name: '万元'}]
-        } else if (this.lx === '40') {
-          return [{name: '万吨标煤'}, {name: '万元'}]
-        } else if (this.lx === '33_d') {
-          return [{name: '万千瓦时'}, {name: '万元'}]
-        } else if (this.lx === '00_d') {
-          return [{name: '吨'}, {name: '万元'}]
-        } else if (this.lx === '32_d') {
-          return [{name: '吉焦'}, {name: '万元'}]
-        } else if (this.lx === '15_d') {
-          return [{name: '万立方米'}, {name: '万元'}]
-        } else if (this.lx === '40_d') {
-          return [{name: '万吨标煤'}, {name: '万元'}]
-        } else {
-          return []
-        }
+        return getYAxis(this.lx)
       },
       chartTitle() {
         let orgId = this.options1.findIndex((item) => {

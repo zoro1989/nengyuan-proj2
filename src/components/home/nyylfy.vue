@@ -226,7 +226,7 @@
                         :series="barDb.series"
                         :xAxisData="barDb.xAxisData"
                         :yAxis="yAxis"
-                        titleText="能源用量与节能指标同比分析"></chart-bar-line>
+                        titleText="能源用量与费用同比分析"></chart-bar-line>
       </div>
     </div>
   </div>

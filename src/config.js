@@ -1,8 +1,8 @@
 // let apiPath = '/api/';
 // let apiPath = 'http://47.95.14.172:8088/web/';
 // let apiPath = 'http://rancode.jymenu.com/';
-let apiPath = '/yqny/'
-// let apiPath = '/'
+// let apiPath = '/yqny/'
+let apiPath = '/'
 const api = {
   getHomeData: apiPath + 'queryShouYeList',
   queryZhiBiaoList: apiPath + 'queryZhiBiaoList',
@@ -44,7 +44,8 @@ const api = {
   kongyajiCreate: apiPath + 'api/kongyaji/create',
   dianjiList: apiPath + 'api/dianji/list',
   dianjiUpdate: apiPath + 'api/dianji/update',
-  dianjiCreate: apiPath + 'api/dianji/create'
+  dianjiCreate: apiPath + 'api/dianji/create',
+  kipList: apiPath + 'api/kpi/list'
 }
 
 const apiDict = {

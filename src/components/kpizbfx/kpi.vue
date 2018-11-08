@@ -2,7 +2,7 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <select-title title1="用能单位" title2="选择时间" title3="费用类型" @search="onSearch" :showSearch="true">
+        <select-title title1="用能单位" title2="选择时间" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
             v-model="system_id"
@@ -23,18 +23,6 @@
             value-format="yyyy"
             placeholder="选择年">
           </el-date-picker>
-          <el-select
-            slot="title3"
-            v-model="lx"
-            placeholder="请选择"
-            size="mini">
-            <el-option
-              v-for="item in options2"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
@@ -47,6 +35,7 @@
                                 :series="seriesData"
                                 :xAxisData="xAxisData"
                                 :yAxis="yAxis"
+                                :isOnlyLine="true"
                                 :titleText="chartTitle"></chart-bar-line>
               </div>
               <div class="row">
@@ -66,8 +55,8 @@
                     </template>
                   </el-table-column>
                   <el-table-column
-                    v-for="item in rData.xAxisData"
-                    :key="item"
+                    v-for="(item, index) in rData.xAxisData"
+                    :key="index"
                     :prop="item + 'yue'"
                     :label="item + '月'">
                   </el-table-column>
@@ -77,30 +66,37 @@
             <div class="col-lg-4 col-md-12 table-box box-right">
               <data-panel-title title="分析结果" :noBorder="noBorder"></data-panel-title>
               <el-table
-                :data="rData.zf"
+                :data="rlist"
                 border
                 height="calc(100% - 50px)"
                 header-cell-class-name="header-cell-class-name"
                 style="width: 99%">
                 <el-table-column
-                  prop="yue"
-                  label="月">
+                  prop="YUE"
+                  label="日期">
                 </el-table-column>
                 <el-table-column
-                  prop="fyhbzf"
-                  label="用量环比增幅">
+                  prop="DBL"
+                  label="单月达标率">
                 </el-table-column>
                 <el-table-column
-                  prop="clhbzf"
-                  label="产量环比增幅">
+                  prop="LJDBL"
+                  label="累计达标率">
                 </el-table-column>
                 <el-table-column
-                  prop="fytbzf"
-                  label="用量同比增幅">
-                </el-table-column>
-                <el-table-column
-                  prop="cltbzf"
-                  label="产量同比增幅">
+                  label="评价">
+                  <el-table-column
+                    label="单月达标率">
+                    <template slot-scope="scope">
+                      <span class="dbl" :style="dblStyle(scope.$index)"></span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    label="累计达标率">
+                    <template slot-scope="scope">
+                      <span class="dbl" :style="ljdblStyle(scope.$index)"></span>
+                    </template>
+                  </el-table-column>
                 </el-table-column>
               </el-table>
             </div>
@@ -117,7 +113,7 @@
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-  import {orgIdDic, lxfyDic} from 'utils/dic'
+  import {orgSystemIdDic, lxfyDic} from 'utils/dic'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -133,23 +129,23 @@
       return {
         loading: false,
         pieRadius: ['13%', '60%'],
-        options1: orgIdDic,
+        options1: orgSystemIdDic,
         options2: lxfyDic,
         tableData: [],
         colors: ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3'],
         noBorder: true,
         system_id: '',
         year: '',
-        lx: '',
+        lx: this.$route.params.lx || '1',
         rData: {},
-        legendData: ['实际费用', '同期费用', '上月费用', '实际产量', '同期产量', '上月产量'],
+        legendData: ['产量（辆）', '实际产值（万元）', '计划单月万元产值能耗', '实际单月万元产值能耗', '计划累计万元产值能耗', '实际累计万元产值能耗'],
         seriesData: [],
-        y: [{name: '辆'}, {name: '亿元'}]
+        rlist: []
       }
     },
     computed: {
       yAxis() {
-        return [{name: '辆'}, {name: '万元'}]
+        return [{name: '万元'}]
 //        if (this.lx === '33') {
 //          return [{name: '万元'}, {name: '万千瓦时'}]
 //        } else if (this.lx === '00') {
@@ -179,12 +175,16 @@
           return this.system_id === item.value
         })
         let orgName = orgId >= 0 ? this.options1[orgId].label : ''
-        let lxId = this.options2.findIndex((item) => {
-          return this.lx === item.value
-        })
-        let lxName = lxId >= 0 ? this.options2[lxId].label : ''
-        if (this.year && orgName && lxName) {
-          return orgName + this.year + '年产量与' + lxName + '费对比分析'
+        if (this.year && orgName) {
+          if (this.lx === '1') {
+            return orgName + this.year + '产值综合能耗绩效指标达标率分析'
+          } else if (this.lx === '2') {
+            return orgName + this.year + '产值耗水量绩效指标达标率分析'
+          } else if (this.lx === '3') {
+            return orgName + this.year + '能源消耗总量绩效指标达标率分析'
+          } else if (this.lx === '4') {
+            return orgName + this.year + '单车综合能耗绩效指标达标率分析'
+          }
         } else {
           return ''
         }
@@ -200,102 +200,124 @@
         }
       }
     },
+    watch: {
+      '$route' (to, from) {
+        this.seriesData = []
+        this.rlist = []
+        this.tableData = []
+        this.system_id = ''
+        this.year = ''
+        this.rData = {}
+        this.lx = this.$route.params.lx || '1'
+      }
+    },
     methods: {
+      dblStyle(index) {
+        let res = this.rlist[index]['JHCZNH'] * 1 - this.rlist[index]['SJCZNH'] * 1
+        return res >= 0 ? 'background: #67C23A; color: #fff;' : 'background: #F56C6C; color: #fff;'
+      },
+      ljdblStyle(index) {
+        let res = this.rlist[index]['JHLJCZNH'] * 1 - this.rlist[index]['SJLJCZNH'] * 1
+        return res >= 0 ? 'background: #67C23A; color: #fff;' : 'background: #F56C6C; color: #fff;'
+      },
       departmentStyle(index) {
         return `background: ${this.colors[index]}`
       },
       onSearch() {
-        let lxInput = this.lx.split('_').length > 0 ? this.lx.split('_')[0] : ''
         this.loading = true
-        fetch('get', api.nyfyfx, {id: this.system_id, year: this.year, lx: lxInput}).then((res) => {
+        fetch('get', api.kipList, {system_id: this.system_id, nian: this.year, lx: this.lx}).then((res) => {
           this.tableData = []
           let series = []
-          if (res.data.fy && res.data.fy.length > 0) {
-            series.push({
-              name: '实际费用',
-              type: 'bar',
-              data: res.data.fy
-            })
-            let obj = {}
-            obj.projectName = '实际费用'
-            for (let i = 0; i < res.data.fy.length; i++) {
-              let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.fy[i]
-            }
-            this.tableData.push(obj)
-          }
-          if (res.data.tqfy && res.data.tqfy.length > 0) {
-            series.push({
-              name: '同期费用',
-              type: 'bar',
-              data: res.data.tqfy
-            })
-            let obj = {}
-            obj.projectName = '同期费用'
-            for (let i = 0; i < res.data.tqfy.length; i++) {
-              let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.tqfy[i]
-            }
-            this.tableData.push(obj)
-          }
-          if (res.data.syfy && res.data.syfy.length > 0) {
-            series.push({
-              name: '上月费用',
-              type: 'bar',
-              data: res.data.syfy
-            })
-            let obj = {}
-            obj.projectName = '上月费用'
-            for (let i = 0; i < res.data.syfy.length; i++) {
-              let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.syfy[i]
-            }
-            this.tableData.push(obj)
-          }
           if (res.data.cl && res.data.cl.length > 0) {
             series.push({
-              name: '实际产量',
+              name: '产量（辆）',
               type: 'line',
               data: res.data.cl
             })
             let obj = {}
-            obj.projectName = '实际产量'
+            obj.projectName = '产量（辆）'
             for (let i = 0; i < res.data.cl.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
               obj[key] = res.data.cl[i]
             }
             this.tableData.push(obj)
           }
-          if (res.data.tqcl && res.data.tqcl.length > 0) {
+          if (res.data.cz && res.data.cz.length > 0) {
             series.push({
-              name: '同期产量',
+              name: '实际产值（万元）',
               type: 'line',
-              data: res.data.tqcl
+              data: res.data.cz
             })
             let obj = {}
-            obj.projectName = '同期产量'
-            for (let i = 0; i < res.data.tqcl.length; i++) {
+            obj.projectName = '实际产值（万元）'
+            for (let i = 0; i < res.data.cz.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.tqcl[i]
+              obj[key] = res.data.cz[i]
             }
             this.tableData.push(obj)
           }
-          if (res.data.sycl && res.data.sycl.length > 0) {
+          if (res.data.jhcznh && res.data.jhcznh.length > 0) {
             series.push({
-              name: '上月产量',
+              name: '计划单月万元产值能耗',
               type: 'line',
-              data: res.data.sycl
+              data: res.data.jhcznh
             })
             let obj = {}
-            obj.projectName = '上月产量'
-            for (let i = 0; i < res.data.sycl.length; i++) {
+            obj.projectName = '计划单月万元产值能耗'
+            for (let i = 0; i < res.data.jhcznh.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.sycl[i]
+              obj[key] = res.data.jhcznh[i]
+            }
+            this.tableData.push(obj)
+          }
+          if (res.data.sjcznh && res.data.sjcznh.length > 0) {
+            series.push({
+              name: '实际单月万元产值能耗',
+              type: 'line',
+              data: res.data.sjcznh
+            })
+            let obj = {}
+            obj.projectName = '实际单月万元产值能耗'
+            for (let i = 0; i < res.data.sjcznh.length; i++) {
+              let key = res.data.xAxisData[i] + 'yue'
+              obj[key] = res.data.sjcznh[i]
+            }
+            this.tableData.push(obj)
+          }
+          if (res.data.jhljcznh && res.data.jhljcznh.length > 0) {
+            series.push({
+              name: '计划累计万元产值能耗',
+              type: 'line',
+              data: res.data.jhljcznh
+            })
+            let obj = {}
+            obj.projectName = '计划累计万元产值能耗'
+            for (let i = 0; i < res.data.jhljcznh.length; i++) {
+              let key = res.data.xAxisData[i] + 'yue'
+              obj[key] = res.data.jhljcznh[i]
+            }
+            this.tableData.push(obj)
+          }
+          if (res.data.sjljcznh && res.data.sjljcznh.length > 0) {
+            series.push({
+              name: '实际累计万元产值能耗',
+              type: 'line',
+              data: res.data.sjljcznh
+            })
+            let obj = {}
+            obj.projectName = '实际累计万元产值能耗'
+            for (let i = 0; i < res.data.sjljcznh.length; i++) {
+              let key = res.data.xAxisData[i] + 'yue'
+              obj[key] = res.data.sjljcznh[i]
             }
             this.tableData.push(obj)
           }
           this.seriesData = series
           this.rData = res.data
+          this.rlist = res.list.map((item) => {
+            item['YUE'] = item['YUE'] + '月'
+            return item
+          })
           this.loading = false
         }).catch(() => {
           this.loading = false
@@ -321,6 +343,13 @@
       flex-direction: column
       height: 100%
       min-width: 600px
+      .panel-box
+        width: 100%
+      .dbl
+        width: 10px
+        height: 10px
+        border-radius: 50%
+        display: inline-block
       .date-type
         width: 60px
       .department-block

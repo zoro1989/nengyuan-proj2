@@ -50,6 +50,10 @@ export default {
       default: function () {
         return []
       }
+    },
+    isOnlyLine: {
+      type: Boolean,
+      default: false
     }
   },
   created() {
@@ -179,24 +183,27 @@ export default {
             item.name = series[i].name
             item.type = series[i].type
             if (item.type === 'line') {
-              item.yAxisIndex = 1
+              if (!this.isOnlyLine) {
+                item.yAxisIndex = 1
+              }
               item.lineStyle = {color: vm.chartColor[i]}
-            }
-            item.data = series[i].data
-            item.itemStyle = {
-              barBorderRadius: [3, 3, 0, 0],
-              color: (params) => {
-                if (series[i].type === 'bar' && series[i].name.indexOf('实际') >= 0 &&
-                  series[i + 1] && series[i + 1].data[params.dataIndex] &&
-                  series[i + 1].name.indexOf('计划') >= 0 &&
-                  params.data !== 0 && series[i + 1].data[params.dataIndex] !== 0 &&
-                  params.data > series[i + 1].data[params.dataIndex]) {
-                  return '#e7251e'
-                } else {
-                  return vm.chartColor[i]
+            } else {
+              item.itemStyle = {
+                barBorderRadius: [3, 3, 0, 0],
+                color: (params) => {
+                  if (series[i].type === 'bar' && series[i].name.indexOf('实际') >= 0 &&
+                    series[i + 1] && series[i + 1].data[params.dataIndex] &&
+                    series[i + 1].name.indexOf('计划') >= 0 &&
+                    params.data !== 0 && series[i + 1].data[params.dataIndex] !== 0 &&
+                    params.data > series[i + 1].data[params.dataIndex]) {
+                    return '#e7251e'
+                  } else {
+                    return vm.chartColor[i]
+                  }
                 }
               }
             }
+            item.data = series[i].data
             res.push(item)
           }
           return res

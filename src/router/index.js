@@ -23,6 +23,8 @@ const Nxkyj = () => import('components/sbnxfx/kyj')
 const Nxfj = () => import('components/sbnxfx/fj')
 const Nxsb = () => import('components/sbnxfx/sb')
 
+const KPI = () => import('components/kpizbfx/kpi')
+
 Vue.use(Router)
 
 export default new Router({
@@ -135,6 +137,11 @@ export default new Router({
       path: '/dj',
       name: '电机',
       component: Dj
+    },
+    {
+      path: '/kpi/:lx',
+      name: 'kpi指标分析',
+      component: KPI
     }
   ]
 })

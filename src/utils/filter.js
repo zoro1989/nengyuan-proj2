@@ -40,7 +40,7 @@ export function filterArr(arr) {
         temp = '一汽铸锻'
         break
       case '天津一汽丰田发动机有限公司':
-        temp = '天津丰田'
+        temp = '天津丰发'
         break
       case '一汽丰田（长春）发动机有限公司':
         temp = '长春丰发'
@@ -96,7 +96,7 @@ export function filter(str) {
       resultStr = '一汽铸锻'
       break
     case '天津一汽丰田发动机有限公司':
-      resultStr = '天津丰田'
+      resultStr = '天津丰发'
       break
     case '一汽丰田（长春）发动机有限公司':
       resultStr = '长春丰发'

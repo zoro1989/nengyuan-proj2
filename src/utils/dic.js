@@ -196,35 +196,26 @@ export const lxdDic = [
 export const lxfyDic = [
   {
     value: '33',
-    label: '电'
+    label: '电费'
   }, {
     value: '00',
-    label: '水'
+    label: '水费'
   }, {
     value: '32',
-    label: '热力'
+    label: '热力费'
   }, {
     value: '15',
-    label: '天然气'
+    label: '天然气费'
   }, {
     value: '40',
     label: '总费用'
   },
   {
-    value: '33_d',
-    label: '单车电'
+    value: '666',
+    label: '乘用车费用'
   }, {
-    value: '00_d',
-    label: '单车水'
-  }, {
-    value: '32_d',
-    label: '单车热力'
-  }, {
-    value: '15_d',
-    label: '单车天然气'
-  }, {
-    value: '40_d',
-    label: '单车总费用'
+    value: '999',
+    label: '中重型车费用'
   }
 ]
 export const lxTanDic = [
@@ -622,3 +613,28 @@ export const orgTree = [
   }
 
 ]
+export function getYAxis (lx) {
+  if (lx === '33') {
+    return [{name: '辆'}, {name: '万千瓦时'}]
+  } else if (lx === '00') {
+    return [{name: '辆'}, {name: '吨'}]
+  } else if (lx === '32') {
+    return [{name: '辆'}, {name: '吉焦'}]
+  } else if (lx === '15') {
+    return [{name: '辆'}, {name: '万立方米'}]
+  } else if (lx === '40') {
+    return [{name: '辆'}, {name: '万吨标煤'}]
+  } else if (lx === '33_d') {
+    return [{name: '辆'}, {name: '万千瓦时'}]
+  } else if (lx === '00_d') {
+    return [{name: '辆'}, {name: '吨'}]
+  } else if (lx === '32_d') {
+    return [{name: '辆'}, {name: '吉焦'}]
+  } else if (lx === '15_d') {
+    return [{name: '辆'}, {name: '万立方米'}]
+  } else if (lx === '40_d') {
+    return [{name: '辆'}, {name: '万吨标煤'}]
+  } else {
+    return []
+  }
+}

@@ -154,7 +154,7 @@
         year: '',
         rData: {},
         lx: 'tan',
-        legendData: ['碳', '同期碳', '上月碳', '产量', '同期产量', '上月产量'],
+        legendData: ['实际碳', '同期碳', '上月碳', '产量', '同期产量', '上月产量'],
         seriesData: [],
         y: [{name: '辆'}, {name: '亿元'}]
       }
@@ -162,7 +162,7 @@
     computed: {
       yAxis() {
         if (this.lx === 'tan') {
-          return [{name: '二氧化碳（吨CO2）'}, {name: '产量（辆）'}]
+          return [{name: '吨CO2/辆'}, {name: '产量（辆）'}]
         } else if (this.lx === 'dtan') {
           return [{name: '二氧化碳（吨CO2）'}, {name: '产量（辆）'}]
         } else {
@@ -206,12 +206,12 @@
           let series = []
           if (res.data.tan && res.data.tan.length > 0) {
             series.push({
-              name: '碳',
+              name: '实际碳',
               type: 'bar',
               data: res.data.tan
             })
             let obj = {}
-            obj.projectName = '碳'
+            obj.projectName = '实际碳'
             for (let i = 0; i < res.data.tan.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
               obj[key] = res.data.tan[i]
