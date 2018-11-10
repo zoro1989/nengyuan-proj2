@@ -162,9 +162,9 @@
     computed: {
       yAxis() {
         if (this.lx === 'tan') {
-          return [{name: '吨CO2/辆'}, {name: '产量（辆）'}]
-        } else if (this.lx === 'dtan') {
           return [{name: '二氧化碳（吨CO2）'}, {name: '产量（辆）'}]
+        } else if (this.lx === 'dtan') {
+          return [{name: '吨CO2/辆'}, {name: '产量（辆）'}]
         } else {
           return []
         }

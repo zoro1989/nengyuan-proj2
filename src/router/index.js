@@ -5,9 +5,14 @@ const Zhnh = () => import('components/home/zhnh')
 const Nyylfy = () => import('components/home/nyylfy')
 const Ssxz = () => import('components/home/ssxz')
 const Dbfx = () => import('components/home/dbfx')
-const Nyzlfx = () => import('components/nyzhfx/nyfyjg/nyzlfx')
-const Nybmfx = () => import('components/nyzhfx/nyfyjg/nybmfx')
+const Alarm = () => import('components/home/alarm')
+
+const Zlfy = () => import('components/nyzhfx/nyfyjg/zlfy')
+const Zlnh = () => import('components/nyzhfx/nyfyjg/zlnh')
+const Bmfy = () => import('components/nyzhfx/nyfyjg/bmfy')
+const Bmnh = () => import('components/nyzhfx/nyfyjg/bmnh')
 const Eyhtfx = () => import('components/nyzhfx/eyhtfx')
+
 const Nyylfx = () => import('components/nytjfx/nyylfx')
 const Nyfyfx = () => import('components/nytjfx/nyfyfx')
 const TjEyhtfx = () => import('components/nytjfx/eyht')
@@ -23,7 +28,11 @@ const Nxkyj = () => import('components/sbnxfx/kyj')
 const Nxfj = () => import('components/sbnxfx/fj')
 const Nxsb = () => import('components/sbnxfx/sb')
 
-const KPI = () => import('components/kpizbfx/kpi')
+const KPI1 = () => import('components/kpizbfx/kpi1')
+const KPI2 = () => import('components/kpizbfx/kpi2')
+const KPI3 = () => import('components/kpizbfx/kpi3')
+const KPI4 = () => import('components/kpizbfx/kpi4')
+const KPI5 = () => import('components/kpizbfx/kpi5')
 
 Vue.use(Router)
 
@@ -31,7 +40,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/home'
+      redirect: '/alarm'
     },
     {
       path: '/home',
@@ -59,14 +68,24 @@ export default new Router({
       component: Dbfx
     },
     {
-      path: '/nyzlfx/:type',
+      path: '/nyzlfx/fy',
       name: '能源种类分析',
-      component: Nyzlfx
+      component: Zlfy
     },
     {
-      path: '/nybmfx/:type',
+      path: '/nyzlfx/nh',
+      name: '能源种类分析',
+      component: Zlnh
+    },
+    {
+      path: '/nybmfx/fy',
       name: '能源部门分析',
-      component: Nybmfx
+      component: Bmfy
+    },
+    {
+      path: '/nybmfx/nh',
+      name: '能源部门分析',
+      component: Bmnh
     },
     {
       path: '/eyhtfx',
@@ -139,9 +158,34 @@ export default new Router({
       component: Dj
     },
     {
-      path: '/kpi/:lx',
+      path: '/kpi1',
       name: 'kpi指标分析',
-      component: KPI
+      component: KPI1
+    },
+    {
+      path: '/kpi2',
+      name: 'kpi指标分析',
+      component: KPI2
+    },
+    {
+      path: '/kpi3',
+      name: 'kpi指标分析',
+      component: KPI3
+    },
+    {
+      path: '/kpi4',
+      name: 'kpi指标分析',
+      component: KPI4
+    },
+    {
+      path: '/kpi5',
+      name: 'kpi指标分析',
+      component: KPI5
+    },
+    {
+      path: '/alarm',
+      name: '能源预警',
+      component: Alarm
     }
   ]
 })

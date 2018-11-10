@@ -184,7 +184,7 @@
         })
         let lxName = lxId >= 0 ? this.options2[lxId].label : ''
         if (this.year && orgName && lxName) {
-          return orgName + this.year + '年产量与' + lxName + '费对比分析'
+          return orgName + this.year + '年产量与' + lxName + '对比分析'
         } else {
           return ''
         }

@@ -33,14 +33,14 @@
                              :titleText="jcqFormat + '集团公司二氧化碳排放量分布'"
                              :radius="pieRadius"
                              @pieClick="pieClick"
-                             :seriesData="rData.bjq_pie && rData.bjq_pie.seriesData"></chart-pie>
+                             :seriesData="rData.jcq_pie && rData.jcq_pie.seriesData"></chart-pie>
                 </div>
                 <div class="col-lg-6 col-md-12">
                   <chart-pie class="chart-box"
                              :titleText="bjqFormat + '集团公司二氧化碳排放量分布'"
                              :radius="pieRadius"
                              @pieClick="pieClick"
-                             :seriesData="rData.bjq_pie && rData.jcq_pie.seriesData"></chart-pie>
+                             :seriesData="rData.bjq_pie && rData.bjq_pie.seriesData"></chart-pie>
                 </div>
               </div>
               <div class="row">

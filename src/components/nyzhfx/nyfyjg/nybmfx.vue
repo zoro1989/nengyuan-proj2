@@ -170,10 +170,15 @@
 //      }, 20)
       this.fetchData()
     },
+    props: {
+      type: {
+        type: String,
+        default: 'nh'
+      }
+    },
     data() {
       return {
         loading: false,
-        type: this.$route.params.type || 'nh',
         rData: {},
         strucPie1: [],
         strucPie2: [],

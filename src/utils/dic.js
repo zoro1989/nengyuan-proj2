@@ -625,15 +625,15 @@ export function getYAxis (lx) {
   } else if (lx === '40') {
     return [{name: '辆'}, {name: '万吨标煤'}]
   } else if (lx === '33_d') {
-    return [{name: '辆'}, {name: '万千瓦时'}]
+    return [{name: '辆'}, {name: '千瓦时/辆'}]
   } else if (lx === '00_d') {
-    return [{name: '辆'}, {name: '吨'}]
+    return [{name: '辆'}, {name: '升/辆'}]
   } else if (lx === '32_d') {
-    return [{name: '辆'}, {name: '吉焦'}]
+    return [{name: '辆'}, {name: '吉焦/辆'}]
   } else if (lx === '15_d') {
-    return [{name: '辆'}, {name: '万立方米'}]
+    return [{name: '辆'}, {name: '立方米/辆'}]
   } else if (lx === '40_d') {
-    return [{name: '辆'}, {name: '万吨标煤'}]
+    return [{name: '辆'}, {name: '吨标煤/辆'}]
   } else {
     return []
   }

@@ -117,6 +117,12 @@
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
+    props: {
+      lx: {
+        type: String,
+        default: '1'
+      }
+    },
     components: {
       SelectTitle,
       ChartPie,
@@ -136,7 +142,6 @@
         noBorder: true,
         system_id: '',
         year: '',
-        lx: this.$route.params.lx || '1',
         rData: {},
         legendData: ['产量（辆）', '实际产值（万元）', '计划单月万元产值能耗', '实际单月万元产值能耗', '计划累计万元产值能耗', '实际累计万元产值能耗'],
         seriesData: [],
@@ -198,17 +203,6 @@
         } else {
           return []
         }
-      }
-    },
-    watch: {
-      '$route' (to, from) {
-        this.seriesData = []
-        this.rlist = []
-        this.tableData = []
-        this.system_id = ''
-        this.year = ''
-        this.rData = {}
-        this.lx = this.$route.params.lx || '1'
       }
     },
     methods: {

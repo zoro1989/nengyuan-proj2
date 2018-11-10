@@ -51,11 +51,11 @@
             <strong>KPI指标分析</strong>
           </a>
           <ul>
-            <li><a href="#" @click="changeRoute('/kpi/1', 3)"><i class="fa fa-hourglass-start"></i>产值综合能耗分析</a></li>
-            <li><a href="#" @click="changeRoute('/kpi/2', 3)"><i class="fa fa-tint"></i>产值耗水量分析</a></li>
-            <li><a href="#" @click="changeRoute('/kpi/3', 3)"><i class="fa fa-battery-half"></i>能源消耗总量分析</a></li>
-            <li><a href="#" @click="changeRoute('/kpi/4', 3)"><i class="fa fa-truck"></i>单车综合能耗分析</a></li>
-            <li><a href="#"><i class="fa fa-trophy"></i>KPI评价考核表</a></li>
+            <li><a href="#" @click="changeRoute('/kpi1', 3)"><i class="fa fa-hourglass-start"></i>产值综合能耗分析</a></li>
+            <li><a href="#" @click="changeRoute('/kpi2', 3)"><i class="fa fa-tint"></i>产值耗水量分析</a></li>
+            <li><a href="#" @click="changeRoute('/kpi3', 3)"><i class="fa fa-battery-half"></i>能源消耗总量分析</a></li>
+            <li><a href="#" @click="changeRoute('/kpi4', 3)"><i class="fa fa-truck"></i>单车综合能耗分析</a></li>
+            <li><a href="#" @click="changeRoute('/kpi5', 3)"><i class="fa fa-trophy"></i>KPI评价考核表</a></li>
           </ul>
         </li>
         <li>
