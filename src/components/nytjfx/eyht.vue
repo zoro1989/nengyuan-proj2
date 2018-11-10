@@ -51,7 +51,7 @@
               </div>
               <div class="row">
                 <el-table
-                  :data="tableData"
+                  :data="filterTableData"
                   border
                   height="100%"
                   header-cell-class-name="header-cell-class-name"
@@ -130,6 +130,7 @@
   import { api } from '@/config'
   import fetch from 'utils/fetch'
   import {orgIdDic, lxTanDic} from 'utils/dic'
+  import {tableDataFilter} from 'utils/filter'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -193,6 +194,9 @@
         } else {
           return []
         }
+      },
+      filterTableData() {
+        return tableDataFilter(this.tableData)
       }
     },
     methods: {

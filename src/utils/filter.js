@@ -112,3 +112,15 @@ export function filter(str) {
   }
   return resultStr
 }
+
+export function tableDataFilter(tableData) {
+  let copyTableData = JSON.parse(JSON.stringify(tableData))
+  return copyTableData.map((item) => {
+    for (let i in item) {
+      if (Object.prototype.toString.call(item[i]) === '[object Number]') {
+        item[i] = Math.round(item[i])
+      }
+    }
+    return item
+  })
+}

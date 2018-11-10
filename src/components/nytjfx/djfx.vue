@@ -78,7 +78,7 @@
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-  import {orgIdDic} from 'utils/dic'
+  import {orgIdSimpleDic} from 'utils/dic'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -94,7 +94,7 @@
       return {
         loading: false,
         pieRadius: ['13%', '60%'],
-        options1: orgIdDic,
+        options1: orgIdSimpleDic,
         tableData: [],
         colors: ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3'],
         noBorder: true,
@@ -168,7 +168,7 @@
       .col-box
         display: block
       .multiple-org
-        width: 250px
+        width: 400px
       .date-type
         width: 60px
       .department-block
@@ -180,8 +180,8 @@
         .panel-box >.row
           height: 100%
           .table-box > .row:last-child
-            height: calc(100% - 350px)
+            height: calc(100% - 250px)
       .chart-box
-        min-height: 350px
+        min-height: 250px
         border-radius: 0px
 </style>

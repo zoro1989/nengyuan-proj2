@@ -141,6 +141,76 @@ export const orgIdDic = [
     label: '动能分公司'
   }
 ]
+export const orgIdSimpleDic = [
+  {
+    value: '1',
+    label: '集团公司'
+  },
+  {
+    value: '3',
+    label: '红旗工厂'
+  }, {
+    value: '4',
+    label: '一汽大众'
+  }, {
+    value: '10',
+    label: '一汽轿车'
+  }, {
+    value: '14',
+    label: '四川丰田'
+  }, {
+    value: '15',
+    label: '一汽丰越'
+  }, {
+    value: '16',
+    label: '一汽解放'
+  }, {
+    value: '17',
+    label: '吉林汽车'
+  }, {
+    value: '18',
+    label: '天津丰田'
+  }, {
+    value: '19',
+    label: '天津夏利'
+  }, {
+    value: '20',
+    label: '一汽通用'
+  }, {
+    value: '21',
+    label: '一汽客车'
+  }, {
+    value: '22',
+    label: '新能源'
+  }, {
+    value: '24',
+    label: '一汽富维'
+  }, {
+    value: '25',
+    label: '一汽铸锻'
+  }, {
+    value: '26',
+    label: '一汽模具'
+  }, {
+    value: '27',
+    label: '长春丰发'
+  }, {
+    value: '28',
+    label: '天津丰发'
+  }, {
+    value: '29',
+    label: '无锡泽根弹簧有限公司'
+  }, {
+    value: '31',
+    label: '一汽国际物流'
+  }, {
+    value: '32',
+    label: '一汽物流'
+  }, {
+    value: '33',
+    label: '动能分公司'
+  }
+]
 export const lxDic = [
   {
     value: '33',
