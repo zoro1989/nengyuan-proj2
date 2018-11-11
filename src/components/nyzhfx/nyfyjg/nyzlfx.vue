@@ -216,10 +216,15 @@
     created() {
       this.fetchData()
     },
+    props: {
+      type: {
+        type: String,
+        default: 'nh'
+      }
+    },
     data() {
       return {
         loading: false,
-        type: this.$route.params.type || 'nh',
         rData: {},
         system_id: '2611',
         jcq_sj: moment().subtract(13, 'months').format('YYYY-MM-DD'),

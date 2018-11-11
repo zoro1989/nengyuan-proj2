@@ -30,14 +30,17 @@
         <div class="panel-box" v-loading="loading">
           <div class="row">
             <div class="table-box">
+              <el-button class="search-btn" icon="el-icon-plus" type="primary" size="mini" @click="onAdd">新增</el-button>
               <el-button class="search-btn" type="primary" size="mini" @click="onSave">
                 <i class="fa fa-save"></i>保存</el-button>
               <div class="row">
                 <el-table
                   class="token-table"
+                  show-summary
+                  :summary-method="getSummaries"
                   :data="rList"
                   border
-                  height="100%"
+                  height="calc(100% - 50px)"
                   header-cell-class-name="header-cell-class-name"
                   style="width: 99%">
                   <el-table-column
@@ -65,9 +68,10 @@
                     </template>
                   </el-table-column>
                   <el-table-column
+                    prop="sum"
                     label="实际得分合计">
                     <template slot-scope="scope">
-                      <span>{{sumScore(scope.$index)}}</span>
+                      <span>{{Math.round((scope.row.fs * 1) * (scope.row.qz * 1) / 100)}}</span>
                     </template>
                   </el-table-column>
                 </el-table>
@@ -82,6 +86,7 @@
 <script>
   import SelectTitle from 'base/select-title/select-title'
   import {orgSystemIdDic} from 'utils/dic'
+  import { Message } from 'element-ui'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
   let moment = require('moment')
@@ -89,9 +94,6 @@
   export default {
     components: {
       SelectTitle
-    },
-    created() {
-      this.initData()
     },
     data() {
       return {
@@ -106,6 +108,7 @@
     methods: {
       onSearch() {
         this.loading = true
+        this.rList = []
         fetch('get', api.zbKpiPjList, {system_id: this.system_id, date: this.date}).then((res) => {
           this.rList = res.data
           this.loading = false
@@ -113,9 +116,64 @@
           this.loading = false
         })
       },
+      onAdd() {
+        if (this.rList.length === 0) {
+          this.rList.push({
+            pjzb: '节能指标达标率',
+            pjbz: '',
+            fs: '',
+            qz: ''
+          })
+          this.rList.push({
+            pjzb: '定额指标完成率',
+            pjbz: '',
+            fs: '',
+            qz: ''
+          })
+          this.rList.push({
+            pjzb: '报表及时率',
+            pjbz: '',
+            fs: '',
+            qz: ''
+          })
+          this.rList.push({
+            pjzb: '重点设备计量配备率',
+            pjbz: '',
+            fs: '',
+            qz: ''
+          })
+          this.rList.push({
+            pjzb: '节能监测计划执行情况',
+            pjbz: '',
+            fs: '',
+            qz: ''
+          })
+          this.rList.push({
+            pjzb: '节能技术改造完成情况',
+            pjbz: '',
+            fs: '',
+            qz: ''
+          })
+        } else {
+          this.rList.push({
+            pjzb: '',
+            pjbz: '',
+            fs: '',
+            qz: ''
+          })
+        }
+      },
       onSave() {
         this.loading = true
-        fetch('post', api.zbKpiPjCreate, {system_id: this.system_id, date: this.date, datas: this.rList}).then((res) => {
+        let newArr = []
+        for (let i = 0; i < this.rList.length; i++) {
+          newArr.push(JSON.stringify(this.rList[i]))
+        }
+        fetch('post', api.zbKpiPjCreate, {system_id: this.system_id, date: this.date, datas: newArr.join(';')}, false, true).then((res) => {
+          Message({
+            message: '保存成功',
+            type: 'success'
+          })
           this.loading = false
         }).catch(() => {
           this.loading = false
@@ -123,6 +181,25 @@
       },
       sumScore(index) {
         return Math.round((this.rList[index].fs * 1) * (this.rList[index].qz * 1) / 100)
+      },
+      getSummaries(param) {
+        const { columns } = param
+        const sums = []
+        columns.forEach((column, index) => {
+          if (index === 0) {
+            sums[index] = '评价结果'
+            return
+          }
+          if (index === columns.length - 1) {
+            let sumValue = 0
+            for (let i = 0; i < this.rList.length - 1; i++) {
+              sumValue += Math.round((this.rList[i].fs * 1) * (this.rList[i].qz * 1) / 100)
+            }
+            sums[index] = sumValue + '分'
+          }
+        })
+
+        return sums
       }
     }
   }
@@ -144,6 +221,8 @@
       flex-direction: column
       height: 100%
       min-width: 600px
+      .search-btn
+        margin-bottom: 10px
       .panel-box
         width: 100%
         padding-top: 10px

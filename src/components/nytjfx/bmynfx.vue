@@ -41,7 +41,7 @@
                 label="用能单位">
               </el-table-column>
               <el-table-column
-                label="产品综合能耗（标煤/万元）">
+                label="产值综合能耗（标煤/万元）">
                 <el-table-column
                   prop="czzhnh"
                   label="实际值">
@@ -52,7 +52,7 @@
                 </el-table-column>
               </el-table-column>
               <el-table-column
-                label="产品耗水（吨/万元）">
+                label="产值耗水（吨/万元）">
                 <el-table-column
                   prop="s"
                   label="实际值">

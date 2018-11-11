@@ -71,19 +71,18 @@
           </ul>
         </li>
         <li>
-          <a href="#">
+          <a href="#" :class="selectMenuIndex === 5 ? 'active' : ''">
             <i class="fa fa-book"></i>
             <strong>设备台账</strong>
           </a>
           <ul>
-            <li><a href="#"><i class="fa fa-file-text-o"></i>工业炉窑台账</a></li>
-            <li><a href="#"><i class="fa fa-file-text-o"></i>锅炉台账</a></li>
-            <li><a href="#"><i class="fa fa-file-text-o"></i>空压机台账</a></li>
-            <li><a href="#"><i class="fa fa-file-text-o"></i>空调台账</a></li>
-            <li><a href="#"><i class="fa fa-file-text-o"></i>通风机台账</a></li>
-            <li><a href="#"><i class="fa fa-file-text-o"></i>水泵台账</a></li>
-            <li><a href="#"><i class="fa fa-file-text-o"></i>变压器台账</a></li>
-            <li><a href="#"><i class="fa fa-file-text-o"></i>其他台账</a></li>
+            <li><a href="#" @click="changeRoute('/tz1-ly', 5)"><i class="fa fa-file-text-o"></i>工业炉窑台账</a></li>
+            <li><a href="#" @click="changeRoute('/tz2-gl', 5)"><i class="fa fa-file-text-o"></i>锅炉台账</a></li>
+            <li><a href="#" @click="changeRoute('/tz3-kyj', 5)"><i class="fa fa-file-text-o"></i>空压机台账</a></li>
+            <li><a href="#" @click="changeRoute('/tz5-tfj', 5)"><i class="fa fa-file-text-o"></i>通风机台账</a></li>
+            <li><a href="#" @click="changeRoute('/tz6-sb', 5)"><i class="fa fa-file-text-o"></i>水泵台账</a></li>
+            <li><a href="#" @click="changeRoute('/tz7-byq', 5)"><i class="fa fa-file-text-o"></i>变压器台账</a></li>
+            <li><a href="#" @click="changeRoute('/tz8-qt', 5)"><i class="fa fa-file-text-o"></i>其他台账</a></li>
           </ul>
         </li>
         <li>
@@ -138,7 +137,7 @@
   @import "~common/stylus/variable"
   .menu
     position: fixed
-    z-index: 999
+    z-index: 9999
     top: 70px
     left: 0
     width: 180px
@@ -352,7 +351,7 @@
     -moz-transition: all 300ms linear;
     -webkit-transition: all 300ms linear;
     /*top: 130px;*/
-    z-index: 1000;
+    z-index: 10000;
 
     /* == */
     left:202px;

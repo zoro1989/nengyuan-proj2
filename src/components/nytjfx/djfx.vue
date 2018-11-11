@@ -52,15 +52,15 @@
                   </el-table-column>
                   <el-table-column
                     prop="df"
-                    label="电费">
+                    label="电费(千元)">
                   </el-table-column>
                   <el-table-column
                     prop="dj"
-                    label="电价">
+                    label="电价(元/千万时)">
                   </el-table-column>
                   <el-table-column
                     prop="d"
-                    label="电量">
+                    label="电量(万千瓦时)">
                   </el-table-column>
                 </el-table>
               </div>
@@ -105,7 +105,7 @@
         month: '',
         legendData: ['电费'],
         seriesData: [],
-        y: [{name: '亿元'}]
+        y: [{name: '元/千瓦时'}]
       }
     },
     computed: {

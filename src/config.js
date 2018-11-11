@@ -49,7 +49,19 @@ const api = {
   bjToken: apiPath + 'log/bj/token',
   bjList: apiPath + 'log/bj/list',
   zbKpiPjList: apiPath + 'api/ZbKpiPj/list',
-  zbKpiPjCreate: apiPath + 'api/ZbKpiPj/create'
+  zbKpiPjCreate: apiPath + 'api/ZbKpiPj/create',
+  sbLyList: apiPath + 'sb/ly/list',
+  sbLyCreate: apiPath + 'sb/ly/create',
+  sbGlList: apiPath + 'sb/gl/list',
+  sbGlCreate: apiPath + 'sb/gl/create',
+  sbFjList: apiPath + 'sb/fj/list',
+  sbFjCreate: apiPath + 'sb/fj/create',
+  sbSbList: apiPath + 'sb/sb/list',
+  sbSbCreate: apiPath + 'sb/sb/create',
+  sbByqList: apiPath + 'sb/byq/list',
+  sbByqCreate: apiPath + 'sb/byq/create',
+  sbQtList: apiPath + 'sb/qt/list',
+  sbQtCreate: apiPath + 'sb/qt/create'
 }
 
 const apiDict = {

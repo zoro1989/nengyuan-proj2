@@ -34,6 +34,14 @@ const KPI3 = () => import('components/kpizbfx/kpi3')
 const KPI4 = () => import('components/kpizbfx/kpi4')
 const KPI5 = () => import('components/kpizbfx/kpi5')
 
+const Taizhang1Ly = () => import('components/sbtz/tz1-ly')
+const Taizhang2Gl = () => import('components/sbtz/tz2-gl')
+const Taizhang3Kyj = () => import('components/sbtz/tz3-kyj')
+const Taizhang5Tfj = () => import('components/sbtz/tz5-tfj')
+const Taizhang6Sb = () => import('components/sbtz/tz6-sb')
+const Taizhang7Byq = () => import('components/sbtz/tz7-byq')
+const Taizhang8Qt = () => import('components/sbtz/tz8-qt')
+
 Vue.use(Router)
 
 export default new Router({
@@ -186,6 +194,41 @@ export default new Router({
       path: '/alarm',
       name: '能源预警',
       component: Alarm
+    },
+    {
+      path: '/tz1-ly',
+      name: '台账',
+      component: Taizhang1Ly
+    },
+    {
+      path: '/tz2-gl',
+      name: '台账',
+      component: Taizhang2Gl
+    },
+    {
+      path: '/tz3-kyj',
+      name: '台账',
+      component: Taizhang3Kyj
+    },
+    {
+      path: '/tz5-tfj',
+      name: '台账',
+      component: Taizhang5Tfj
+    },
+    {
+      path: '/tz6-sb',
+      name: '台账',
+      component: Taizhang6Sb
+    },
+    {
+      path: '/tz7-byq',
+      name: '台账',
+      component: Taizhang7Byq
+    },
+    {
+      path: '/tz8-qt',
+      name: '台账',
+      component: Taizhang8Qt
     }
   ]
 })
