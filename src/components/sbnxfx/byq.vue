@@ -2,7 +2,7 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <select-title title1="用能单位" title2="基期" @search="onSearch" :showSearch="true">
+        <select-title title1="用能单位" title2="选择日期" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
             v-model="system_id"
@@ -19,9 +19,9 @@
           <el-date-picker
             slot="title2"
             v-model="time"
-            type="month"
+            :type="system_id ? 'year' : 'month'"
             size="mini"
-            value-format="yyyy-MM"
+            :value-format="system_id ? 'yyyy' : 'yyyy-MM'"
             placeholder="选择日期">
           </el-date-picker>
         </select-title>
@@ -30,7 +30,7 @@
         <div class="panel-box">
           <div class="row">
             <div class="table-box">
-              <data-panel-title title="集团公司变压器能效分析" :noBorder="noBorder"></data-panel-title>
+              <data-panel-title :title="chartTitle" :noBorder="noBorder"></data-panel-title>
               <el-table
                 :data="rData"
                 v-if="!system_id"
@@ -55,16 +55,20 @@
                   label="容量（KVA）">
                 </el-table-column>
                 <el-table-column
+                  align="center"
                   label="负载率（β%）">
                   <el-table-column
                     prop="hege"
+                    align="center"
                     label="合格">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="buhege"
                     label="不合格">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="jinggao"
                     label="警告">
                   </el-table-column>
@@ -75,7 +79,7 @@
                 :title="subTitle + '部门变压器能效分析'"
                 :noBorder="noBorder"></data-panel-title>
               <el-table
-                v-if="rData2 && rData2.length > 0"
+                v-if="rData2 && rData2.length > 0 && !system_id"
                 :data="rData2"
                 border
                 :header-cell-style="headerCellStyle"
@@ -248,6 +252,19 @@
         hege: [],
         buhege: [],
         jinggao: []
+      }
+    },
+    computed: {
+      chartTitle() {
+        let orgId = this.options1.findIndex((item) => {
+          return this.system_id === item.value
+        })
+        let orgName = orgId >= 0 ? this.options1[orgId].label : ''
+        if (orgName) {
+          return orgName + '变压器能效分析'
+        } else {
+          return '集团公司变压器能效分析'
+        }
       }
     },
     methods: {

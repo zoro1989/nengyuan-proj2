@@ -59,7 +59,7 @@
                   <el-table
                     v-if="type === 'nh'"
                     height="100%"
-                    :data="rData.list_jcq"
+                    :data="filterJcqData"
                     border
                     header-cell-class-name="header-cell-class-name"
                     style="width: 98%">
@@ -83,7 +83,7 @@
                   <el-table
                     v-if="type === 'fy'"
                     height="100%"
-                    :data="rData.list_jcq"
+                    :data="filterJcqData"
                     border
                     header-cell-class-name="header-cell-class-name"
                     style="width: 98%">
@@ -109,7 +109,7 @@
                   <el-table
                     v-if="type === 'nh'"
                     height="100%"
-                    :data="rData.list_bjq"
+                    :data="filterBjqData"
                     border
                     header-cell-class-name="header-cell-class-name"
                     style="width: 98%">
@@ -133,7 +133,7 @@
                   <el-table
                     v-if="type === 'fy'"
                     height="100%"
-                    :data="rData.list_bjq"
+                    :data="filterBjqData"
                     border
                     header-cell-class-name="header-cell-class-name"
                     style="width: 98%">
@@ -205,6 +205,7 @@
   import { api } from '@/config'
   import fetch from 'utils/fetch'
   import {orgSystemIdDic} from 'utils/dic'
+  import {tableDataFilter} from 'utils/filter'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -237,6 +238,22 @@
         dwFormat: '',
         jcqFormat: moment().format('YYYY年MM月'),
         bjqFormat: moment().format('YYYY年MM月')
+      }
+    },
+    computed: {
+      filterJcqData() {
+        if (this.rData.list_jcq && this.rData.list_jcq.length > 0) {
+          return tableDataFilter(this.rData.list_jcq)
+        } else {
+          return []
+        }
+      },
+      filterBjqData() {
+        if (this.rData.list_bjq && this.rData.list_bjq.length > 0) {
+          return tableDataFilter(this.rData.list_bjq)
+        } else {
+          return []
+        }
       }
     },
     methods: {

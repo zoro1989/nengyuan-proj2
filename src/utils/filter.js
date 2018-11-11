@@ -124,3 +124,15 @@ export function tableDataFilter(tableData) {
     return item
   })
 }
+
+export function tableDataBMFilter(tableData) {
+  let copyTableData = JSON.parse(JSON.stringify(tableData))
+  return copyTableData.map((item) => {
+    for (let i in item) {
+      if (Object.prototype.toString.call(item[i] * 1) === '[object Number]' && (i === 'zhnh' || i === 'tqzhnh')) {
+        item[i] = Math.round(item[i])
+      }
+    }
+    return item
+  })
+}

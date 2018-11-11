@@ -251,6 +251,8 @@
       flex-direction: column
       height: 100%
       min-width: 600px
+      .search-btn
+        margin: 10px 0
       .date-type
         width: 60px
       .department-block
@@ -262,7 +264,7 @@
         .panel-box >.row
           height: 100%
           .table-box > .row:last-child
-            height: calc(100% - 350px)
+            height: calc(100% - 50px)
       .chart-box
         min-height: 350px
         border-radius: 0px

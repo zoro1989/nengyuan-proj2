@@ -290,6 +290,8 @@
       flex-direction: column
       height: 100%
       min-width: 600px
+      .search-btn
+        margin: 10px 0
       .date-type
         width: 60px
       .department-block

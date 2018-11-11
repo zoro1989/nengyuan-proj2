@@ -31,7 +31,7 @@
         <div class="panel-box" v-loading="loading">
           <div class="row">
             <el-table
-              :data="rData"
+              :data="filterRData"
               height="100%"
               border
               header-cell-class-name="header-cell-class-name"
@@ -98,7 +98,8 @@
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-  import {orgIdDic} from 'utils/dic'
+  import {orgIdSimpleDic} from 'utils/dic'
+  import {tableDataBMFilter} from 'utils/filter'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -114,7 +115,7 @@
       return {
         loading: false,
         pieRadius: ['13%', '60%'],
-        options1: orgIdDic,
+        options1: orgIdSimpleDic,
         tableData: [],
         colors: ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3'],
         noBorder: true,
@@ -126,6 +127,11 @@
         legendData: ['用量', '同期用量', '上月用量', '产量', '同期产量', '上月产量'],
         seriesData: [],
         y: [{name: '辆'}, {name: '亿元'}]
+      }
+    },
+    computed: {
+      filterRData() {
+        return tableDataBMFilter(this.rData)
       }
     },
     methods: {
@@ -169,7 +175,7 @@
       .col-box
         display: block
       .multiple-org
-        width: 250px
+        width: 400px
       .date-type
         width: 60px
       .department-block
@@ -179,10 +185,6 @@
       .col-box-left-right-bottom
         height: 100%
         .panel-box >.row
+          padding-top: 10px
           height: 100%
-          .table-box > .row:last-child
-            height: calc(100% - 350px)
-      .chart-box
-        min-height: 350px
-        border-radius: 0px
 </style>

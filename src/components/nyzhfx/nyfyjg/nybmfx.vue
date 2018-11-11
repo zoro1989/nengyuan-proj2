@@ -152,7 +152,7 @@
   import SelectTitle from 'base/select-title/select-title'
   import DataPanelTitle from 'base/data-panel-title/data-panel-title'
   import ChartPie from 'base/chart-pie/chart-pie'
-  import {filter} from 'utils/filter'
+  import {filter, tableDataFilter} from 'utils/filter'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
   let moment = require('moment')
@@ -258,9 +258,14 @@
           return []
         }
         let copyData = JSON.parse(JSON.stringify(list))
-        return copyData.sort(function (a, b) {
-          return a.nyxhjq - b.nyxhjq
+        let sortData = copyData.sort((a, b) => {
+          if (this.type === 'nh') {
+            return a.nyxhjq - b.nyxhjq
+          } else {
+            return a.fyjq - b.fyjq
+          }
         })
+        return tableDataFilter(sortData)
       }
     }
   }

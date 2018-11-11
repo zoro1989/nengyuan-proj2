@@ -47,7 +47,7 @@
                 <div class="col-lg-6 col-md-12">
                   <el-table
                     height="100%"
-                    :data="rData.list_jcq"
+                    :data="filterJcqData"
                     border
                     header-cell-class-name="header-cell-class-name"
                     style="width: 98%">
@@ -68,7 +68,7 @@
                 <div class="col-lg-6 col-md-12">
                   <el-table
                     height="100%"
-                    :data="rData.list_bjq"
+                    :data="filterBjqData"
                     border
                     header-cell-class-name="header-cell-class-name"
                     style="width: 98%">
@@ -118,6 +118,7 @@
   import ChartPie from 'base/chart-pie/chart-pie'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
+  import {tableDataFilter} from 'utils/filter'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -143,6 +144,22 @@
         noBorder: true,
         jcqFormat: moment().format('YYYY年MM月'),
         bjqFormat: moment().format('YYYY年MM月')
+      }
+    },
+    computed: {
+      filterJcqData() {
+        if (this.rData.list_jcq && this.rData.list_jcq.length > 0) {
+          return tableDataFilter(this.rData.list_jcq)
+        } else {
+          return []
+        }
+      },
+      filterBjqData() {
+        if (this.rData.list_bjq && this.rData.list_bjq.length > 0) {
+          return tableDataFilter(this.rData.list_bjq)
+        } else {
+          return []
+        }
       }
     },
     methods: {

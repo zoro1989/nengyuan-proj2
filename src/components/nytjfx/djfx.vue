@@ -56,7 +56,7 @@
                   </el-table-column>
                   <el-table-column
                     prop="dj"
-                    label="电价(元/千万时)">
+                    label="电价(元/千瓦时)">
                   </el-table-column>
                   <el-table-column
                     prop="d"
@@ -103,7 +103,7 @@
         rData: {},
         year: '',
         month: '',
-        legendData: ['电费'],
+        legendData: ['电价'],
         seriesData: [],
         y: [{name: '元/千瓦时'}]
       }
@@ -135,7 +135,7 @@
         this.loading = true
         fetch('get', api.dianjiafenxi, {id: this.system_id.join(','), year: this.year, month: this.month}).then((res) => {
           this.seriesData = [{
-            name: '电费',
+            name: '电价',
             data: res.data.chart ? res.data.chart.data : [],
             type: 'bar'
           }]
