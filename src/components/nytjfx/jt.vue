@@ -25,6 +25,7 @@
         <el-select
           slot="title3"
           v-model="lx"
+          @change="lxChange"
           placeholder="请选择"
           size="mini">
           <el-option
@@ -195,98 +196,149 @@
       departmentStyle(index) {
         return `background: ${this.colors[index]}`
       },
+      lxChange(lx) {
+        this.makeData()
+      },
+      makeData() {
+        this.tableData = []
+        let series = []
+        if (this.lx.split('_').length === 2) {
+          if (this.rData.dyl && this.rData.dyl.length > 0) {
+            series.push({
+              name: '单车用量',
+              type: 'bar',
+              data: this.rData.dyl
+            })
+            let obj = {}
+            obj.projectName = '单车用量'
+            for (let i = 0; i < this.rData.dyl.length; i++) {
+              let key = this.rData.xAxisData[i] + 'yue'
+              obj[key] = this.rData.dyl[i]
+            }
+            this.tableData.push(obj)
+          }
+          if (this.rData.dtqyl && this.rData.dtqyl.length > 0) {
+            series.push({
+              name: '单车同期用量',
+              type: 'bar',
+              data: this.rData.dtqyl
+            })
+            let obj = {}
+            obj.projectName = '单车同期用量'
+            for (let i = 0; i < this.rData.dtqyl.length; i++) {
+              let key = this.rData.xAxisData[i] + 'yue'
+              obj[key] = this.rData.dtqyl[i]
+            }
+            this.tableData.push(obj)
+          }
+          if (this.rData.dsyyl && this.rData.dsyyl.length > 0) {
+            series.push({
+              name: '单车上月用量',
+              type: 'bar',
+              data: this.rData.dsyyl
+            })
+            let obj = {}
+            obj.projectName = '单车上月用量'
+            for (let i = 0; i < this.rData.dsyyl.length; i++) {
+              let key = this.rData.xAxisData[i] + 'yue'
+              obj[key] = this.rData.dsyyl[i]
+            }
+            this.tableData.push(obj)
+          }
+        } else {
+          if (this.rData.yl && this.rData.yl.length > 0) {
+            series.push({
+              name: '实际用量',
+              type: 'bar',
+              data: this.rData.yl
+            })
+            let obj = {}
+            obj.projectName = '实际用量'
+            for (let i = 0; i < this.rData.yl.length; i++) {
+              let key = this.rData.xAxisData[i] + 'yue'
+              obj[key] = this.rData.yl[i]
+            }
+            this.tableData.push(obj)
+          }
+          if (this.rData.tqyl && this.rData.tqyl.length > 0) {
+            series.push({
+              name: '同期用量',
+              type: 'bar',
+              data: this.rData.tqyl
+            })
+            let obj = {}
+            obj.projectName = '同期用量'
+            for (let i = 0; i < this.rData.tqyl.length; i++) {
+              let key = this.rData.xAxisData[i] + 'yue'
+              obj[key] = this.rData.tqyl[i]
+            }
+            this.tableData.push(obj)
+          }
+          if (this.rData.syyl && this.rData.syyl.length > 0) {
+            series.push({
+              name: '上月用量',
+              type: 'bar',
+              data: this.rData.syyl
+            })
+            let obj = {}
+            obj.projectName = '上月用量'
+            for (let i = 0; i < this.rData.syyl.length; i++) {
+              let key = this.rData.xAxisData[i] + 'yue'
+              obj[key] = this.rData.syyl[i]
+            }
+            this.tableData.push(obj)
+          }
+        }
+        if (this.rData.cl && this.rData.cl.length > 0) {
+          series.push({
+            name: '实际产量',
+            type: 'line',
+            data: this.rData.cl
+          })
+          let obj = {}
+          obj.projectName = '实际产量'
+          for (let i = 0; i < this.rData.cl.length; i++) {
+            let key = this.rData.xAxisData[i] + 'yue'
+            obj[key] = this.rData.cl[i]
+          }
+          this.tableData.push(obj)
+        }
+        if (this.rData.tqcl && this.rData.tqcl.length > 0) {
+          series.push({
+            name: '同期产量',
+            type: 'line',
+            data: this.rData.tqcl
+          })
+          let obj = {}
+          obj.projectName = '同期产量'
+          for (let i = 0; i < this.rData.tqcl.length; i++) {
+            let key = this.rData.xAxisData[i] + 'yue'
+            obj[key] = this.rData.tqcl[i]
+          }
+          this.tableData.push(obj)
+        }
+        if (this.rData.sycl && this.rData.sycl.length > 0) {
+          series.push({
+            name: '上月产量',
+            type: 'line',
+            data: this.rData.sycl
+          })
+          let obj = {}
+          obj.projectName = '上月产量'
+          for (let i = 0; i < this.rData.sycl.length; i++) {
+            let key = this.rData.xAxisData[i] + 'yue'
+            obj[key] = this.rData.sycl[i]
+          }
+          this.tableData.push(obj)
+        }
+        this.seriesData = series
+      },
       onSearch() {
         let lxInput = this.lx.split('_').length > 0 ? this.lx.split('_')[0] : ''
         this.loading = true
         fetch('get', api.nyylfxJituan, {id: this.system_id, year: this.year, lx: lxInput}).then((res) => {
-          this.tableData = []
-          let series = []
-          if (res.data.yl && res.data.yl.length > 0) {
-            series.push({
-              name: '实际用量',
-              type: 'bar',
-              data: res.data.yl
-            })
-            let obj = {}
-            obj.projectName = '实际用量'
-            for (let i = 0; i < res.data.yl.length; i++) {
-              let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.yl[i]
-            }
-            this.tableData.push(obj)
-          }
-          if (res.data.tqyl && res.data.tqyl.length > 0) {
-            series.push({
-              name: '同期用量',
-              type: 'bar',
-              data: res.data.tqyl
-            })
-            let obj = {}
-            obj.projectName = '同期用量'
-            for (let i = 0; i < res.data.tqyl.length; i++) {
-              let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.tqyl[i]
-            }
-            this.tableData.push(obj)
-          }
-          if (res.data.syyl && res.data.syyl.length > 0) {
-            series.push({
-              name: '上月用量',
-              type: 'bar',
-              data: res.data.syyl
-            })
-            let obj = {}
-            obj.projectName = '上月用量'
-            for (let i = 0; i < res.data.syyl.length; i++) {
-              let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.syyl[i]
-            }
-            this.tableData.push(obj)
-          }
-          if (res.data.cl && res.data.cl.length > 0) {
-            series.push({
-              name: '实际产量',
-              type: 'line',
-              data: res.data.cl
-            })
-            let obj = {}
-            obj.projectName = '实际产量'
-            for (let i = 0; i < res.data.cl.length; i++) {
-              let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.cl[i]
-            }
-            this.tableData.push(obj)
-          }
-          if (res.data.tqcl && res.data.tqcl.length > 0) {
-            series.push({
-              name: '同期产量',
-              type: 'line',
-              data: res.data.tqcl
-            })
-            let obj = {}
-            obj.projectName = '同期产量'
-            for (let i = 0; i < res.data.tqcl.length; i++) {
-              let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.tqcl[i]
-            }
-            this.tableData.push(obj)
-          }
-          if (res.data.sycl && res.data.sycl.length > 0) {
-            series.push({
-              name: '上月产量',
-              type: 'line',
-              data: res.data.sycl
-            })
-            let obj = {}
-            obj.projectName = '上月产量'
-            for (let i = 0; i < res.data.sycl.length; i++) {
-              let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.sycl[i]
-            }
-            this.tableData.push(obj)
-          }
-          this.seriesData = series
           this.rData = res.data
+          this.makeData()
           this.loading = false
         }).catch(() => {
           this.loading = false
