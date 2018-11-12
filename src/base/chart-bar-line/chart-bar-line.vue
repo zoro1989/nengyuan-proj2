@@ -186,7 +186,7 @@ export default {
               if (!this.isOnlyLine) {
                 item.yAxisIndex = 1
               }
-              item.lineStyle = {color: vm.chartColor[i]}
+              item.itemStyle = {color: vm.chartColor[i]}
             } else {
               item.itemStyle = {
                 barBorderRadius: [3, 3, 0, 0],

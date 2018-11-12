@@ -150,7 +150,16 @@
     },
     computed: {
       yAxis() {
-        return [{name: '万元'}]
+        if (this.lx === '1') {
+          return [{name: '吨标煤/万元'}]
+        } else if (this.lx === '2') {
+          return [{name: '吨/万元'}]
+        } else if (this.lx === '3') {
+          return [{name: '吨标煤'}]
+        } else if (this.lx === '4') {
+          return [{name: '吨标煤/辆'}]
+        }
+
 //        if (this.lx === '33') {
 //          return [{name: '万元'}, {name: '万千瓦时'}]
 //        } else if (this.lx === '00') {
@@ -223,11 +232,11 @@
           this.tableData = []
           let series = []
           if (res.data.cl && res.data.cl.length > 0) {
-            series.push({
-              name: '产量（辆）',
-              type: 'line',
-              data: res.data.cl
-            })
+//            series.push({
+//              name: '产量（辆）',
+//              type: 'line',
+//              data: res.data.cl
+//            })
             let obj = {}
             obj.projectName = '产量（辆）'
             for (let i = 0; i < res.data.cl.length; i++) {
@@ -237,11 +246,11 @@
             this.tableData.push(obj)
           }
           if (res.data.cz && res.data.cz.length > 0) {
-            series.push({
-              name: '实际产值（万元）',
-              type: 'line',
-              data: res.data.cz
-            })
+//            series.push({
+//              name: '实际产值（万元）',
+//              type: 'line',
+//              data: res.data.cz
+//            })
             let obj = {}
             obj.projectName = '实际产值（万元）'
             for (let i = 0; i < res.data.cz.length; i++) {

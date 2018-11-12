@@ -255,6 +255,10 @@
               formData.append('file', this.importFile)
               axios.post(api.sbQtCreate, formData).then(() => {
                 this.dialogFormVisible = false
+                Message({
+                  message: '保存成功',
+                  type: 'success'
+                })
                 this.loading = false
               }).catch(() => {
                 this.loading = false

@@ -54,6 +54,8 @@ const api = {
   sbLyCreate: apiPath + 'sb/ly/create',
   sbGlList: apiPath + 'sb/gl/list',
   sbGlCreate: apiPath + 'sb/gl/create',
+  sbKyjList: apiPath + 'sb/kyj/list',
+  sbKyjCreate: apiPath + 'sb/kyj/create',
   sbFjList: apiPath + 'sb/fj/list',
   sbFjCreate: apiPath + 'sb/fj/create',
   sbSbList: apiPath + 'sb/sb/list',

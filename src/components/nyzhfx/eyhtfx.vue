@@ -89,7 +89,7 @@
               </div>
             </div>
             <div class="col-lg-4 col-md-12 table-box box-right">
-              <data-panel-title title="能源消耗结构同比增幅分析" :noBorder="noBorder"></data-panel-title>
+              <data-panel-title title="能源消耗结构增幅分析" :noBorder="noBorder"></data-panel-title>
               <el-table
                 height="calc(100% - 50px)"
                 :data="rData.list_zf"
@@ -102,7 +102,7 @@
                 </el-table-column>
                 <el-table-column
                   prop="zf"
-                  label="同比增幅率（%）">
+                  label="增幅率（%）">
                 </el-table-column>
               </el-table>
             </div>

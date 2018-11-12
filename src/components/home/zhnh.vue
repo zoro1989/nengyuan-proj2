@@ -174,7 +174,7 @@
       </div>
       <div class="col-box">
         <chart-bar-line class="chart-box"
-                        :legendData="zcData.legendData"
+                        :legendData="legendData"
                         :series="zcData.series"
                         :xAxisData="zcData.xAxisData"
                         :yAxis="yAxis"
@@ -182,7 +182,7 @@
       </div>
       <div class="col-box-bottom">
         <chart-bar-line class="chart-box"
-                        :legendData="lbjData.legendData"
+                        :legendData="legendData"
                         :series="lbjData.series"
                         :xAxisData="lbjData.xAxisData"
                         :yAxis="yAxis"
@@ -247,7 +247,8 @@ export default {
       dateTime: '',
       lx: '',
       yAxis: [{name: '吨标煤/万元'}, {name: '%'}],
-      chartTitle: '产值综合能耗'
+      chartTitle: '产值综合能耗',
+      legendData: ['上期同期能耗', '实际指标', '计划指标', '达标率']
     }
   },
   created() {

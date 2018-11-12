@@ -40,7 +40,7 @@
         <div class="panel-box" v-loading="loading">
           <div class="row">
             <div class="table-box">
-              <div class="row">
+              <div class="row chart-container">
                 <div class="col-lg-6 col-md-12">
                   <chart-pie class="chart-box"
                              :titleText="type === 'nh' ? jcqFormat + dwFormat + '能源消耗结构' : jcqFormat + dwFormat + '能源费用结构'"
@@ -69,7 +69,7 @@
                 style="width: 100%">
                 <el-table-column
                   prop="ynbm"
-                  min-width="150"
+                  width="150"
                   label="用能部门">
                   <template slot-scope="scope">
                     <span class="department-block" :style="departmentStyle(scope.$index)"></span>
@@ -108,7 +108,7 @@
                 style="width: 100%">
                 <el-table-column
                   prop="ynbm"
-                  min-width="150"
+                  width="150"
                   label="用能部门">
                   <template slot-scope="scope">
                     <span class="department-block" :style="departmentStyle(scope.$index)"></span>
@@ -287,6 +287,8 @@
       flex-direction: column
       height: 100%
       min-width: 600px
+      .chart-container
+        padding-left: 90px
       .department-block
         display: inline-block
         width: 25px

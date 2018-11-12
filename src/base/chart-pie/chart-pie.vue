@@ -124,7 +124,7 @@ export default {
         },
         legend: {
           padding: [5, 0, 0, 0],
-            right: '12%',
+            right: '5%',
             top: 'middle',
             orient: 'vertical',
             data: filterArr(this.legendData),
