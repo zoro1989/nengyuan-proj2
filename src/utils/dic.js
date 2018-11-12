@@ -635,7 +635,7 @@ export const orgTree = [
   },
   {
     value: '23',
-    label: '零部件',
+    label: '零部件加工',
     children: [
       {
         value: '41924',

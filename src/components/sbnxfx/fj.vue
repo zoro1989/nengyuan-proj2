@@ -134,7 +134,7 @@
                 </el-table-column>
                 <el-table-column
                   prop="value"
-                  label="用电单耗">
+                  label="电机负荷率(%)">
                 </el-table-column>
                 <el-table-column
                   label="一月">

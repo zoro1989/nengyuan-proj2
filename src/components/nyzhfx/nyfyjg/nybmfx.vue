@@ -194,7 +194,7 @@
           label: '整车制造'
         }, {
           value: '23',
-          label: '零部件'
+          label: '零部件加工'
         }, {
           value: '30',
           label: '物流'

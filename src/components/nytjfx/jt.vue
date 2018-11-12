@@ -197,7 +197,10 @@
         return `background: ${this.colors[index]}`
       },
       lxChange(lx) {
-        this.makeData()
+        if (this.tableData.length > 0) {
+          this.onSearch()
+          this.makeData()
+        }
       },
       makeData() {
         this.tableData = []

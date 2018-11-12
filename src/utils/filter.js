@@ -118,7 +118,11 @@ export function tableDataFilter(tableData) {
   return copyTableData.map((item) => {
     for (let i in item) {
       if (Object.prototype.toString.call(item[i]) === '[object Number]') {
-        item[i] = Math.round(item[i])
+        if (item[i] < 1) {
+          item[i] = Math.round(item[i] * 100) / 100
+        } else {
+          item[i] = Math.round(item[i])
+        }
       }
     }
     return item
