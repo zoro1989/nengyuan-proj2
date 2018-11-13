@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     titleClick() {
-      this.$router.replace('/ssxz')
+      this.$router.replace('/home/ssxz')
     },
     makeChart(newData) {
       this.chart = echarts.init(this.$refs.chart)

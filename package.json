@@ -17,6 +17,7 @@
     "echarts": "^4.1.0",
     "element-ui": "^2.4.5",
     "fastclick": "^1.0.6",
+    "good-storage": "^1.1.0",
     "moment": "^2.22.2",
     "multi-cascader": "^1.1.0",
     "vue": "^2.5.2",

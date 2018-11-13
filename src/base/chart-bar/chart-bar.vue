@@ -69,6 +69,9 @@ export default {
     this.chart = {}
   },
   mounted() {
+    if (!this.series.length) {
+      return
+    }
     this.makeChart(this.series)
   },
   watch: {

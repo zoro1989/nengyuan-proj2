@@ -151,7 +151,7 @@ export default {
       this.fetchData()
     },
     onClose() {
-      this.$router.replace('/ssxz')
+      this.$router.replace('/home/ssxz')
     }
   },
   mounted() {

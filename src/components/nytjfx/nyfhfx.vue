@@ -22,7 +22,6 @@
             size="mini"
             type="year"
             value-format="yyyy"
-            @change="dateChange"
             placeholder="选择年">
           </el-date-picker>
           <el-select

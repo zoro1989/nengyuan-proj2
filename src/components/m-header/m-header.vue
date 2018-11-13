@@ -17,6 +17,7 @@
 </template>
 <script>
 import Logo from './logo2.png'
+import {clearToken} from 'common/js/cache'
 export default {
     data() {
       return {
@@ -25,7 +26,8 @@ export default {
     },
   methods: {
     onLogout() {
-      this.$router.replace('login')
+      clearToken()
+      this.$router.replace('/login')
     }
   }
 }

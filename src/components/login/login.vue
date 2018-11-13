@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div class="login" v-show="isShow">
+    <div class="login">
       <div class="title">
         <span class="text">中国一汽集团能源管理分析系统</span>
       </div>
@@ -17,11 +17,11 @@
               <div class="panel-box">
                 <div class="panel-item">
                   <label class="panel-label"><i class="fa fa-user"></i></label>
-                  <input class="panel-input" placeholder="登录账号"/>
+                  <input class="panel-input" v-model="username" type="text" placeholder="登录账号"/>
                 </div>
                 <div class="panel-item">
                   <label class="panel-label"><i class="fa fa-lock"></i></label>
-                  <input class="panel-input" placeholder="输入密码"/>
+                  <input class="panel-input" v-model="password" type="password" placeholder="输入密码"/>
                 </div>
                 <div class="btn-login" @click="onLogin">登录</div>
               </div>
@@ -33,11 +33,14 @@
   </transition>
 </template>
 <script>
+import { Message } from 'element-ui'
+import {setToken} from 'common/js/cache'
 export default {
   data() {
     return {
       tabIndex: 0,
-      isShow: true
+      username: '',
+      password: ''
     }
   },
   methods: {
@@ -45,7 +48,40 @@ export default {
       this.tabIndex = index
     },
     onLogin() {
-      this.isShow = false
+      if (!this.username) {
+        Message({
+          message: '请输入账号',
+          type: 'error'
+        })
+        return
+      }
+      if (!this.password) {
+        Message({
+          message: '请输入密码',
+          type: 'error'
+        })
+        return
+      }
+      if (this.username !== 'admin') {
+        Message({
+          message: '账号不存在',
+          type: 'error'
+        })
+        return
+      }
+      if (this.password !== '111111') {
+        Message({
+          message: '账号名或密码错误',
+          type: 'error'
+        })
+        return
+      }
+      setToken('123456')
+      this.$router.replace('/home')
+      Message({
+        message: '登录成功',
+        type: 'success'
+      })
     }
   }
 }
@@ -57,7 +93,7 @@ export default {
   .slide-enter, .slide-leave-to
     transform: translate3d(0, 100%, 0)
   .login
-    z-index: 99999
+    z-index: 2000
     position: fixed
     left: 0
     width: 100%

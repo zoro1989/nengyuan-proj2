@@ -17,18 +17,18 @@
             <li>
               <a href="#"><i class="fa fa-battery-half"></i>能源消耗结构</a>
               <ul>
-                <li><a href="#" @click="changeRoute('/nyzlfx/nh', 1)"><i class="fa fa-list"></i>能源种类分析</a></li>
-                <li><a href="#" @click="changeRoute('/nybmfx/nh', 1)"><i class="fa fa-institution"></i>能源部门分析</a></li>
+                <li><a href="#" @click="changeRoute('/home/nyzlfx/nh', 1)"><i class="fa fa-list"></i>能源种类分析</a></li>
+                <li><a href="#" @click="changeRoute('/home/nybmfx/nh', 1)"><i class="fa fa-institution"></i>能源部门分析</a></li>
               </ul>
             </li>
             <li>
               <a href="#"><i class="fa fa-yen"></i>能源费用结构</a>
               <ul>
-                <li><a href="#" @click="changeRoute('/nyzlfx/fy', 1)"><i class="fa fa-list"></i>能源种类分析</a></li>
-                <li><a href="#" @click="changeRoute('/nybmfx/fy', 1)"><i class="fa fa-institution"></i>能源部门分析</a></li>
+                <li><a href="#" @click="changeRoute('/home/nyzlfx/fy', 1)"><i class="fa fa-list"></i>能源种类分析</a></li>
+                <li><a href="#" @click="changeRoute('/home/nybmfx/fy', 1)"><i class="fa fa-institution"></i>能源部门分析</a></li>
               </ul>
             </li>
-            <li><a href="#" @click="changeRoute('/eyhtfx', 1)"><i class="fa fa-pie-chart"></i>二氧化碳量分布</a></li>
+            <li><a href="#" @click="changeRoute('/home/eyhtfx', 1)"><i class="fa fa-pie-chart"></i>二氧化碳量分布</a></li>
           </ul>
         </li>
         <li>
@@ -37,12 +37,12 @@
             <strong>能源统计分析</strong>
           </a>
           <ul>
-            <li><a href="#" @click="changeRoute('/nyylfx', 2)"><i class="fa fa-bar-chart"></i>能源用量分析</a></li>
-            <li><a href="#" @click="changeRoute('/nyfyfx', 2)"><i class="fa fa-yen"></i>能源费用分析</a></li>
-            <li><a href="#" @click="changeRoute('/tjeyhtfx', 2)"><i class="fa fa-envira"></i>二氧化碳排放量分析</a></li>
-            <li><a href="#" @click="changeRoute('/bmynfx', 2)"><i class="fa fa-institution"></i>部门用能分析</a></li>
-            <li><a href="#" @click="changeRoute('/nyfhfx', 2)"><i class="fa fa-bell-o"></i>能源负荷分析</a></li>
-            <li><a href="#" @click="changeRoute('/djfx', 2)"><i class="fa fa-flash"></i>电价分析</a></li>
+            <li><a href="#" @click="changeRoute('/home/nyylfx', 2)"><i class="fa fa-bar-chart"></i>能源用量分析</a></li>
+            <li><a href="#" @click="changeRoute('/home/nyfyfx', 2)"><i class="fa fa-yen"></i>能源费用分析</a></li>
+            <li><a href="#" @click="changeRoute('/home/tjeyhtfx', 2)"><i class="fa fa-envira"></i>二氧化碳排放量分析</a></li>
+            <li><a href="#" @click="changeRoute('/home/bmynfx', 2)"><i class="fa fa-institution"></i>部门用能分析</a></li>
+            <li><a href="#" @click="changeRoute('/home/nyfhfx', 2)"><i class="fa fa-bell-o"></i>能源负荷分析</a></li>
+            <li><a href="#" @click="changeRoute('/home/djfx', 2)"><i class="fa fa-flash"></i>电价分析</a></li>
           </ul>
         </li>
         <li>
@@ -51,11 +51,11 @@
             <strong>KPI指标分析</strong>
           </a>
           <ul>
-            <li><a href="#" @click="changeRoute('/kpi1', 3)"><i class="fa fa-hourglass-start"></i>产值综合能耗分析</a></li>
-            <li><a href="#" @click="changeRoute('/kpi2', 3)"><i class="fa fa-tint"></i>产值耗水量分析</a></li>
-            <li><a href="#" @click="changeRoute('/kpi3', 3)"><i class="fa fa-battery-half"></i>能源消耗总量分析</a></li>
-            <li><a href="#" @click="changeRoute('/kpi4', 3)"><i class="fa fa-truck"></i>单车综合能耗分析</a></li>
-            <li><a href="#" @click="changeRoute('/kpi5', 3)"><i class="fa fa-trophy"></i>KPI评价考核表</a></li>
+            <li><a href="#" @click="changeRoute('/home/kpi1', 3)"><i class="fa fa-hourglass-start"></i>产值综合能耗分析</a></li>
+            <li><a href="#" @click="changeRoute('/home/kpi2', 3)"><i class="fa fa-tint"></i>产值耗水量分析</a></li>
+            <li><a href="#" @click="changeRoute('/home/kpi3', 3)"><i class="fa fa-battery-half"></i>能源消耗总量分析</a></li>
+            <li><a href="#" @click="changeRoute('/home/kpi4', 3)"><i class="fa fa-truck"></i>单车综合能耗分析</a></li>
+            <li><a href="#" @click="changeRoute('/home/kpi5', 3)"><i class="fa fa-trophy"></i>KPI评价考核表</a></li>
           </ul>
         </li>
         <li>
@@ -64,10 +64,10 @@
             <strong>设备能效分析</strong>
           </a>
           <ul>
-            <li><a href="#" @click="changeRoute('/nxbyq', 4)"><i class="fa fa-gear"></i>变压器</a></li>
-            <li><a href="#" @click="changeRoute('/nxkyj', 4)"><i class="fa fa-gear"></i>空压机</a></li>
-            <li><a href="#" @click="changeRoute('/nxfj', 4)"><i class="fa fa-gear"></i>风机</a></li>
-            <li><a href="#" @click="changeRoute('/nxsb', 4)"><i class="fa fa-gear"></i>水泵</a></li>
+            <li><a href="#" @click="changeRoute('/home/nxbyq', 4)"><i class="fa fa-gear"></i>变压器</a></li>
+            <li><a href="#" @click="changeRoute('/home/nxkyj', 4)"><i class="fa fa-gear"></i>空压机</a></li>
+            <li><a href="#" @click="changeRoute('/home/nxfj', 4)"><i class="fa fa-gear"></i>风机</a></li>
+            <li><a href="#" @click="changeRoute('/home/nxsb', 4)"><i class="fa fa-gear"></i>水泵</a></li>
           </ul>
         </li>
         <li>
@@ -76,17 +76,17 @@
             <strong>设备台账</strong>
           </a>
           <ul>
-            <li><a href="#" @click="changeRoute('/tz1-ly', 5)"><i class="fa fa-file-text-o"></i>工业炉窑台账</a></li>
-            <li><a href="#" @click="changeRoute('/tz2-gl', 5)"><i class="fa fa-file-text-o"></i>锅炉台账</a></li>
-            <li><a href="#" @click="changeRoute('/tz3-kyj', 5)"><i class="fa fa-file-text-o"></i>空压机台账</a></li>
-            <li><a href="#" @click="changeRoute('/tz5-tfj', 5)"><i class="fa fa-file-text-o"></i>通风机台账</a></li>
-            <li><a href="#" @click="changeRoute('/tz6-sb', 5)"><i class="fa fa-file-text-o"></i>水泵台账</a></li>
-            <li><a href="#" @click="changeRoute('/tz7-byq', 5)"><i class="fa fa-file-text-o"></i>变压器台账</a></li>
-            <li><a href="#" @click="changeRoute('/tz8-qt', 5)"><i class="fa fa-file-text-o"></i>其他台账</a></li>
+            <li><a href="#" @click="changeRoute('/home/tz1-ly', 5)"><i class="fa fa-file-text-o"></i>工业炉窑台账</a></li>
+            <li><a href="#" @click="changeRoute('/home/tz2-gl', 5)"><i class="fa fa-file-text-o"></i>锅炉台账</a></li>
+            <li><a href="#" @click="changeRoute('/home/tz3-kyj', 5)"><i class="fa fa-file-text-o"></i>空压机台账</a></li>
+            <li><a href="#" @click="changeRoute('/home/tz5-tfj', 5)"><i class="fa fa-file-text-o"></i>通风机台账</a></li>
+            <li><a href="#" @click="changeRoute('/home/tz6-sb', 5)"><i class="fa fa-file-text-o"></i>水泵台账</a></li>
+            <li><a href="#" @click="changeRoute('/home/tz7-byq', 5)"><i class="fa fa-file-text-o"></i>变压器台账</a></li>
+            <li><a href="#" @click="changeRoute('/home/tz8-qt', 5)"><i class="fa fa-file-text-o"></i>其他台账</a></li>
           </ul>
         </li>
         <li>
-          <a href="#" :class="selectMenuIndex === 6 ? 'active' : ''" @click="changeRoute('/waning', 6)">
+          <a href="#" :class="selectMenuIndex === 6 ? 'active' : ''" @click="changeRoute('/home/waning', 6)">
             <i class="fa fa-bell-o"></i>
             <strong>能源预警报警</strong>
           </a>
@@ -97,9 +97,9 @@
             <strong>设备录入</strong>
           </a>
           <ul>
-            <li><a href="#" @click="changeRoute('/byq', 7)"><i class="fa fa-gear"></i>变压器</a></li>
-            <li><a href="#" @click="changeRoute('/kyj', 7)"><i class="fa fa-gear"></i>空压机</a></li>
-            <li><a href="#" @click="changeRoute('/dj', 7)"><i class="fa fa-gear"></i>电机</a></li>
+            <li><a href="#" @click="changeRoute('/home/byq', 7)"><i class="fa fa-gear"></i>变压器</a></li>
+            <li><a href="#" @click="changeRoute('/home/kyj', 7)"><i class="fa fa-gear"></i>空压机</a></li>
+            <li><a href="#" @click="changeRoute('/home/dj', 7)"><i class="fa fa-gear"></i>电机</a></li>
           </ul>
         </li>
       </ul>

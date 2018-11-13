@@ -32,7 +32,7 @@
           <el-button class="search-btn" type="primary" icon="el-icon-search" size="mini" @click="onSearch">搜索</el-button>
         </div>
         <div class="title-r">
-          <span class="analyze-btn ripple"><router-link to="/dbfx">对比分析</router-link></span>
+          <span class="analyze-btn ripple"><router-link to="/home/dbfx">对比分析</router-link></span>
           <span @click="channgeChart('0')" class="ripple"><i class="fa fa-line-chart"></i></span>
           <span @click="channgeChart('1')" class="ripple"><i class="fa fa-bar-chart"></i></span>
           <span @click="onClose" class="ripple"><i class="fa fa-times"></i></span>
@@ -59,7 +59,6 @@
                                  chartColor="#4b50e4"></chart-realtime-line>
           </div>
         </div>
-        <div class="sub-title">一汽大众单车日耗</div>
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-line class="chart-l"

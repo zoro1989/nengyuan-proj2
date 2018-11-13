@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+const Login = () => import('components/login/login')
 const Home = () => import('components/home/home')
+const HomeIndex = () => import('components/home/index')
 const Zhnh = () => import('components/home/zhnh')
 const Nyylfy = () => import('components/home/nyylfy')
 const Ssxz = () => import('components/home/ssxz')
@@ -50,192 +52,203 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/alarm'
+      redirect: '/login'
+    },
+    {
+      path: '/login',
+      name: '登录',
+      component: Login
     },
     {
       path: '/home',
       name: '首页',
-      component: Home
-    },
-    {
-      path: '/ssxz',
-      name: '实时下钻',
-      component: Ssxz
-    },
-    {
-      path: '/zhnh',
-      name: '综合能耗',
-      component: Zhnh
-    },
-    {
-      path: '/nyylfy',
-      name: '能源用量费用',
-      component: Nyylfy
-    },
-    {
-      path: '/dbfx',
-      name: '对比分析',
-      component: Dbfx
-    },
-    {
-      path: '/nyzlfx/fy',
-      name: '能源种类分析',
-      component: Zlfy
-    },
-    {
-      path: '/nyzlfx/nh',
-      name: '能源种类分析',
-      component: Zlnh
-    },
-    {
-      path: '/nybmfx/fy',
-      name: '能源部门分析',
-      component: Bmfy
-    },
-    {
-      path: '/nybmfx/nh',
-      name: '能源部门分析',
-      component: Bmnh
-    },
-    {
-      path: '/eyhtfx',
-      name: '二氧化碳分析',
-      component: Eyhtfx
-    },
-    {
-      path: '/nyylfx',
-      name: '能源用量分析',
-      component: Nyylfx
-    },
-    {
-      path: '/nyfyfx',
-      name: '能源费用分析',
-      component: Nyfyfx
-    },
-    {
-      path: '/tjeyhtfx',
-      name: '二氧化碳分析',
-      component: TjEyhtfx
-    },
-    {
-      path: '/djfx',
-      name: '电价分析',
-      component: Djfx
-    },
-    {
-      path: '/bmynfx',
-      name: '部门用能分析',
-      component: Bmynfx
-    },
-    {
-      path: '/nyfhfx',
-      name: '能源负荷分析',
-      component: Nyfhfx
-    },
-    {
-      path: '/nxbyq',
-      name: '变压器',
-      component: Nxbyq
-    },
-    {
-      path: '/nxkyj',
-      name: '空压机',
-      component: Nxkyj
-    },
-    {
-      path: '/nxfj',
-      name: '风机',
-      component: Nxfj
-    },
-    {
-      path: '/nxsb',
-      name: '水泵',
-      component: Nxsb
-    },
-    {
-      path: '/byq',
-      name: '变压器',
-      component: Byq
-    },
-    {
-      path: '/kyj',
-      name: '空压机',
-      component: Kyj
-    },
-    {
-      path: '/dj',
-      name: '电机',
-      component: Dj
-    },
-    {
-      path: '/kpi1',
-      name: 'kpi指标分析',
-      component: KPI1
-    },
-    {
-      path: '/kpi2',
-      name: 'kpi指标分析',
-      component: KPI2
-    },
-    {
-      path: '/kpi3',
-      name: 'kpi指标分析',
-      component: KPI3
-    },
-    {
-      path: '/kpi4',
-      name: 'kpi指标分析',
-      component: KPI4
-    },
-    {
-      path: '/kpi5',
-      name: 'kpi指标分析',
-      component: KPI5
-    },
-    {
-      path: '/alarm',
-      name: '能源预警',
-      component: Alarm
-    },
-    {
-      path: '/tz1-ly',
-      name: '台账',
-      component: Taizhang1Ly
-    },
-    {
-      path: '/tz2-gl',
-      name: '台账',
-      component: Taizhang2Gl
-    },
-    {
-      path: '/tz3-kyj',
-      name: '台账',
-      component: Taizhang3Kyj
-    },
-    {
-      path: '/tz5-tfj',
-      name: '台账',
-      component: Taizhang5Tfj
-    },
-    {
-      path: '/tz6-sb',
-      name: '台账',
-      component: Taizhang6Sb
-    },
-    {
-      path: '/tz7-byq',
-      name: '台账',
-      component: Taizhang7Byq
-    },
-    {
-      path: '/tz8-qt',
-      name: '台账',
-      component: Taizhang8Qt
-    },
-    {
-      path: '/waning',
-      name: '台账',
-      component: Warning
+      component: Home,
+      children: [
+        {
+          path: '',
+          component: HomeIndex
+        },
+        {
+          path: 'ssxz',
+          name: '实时下钻',
+          component: Ssxz
+        },
+        {
+          path: 'zhnh',
+          name: '综合能耗',
+          component: Zhnh
+        },
+        {
+          path: 'nyylfy',
+          name: '能源用量费用',
+          component: Nyylfy
+        },
+        {
+          path: 'dbfx',
+          name: '对比分析',
+          component: Dbfx
+        },
+        {
+          path: 'nyzlfx/fy',
+          name: '能源种类分析',
+          component: Zlfy
+        },
+        {
+          path: 'nyzlfx/nh',
+          name: '能源种类分析',
+          component: Zlnh
+        },
+        {
+          path: 'nybmfx/fy',
+          name: '能源部门分析',
+          component: Bmfy
+        },
+        {
+          path: 'nybmfx/nh',
+          name: '能源部门分析',
+          component: Bmnh
+        },
+        {
+          path: 'eyhtfx',
+          name: '二氧化碳分析',
+          component: Eyhtfx
+        },
+        {
+          path: 'nyylfx',
+          name: '能源用量分析',
+          component: Nyylfx
+        },
+        {
+          path: 'nyfyfx',
+          name: '能源费用分析',
+          component: Nyfyfx
+        },
+        {
+          path: 'tjeyhtfx',
+          name: '二氧化碳分析',
+          component: TjEyhtfx
+        },
+        {
+          path: 'djfx',
+          name: '电价分析',
+          component: Djfx
+        },
+        {
+          path: 'bmynfx',
+          name: '部门用能分析',
+          component: Bmynfx
+        },
+        {
+          path: 'nyfhfx',
+          name: '能源负荷分析',
+          component: Nyfhfx
+        },
+        {
+          path: 'nxbyq',
+          name: '变压器',
+          component: Nxbyq
+        },
+        {
+          path: 'nxkyj',
+          name: '空压机',
+          component: Nxkyj
+        },
+        {
+          path: 'nxfj',
+          name: '风机',
+          component: Nxfj
+        },
+        {
+          path: 'nxsb',
+          name: '水泵',
+          component: Nxsb
+        },
+        {
+          path: 'byq',
+          name: '变压器',
+          component: Byq
+        },
+        {
+          path: 'kyj',
+          name: '空压机',
+          component: Kyj
+        },
+        {
+          path: 'dj',
+          name: '电机',
+          component: Dj
+        },
+        {
+          path: 'kpi1',
+          name: 'kpi指标分析',
+          component: KPI1
+        },
+        {
+          path: 'kpi2',
+          name: 'kpi指标分析',
+          component: KPI2
+        },
+        {
+          path: 'kpi3',
+          name: 'kpi指标分析',
+          component: KPI3
+        },
+        {
+          path: 'kpi4',
+          name: 'kpi指标分析',
+          component: KPI4
+        },
+        {
+          path: 'kpi5',
+          name: 'kpi指标分析',
+          component: KPI5
+        },
+        {
+          path: 'alarm',
+          name: '能源预警',
+          component: Alarm
+        },
+        {
+          path: 'tz1-ly',
+          name: '台账',
+          component: Taizhang1Ly
+        },
+        {
+          path: 'tz2-gl',
+          name: '台账',
+          component: Taizhang2Gl
+        },
+        {
+          path: 'tz3-kyj',
+          name: '台账',
+          component: Taizhang3Kyj
+        },
+        {
+          path: 'tz5-tfj',
+          name: '台账',
+          component: Taizhang5Tfj
+        },
+        {
+          path: 'tz6-sb',
+          name: '台账',
+          component: Taizhang6Sb
+        },
+        {
+          path: 'tz7-byq',
+          name: '台账',
+          component: Taizhang7Byq
+        },
+        {
+          path: 'tz8-qt',
+          name: '台账',
+          component: Taizhang8Qt
+        },
+        {
+          path: 'waning',
+          name: '台账',
+          component: Warning
+        }
+      ]
     }
   ]
 })
