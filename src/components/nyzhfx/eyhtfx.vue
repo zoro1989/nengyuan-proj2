@@ -30,6 +30,7 @@
               <div class="row">
                 <div class="col-lg-6 col-md-12">
                   <chart-pie class="chart-box"
+                             :isSort="false"
                              :titleText="jcqFormat + '集团公司二氧化碳排放量分布'"
                              :radius="pieRadius"
                              @pieClick="pieClick"
@@ -37,6 +38,7 @@
                 </div>
                 <div class="col-lg-6 col-md-12">
                   <chart-pie class="chart-box"
+                             :isSort="false"
                              :titleText="bjqFormat + '集团公司二氧化碳排放量分布'"
                              :radius="pieRadius"
                              @pieClick="pieClick"

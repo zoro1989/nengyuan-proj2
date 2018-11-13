@@ -43,12 +43,14 @@
               <div class="row">
                 <div class="col-lg-6 col-md-12">
                   <chart-pie class="chart-box"
+                             :isSort="false"
                              :titleText="type === 'nh' ? jcqFormat + dwFormat + '能源消耗结构' : jcqFormat + dwFormat + '能源费用结构'"
                              :radius="pieRadius"
                              :seriesData="rData.jcq_pie && rData.jcq_pie.seriesData"></chart-pie>
                 </div>
                 <div class="col-lg-6 col-md-12">
                   <chart-pie class="chart-box"
+                             :isSort="false"
                              :titleText="type === 'nh' ? bjqFormat + dwFormat + '能源消耗结构' : bjqFormat + dwFormat + '能源费用结构'"
                              :radius="pieRadius"
                              :seriesData="rData.bjq_pie && rData.bjq_pie.seriesData"></chart-pie>

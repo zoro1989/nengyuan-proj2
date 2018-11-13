@@ -47,6 +47,7 @@
                              :radius="pieRadius"
                              :center="pieCenter"
                              :isShowLabel="isShowLabel"
+                             :isSort="false"
                              :legendData="rData.jcq_pie && rData.jcq_pie.legendData"
                              :seriesData="rData.jcq_pie && rData.jcq_pie.seriesData"></chart-pie>
                 </div>
@@ -56,6 +57,7 @@
                              :radius="pieRadius"
                              :center="pieCenter"
                              :isShowLabel="isShowLabel"
+                             :isSort="false"
                              :legendData="rData.bjq_pie && rData.bjq_pie.legendData"
                              :seriesData="rData.bjq_pie && rData.bjq_pie.seriesData"></chart-pie>
                 </div>
@@ -265,15 +267,15 @@
         if (!list) {
           return []
         }
-        let copyData = JSON.parse(JSON.stringify(list))
-        let sortData = copyData.sort((a, b) => {
-          if (this.type === 'nh') {
-            return a.nyxhjq - b.nyxhjq
-          } else {
-            return a.fyjq - b.fyjq
-          }
-        })
-        return tableDataFilter(sortData)
+//        let copyData = JSON.parse(JSON.stringify(list))
+//        let sortData = copyData.sort((a, b) => {
+//          if (this.type === 'nh') {
+//            return a.nyxhjq - b.nyxhjq
+//          } else {
+//            return a.fyjq - b.fyjq
+//          }
+//        })
+        return tableDataFilter(list)
       }
     }
   }

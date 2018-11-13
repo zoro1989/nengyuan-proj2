@@ -195,16 +195,17 @@ export default {
               item.lineStyle = {width: 4}
             } else {
               item.itemStyle = {
-                barBorderRadius: [3, 3, 0, 0],
-                color: (params) => {
-                  if (series[i].type === 'bar' && series[i].name.indexOf('实际') >= 0 &&
-                    series[i + 1] && series[i + 1].data[params.dataIndex] &&
-                    series[i + 1].name.indexOf('计划') >= 0 &&
-                    params.data !== 0 && series[i + 1].data[params.dataIndex] !== 0 &&
-                    params.data > series[i + 1].data[params.dataIndex]) {
-                    return '#e7251e'
-                  } else {
-                    return vm.chartColor[i]
+                barBorderRadius: [3, 3, 0, 0]
+              }
+            }
+            if (series[i].type === 'bar' && series[i].name.indexOf('实际') >= 0 &&
+              series[i + 1] && series[i].type === 'bar' && series[i + 1].name.indexOf('计划') >= 0) {
+              for (let j = 0; j < series[i].data.length; j++) {
+                if (series[i].data[j] !== 0 && series[i + 1].data[j] !== 0 &&
+                  series[i].data[j] > series[i + 1].data[j]) {
+                  series[i].data[j] = {
+                    value: series[i].data[j],
+                    itemStyle: {color: '#e7251e'}
                   }
                 }
               }

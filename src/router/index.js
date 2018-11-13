@@ -42,6 +42,8 @@ const Taizhang6Sb = () => import('components/sbtz/tz6-sb')
 const Taizhang7Byq = () => import('components/sbtz/tz7-byq')
 const Taizhang8Qt = () => import('components/sbtz/tz8-qt')
 
+const Warning = () => import('components/nyyjbj/warning')
+
 Vue.use(Router)
 
 export default new Router({
@@ -229,6 +231,11 @@ export default new Router({
       path: '/tz8-qt',
       name: '台账',
       component: Taizhang8Qt
+    },
+    {
+      path: '/waning',
+      name: '台账',
+      component: Warning
     }
   ]
 })

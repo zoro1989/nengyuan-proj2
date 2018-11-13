@@ -86,7 +86,7 @@
           </ul>
         </li>
         <li>
-          <a href="#">
+          <a href="#" :class="selectMenuIndex === 6 ? 'active' : ''" @click="changeRoute('/waning', 6)">
             <i class="fa fa-bell-o"></i>
             <strong>能源预警报警</strong>
           </a>
