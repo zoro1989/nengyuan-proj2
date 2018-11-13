@@ -79,10 +79,12 @@
                 <el-table-column
                   :label="jcqFormat + '占比'">
                   <el-table-column
+                    align="center"
                     prop="nyxhjq"
                     label="能源消耗量（吨标煤）">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="zbjq"
                     label="占集团公司总量百分比（%）">
                   </el-table-column>
@@ -90,10 +92,12 @@
                 <el-table-column
                   :label="bjqFormat + '占比'">
                   <el-table-column
+                    align="center"
                     prop="nyxhbjq"
                     label="能源消耗量（吨标煤）">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="zbbjq"
                     label="占集团公司总量百分比（%）">
                   </el-table-column>
@@ -119,10 +123,12 @@
                   :label="jcqFormat + '占比'">
                   <el-table-column
                     prop="fyjq"
+                    align="center"
                     label="能源费用（万元）">
                   </el-table-column>
                   <el-table-column
                     prop="zbjq"
+                    align="center"
                     label="占集团公司总量百分比（%）">
                   </el-table-column>
                 </el-table-column>
@@ -130,10 +136,12 @@
                   :label="bjqFormat + '占比'">
                   <el-table-column
                     prop="fybjq"
+                    align="center"
                     label="能源费用（万元）">
                   </el-table-column>
                   <el-table-column
                     prop="zbbjq"
+                    align="center"
                     label="占集团公司总量百分比（%）">
                   </el-table-column>
                 </el-table-column>

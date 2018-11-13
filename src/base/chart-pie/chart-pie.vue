@@ -115,6 +115,11 @@ export default {
 //            fontWeight: 'normal'
 //          }
         },
+        toolbox: {
+          feature: {
+            saveAsImage: {}
+          }
+        },
         tooltip: {
           trigger: 'item',
           formatter: '{b}\n{d}%'

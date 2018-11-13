@@ -80,6 +80,11 @@ export default {
 //          }
         },
         color: this.chartColor,
+        toolbox: {
+          feature: {
+            saveAsImage: {}
+          }
+        },
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -187,6 +192,7 @@ export default {
                 item.yAxisIndex = 1
               }
               item.itemStyle = {color: vm.chartColor[i]}
+              item.lineStyle = {width: 4}
             } else {
               item.itemStyle = {
                 barBorderRadius: [3, 3, 0, 0],

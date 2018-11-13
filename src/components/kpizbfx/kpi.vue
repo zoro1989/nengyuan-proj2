@@ -41,6 +41,7 @@
               <div class="row">
                 <el-table
                   :data="tableData"
+                  :span-method="arraySpanMethod"
                   border
                   height="100%"
                   header-cell-class-name="header-cell-class-name"
@@ -212,6 +213,17 @@
         } else {
           return []
         }
+      },
+      tableTitile() {
+        if (this.lx === '1') {
+          return '万元产值能耗'
+        } else if (this.lx === '2') {
+          return '耗水量'
+        } else if (this.lx === '3') {
+          return '能源消耗总量'
+        } else if (this.lx === '4') {
+          return '单车综合能耗'
+        }
       }
     },
     methods: {
@@ -224,7 +236,15 @@
         return res >= 0 ? 'background: #67C23A; color: #fff;' : 'background: #F56C6C; color: #fff;'
       },
       departmentStyle(index) {
-        return `background: ${this.colors[index]}`
+        if (index > 1) {
+          index = index - 2
+          return `background: ${this.colors[index]}`
+        }
+      },
+      arraySpanMethod({ row, column, rowIndex, columnIndex }) {
+        if (rowIndex === 0 && columnIndex === 1) {
+          return [this.tableData.length, 0]
+        }
       },
       onSearch() {
         this.loading = true
@@ -253,6 +273,7 @@
 //            })
             let obj = {}
             obj.projectName = '实际产值（万元）'
+            obj.yearTarget = '0'
             for (let i = 0; i < res.data.cz.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
               obj[key] = res.data.cz[i]
@@ -261,12 +282,13 @@
           }
           if (res.data.jhcznh && res.data.jhcznh.length > 0) {
             series.push({
-              name: '计划单月万元产值能耗',
+              name: '计划单月' + this.tableTitile,
               type: 'line',
               data: res.data.jhcznh
             })
             let obj = {}
-            obj.projectName = '计划单月万元产值能耗'
+            obj.projectName = '计划单月' + this.tableTitile
+            obj.yearTarget = '0'
             for (let i = 0; i < res.data.jhcznh.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
               obj[key] = res.data.jhcznh[i]
@@ -275,12 +297,13 @@
           }
           if (res.data.sjcznh && res.data.sjcznh.length > 0) {
             series.push({
-              name: '实际单月万元产值能耗',
+              name: '实际单月' + this.tableTitile,
               type: 'line',
               data: res.data.sjcznh
             })
             let obj = {}
-            obj.projectName = '实际单月万元产值能耗'
+            obj.projectName = '实际单月' + this.tableTitile
+            obj.yearTarget = '0'
             for (let i = 0; i < res.data.sjcznh.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
               obj[key] = res.data.sjcznh[i]
@@ -289,12 +312,13 @@
           }
           if (res.data.jhljcznh && res.data.jhljcznh.length > 0) {
             series.push({
-              name: '计划累计万元产值能耗',
+              name: '计划累计' + this.tableTitile,
               type: 'line',
               data: res.data.jhljcznh
             })
             let obj = {}
-            obj.projectName = '计划累计万元产值能耗'
+            obj.projectName = '计划累计' + this.tableTitile
+            obj.yearTarget = '0'
             for (let i = 0; i < res.data.jhljcznh.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
               obj[key] = res.data.jhljcznh[i]
@@ -303,12 +327,13 @@
           }
           if (res.data.sjljcznh && res.data.sjljcznh.length > 0) {
             series.push({
-              name: '实际累计万元产值能耗',
+              name: '实际累计' + this.tableTitile,
               type: 'line',
               data: res.data.sjljcznh
             })
             let obj = {}
-            obj.projectName = '实际累计万元产值能耗'
+            obj.projectName = '实际累计' + this.tableTitile
+            obj.yearTarget = '0'
             for (let i = 0; i < res.data.sjljcznh.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
               obj[key] = res.data.sjljcznh[i]
