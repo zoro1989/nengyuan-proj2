@@ -56,6 +56,12 @@
                     </template>
                   </el-table-column>
                   <el-table-column
+                    align="center"
+                    prop="yearTarget"
+                    label="年度目标"
+                  >
+                  </el-table-column>
+                  <el-table-column
                     v-for="(item, index) in rData.xAxisData"
                     :key="index"
                     :prop="item + 'yue'"
@@ -237,13 +243,22 @@
       },
       departmentStyle(index) {
         if (index > 1) {
-          index = index - 2
-          return `background: ${this.colors[index]}`
+          return `background: ${this.colors[index - 2]}`
         }
       },
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-        if (rowIndex === 0 && columnIndex === 1) {
-          return [this.tableData.length, 0]
+        if (columnIndex === 1) {
+          if (rowIndex === 0) {
+            return {
+              rowspan: 6,
+              colspan: 1
+            }
+          } else {
+            return {
+              rowspan: 0,
+              colspan: 0
+            }
+          }
         }
       },
       onSearch() {
@@ -259,6 +274,7 @@
 //            })
             let obj = {}
             obj.projectName = '产量（辆）'
+            obj.yearTarget = '0'
             for (let i = 0; i < res.data.cl.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
               obj[key] = res.data.cl[i]
