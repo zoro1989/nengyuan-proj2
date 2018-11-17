@@ -73,51 +73,9 @@
               </div>
             </div>
             <div class="row">
-              <!--<Calendar v-if="month" locale="zh-cn" :dateData="calendarData" class="ui-calendar">-->
-              <!--<div slot="header-left">-->
-              <!--<div style="height: 20px;line-height: 20px">-->
-              <!--<span style="display: inline-block; background: #5967f1; height: 2px; width: 20px; margin-right: 5px;"></span><span>实际电量（兆瓦时）</span>-->
-              <!--</div>-->
-              <!--<div style="height: 20px;line-height: 20px">-->
-              <!--<span style="display: inline-block; background: #06e56d; height: 8px; width: 20px; margin-right: 5px;"></span><span>实际产量（辆）</span>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--<div-->
-              <!--:class="[-->
-              <!--'ui-calendar-item',-->
-              <!--{-->
-              <!--'is-otherMonth': item.isPrevMonth || item.isNextMonth,-->
-              <!--'is-today': item.isToday-->
-              <!--},-->
-              <!--]"-->
-              <!--slot-scope="item"-->
-              <!--&gt;-->
-              <!--<div-->
-              <!--:class="['ui-calendar-item-date']">-->
-              <!--{{item.date.date}}-->
-              <!--</div>-->
-              <!--<div-->
-              <!--class="ui-calendar-item-name"-->
-              <!--v-for="(item, index) in item.data"-->
-              <!--:key="index"-->
-              <!--&gt;-->
-              <!--<el-tooltip class="item" effect="dark" content="实际电量（兆瓦时）" placement="top-start">-->
-              <!--<div style="height: 20px;line-height: 20px">-->
-              <!--<span style="display: inline-block; background: #5967f1; height: 2px; width: 20px; margin-right: 5px;"></span><span>{{item.dl}}</span>-->
-              <!--</div>-->
-              <!--</el-tooltip>-->
-              <!--<el-tooltip class="item" effect="dark" content="实际产量（辆）" placement="top-start">-->
-              <!--<div style="height: 20px;line-height: 20px">-->
-              <!--<span style="display: inline-block; background: #06e56d; height: 8px; width: 20px; margin-right: 5px;"></span><span>{{item.cl}}</span>-->
-              <!--</div>-->
-              <!--</el-tooltip>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--</Calendar>-->
               <el-table
                 :data="tableData"
                 border
-                height="100%"
                 header-cell-class-name="header-cell-class-name"
                 style="width: 99%">
                 <el-table-column
@@ -504,7 +462,6 @@
     background: $color-sub-text
     display: flex
     flex-direction: column
-    height: 100%
     min-width: 600px
     .date-year
       width: 100px
@@ -514,88 +471,9 @@
       display: inline-block
       width: 25px
       height: 10px
-    .col-box-left-right-bottom
-      height: 100%
-      .panel-box >.row
-        height: 100%
-        .table-box > .row:last-child
-          height: calc(100% - 400px)
+    .table-box > .row:last-child
+      min-height: calc(100vh - 606px)
     .chart-box
       min-height: 350px
       border-radius: 0px
-    .ui-calendar
-      margin: 0 10px 0 0;
-      border-radius: 5px;
-      height: 90%
-      &-header
-        &__left
-          > button
-            font-size: 12px;
-            &:nth-child(2)
-              margin-left: -4px
-      &-modeBtn
-        position: relative;
-        display: inline-block;
-        background: #fff;
-        border: 1px solid #75c4ef;
-        color: #75c4ef;
-        padding: 5px 1em;
-        font-size: 13px;
-        line-height: 1;
-        box-shadow: 0 1px 3px lighten(#75c4ef, 15%);
-        min-width: 5em;
-        margin-right: -1px;
-        // text-indent: 0.5em;
-        text-align: center
-        cursor: pointer
-        &:first-child
-          border-top-left-radius: 3px;
-          border-bottom-left-radius: 3px;
-        &:last-child
-          // left: -.5em;
-          border-bottom-right-radius: 3px;
-          border-top-right-radius: 3px
-        &:active,
-        &:focus
-          outline: none
-        &.active,
-        &:active
-          background: #75c4ef;
-          color: #fff;
-          z-index: 2
-      & .k-calendar
-        &-header-center
-          color: #75c4ef
-        &-week-title-item
-          color: #75c4ef
-      &-item
-        padding: 5px 10px;
-        color: #666;
-        &.is
-          &-otherMonth
-            color: #bbb
-          &-today
-            .ui-calendar-item-date
-              position: relative;
-              display: inline-block;
-              background: #75c4ef;
-              color: #fff;
-              width: 20px;
-              height: 20px;
-              border-radius: 50%;
-              text-align: center;
-              line-height: 20px;
-              top: -1px
-        &-name
-          font-size: 12px;
-          > *
-            vertical-align: middle
-          .del
-            display: inline-block;
-            cursor: pointer;
-            color: inherit;
-            margin-bottom: -2px
-
-      .vue-calendar-body-row
-        height: auto
 </style>

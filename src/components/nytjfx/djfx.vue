@@ -43,7 +43,6 @@
                 <el-table
                   :data="rData.list"
                   border
-                  height="100%"
                   header-cell-class-name="header-cell-class-name"
                   style="width: 99%">
                   <el-table-column
@@ -175,12 +174,8 @@
         display: inline-block
         width: 25px
         height: 10px
-      .col-box-left-right-bottom
-        height: 100%
-        .panel-box >.row
-          height: 100%
-          .table-box > .row:last-child
-            height: calc(100% - 250px)
+      .table-box > .row:last-child
+        min-height: calc(100vh - 400px)
       .chart-box
         min-height: 250px
         border-radius: 0px

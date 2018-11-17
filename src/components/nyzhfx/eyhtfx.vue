@@ -48,7 +48,6 @@
               <div class="row">
                 <div class="col-lg-6 col-md-12">
                   <el-table
-                    height="100%"
                     :data="filterJcqData"
                     border
                     header-cell-class-name="header-cell-class-name"
@@ -69,7 +68,6 @@
                 </div>
                 <div class="col-lg-6 col-md-12">
                   <el-table
-                    height="100%"
                     :data="filterBjqData"
                     border
                     header-cell-class-name="header-cell-class-name"
@@ -93,7 +91,6 @@
             <div class="col-lg-4 col-md-12 table-box box-right">
               <data-panel-title title="能源消耗结构增幅分析" :noBorder="noBorder"></data-panel-title>
               <el-table
-                height="calc(100% - 50px)"
                 :data="rData.list_zf"
                 border
                 header-cell-class-name="header-cell-class-name"
@@ -217,14 +214,9 @@
       background: $color-sub-text
       display: flex
       flex-direction: column
-      height: 100%
       min-width: 600px
-      .col-box-left-right-bottom
-        height: 100%
-      .panel-box > .row
-        height: 100%
-        .table-box > .row:last-child
-          height: calc(100% - 350px)
+      .table-box > .row:last-child
+        min-height: calc(100vh - 500px)
       .chart-box
         min-height: 350px
         border-radius: 0px
