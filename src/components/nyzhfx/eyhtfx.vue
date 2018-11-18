@@ -53,15 +53,20 @@
                     header-cell-class-name="header-cell-class-name"
                     style="width: 98%">
                     <el-table-column
+                      align="center"
                       prop="nybm"
                       label="能源部门">
                     </el-table-column>
                     <el-table-column
+                      align="center"
+                      width="110"
                       prop="tan"
                       label="二氧化碳排放">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="zb"
+                      width="100"
                       label="占比（%）">
                     </el-table-column>
                   </el-table>
@@ -73,15 +78,20 @@
                     header-cell-class-name="header-cell-class-name"
                     style="width: 98%">
                     <el-table-column
+                      align="center"
                       prop="nybm"
                       label="能源部门">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="tan"
+                      width="110"
                       label="二氧化碳排放">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="zb"
+                      width="100"
                       label="占比（%）">
                     </el-table-column>
                   </el-table>
@@ -96,12 +106,15 @@
                 header-cell-class-name="header-cell-class-name"
                 style="width: 100%">
                 <el-table-column
+                  align="center"
                   prop="nybm"
                   label="能源部门">
                 </el-table-column>
                 <el-table-column
+                  align="center"
                   prop="zf"
-                  label="增幅率（%）">
+                  width="100"
+                  label="增幅率(%)">
                 </el-table-column>
               </el-table>
             </div>

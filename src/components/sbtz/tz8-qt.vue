@@ -38,17 +38,21 @@
                   style="width: 99%">
                   <el-table-column
                     prop="xuhao"
+                    width="50"
                     label="序号">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="code"
                     label="设备编号">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="name"
                     label="设备名称">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="xinghao"
                     label="设备型号">
                   </el-table-column>
@@ -56,62 +60,78 @@
                     align="center"
                     label="动能消耗">
                     <el-table-column
+                      align="center"
                       prop="d"
-                      label="电(kw)">
+                      :label="'电\n(kw)'">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="q"
-                      label="天然气(m3/h)">
+                      :label="'天然气\n(m3/h)'">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="zq"
-                      label="蒸汽(kg/h)">
+                      :label="'蒸汽\n(kg/h)'">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="y"
-                      label="油(kg/h)">
+                      :label="'油\n(kg/h)'">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="s"
-                      label="水(t/h)">
+                      :label="'水\n(t/h)'">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="m"
-                      label="煤(t/h)">
+                      :label="'煤\n(t/h)'">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="qt"
                       label="其他">
                     </el-table-column>
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     label="外形尺寸">
                     <el-table-column
+                      align="center"
                       prop="cc"
+                      width="100"
                       label="长✖️宽✖️高">
                     </el-table-column>
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="yxsj"
-                    label="年运行时间(h)">
+                    :label="'年运行\n时间\n(h)'">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="dd"
                     label="安装地点">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="azsj"
-                    label="安装时间">
+                    :label="'安装\n时间'">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="yt"
                     label="用途">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="xl"
-                    label="效率(%)">
+                    :label="'效率\n(%)'">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="jlb"
                     label="是否计量">
                   </el-table-column>

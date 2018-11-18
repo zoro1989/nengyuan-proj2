@@ -38,41 +38,51 @@
                   style="width: 99%">
                   <el-table-column
                     prop="xuhao"
+                    width="50"
                     label="序号">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="code"
                     label="变压器编号">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="name"
                     label="变压器名称">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="xinghao"
                     label="型号规格">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="rl"
                     label="容量(KVA)">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="azdd"
                     label="安装地点">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="fzl"
                     label="负载率(%)">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="xl"
                     label="效率(%)">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="bcrl"
                     label="无功补偿容量">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="bz"
                     label="备注">
                   </el-table-column>

@@ -60,11 +60,14 @@ html {
 }
 .panel-box {
   padding: 0 10px 10px 10px
-  display: flex
-  flex-direction: column
   background: #fff
+  box-sizing: border-box
   border-radius: 5px
   flex: 1
+}
+.panel-box.flexable {
+  display: flex
+  flex-direction: column
 }
 .chart-box {
   min-height: 300px

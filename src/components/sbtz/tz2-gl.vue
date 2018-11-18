@@ -38,17 +38,21 @@
                   style="width: 99%">
                   <el-table-column
                     prop="xuhao"
+                    width="50"
                     label="序号">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="code"
                     label="设备编号">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="name"
                     label="锅炉名称">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="xinghao"
                     label="型号规格">
                   </el-table-column>
@@ -56,43 +60,53 @@
                     align="center"
                     label="动能消耗">
                     <el-table-column
+                      align="center"
                       prop="m"
-                      label="煤(t/h)">
+                      :label="'煤\n(t/h)'">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="d"
-                      label="电(kw)">
+                      :label="'电\n(kw)'">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="s"
-                      label="水(t/h)">
+                      :label="'水\n(t/h)'">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="q"
-                      label="天然气(m3/h)">
+                      :label="'天然气\n(m3/h)'">
                     </el-table-column>
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="yxsj"
-                    label="年运行时间(h)">
+                    :label="'年运行\n时间\n(h)'">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="yt"
                     label="用途">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="srjlb"
-                    label="输入能源有无计量">
+                    :label="'输入能源\n有无计量'">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="scjlb"
-                    label="产出能源有无计量">
+                    :label="'产出能源\n有无计量'">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="xl"
                     label="效率">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="bz"
                     label="备注">
                   </el-table-column>

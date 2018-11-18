@@ -65,18 +65,22 @@
                     header-cell-class-name="header-cell-class-name"
                     style="width: 98%">
                     <el-table-column
+                      align="center"
                       prop="nyzl"
                       label="能源种类">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="jldw"
                       label="计量单位">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="yl"
                       :label="jcqFormat">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="zb"
                       label="占比（%）">
                     </el-table-column>
@@ -88,18 +92,22 @@
                     header-cell-class-name="header-cell-class-name"
                     style="width: 98%">
                     <el-table-column
+                      align="center"
                       prop="fyzl"
                       label="费用种类">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="jldw"
                       label="计量单位">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="fy"
                       :label="jcqFormat">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="zb"
                       label="占比（%）">
                     </el-table-column>
@@ -113,18 +121,22 @@
                     header-cell-class-name="header-cell-class-name"
                     style="width: 98%">
                     <el-table-column
+                      align="center"
                       prop="nyzl"
                       label="能源种类">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="jldw"
                       label="计量单位">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="yl"
                       :label="bjqFormat">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="zb"
                       label="占比（%）">
                     </el-table-column>
@@ -136,18 +148,22 @@
                     header-cell-class-name="header-cell-class-name"
                     style="width: 98%">
                     <el-table-column
+                      align="center"
                       prop="fyzl"
                       label="费用种类">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="jldw"
                       label="计量单位">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="fy"
                       :label="bjqFormat">
                     </el-table-column>
                     <el-table-column
+                      align="center"
                       prop="zb"
                       label="占比（%）">
                     </el-table-column>
@@ -164,12 +180,14 @@
                 header-cell-class-name="header-cell-class-name"
                 style="width: 100%">
                 <el-table-column
+                  align="center"
                   prop="nyzl"
                   label="能源种类">
                 </el-table-column>
                 <el-table-column
+                  align="center"
                   prop="zf"
-                  label="增幅率">
+                  label="增幅率(%)">
                 </el-table-column>
               </el-table>
               <el-table
@@ -179,11 +197,13 @@
                 header-cell-class-name="header-cell-class-name"
                 style="width: 100%">
                 <el-table-column
+                  align="center"
                   prop="fyzl"
                   label="费用种类">
                 </el-table-column>
                 <el-table-column
                   prop="zf"
+                  align="center"
                   label="增幅率">
                 </el-table-column>
               </el-table>

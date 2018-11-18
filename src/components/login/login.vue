@@ -77,7 +77,7 @@ export default {
         return
       }
       setToken('123456')
-      this.$router.replace('/home')
+      this.$router.replace('/home/alarm')
       Message({
         message: '登录成功',
         type: 'success'

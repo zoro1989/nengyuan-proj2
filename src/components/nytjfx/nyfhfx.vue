@@ -87,6 +87,7 @@
                     </template>
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     v-for="item in rData.xAxisData"
                     :key="item"
                     :prop="month ? item + 'ri' : item + 'yue'"

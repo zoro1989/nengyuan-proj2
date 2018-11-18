@@ -38,61 +38,76 @@
                   style="width: 99%">
                   <el-table-column
                     prop="xuhao"
+                    width="50"
                     label="序号">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="code"
                     label="设备编号">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="name"
                     label="空压机名称">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="guige"
                     label="规格型号">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="xinghao"
                     label="电机型号">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="gl"
-                    label="额定功率(kw)">
+                    :label="'额定功率\n(kw)'">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="pql"
-                    label="排气量(m3/h)">
+                    :label="'排气量\n(m3/h)'">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="yl"
-                    label="排气压力(Pa)">
+                    :label="'排气压力\n(Pa)'">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="yxsj"
-                    label="年运行时间(h)">
+                    :label="'年运行\n时间\n(h)'">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="dd"
                     label="安装地点">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="azsj"
-                    label="安装时间">
+                    :label="'安装\n时间'">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="yt"
                     label="用途">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="jlb"
                     label="是否计量表">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="xl"
                     label="效率（%）">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="bz"
                     label="备注">
                   </el-table-column>

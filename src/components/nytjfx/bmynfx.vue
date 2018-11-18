@@ -38,48 +38,61 @@
               style="width: 99%">
               <el-table-column
                 prop="org"
+                min-width="150"
                 label="用能单位">
               </el-table-column>
               <el-table-column
+                align="center"
                 label="产值综合能耗（标煤/万元）">
                 <el-table-column
+                  align="center"
                   prop="czzhnh"
                   label="实际值">
                 </el-table-column>
                 <el-table-column
+                  align="center"
                   prop="tqczzhnh"
                   label="同期值">
                 </el-table-column>
               </el-table-column>
               <el-table-column
+                align="center"
                 label="产值耗水（吨/万元）">
                 <el-table-column
+                  align="center"
                   prop="s"
                   label="实际值">
                 </el-table-column>
                 <el-table-column
+                  align="center"
                   prop="tqs"
                   label="同期值">
                 </el-table-column>
               </el-table-column>
               <el-table-column
+                align="center"
                 label="能源消耗总量（吨标煤）">
                 <el-table-column
+                  align="center"
                   prop="zhnh"
                   label="实际值">
                 </el-table-column>
                 <el-table-column
+                  align="center"
                   prop="tqzhnh"
                   label="同期值">
                 </el-table-column>
               </el-table-column>
               <el-table-column
+                align="center"
                 label="单车综合能耗（吨标煤/辆）">
                 <el-table-column
+                  align="center"
                   prop="dczzhnh"
                   label="实际值">
                 </el-table-column>
                 <el-table-column
+                  align="center"
                   prop="tqdczzhnh"
                   label="同期值">
                 </el-table-column>

@@ -30,7 +30,7 @@
       </div>
       <div class="col-box-left-right-bottom">
         <div class="panel-box" v-loading="loading">
-          <div class="row" ref="row">
+          <div class="row">
             <div class="table-box">
               <div class="row">
                 <chart-bar-line class="chart-box"
@@ -40,7 +40,7 @@
                                 :yAxis="y"
                                 :titleText="chartTitle"></chart-bar-line>
               </div>
-              <div class="row">
+              <div class="row" ref="row">
                 <el-table
                   :data="rData.list"
                   border

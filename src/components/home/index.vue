@@ -45,16 +45,20 @@
         <div class="panel col-lg-4-2 col-md-12 col-box-top-bottom">
           <div class="panel-box">
             <data-panel-title :title="lastMonth + '清洁能源用量'"></data-panel-title>
-            <data-panel
-              class="border-bottom"
-              title="清洁能源"
-              :data="4586"
-              unit="吨标煤"
-              :tongbiData="-12.2"
-              :huanbiData="6.7"
-            ></data-panel>
-            <flip-panel title="光伏发电实时量(小时)">
-            </flip-panel>
+            <div class="row">
+              <data-panel
+                class="border-bottom"
+                title="清洁能源"
+                :data="4586"
+                unit="吨标煤"
+                :tongbiData="-12.2"
+                :huanbiData="6.7"
+              ></data-panel>
+            </div>
+            <div class="row">
+              <flip-panel title="光伏发电实时量(小时)">
+              </flip-panel>
+            </div>
           </div>
         </div>
         <div class="panel col-lg-4-4 col-md-12 col-box">

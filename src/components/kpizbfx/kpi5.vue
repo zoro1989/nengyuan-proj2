@@ -43,30 +43,35 @@
                   header-cell-class-name="header-cell-class-name"
                   style="width: 99%">
                   <el-table-column
+                    align="center"
                     label="评价指标">
                     <template slot-scope="scope">
                       <el-input v-model="scope.row.pjzb" :disabled="isFormReadOnly" auto-complete="off"></el-input>
                     </template>
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     label="评价标准">
                     <template slot-scope="scope">
                       <el-input v-model="scope.row.pjbz" :disabled="isFormReadOnly" auto-complete="off"></el-input>
                     </template>
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     label="项目分数">
                     <template slot-scope="scope">
                       <el-input v-model="scope.row.fs" :disabled="isFormReadOnly" auto-complete="off"></el-input>
                     </template>
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     label="权重比">
                     <template slot-scope="scope">
                       <el-input v-model="scope.row.qz" :disabled="isFormReadOnly" auto-complete="off"></el-input>
                     </template>
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="sum"
                     label="实际得分合计">
                     <template slot-scope="scope">

@@ -57,7 +57,7 @@
                   style="width: 99%">
                   <el-table-column
                     prop="projectName"
-                    min-width="200"
+                    min-width="120"
                     label="项目名称">
                     <template slot-scope="scope">
                       <span class="department-block" :style="departmentStyle(scope.$index)"></span>
@@ -65,6 +65,7 @@
                     </template>
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     v-for="item in rData.xAxisData"
                     :key="item"
                     :prop="item + 'yue'"
@@ -81,22 +82,27 @@
                 header-cell-class-name="header-cell-class-name"
                 style="width: 99%">
                 <el-table-column
+                  align="center"
                   prop="yue"
                   label="月">
                 </el-table-column>
                 <el-table-column
+                  align="center"
                   prop="fyhbzf"
                   label="用量环比增幅">
                 </el-table-column>
                 <el-table-column
+                  align="center"
                   prop="clhbzf"
                   label="产量环比增幅">
                 </el-table-column>
                 <el-table-column
+                  align="center"
                   prop="fytbzf"
                   label="用量同比增幅">
                 </el-table-column>
                 <el-table-column
+                  align="center"
                   prop="cltbzf"
                   label="产量同比增幅">
                 </el-table-column>

@@ -226,7 +226,7 @@
                         :series="barDb.series"
                         :xAxisData="barDb.xAxisData"
                         :yAxis="yAxis"
-                        titleText="能源用量与费用同比分析"></chart-bar-line>
+                        titleText="能源用量与费用对比分析"></chart-bar-line>
       </div>
     </div>
   </div>
@@ -332,6 +332,70 @@ export default {
         this.barDb = {}
       })
     },
+    fetchSubPieData() {
+      fetch('get', api.queryNyYLListDl, {dateTime: this.dateTime, lx: this.lx, pid: this.pidmain}).then((res) => {
+        if (this.pid === '2') {
+          let othervalue = 0
+          for (let i = 0; i < this.pieDl.seriesData.length; i++) {
+            if (this.pieDl.seriesData[i].name !== '整车制造') {
+              othervalue += this.pieDl.seriesData[i].value * 1
+            }
+          }
+          let legendData = res.data.legendData
+          legendData.push('其他')
+          let seriesData = res.data.seriesData
+          seriesData.push({
+            name: '其他',
+            value: othervalue
+          })
+          this.pieDl.legendData = legendData
+          this.pieDl.seriesData = seriesData
+        } else if (this.pid === '23') {
+          let othervalue = 0
+          for (let i = 0; i < this.pieDl.seriesData.length; i++) {
+            if (this.pieDl.seriesData[i].name !== '零部件加工') {
+              othervalue += this.pieDl.seriesData[i].value * 1
+            }
+          }
+          let legendData = res.data.legendData
+          legendData.push('其他')
+          let seriesData = res.data.seriesData
+          seriesData.push({
+            name: '其他',
+            value: othervalue
+          })
+          this.pieDl.legendData = legendData
+          this.pieDl.seriesData = seriesData
+        } else if (this.pid === '30') {
+          let othervalue = 0
+          for (let i = 0; i < this.pieDl.seriesData.length; i++) {
+            if (this.pieDl.seriesData[i].name !== '物流') {
+              othervalue += this.pieDl.seriesData[i].value * 1
+            }
+          }
+          let legendData = res.data.legendData
+          legendData.push('其他')
+          let seriesData = res.data.seriesData
+          seriesData.push({
+            name: '其他',
+            value: othervalue
+          })
+          this.pieDl.legendData = legendData
+          this.pieDl.seriesData = seriesData
+        }
+      }).catch(() => {
+      })
+      fetch('get', api.queryNyYLListDf, {dateTime: this.dateTime, lx: this.lx, pid: this.pid}).then((res) => {
+        this.pieDf = res.data
+      }).catch(() => {
+        this.pieDf = {}
+      })
+      fetch('get', api.queryNyDBList, {dateTime: this.dateTime, lx: this.lx, pid: this.pid}).then((res) => {
+        this.barDb = res.data
+      }).catch(() => {
+        this.barDb = {}
+      })
+    },
     onClose() {
       this.$router.replace('/home')
     },
@@ -372,15 +436,15 @@ export default {
       if (param.data.name === '整车制造') {
         this.pid = '2'
         this.pidmain = '2'
-        this.fetchPieData()
+        this.fetchSubPieData()
       } else if (param.data.name === '零部件加工') {
         this.pid = '23'
         this.pidmain = '23'
-        this.fetchPieData()
+        this.fetchSubPieData()
       } else if (param.data.name === '物流') {
         this.pid = '30'
         this.pidmain = '30'
-        this.fetchPieData()
+        this.fetchSubPieData()
       }
     },
     pieTitleClickDl() {
