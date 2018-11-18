@@ -2,12 +2,14 @@
   <div class="chart-pie" >
     <div class="title" @click="titleClick">{{titleText}}</div>
     <span class="back-btn ripple" v-if="showBack" @click="back"><i class="fa fa-arrow-left"></i>&nbsp;返回</span>
-    <div class="chart" ref="chart"></div>
+    <div class="chart" ref="chart" v-if="seriesData.length !== 0"></div>
+    <no-result v-if="seriesData.length === 0"></no-result>
   </div>
 </template>
 <script>
 import echarts from 'echarts'
 import {filter, filterArr} from 'utils/filter'
+import NoResult from 'base/no-result/no-result'
 export default {
   props: {
     titleText: {
@@ -74,6 +76,9 @@ export default {
       type: Boolean,
       default: true
     }
+  },
+  components: {
+    NoResult
   },
   data() {
     return {

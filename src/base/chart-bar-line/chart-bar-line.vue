@@ -1,12 +1,14 @@
 <template>
   <div class="chart-bar-line" >
     <div class="title">{{titleText}}</div>
-    <div class="chart" ref="chart"></div>
+    <div class="chart" ref="chart" v-if="series.length !== 0"></div>
+    <no-result v-if="series.length === 0"></no-result>
   </div>
 </template>
 <script>
 import echarts from 'echarts'
 import {filterArr} from 'utils/filter'
+import NoResult from 'base/no-result/no-result'
 export default {
   props: {
     titleText: {
@@ -55,6 +57,9 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  components: {
+    NoResult
   },
   created() {
     this.chart = {}

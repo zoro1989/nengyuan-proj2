@@ -1,11 +1,13 @@
 <template>
   <div class="chart-realtime-bar" >
     <span class="title" @click="titleClick">{{titleText}}</span>
-    <div class="chart" ref="chart"></div>
+    <div class="chart" ref="chart" v-if="seriesData.length !== 0"></div>
+    <no-result v-if="seriesData.length === 0"></no-result>
   </div>
 </template>
 <script>
 import echarts from 'echarts'
+import NoResult from 'base/no-result/no-result'
 // import moment from 'moment'
 export default {
   props: {
@@ -41,6 +43,9 @@ export default {
         return []
       }
     }
+  },
+  components: {
+    NoResult
   },
   created() {
     this.chart = {}
