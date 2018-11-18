@@ -1,8 +1,8 @@
 <template>
   <div class="chart-realtime-line" >
     <div class="title" @click="titleClick">{{titleText}}</div>
-    <div class="chart" ref="chart" v-if="seriesData.length !== 0"></div>
-    <no-result v-if="seriesData.length === 0"></no-result>
+    <div class="chart" ref="chart" v-show="seriesData.length !== 0"></div>
+    <no-result v-show="seriesData.length === 0"></no-result>
   </div>
 </template>
 <script>
@@ -56,7 +56,10 @@ export default {
   },
   watch: {
     seriesData: function (newData) {
-      this.makeChart(newData)
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.makeChart(newData)
+      }, 20)
     }
   },
   methods: {

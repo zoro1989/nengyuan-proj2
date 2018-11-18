@@ -1,8 +1,8 @@
 <template>
   <div class="chart-line" >
     <div class="title">{{titleText}}</div>
-    <div class="chart" ref="chart" v-if="series.length !== 0"></div>
-    <no-result v-if="series.length === 0"></no-result>
+    <div class="chart" ref="chart" v-show="series.length !== 0"></div>
+    <no-result v-show="series.length === 0"></no-result>
   </div>
 </template>
 <script>
@@ -60,11 +60,17 @@ export default {
     this.chart = {}
   },
   mounted() {
-    this.makeChart(this.series)
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      this.makeChart(this.series)
+    }, 20)
   },
   watch: {
     series: function (newData) {
-      this.makeChart(newData)
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.makeChart(newData)
+      }, 20)
     }
   },
   methods: {

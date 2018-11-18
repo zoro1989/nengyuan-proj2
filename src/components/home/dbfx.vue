@@ -29,25 +29,21 @@
         </div>
       </div>
       <div class="tripping-content">
-        <div>
-          <div class="col-box-left-right-bottom">
-            <chart-bar class="chart-box"
-                       :titleText="chartTitle"
-                       :yAxis="yAxis"
-                       :series="seriesData1"
-                       :xAxisData="data1.xAxisData"
-                       chartColor="#48daf6"></chart-bar>
-          </div>
+        <div class="col-box-left-right-bottom">
+          <chart-bar class="chart-box"
+                     :titleText="chartTitle"
+                     :yAxis="yAxis"
+                     :series="seriesData1"
+                     :xAxisData="data1.xAxisData"
+                     chartColor="#48daf6"></chart-bar>
         </div>
-        <div>
-          <div class="col-box-left-right-bottom">
-            <chart-bar class="chart-box"
-                       :titleText="chartTitle"
-                       :yAxis="yAxis"
-                       :series="seriesData2"
-                       :xAxisData="data2.xAxisData"
-                       chartColor="#916fe9"></chart-bar>
-          </div>
+        <div class="col-box-left-right-bottom">
+          <chart-bar class="chart-box"
+                     :titleText="chartTitle"
+                     :yAxis="yAxis"
+                     :series="seriesData2"
+                     :xAxisData="data2.xAxisData"
+                     chartColor="#916fe9"></chart-bar>
         </div>
       </div>
     </div>
@@ -174,7 +170,6 @@ export default {
       background: $color-sub-text
       display: flex
       flex-direction: column
-      min-height: 100%
       min-width: 600px
       .tripping-title
         margin: 10px
@@ -204,20 +199,7 @@ export default {
             font-size: $font-size-large
             cursor: pointer
       .tripping-content
-        display: flex
-        flex-direction: column
-        height: 100%
-        .col-box-left-right-bottom
-          flex: 1
-        .sub-title
-          text-align: center
-          margin: 0 0 10px 0
         .chart-box
           padding: 0 10px 10px 10px
-          .chart
-            position: relative
-            min-height: 250px
-            height: 100%
-            background: #fff
-            border-radius: 5px
+          min-height: calc(50vh - 75px)
 </style>

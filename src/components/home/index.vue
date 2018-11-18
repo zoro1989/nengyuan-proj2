@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="panel col-lg-4-2 col-md-12 col-box-top-bottom">
-          <div class="panel-box">
+          <div class="panel-box flip-box">
             <data-panel-title :title="lastMonth + '清洁能源用量'"></data-panel-title>
             <div class="row">
               <data-panel
