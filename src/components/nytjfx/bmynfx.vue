@@ -8,6 +8,7 @@
             v-model="system_id"
             class="multiple-org"
             multiple
+            @change="selectChange"
             placeholder="请选择"
             size="mini">
             <el-option
@@ -150,6 +151,11 @@
         }).catch(() => {
           this.loading = false
         })
+      },
+      selectChange() {
+        setTimeout(() => {
+          this.$refs.row.style['min-height'] = 'calc(100vh - 110px - ' + this.$refs.select.$el.getBoundingClientRect().height + 'px)'
+        }, 100)
       }
     }
   }
@@ -170,8 +176,6 @@
       display: flex
       flex-direction: column
       min-width: 600px
-      .col-box
-        display: block
       .multiple-org
         width: 400px
       .date-type

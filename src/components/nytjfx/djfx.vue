@@ -2,12 +2,13 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <select-title title1="用能单位" title2="选择时间" @search="onSearch" :showSearch="true">
+        <select-title ref="select" title1="用能单位" title2="选择时间" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
             v-model="system_id"
             class="multiple-org"
             multiple
+            @change="selectChange"
             placeholder="请选择"
             size="mini">
             <el-option
@@ -29,7 +30,7 @@
       </div>
       <div class="col-box-left-right-bottom">
         <div class="panel-box" v-loading="loading">
-          <div class="row">
+          <div class="row" ref="row">
             <div class="table-box">
               <div class="row">
                 <chart-bar-line class="chart-box"
@@ -143,6 +144,11 @@
         }).catch(() => {
           this.loading = false
         })
+      },
+      selectChange() {
+        setTimeout(() => {
+          this.$refs.row.style['min-height'] = 'calc(100vh - 360px - ' + this.$refs.select.$el.getBoundingClientRect().height + 'px)'
+        }, 100)
       }
     }
   }
@@ -162,10 +168,7 @@
       background: $color-sub-text
       display: flex
       flex-direction: column
-      height: 100%
       min-width: 600px
-      .col-box
-        display: block
       .multiple-org
         width: 400px
       .date-type

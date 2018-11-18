@@ -40,7 +40,6 @@
                   :summary-method="getSummaries"
                   :data="rList"
                   border
-                  height="calc(100% - 50px)"
                   header-cell-class-name="header-cell-class-name"
                   style="width: 99%">
                   <el-table-column
@@ -219,7 +218,6 @@
       background: $color-sub-text
       display: flex
       flex-direction: column
-      height: 100%
       min-width: 600px
       .search-btn
         margin-bottom: 10px
@@ -237,12 +235,8 @@
         display: inline-block
         width: 25px
         height: 10px
-      .col-box-left-right-bottom
-        height: 100%
-        .panel-box >.row
-          height: 100%
-          .table-box > .row
-            height: 100%
+      .panel-box > .row
+        min-height: calc(100vh - 160px)
       .chart-box
         min-height: 350px
         border-radius: 0px

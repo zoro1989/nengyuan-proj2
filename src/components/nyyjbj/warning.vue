@@ -34,7 +34,6 @@
           <div class="row">
             <el-table
               :data="tableData"
-              height="100%"
               border
               header-cell-class-name="header-cell-class-name"
               style="width: 99%">
@@ -180,19 +179,13 @@
       background: $color-sub-text
       display: flex
       flex-direction: column
-      height: 100%
       min-width: 600px
-      .col-box
-        display: block
       .date-type
         width: 60px
       .department-block
         display: inline-block
         width: 25px
         height: 10px
-      .col-box-left-right-bottom
-        height: 100%
-        .panel-box >.row
-          padding-top: 10px
-          height: 100%
+      .panel-box > .row
+        min-height: calc(100vh - 150px)
 </style>

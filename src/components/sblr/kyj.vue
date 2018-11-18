@@ -213,19 +213,17 @@
       background: $color-sub-text
       display: flex
       flex-direction: column
-      height: 100%
       min-width: 600px
       .department-block
         display: inline-block
         width: 25px
         height: 10px
       .col-box-left-right-bottom
-        height: 100%
         .btn-add
           margin: 10px 0
           width: 120px
       .panel-box > .row
-        height: 100%
+        min-height: calc(100vh - 200px)
       .chart-box
         min-height: 350px
         border-radius: 0px
