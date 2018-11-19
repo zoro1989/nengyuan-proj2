@@ -140,7 +140,7 @@
         width: 25px
         height: 10px
       .table-box > .row
-        min-height: calc(50vh - 80px)
+        min-height: calc(50vh - 90px)
       .chart-box
         min-height: 350px
         border-radius: 0px

@@ -198,5 +198,5 @@
         width: 25px
         height: 10px
       .panel-box > .row
-        min-height: calc(100vh - 150px)
+        min-height: calc(100vh - 160px)
 </style>

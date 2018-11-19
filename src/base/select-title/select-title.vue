@@ -46,8 +46,8 @@
 </script>
 <style scoped lang="stylus">
   .select-title
-    padding: 10px
-    min-height: 60px
+    padding-top: 10px
+    min-height: 50px
     display: flex
     align-items: center
     width: 100%

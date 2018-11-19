@@ -407,7 +407,7 @@
         width: 25px
         height: 10px
       .table-box > .row:last-child
-        min-height: calc(100vh - 500px)
+        min-height: calc(100vh - 510px)
       .chart-box
         min-height: 350px
         border-radius: 0px
