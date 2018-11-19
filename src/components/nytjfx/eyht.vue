@@ -135,7 +135,7 @@
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-  import {orgIdDic, lxTanDic} from 'utils/dic'
+  import {orgIdDic, lxTanDic, chartColors} from 'utils/dic'
   import {tableDataFilter} from 'utils/filter'
   let moment = require('moment')
   moment.locale('zh-cn')
@@ -155,7 +155,7 @@
         options1: orgIdDic,
         options2: lxTanDic,
         tableData: [],
-        colors: ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3'],
+        colors: chartColors,
         noBorder: true,
         system_id: '',
         year: '',

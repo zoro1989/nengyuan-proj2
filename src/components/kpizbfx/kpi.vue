@@ -127,7 +127,7 @@
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-  import {orgSystemIdDic, lxfyDic} from 'utils/dic'
+  import {orgSystemIdDic, lxfyDic, chartColors} from 'utils/dic'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -152,7 +152,7 @@
         options1: orgSystemIdDic,
         options2: lxfyDic,
         tableData: [],
-        colors: ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3'],
+        colors: chartColors,
         noBorder: true,
         system_id: '',
         year: '',
@@ -306,7 +306,7 @@
           if (res.data.jhcznh && res.data.jhcznh.length > 0) {
             series.push({
               name: '计划单月' + this.tableTitile,
-              type: 'line',
+              type: 'bar',
               data: res.data.jhcznh
             })
             let obj = {}
@@ -321,7 +321,7 @@
           if (res.data.sjcznh && res.data.sjcznh.length > 0) {
             series.push({
               name: '实际单月' + this.tableTitile,
-              type: 'line',
+              type: 'bar',
               data: res.data.sjcznh
             })
             let obj = {}

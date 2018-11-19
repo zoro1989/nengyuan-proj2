@@ -148,9 +148,6 @@
       }
     },
     methods: {
-      departmentStyle(index) {
-        return `background: ${this.colors[index]}`
-      },
       onSearch() {
         let dateArr = this.selectDate.split('-')
         if (dateArr.length > 0) {

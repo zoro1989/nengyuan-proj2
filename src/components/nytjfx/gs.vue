@@ -112,7 +112,7 @@
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-  import {orgSystemIdDic, lxdDic, monthDic} from 'utils/dic'
+  import {orgSystemIdDic, lxdDic, monthDic, chartColors} from 'utils/dic'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -139,7 +139,7 @@
         options2: lxdDic,
         options3: monthDic,
         tableData: [],
-        colors: ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3'],
+        colors: chartColors,
         noBorder: true,
         calendarData: [],
         lx: '33',

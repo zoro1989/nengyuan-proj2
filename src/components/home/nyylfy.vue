@@ -255,8 +255,8 @@ export default {
       quantityChartRadius: [0, '70%'],
       feeChartRadius: [0, '70%'],
       pieCenter: ['40%', '60%'],
-      valueMonth: '',
-      valueSelect: '',
+      valueMonth: moment().subtract(1, 'months').format('YYYY-MM'),
+      valueSelect: '33',
       options1: [{
         value: '33',
         label: '电'

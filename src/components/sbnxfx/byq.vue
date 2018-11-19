@@ -277,9 +277,6 @@
           return 'background: #E6A23C; color: #fff'
         }
       },
-      departmentStyle(index) {
-        return `background: ${this.colors[index]}`
-      },
       onSearch() {
         if (this.system_id) {
           this.byqList(this.system_id)

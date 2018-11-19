@@ -214,8 +214,8 @@ export default {
       lastMonth: moment().subtract(1, 'months').format('MMMM'),
       quantityChartRadius: [0, '60%'],
       feeChartRadius: [0, '60%'],
-      valueMonth: '',
-      valueSelect: '',
+      valueMonth: moment().subtract(1, 'months').format('YYYY-MM'),
+      valueSelect: '40',
       options1: [{
         value: '40',
         label: '产值综合能耗'
