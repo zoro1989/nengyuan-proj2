@@ -3,103 +3,103 @@
     <div class="menu">
       <ul class="mcd-menu">
         <li>
-          <a href="#" :class="selectMenuIndex === 0 ? 'active' : ''" @click="changeRoute('/home', 0)">
+          <span :class="selectMenuIndex === 0 ? 'active' : ''" @click="changeRoute('/home', 0)">
             <i class="fa fa-home"></i>
             <strong>首页</strong>
-          </a>
+          </span>
         </li>
         <li>
-          <a href="#" :class="selectMenuIndex === 1 ? 'active' : ''">
+          <span :class="selectMenuIndex === 1 ? 'active' : ''">
             <i class="fa fa-search"></i>
             <strong>能源综合分析</strong>
-          </a>
+          </span>
           <ul>
             <li>
-              <a href="#"><i class="fa fa-battery-half"></i>能源消耗结构</a>
+              <span><i class="fa fa-battery-half"></i>能源消耗结构</span>
               <ul>
-                <li><a href="#" @click="changeRoute('/home/nyzlfx/nh', 1)"><i class="fa fa-list"></i>能源种类分析</a></li>
-                <li><a href="#" @click="changeRoute('/home/nybmfx/nh', 1)"><i class="fa fa-institution"></i>能源部门分析</a></li>
+                <li><span @click="changeRoute('/home/nyzlfx/nh', 1)"><i class="fa fa-list"></i>能源种类分析</span></li>
+                <li><span @click="changeRoute('/home/nybmfx/nh', 1)"><i class="fa fa-institution"></i>能源部门分析</span></li>
               </ul>
             </li>
             <li>
-              <a href="#"><i class="fa fa-yen"></i>能源费用结构</a>
+              <span><i class="fa fa-yen"></i>能源费用结构</span>
               <ul>
-                <li><a href="#" @click="changeRoute('/home/nyzlfx/fy', 1)"><i class="fa fa-list"></i>能源种类分析</a></li>
-                <li><a href="#" @click="changeRoute('/home/nybmfx/fy', 1)"><i class="fa fa-institution"></i>能源部门分析</a></li>
+                <li><span @click="changeRoute('/home/nyzlfx/fy', 1)"><i class="fa fa-list"></i>能源种类分析</span></li>
+                <li><span @click="changeRoute('/home/nybmfx/fy', 1)"><i class="fa fa-institution"></i>能源部门分析</span></li>
               </ul>
             </li>
-            <li><a href="#" @click="changeRoute('/home/eyhtfx', 1)"><i class="fa fa-pie-chart"></i>二氧化碳量分布</a></li>
+            <li><span @click="changeRoute('/home/eyhtfx', 1)"><i class="fa fa-pie-chart"></i>二氧化碳量分布</span></li>
           </ul>
         </li>
         <li>
-          <a href="#" :class="selectMenuIndex === 2 ? 'active' : ''">
+          <span :class="selectMenuIndex === 2 ? 'active' : ''">
             <i class="fa fa-edit"></i>
             <strong>能源统计分析</strong>
-          </a>
+          </span>
           <ul>
-            <li><a href="#" @click="changeRoute('/home/nyylfx', 2)"><i class="fa fa-bar-chart"></i>能源用量分析</a></li>
-            <li><a href="#" @click="changeRoute('/home/nyfyfx', 2)"><i class="fa fa-yen"></i>能源费用分析</a></li>
-            <li><a href="#" @click="changeRoute('/home/tjeyhtfx', 2)"><i class="fa fa-envira"></i>二氧化碳排放量分析</a></li>
-            <li><a href="#" @click="changeRoute('/home/bmynfx', 2)"><i class="fa fa-institution"></i>部门用能分析</a></li>
-            <li><a href="#" @click="changeRoute('/home/nyfhfx', 2)"><i class="fa fa-bell-o"></i>能源负荷分析</a></li>
-            <li><a href="#" @click="changeRoute('/home/djfx', 2)"><i class="fa fa-flash"></i>电价分析</a></li>
+            <li><span @click="changeRoute('/home/nyylfx', 2)"><i class="fa fa-bar-chart"></i>能源用量分析</span></li>
+            <li><span @click="changeRoute('/home/nyfyfx', 2)"><i class="fa fa-yen"></i>能源费用分析</span></li>
+            <li><span @click="changeRoute('/home/tjeyhtfx', 2)"><i class="fa fa-envira"></i>二氧化碳排放量分析</span></li>
+            <li><span @click="changeRoute('/home/bmynfx', 2)"><i class="fa fa-institution"></i>部门用能分析</span></li>
+            <li><span @click="changeRoute('/home/nyfhfx', 2)"><i class="fa fa-bell-o"></i>能源负荷分析</span></li>
+            <li><span @click="changeRoute('/home/djfx', 2)"><i class="fa fa-flash"></i>电价分析</span></li>
           </ul>
         </li>
         <li>
-          <a href="#" :class="selectMenuIndex === 3 ? 'active' : ''">
+          <span :class="selectMenuIndex === 3 ? 'active' : ''">
             <i class="fa fa-line-chart"></i>
             <strong>KPI指标分析</strong>
-          </a>
+          </span>
           <ul>
-            <li><a href="#" @click="changeRoute('/home/kpi1', 3)"><i class="fa fa-hourglass-start"></i>产值综合能耗分析</a></li>
-            <li><a href="#" @click="changeRoute('/home/kpi2', 3)"><i class="fa fa-tint"></i>产值耗水量分析</a></li>
-            <li><a href="#" @click="changeRoute('/home/kpi3', 3)"><i class="fa fa-battery-half"></i>能源消耗总量分析</a></li>
-            <li><a href="#" @click="changeRoute('/home/kpi4', 3)"><i class="fa fa-truck"></i>单车综合能耗分析</a></li>
-            <li><a href="#" @click="changeRoute('/home/kpi5', 3)"><i class="fa fa-trophy"></i>KPI评价考核表</a></li>
+            <li><span @click="changeRoute('/home/kpi1', 3)"><i class="fa fa-hourglass-start"></i>产值综合能耗分析</span></li>
+            <li><span @click="changeRoute('/home/kpi2', 3)"><i class="fa fa-tint"></i>产值耗水量分析</span></li>
+            <li><span @click="changeRoute('/home/kpi3', 3)"><i class="fa fa-battery-half"></i>能源消耗总量分析</span></li>
+            <li><span @click="changeRoute('/home/kpi4', 3)"><i class="fa fa-truck"></i>单车综合能耗分析</span></li>
+            <li><span @click="changeRoute('/home/kpi5', 3)"><i class="fa fa-trophy"></i>KPI评价考核表</span></li>
           </ul>
         </li>
         <li>
-          <a href="#" :class="selectMenuIndex === 4 ? 'active' : ''">
+          <span :class="selectMenuIndex === 4 ? 'active' : ''">
             <i class="fa fa-gears"></i>
             <strong>设备能效分析</strong>
-          </a>
+          </span>
           <ul>
-            <li><a href="#" @click="changeRoute('/home/nxbyq', 4)"><i class="fa fa-gear"></i>变压器</a></li>
-            <li><a href="#" @click="changeRoute('/home/nxkyj', 4)"><i class="fa fa-gear"></i>空压机</a></li>
-            <li><a href="#" @click="changeRoute('/home/nxfj', 4)"><i class="fa fa-gear"></i>风机</a></li>
-            <li><a href="#" @click="changeRoute('/home/nxsb', 4)"><i class="fa fa-gear"></i>水泵</a></li>
+            <li><span @click="changeRoute('/home/nxbyq', 4)"><i class="fa fa-gear"></i>变压器</span></li>
+            <li><span @click="changeRoute('/home/nxkyj', 4)"><i class="fa fa-gear"></i>空压机</span></li>
+            <li><span @click="changeRoute('/home/nxfj', 4)"><i class="fa fa-gear"></i>风机</span></li>
+            <li><span @click="changeRoute('/home/nxsb', 4)"><i class="fa fa-gear"></i>水泵</span></li>
           </ul>
         </li>
         <li>
-          <a href="#" :class="selectMenuIndex === 5 ? 'active' : ''">
+          <span :class="selectMenuIndex === 5 ? 'active' : ''">
             <i class="fa fa-book"></i>
             <strong>设备台账</strong>
-          </a>
+          </span>
           <ul>
-            <li><a href="#" @click="changeRoute('/home/tz1-ly', 5)"><i class="fa fa-file-text-o"></i>工业炉窑台账</a></li>
-            <li><a href="#" @click="changeRoute('/home/tz2-gl', 5)"><i class="fa fa-file-text-o"></i>锅炉台账</a></li>
-            <li><a href="#" @click="changeRoute('/home/tz3-kyj', 5)"><i class="fa fa-file-text-o"></i>空压机台账</a></li>
-            <li><a href="#" @click="changeRoute('/home/tz5-tfj', 5)"><i class="fa fa-file-text-o"></i>通风机台账</a></li>
-            <li><a href="#" @click="changeRoute('/home/tz6-sb', 5)"><i class="fa fa-file-text-o"></i>水泵台账</a></li>
-            <li><a href="#" @click="changeRoute('/home/tz7-byq', 5)"><i class="fa fa-file-text-o"></i>变压器台账</a></li>
-            <li><a href="#" @click="changeRoute('/home/tz8-qt', 5)"><i class="fa fa-file-text-o"></i>其他台账</a></li>
+            <li><span @click="changeRoute('/home/tz1-ly', 5)"><i class="fa fa-file-text-o"></i>工业炉窑台账</span></li>
+            <li><span @click="changeRoute('/home/tz2-gl', 5)"><i class="fa fa-file-text-o"></i>锅炉台账</span></li>
+            <li><span @click="changeRoute('/home/tz3-kyj', 5)"><i class="fa fa-file-text-o"></i>空压机台账</span></li>
+            <li><span @click="changeRoute('/home/tz5-tfj', 5)"><i class="fa fa-file-text-o"></i>通风机台账</span></li>
+            <li><span @click="changeRoute('/home/tz6-sb', 5)"><i class="fa fa-file-text-o"></i>水泵台账</span></li>
+            <li><span @click="changeRoute('/home/tz7-byq', 5)"><i class="fa fa-file-text-o"></i>变压器台账</span></li>
+            <li><span @click="changeRoute('/home/tz8-qt', 5)"><i class="fa fa-file-text-o"></i>其他台账</span></li>
           </ul>
         </li>
         <li>
-          <a href="#" :class="selectMenuIndex === 6 ? 'active' : ''" @click="changeRoute('/home/waning', 6)">
+          <span :class="selectMenuIndex === 6 ? 'active' : ''" @click="changeRoute('/home/waning', 6)">
             <i class="fa fa-bell-o"></i>
             <strong>能源预警报警</strong>
-          </a>
+          </span>
         </li>
         <li>
-          <a href="#" :class="selectMenuIndex === 7 ? 'active' : ''">
+          <span :class="selectMenuIndex === 7 ? 'active' : ''">
             <i class="fa fa-gears"></i>
             <strong>设备录入</strong>
-          </a>
+          </span>
           <ul>
-            <li><a href="#" @click="changeRoute('/home/byq', 7)"><i class="fa fa-gear"></i>变压器</a></li>
-            <li><a href="#" @click="changeRoute('/home/kyj', 7)"><i class="fa fa-gear"></i>空压机</a></li>
-            <li><a href="#" @click="changeRoute('/home/dj', 7)"><i class="fa fa-gear"></i>电机</a></li>
+            <li><span @click="changeRoute('/home/byq', 7)"><i class="fa fa-gear"></i>变压器</span></li>
+            <li><span @click="changeRoute('/home/kyj', 7)"><i class="fa fa-gear"></i>空压机</span></li>
+            <li><span @click="changeRoute('/home/dj', 7)"><i class="fa fa-gear"></i>电机</span></li>
           </ul>
         </li>
       </ul>
@@ -166,7 +166,8 @@
     position: relative;
     /*float:left;*/
   }
-  .mcd-menu li a {
+  .mcd-menu li span {
+    cursor: pointer;
     outline:none;
     display: block;
     text-decoration: none;
@@ -176,26 +177,26 @@
     position: relative;
     border-bottom: 1px solid #777;
   }
-  .mcd-menu li a i {
+  .mcd-menu li span i {
     float: left;
     font-size: 20px;
     margin: 0 10px 0 0;
   }
-  .mcd-menu li a p {
+  .mcd-menu li span p {
     float: left;
     margin: 0 ;
   }
 
-  .mcd-menu li a strong {
+  .mcd-menu li span strong {
     display: block;
     text-transform: uppercase;
   }
-  .mcd-menu li a small {
+  .mcd-menu li span small {
     display: block;
     font-size: 10px;
   }
 
-  .mcd-menu li a i, .mcd-menu li a strong, .mcd-menu li a small {
+  .mcd-menu li span i, .mcd-menu li span strong, .mcd-menu li span small {
     position: relative;
 
     transition: all 300ms linear;
@@ -204,7 +205,7 @@
     -moz-transition: all 300ms linear;
     -webkit-transition: all 300ms linear;
   }
-  .mcd-menu li:hover > a i {
+  .mcd-menu li:hover > span i {
     opacity: 1;
     -webkit-animation: moveFromTop 300ms ease-in-out;
     -moz-animation: moveFromTop 300ms ease-in-out;
@@ -212,7 +213,7 @@
     -o-animation: moveFromTop 300ms ease-in-out;
     animation: moveFromTop 300ms ease-in-out;
   }
-  .mcd-menu li:hover a strong {
+  .mcd-menu li:hover span strong {
     opacity: 1;
     -webkit-animation: moveFromLeft 300ms ease-in-out;
     -moz-animation: moveFromLeft 300ms ease-in-out;
@@ -220,7 +221,7 @@
     -o-animation: moveFromLeft 300ms ease-in-out;
     animation: moveFromLeft 300ms ease-in-out;
   }
-  .mcd-menu li:hover a small {
+  .mcd-menu li:hover span small {
     opacity: 1;
     -webkit-animation: moveFromRight 300ms ease-in-out;
     -moz-animation: moveFromRight 300ms ease-in-out;
@@ -229,10 +230,10 @@
     animation: moveFromRight 300ms ease-in-out;
   }
 
-  .mcd-menu li:hover > a {
+  .mcd-menu li:hover > span {
     color: #06e56d;
   }
-  .mcd-menu li a.active {
+  .mcd-menu li span.active {
     position: relative;
     color: #06e56d;
     border:0;
@@ -249,7 +250,7 @@
     margin: 0 -4px;
     /* == */
   }
-  .mcd-menu li a.active:before {
+  .mcd-menu li span.active:before {
     content: "";
     position: absolute;
     /*top: 0;
@@ -268,7 +269,7 @@
   }
 
   /* == */
-  .mcd-menu li a.active:after {
+  .mcd-menu li span.active:after {
     content: "";
     position: absolute;
     top: 42%;
@@ -375,14 +376,14 @@
     visibility: visible;
     left:172px;
   }
-  .mcd-menu li ul li a {
+  .mcd-menu li ul li span {
     padding: 10px;
     text-align: left;
     border: 0;
     border-bottom: 1px solid #777;
     height: auto;
   }
-  .mcd-menu li ul li a i {
+  .mcd-menu li ul li span i {
     font-size: 16px;
     display: inline-block;
     margin: 0 10px 0 0;
@@ -407,16 +408,16 @@
     left: 200px;
   }
 
-  .mcd-menu li a.search {
+  .mcd-menu li span.search {
     padding: 10px 10px 15px 10px;
     clear: both;
   }
-  .mcd-menu li a.search i {
+  .mcd-menu li span.search i {
     margin: 0;
     display: inline-block;
     font-size: 18px;
   }
-  .mcd-menu li a.search input {
+  .mcd-menu li span.search input {
     border: 1px solid #EEE;
     padding: 10px;
     background: #FFF;
@@ -425,7 +426,7 @@
     width:170px;
     float:left;
   }
-  .mcd-menu li a.search button {
+  .mcd-menu li span.search button {
     border: 1px solid #06e56d;
     background: #06e56d;
     outline: none;
@@ -434,7 +435,7 @@
     float:left;
     padding: 10px 10px 11px 10px;
   }
-  .mcd-menu li a.search input:focus {
+  .mcd-menu li span.search input:focus {
     border: 1px solid #06e56d;
   }
 
@@ -459,23 +460,23 @@
     .mcd-menu {
       width: 200px;
     }
-    .mcd-menu li a {
+    .mcd-menu li span {
       height:30px;
     }
-    .mcd-menu li a i {
+    .mcd-menu li span i {
       font-size: 22px;
     }
-    .mcd-menu li a strong {
+    .mcd-menu li span strong {
       font-size: 12px;
     }
-    .mcd-menu li a small {
+    .mcd-menu li span small {
       font-size: 10px;
     }
-    .mcd-menu li a.search input {
+    .mcd-menu li span.search input {
       width: 120px;
       font-size: 12px;
     }
-    .mcd-menu li a.search buton{
+    .mcd-menu li span.search buton{
       padding: 8px 10px 9px 10px;
     }
     .mcd-menu li > ul {
@@ -496,10 +497,10 @@
       left:150px;
       min-width:150px;
     }
-    .mcd-menu li ul a {
+    .mcd-menu li ul span {
       font-size:12px;
     }
-    .mcd-menu li ul a i {
+    .mcd-menu li ul span i {
       font-size:14px;
     }
   }
@@ -509,18 +510,18 @@
     .mcd-menu {
       width: 50px;
     }
-    .mcd-menu li a {
+    .mcd-menu li span {
       position: relative;
       padding: 12px 16px;
       height:20px;
     }
-    .mcd-menu li a small {
+    .mcd-menu li span small {
       display: none;
     }
-    .mcd-menu li a strong {
+    .mcd-menu li span strong {
       display: none;
     }
-    .mcd-menu li a:hover strong,.mcd-menu li a.active strong {
+    .mcd-menu li span:hover strong,.mcd-menu li span.active strong {
       display:block;
       font-size:10px;
       padding:3px 0;
@@ -572,10 +573,10 @@
       min-width:150px;
       top: 35px;
     }
-    .mcd-menu li ul a {
+    .mcd-menu li ul span {
       font-size:12px;
     }
-    .mcd-menu li ul a i {
+    .mcd-menu li ul span i {
       font-size:14px;
     }
 
@@ -585,18 +586,18 @@
     .mcd-menu {
       width: 50px;
     }
-    .mcd-menu li a {
+    .mcd-menu li span {
       position: relative;
       padding: 12px 16px;
       height:20px;
     }
-    .mcd-menu li a small {
+    .mcd-menu li span small {
       display: none;
     }
-    .mcd-menu li a strong {
+    .mcd-menu li span strong {
       display: none;
     }
-    .mcd-menu li a:hover strong,.mcd-menu li a.active strong {
+    .mcd-menu li span:hover strong,.mcd-menu li span.active strong {
       display:block;
       font-size:10px;
       padding:3px 0;
@@ -648,10 +649,10 @@
       min-width:150px;
       top: 35px;
     }
-    .mcd-menu li ul a {
+    .mcd-menu li ul span {
       font-size:12px;
     }
-    .mcd-menu li ul a i {
+    .mcd-menu li ul span i {
       font-size:14px;
     }
 
