@@ -18,7 +18,7 @@ export default {
     chartColor: {
       type: Array,
       default: function () {
-        return ['#0a00dd', '#09cdf7', '#00ffc6', '#ff4c6f', '#ff8dc2', '#ff9c00']
+        return ['#0a00dd', '#09cdf7', '#00ffc6', '#8c6be6', '#ff8dc2', '#ff9c00']
       }
     },
     titleTextColor: {

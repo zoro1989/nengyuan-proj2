@@ -179,7 +179,7 @@
         costPie: [],
         data: {},
         lastMonth: moment().subtract(1, 'months').format('MMMM'),
-        y: [{name: '吨标煤'}, {name: '吨标煤/万元'}],
+        y: [{name: '万吨标煤'}, {name: '吨标煤/万元'}],
         jnBar: {},
         ny: {},
         fy: {}

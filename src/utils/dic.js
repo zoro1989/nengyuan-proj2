@@ -1,7 +1,7 @@
 /**
  * Created by zhulin on 2018/11/5.
  */
-export const chartColors = ['#0a00dd', '#09cdf7', '#00ffc6', '#ff4c6f', '#ff8dc2', '#ff9c00']
+export const chartColors = ['#0a00dd', '#09cdf7', '#00ffc6', '#8c6be6', '#ff8dc2', '#ff9c00']
 export const orgSystemIdDic = [
   {
     value: '2611',

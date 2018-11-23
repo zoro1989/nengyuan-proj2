@@ -6,7 +6,7 @@
           <el-date-picker
             slot="title1"
             :clearable="false"
-            v-model="valueMonth"
+            v-model="dateTime"
             type="month"
             size="mini"
             value-format="yyyy-MM"
@@ -15,7 +15,7 @@
           </el-date-picker>
           <el-select
             slot="title2"
-            v-model="valueSelect"
+            v-model="lx"
             placeholder="请选择"
             size="mini"
             @change="selectChange">
@@ -226,8 +226,6 @@ export default {
       lastMonth: moment().subtract(1, 'months').format('MMMM'),
       quantityChartRadius: [0, '60%'],
       feeChartRadius: [0, '60%'],
-      valueMonth: moment().subtract(1, 'months').format('YYYY-MM'),
-      valueSelect: '40',
       options1: [{
         value: '40',
         label: '产值综合能耗'
@@ -257,8 +255,8 @@ export default {
       zcData: {},
       lbjData: {},
       wlData: {},
-      dateTime: '',
-      lx: '',
+      dateTime: moment().subtract(1, 'months').format('YYYY-MM'),
+      lx: '40',
       yAxis: [{name: '吨标煤/万元'}, {name: '%'}],
       chartTitle: '产值综合能耗'
     }
@@ -296,7 +294,6 @@ export default {
       this.$router.replace('/home')
     },
     dateChange(value) {
-      this.dateTime = value
       this.lastMonth = moment(value).format('MMMM')
       this.fetchPanelData()
       this.fetchChartData()
@@ -325,7 +322,6 @@ export default {
       } else if (value === '103') {
         this.yAxis = [{name: 'kgCO2/辆'}, {name: '%'}]
       }
-      this.lx = value
       this.fetchChartData()
     }
   }

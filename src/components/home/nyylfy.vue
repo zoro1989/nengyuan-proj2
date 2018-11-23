@@ -6,7 +6,7 @@
           <el-date-picker
             slot="title1"
             :clearable="false"
-            v-model="valueMonth"
+            v-model="dateTime"
             type="month"
             size="mini"
             value-format="yyyy-MM"
@@ -15,7 +15,7 @@
           </el-date-picker>
           <el-select
             slot="title2"
-            v-model="valueSelect"
+            v-model="lx"
             placeholder="请选择"
             size="mini"
             @change="selectChange">
@@ -255,8 +255,6 @@ export default {
       quantityChartRadius: [0, '70%'],
       feeChartRadius: [0, '70%'],
       pieCenter: ['40%', '60%'],
-      valueMonth: moment().subtract(1, 'months').format('YYYY-MM'),
-      valueSelect: '33',
       options1: [{
         value: '33',
         label: '电'
@@ -278,8 +276,8 @@ export default {
       pieDl: {},
       pieDf: {},
       barDb: {},
-      dateTime: '',
-      lx: '',
+      dateTime: moment().subtract(1, 'months').format('YYYY-MM'),
+      lx: '33',
       pid: '2',
       pidmain: '1',
       chartTitle: '电',
@@ -400,13 +398,11 @@ export default {
       this.$router.replace('/home')
     },
     dateChange(value) {
-      this.dateTime = value
       this.lastMonth = moment(value).format('MMMM')
       this.fetchPanelData()
       this.fetchChartData()
     },
     selectChange(value) {
-      this.lx = value
       let index = this.options1.findIndex((item) => {
         return value === item.value
       })

@@ -84,9 +84,7 @@
     },
     methods: {
       dblStyle(index) {
-        let intNow = (new Date().getTime()) * 1
-        let res = this.rToken[index].validTime * 1 - intNow
-        return res <= 0 ? 'background: #F56C6C; color: #fff;' : 'background: #67C23A; color: #fff;'
+        return moment().isAfter(this.rToken[index].validTime) ? 'background: #F56C6C; color: #fff;' : 'background: #67C23A; color: #fff;'
       },
       goHome() {
         this.$router.replace('/home')
