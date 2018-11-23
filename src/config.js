@@ -8,6 +8,7 @@ const api = {
   queryZhiBiaoList: apiPath + 'queryZhiBiaoList',
   queryNyZListZc: apiPath + 'queryNyZList?pid=2',
   queryNyZListLbj: apiPath + 'queryNyZList?pid=23',
+  queryNyZListWl: apiPath + 'queryNyZList?pid=30',
   queryXinXiList: apiPath + 'queryXinXiList',
   queryNyYLListDl: apiPath + 'queryNyYLList',
   queryNyYLListDf: apiPath + 'queryNyDLList',

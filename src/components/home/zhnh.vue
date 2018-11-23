@@ -181,12 +181,24 @@
                         :titleText="lastMonth + '整车制造' + chartTitle"></chart-bar-line>
       </div>
       <div class="col-box-bottom">
-        <chart-bar-line class="chart-box"
-                        :legendData="lbjData.legendData"
-                        :series="lbjData.series"
-                        :xAxisData="lbjData.xAxisData"
-                        :yAxis="yAxis"
-                        :titleText="lastMonth + '零部件加工' + chartTitle"></chart-bar-line>
+        <div class="row">
+          <div class="col-lg-8 col-md-12">
+            <chart-bar-line class="chart-box" style="border-top-right-radius: 0; border-bottom-right-radius: 0"
+                            :legendData="lbjData.legendData"
+                            :series="lbjData.series"
+                            :xAxisData="lbjData.xAxisData"
+                            :yAxis="yAxis"
+                            :titleText="lastMonth + '零部件加工' + chartTitle"></chart-bar-line>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <chart-bar-line class="chart-box" style="border-top-left-radius: 0; border-bottom-left-radius: 0"
+                            :legendData="wlData.legendData"
+                            :series="wlData.series"
+                            :xAxisData="wlData.xAxisData"
+                            :yAxis="yAxis"
+                            :titleText="lastMonth + '物流' + chartTitle"></chart-bar-line>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -244,6 +256,7 @@ export default {
       pData: {},
       zcData: {},
       lbjData: {},
+      wlData: {},
       dateTime: '',
       lx: '',
       yAxis: [{name: '吨标煤/万元'}, {name: '%'}],
@@ -272,6 +285,11 @@ export default {
         this.lbjData = res.data
       }).catch(() => {
         this.lbjData = {}
+      })
+      fetch('get', api.queryNyZListWl, {dateTime: this.dateTime, lx: this.lx}).then((res) => {
+        this.wlData = res.data
+      }).catch(() => {
+        this.wlData = {}
       })
     },
     onClose() {
