@@ -319,7 +319,7 @@ export default {
       }).catch(() => {
         this.pieDl = {}
       })
-      fetch('get', api.queryNyYLListDf, {dateTime: this.dateTime, lx: this.lx, pid: this.pid}).then((res) => {
+      fetch('get', api.queryNyYLListDf, {dateTime: this.dateTime, lx: this.lx, pid: this.pidmain}).then((res) => {
         this.pieDf = res.data
       }).catch(() => {
         this.pieDf = {}
@@ -383,10 +383,57 @@ export default {
         }
       }).catch(() => {
       })
-      fetch('get', api.queryNyYLListDf, {dateTime: this.dateTime, lx: this.lx, pid: this.pid}).then((res) => {
-        this.pieDf = res.data
+      fetch('get', api.queryNyYLListDf, {dateTime: this.dateTime, lx: this.lx, pid: this.pidmain}).then((res) => {
+        if (this.pid === '2') {
+          let othervalue = 0
+          for (let i = 0; i < this.pieDf.seriesData.length; i++) {
+            if (this.pieDf.seriesData[i].name !== '整车制造') {
+              othervalue += this.pieDf.seriesData[i].value * 1
+            }
+          }
+          let legendData = res.data.legendData
+          legendData.push('其他')
+          let seriesData = res.data.seriesData
+          seriesData.push({
+            name: '其他',
+            value: othervalue
+          })
+          this.pieDf.legendData = legendData
+          this.pieDf.seriesData = seriesData
+        } else if (this.pid === '23') {
+          let othervalue = 0
+          for (let i = 0; i < this.pieDf.seriesData.length; i++) {
+            if (this.pieDf.seriesData[i].name !== '零部件加工') {
+              othervalue += this.pieDf.seriesData[i].value * 1
+            }
+          }
+          let legendData = res.data.legendData
+          legendData.push('其他')
+          let seriesData = res.data.seriesData
+          seriesData.push({
+            name: '其他',
+            value: othervalue
+          })
+          this.pieDf.legendData = legendData
+          this.pieDf.seriesData = seriesData
+        } else if (this.pid === '30') {
+          let othervalue = 0
+          for (let i = 0; i < this.pieDf.seriesData.length; i++) {
+            if (this.pieDf.seriesData[i].name !== '物流') {
+              othervalue += this.pieDf.seriesData[i].value * 1
+            }
+          }
+          let legendData = res.data.legendData
+          legendData.push('其他')
+          let seriesData = res.data.seriesData
+          seriesData.push({
+            name: '其他',
+            value: othervalue
+          })
+          this.pieDf.legendData = legendData
+          this.pieDf.seriesData = seriesData
+        }
       }).catch(() => {
-        this.pieDf = {}
       })
       fetch('get', api.queryNyDBList, {dateTime: this.dateTime, lx: this.lx, pid: this.pid}).then((res) => {
         this.barDb = res.data

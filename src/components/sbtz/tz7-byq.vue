@@ -18,10 +18,10 @@
           <el-date-picker
             slot="title2"
             v-model="date"
-            type="month"
+            type="year"
             size="mini"
-            value-format="yyyy-MM"
-            placeholder="选择时间">
+            value-format="yyyy"
+            placeholder="选择年">
           </el-date-picker>
         </select-title>
       </div>
@@ -110,9 +110,9 @@
         <el-form-item label="日期" :label-width="formLabelWidth"  prop="date">
           <el-date-picker
             v-model="form.date"
-            type="month"
-            value-format="yyyy-MM"
-            placeholder="选择时间">
+            type="year"
+            value-format="yyyy"
+            placeholder="选择年">
           </el-date-picker>
         </el-form-item>
         <el-form-item label="台账导入" :label-width="formLabelWidth" prop="file">
@@ -208,7 +208,7 @@
       onSearch() {
         this.loading = true
         this.tableData = []
-        fetch('get', api.sbByqList, {system_id: this.system_id, date: this.date}).then((res) => {
+        fetch('get', api.sbByqList, {system_id: this.system_id, nian: this.date}).then((res) => {
           this.rList = res.data
           this.loading = false
         }).catch(() => {
@@ -221,7 +221,7 @@
               this.loading = true
               let formData = new FormData()
               formData.append('system_id', this.form.system_id)
-              formData.append('date', this.form.date)
+              formData.append('nian', this.form.date)
               formData.append('file', this.importFile)
               axios.post(api.sbByqCreate, formData).then(() => {
                 this.dialogFormVisible = false
@@ -230,6 +230,9 @@
                   type: 'success'
                 })
                 this.loading = false
+                this.date = this.form.date
+                this.system_id = this.form.system_id
+                this.onSearch()
               }).catch(() => {
                 this.loading = false
               })

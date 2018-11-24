@@ -282,10 +282,10 @@ export const lxfyDic = [
     label: '总费用'
   },
   {
-    value: '666',
+    value: '202',
     label: '乘用车费用'
   }, {
-    value: '999',
+    value: '201',
     label: '中重型车费用'
   }
 ]
