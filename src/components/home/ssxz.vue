@@ -11,7 +11,7 @@
             unlink-panels
             size="mini"
             value-format="yyyy-MM-dd"
-            range-separator="至"
+            range-separator="～"
             start-placeholder="开始日期"
             end-placeholder="结束日期"
             :picker-options="pickerOptions2">
@@ -219,7 +219,7 @@
         </div>
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
-            <chart-bar class="chart-r"
+            <chart-bar class="chart-l"
                         :titleText="chartTitle + '一汽大众能源消耗总量'"
                         :legendData="legendData"
                         yAxisTitle="吨标煤"
@@ -292,8 +292,6 @@ export default {
       value: '',
       options: orgTree,
       selectedOptions: [],
-      chartColor10: ['#8c6be6', '#4a14dd'],
-      legendData: ['生产能耗', '非生产能耗'],
       selectGroups: '',
       configTips: '',
       system_id: '41951',
@@ -302,11 +300,28 @@ export default {
       bData: {},
       ny: {},
       fy: {},
-      yAxis: [{name: '万千瓦时'}]
+      yAxis: [{name: '万千瓦时'}],
+      legendData: ['生产能耗', '非生产能耗']
     }
   },
   created() {
 //    this.fetchData()
+//    setTimeout(() => {
+//      this.bData = Object.assign({}, this.bData, {nys: {
+//        y: [{name: '万千瓦时'}],
+//        seriesData: [
+//          {
+//            name: '生产能耗',
+//            data: [130, 150, 60, 200, 150, 110, 190]
+//          },
+//          {
+//            name: '非生产能耗',
+//            data: [80, 20, 40, 10, 60, 20, 10]
+//          }
+//        ],
+//        xAxisData: ['4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7']
+//      }})
+//    }, 300)
   },
   computed: {
     realTimeToday () {

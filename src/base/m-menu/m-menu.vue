@@ -137,7 +137,7 @@
   @import "~common/stylus/variable"
   .menu
     position: fixed
-    z-index: 9999
+    z-index: 1999
     top: 70px
     left: 0
     width: 180px
@@ -352,7 +352,7 @@
     -moz-transition: all 300ms linear;
     -webkit-transition: all 300ms linear;
     /*top: 130px;*/
-    z-index: 10000;
+    z-index: 2000;
 
     /* == */
     left:202px;

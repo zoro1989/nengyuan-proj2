@@ -77,7 +77,7 @@ export default {
         label: '单车耗气'
       }],
       time: moment().format('YYYY-MM-DD'),
-      lx: '',
+      lx: 'D_D',
       data1: {},
       data2: {},
       system_id: '41951',

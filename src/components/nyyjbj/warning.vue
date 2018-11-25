@@ -19,7 +19,7 @@
           <el-date-picker
             slot="title2"
             v-model="selectDate"
-            range-separator="至"
+            range-separator="～"
             type="daterange"
             size="mini"
             value-format="yyyy-MM"
