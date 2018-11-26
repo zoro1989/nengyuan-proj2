@@ -79,6 +79,7 @@
                     </template>
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     :label="jcqFormat + '占比'">
                     <el-table-column
                       align="center"
@@ -92,6 +93,7 @@
                     </el-table-column>
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     :label="bjqFormat + '占比'">
                     <el-table-column
                       align="center"
@@ -121,6 +123,7 @@
                     </template>
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     :label="jcqFormat + '占比'">
                     <el-table-column
                       prop="fyjq"
@@ -134,6 +137,7 @@
                     </el-table-column>
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     :label="bjqFormat + '占比'">
                     <el-table-column
                       prop="fybjq"

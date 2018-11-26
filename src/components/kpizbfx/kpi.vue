@@ -47,7 +47,8 @@
                   style="width: 99%">
                   <el-table-column
                     prop="projectName"
-                    min-width="200"
+                    header-align="center"
+                    min-width="220"
                     fixed
                     label="项目名称">
                     <template slot-scope="scope">
@@ -57,9 +58,10 @@
                   </el-table-column>
                   <el-table-column
                     fixed
+                    width="50"
                     align="center"
                     prop="yearTarget"
-                    label="年度目标"
+                    :label="'年度\n目标'"
                   >
                   </el-table-column>
                   <el-table-column
@@ -87,26 +89,26 @@
                 <el-table-column
                   align="center"
                   prop="DBL"
-                  label="单月达标率">
+                  :label="'单月\n达标率'">
                 </el-table-column>
                 <el-table-column
                   align="center"
                   prop="LJDBL"
-                  label="累计达标率">
+                  :label="'累计\n达标率'">
                 </el-table-column>
                 <el-table-column
                   align="center"
                   label="评价">
                   <el-table-column
                     align="center"
-                    label="单月达标率">
+                    :label="'单月\n达标率'">
                     <template slot-scope="scope">
                       <span class="dbl" :style="dblStyle(scope.$index)"></span>
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    label="累计达标率">
+                    :label="'累计\n达标率'">
                     <template slot-scope="scope">
                       <span class="dbl" :style="ljdblStyle(scope.$index)"></span>
                     </template>

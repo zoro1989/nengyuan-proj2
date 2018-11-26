@@ -686,25 +686,25 @@ export const orgTree = [
 ]
 export function getYAxis (lx) {
   if (lx === '33') {
-    return [{name: '辆'}, {name: '万千瓦时'}]
+    return [{name: '万千瓦时'}, {name: '产量(辆)'}]
   } else if (lx === '00') {
-    return [{name: '辆'}, {name: '吨'}]
+    return [{name: '吨'}, {name: '产量(辆)'}]
   } else if (lx === '32') {
-    return [{name: '辆'}, {name: '吉焦'}]
+    return [{name: '吉焦'}, {name: '产量(辆)'}]
   } else if (lx === '15') {
-    return [{name: '辆'}, {name: '万立方米'}]
+    return [{name: '万立方米'}, {name: '产量(辆)'}]
   } else if (lx === '40') {
-    return [{name: '辆'}, {name: '万吨标煤'}]
+    return [{name: '万吨标煤'}, {name: '产量(辆)'}]
   } else if (lx === '33_d') {
-    return [{name: '辆'}, {name: '千瓦时/辆'}]
+    return [{name: '千瓦时/辆'}, {name: '产量(辆)'}]
   } else if (lx === '00_d') {
-    return [{name: '辆'}, {name: '升/辆'}]
+    return [{name: '升/辆'}, {name: '产量(辆)'}]
   } else if (lx === '32_d') {
-    return [{name: '辆'}, {name: '吉焦/辆'}]
+    return [{name: '吉焦/辆'}, {name: '产量(辆)'}]
   } else if (lx === '15_d') {
-    return [{name: '辆'}, {name: '立方米/辆'}]
+    return [{name: '立方米/辆'}, {name: '产量(辆)'}]
   } else if (lx === '40_d') {
-    return [{name: '辆'}, {name: '吨标煤/辆'}]
+    return [{name: '吨标煤/辆'}, {name: '产量(辆)'}]
   } else {
     return []
   }

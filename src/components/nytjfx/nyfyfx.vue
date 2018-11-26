@@ -154,7 +154,7 @@
     },
     computed: {
       yAxis() {
-        return [{name: '辆'}, {name: '万元'}]
+        return [{name: '费用(千元)'}, {name: '产量(辆)'}]
 //        if (this.lx === '33') {
 //          return [{name: '万元'}, {name: '万千瓦时'}]
 //        } else if (this.lx === '00') {

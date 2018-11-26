@@ -203,9 +203,8 @@
         return `background: ${this.colors[index]}`
       },
       lxChange(lx) {
-        if (this.tableData.length > 0) {
+        if (this.system_id && this.year) {
           this.onSearch()
-          this.makeData()
         }
       },
       makeData() {

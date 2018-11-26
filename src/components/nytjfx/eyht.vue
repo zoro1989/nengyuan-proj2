@@ -27,6 +27,7 @@
             slot="title3"
             v-model="lx"
             placeholder="请选择"
+            @change="lxChange"
             size="mini">
             <el-option
               v-for="item in options2"
@@ -209,101 +210,154 @@
       departmentStyle(index) {
         return `background: ${this.colors[index]}`
       },
+      lxChange() {
+        if (this.tableData.length > 0) {
+          this.makeData()
+        }
+      },
       onSearch() {
         this.loading = true
         fetch('get', api.tanfx, {id: this.system_id, year: this.year}).then((res) => {
-          this.tableData = []
-          let series = []
-          if (res.data.tan && res.data.tan.length > 0) {
-            series.push({
-              name: '实际碳',
-              type: 'bar',
-              data: res.data.tan
-            })
-            let obj = {}
-            obj.projectName = '实际碳'
-            for (let i = 0; i < res.data.tan.length; i++) {
-              let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.tan[i]
-            }
-            this.tableData.push(obj)
-          }
-          if (res.data.tqtan && res.data.tqtan.length > 0) {
-            series.push({
-              name: '同期碳',
-              type: 'bar',
-              data: res.data.tqtan
-            })
-            let obj = {}
-            obj.projectName = '同期碳'
-            for (let i = 0; i < res.data.tqtan.length; i++) {
-              let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.tqtan[i]
-            }
-            this.tableData.push(obj)
-          }
-          if (res.data.sytan && res.data.sytan.length > 0) {
-            series.push({
-              name: '上月碳',
-              type: 'bar',
-              data: res.data.sytan
-            })
-            let obj = {}
-            obj.projectName = '上月碳'
-            for (let i = 0; i < res.data.sytan.length; i++) {
-              let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.sytan[i]
-            }
-            this.tableData.push(obj)
-          }
-          if (res.data.cl && res.data.cl.length > 0) {
-            series.push({
-              name: '产量',
-              type: 'line',
-              data: res.data.cl
-            })
-            let obj = {}
-            obj.projectName = '产量'
-            for (let i = 0; i < res.data.cl.length; i++) {
-              let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.cl[i]
-            }
-            this.tableData.push(obj)
-          }
-          if (res.data.tqcl && res.data.tqcl.length > 0) {
-            series.push({
-              name: '同期产量',
-              type: 'line',
-              data: res.data.tqcl
-            })
-            let obj = {}
-            obj.projectName = '同期产量'
-            for (let i = 0; i < res.data.tqcl.length; i++) {
-              let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.tqcl[i]
-            }
-            this.tableData.push(obj)
-          }
-          if (res.data.sycl && res.data.sycl.length > 0) {
-            series.push({
-              name: '上月产量',
-              type: 'line',
-              data: res.data.sycl
-            })
-            let obj = {}
-            obj.projectName = '上月产量'
-            for (let i = 0; i < res.data.sycl.length; i++) {
-              let key = res.data.xAxisData[i] + 'yue'
-              obj[key] = res.data.sycl[i]
-            }
-            this.tableData.push(obj)
-          }
-          this.seriesData = series
           this.rData = res.data
+          this.makeData()
           this.loading = false
         }).catch(() => {
           this.loading = false
         })
+      },
+      makeData() {
+        this.tableData = []
+        let series = []
+        if (this.lx === 'tan') {
+          if (this.rData.tan && this.rData.tan.length > 0) {
+            series.push({
+              name: '实际碳',
+              type: 'bar',
+              data: this.rData.tan
+            })
+            let obj = {}
+            obj.projectName = '实际碳'
+            for (let i = 0; i < this.rData.tan.length; i++) {
+              let key = this.rData.xAxisData[i] + 'yue'
+              obj[key] = this.rData.tan[i]
+            }
+            this.tableData.push(obj)
+          }
+          if (this.rData.tqtan && this.rData.tqtan.length > 0) {
+            series.push({
+              name: '同期碳',
+              type: 'bar',
+              data: this.rData.tqtan
+            })
+            let obj = {}
+            obj.projectName = '同期碳'
+            for (let i = 0; i < this.rData.tqtan.length; i++) {
+              let key = this.rData.xAxisData[i] + 'yue'
+              obj[key] = this.rData.tqtan[i]
+            }
+            this.tableData.push(obj)
+          }
+          if (this.rData.sytan && this.rData.sytan.length > 0) {
+            series.push({
+              name: '上月碳',
+              type: 'bar',
+              data: this.rData.sytan
+            })
+            let obj = {}
+            obj.projectName = '上月碳'
+            for (let i = 0; i < this.rData.sytan.length; i++) {
+              let key = this.rData.xAxisData[i] + 'yue'
+              obj[key] = this.rData.sytan[i]
+            }
+            this.tableData.push(obj)
+          }
+        } else if (this.lx === 'dtan') {
+          if (this.rData.dtan && this.rData.dtan.length > 0) {
+            series.push({
+              name: '实际单碳',
+              type: 'bar',
+              data: this.rData.dtan
+            })
+            let obj = {}
+            obj.projectName = '实际单碳'
+            for (let i = 0; i < this.rData.dtan.length; i++) {
+              let key = this.rData.xAxisData[i] + 'yue'
+              obj[key] = this.rData.dtan[i]
+            }
+            this.tableData.push(obj)
+          }
+          if (this.rData.dtqtan && this.rData.dtqtan.length > 0) {
+            series.push({
+              name: '同期单碳',
+              type: 'bar',
+              data: this.rData.dtqtan
+            })
+            let obj = {}
+            obj.projectName = '同期单碳'
+            for (let i = 0; i < this.rData.dtqtan.length; i++) {
+              let key = this.rData.xAxisData[i] + 'yue'
+              obj[key] = this.rData.dtqtan[i]
+            }
+            this.tableData.push(obj)
+          }
+          if (this.rData.dsytan && this.rData.dsytan.length > 0) {
+            series.push({
+              name: '上月单碳',
+              type: 'bar',
+              data: this.rData.dsytan
+            })
+            let obj = {}
+            obj.projectName = '上月单碳'
+            for (let i = 0; i < this.rData.dsytan.length; i++) {
+              let key = this.rData.xAxisData[i] + 'yue'
+              obj[key] = this.rData.dsytan[i]
+            }
+            this.tableData.push(obj)
+          }
+        }
+        if (this.rData.cl && this.rData.cl.length > 0) {
+          series.push({
+            name: '产量',
+            type: 'line',
+            data: this.rData.cl
+          })
+          let obj = {}
+          obj.projectName = '产量'
+          for (let i = 0; i < this.rData.cl.length; i++) {
+            let key = this.rData.xAxisData[i] + 'yue'
+            obj[key] = this.rData.cl[i]
+          }
+          this.tableData.push(obj)
+        }
+        if (this.rData.tqcl && this.rData.tqcl.length > 0) {
+          series.push({
+            name: '同期产量',
+            type: 'line',
+            data: this.rData.tqcl
+          })
+          let obj = {}
+          obj.projectName = '同期产量'
+          for (let i = 0; i < this.rData.tqcl.length; i++) {
+            let key = this.rData.xAxisData[i] + 'yue'
+            obj[key] = this.rData.tqcl[i]
+          }
+          this.tableData.push(obj)
+        }
+        if (this.rData.sycl && this.rData.sycl.length > 0) {
+          series.push({
+            name: '上月产量',
+            type: 'line',
+            data: this.rData.sycl
+          })
+          let obj = {}
+          obj.projectName = '上月产量'
+          for (let i = 0; i < this.rData.sycl.length; i++) {
+            let key = this.rData.xAxisData[i] + 'yue'
+            obj[key] = this.rData.sycl[i]
+          }
+          this.tableData.push(obj)
+        }
+        this.seriesData = series
       }
     }
   }
