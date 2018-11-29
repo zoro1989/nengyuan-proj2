@@ -47,18 +47,22 @@
                   header-cell-class-name="header-cell-class-name"
                   style="width: 99%">
                   <el-table-column
+                    align="center"
                     prop="org"
                     label="用能部门">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="df"
                     label="电费(千元)">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="dj"
                     label="电价(元/千瓦时)">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="d"
                     label="电量(万千瓦时)">
                   </el-table-column>

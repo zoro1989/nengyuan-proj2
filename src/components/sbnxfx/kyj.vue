@@ -40,6 +40,7 @@
                 style="width: 99%">
                 <el-table-column
                   prop="org"
+                  align="center"
                   min-width="200"
                   label="部门名称">
                   <template slot-scope="scope">
@@ -47,10 +48,12 @@
                   </template>
                 </el-table-column>
                 <el-table-column
+                  align="center"
                   prop="sl"
                   label="数量（台）">
                 </el-table-column>
                 <el-table-column
+                  align="center"
                   prop="edgl"
                   label="容量（KVA）">
                 </el-table-column>
@@ -87,6 +90,7 @@
                 style="width: 99%">
                 <el-table-column
                   prop="org"
+                  align="center"
                   min-width="200"
                   label="部门名称">
                   <template slot-scope="scope">
@@ -96,23 +100,28 @@
                 </el-table-column>
                 <el-table-column
                   prop="sl"
+                  align="center"
                   label="数量（台）">
                 </el-table-column>
                 <el-table-column
                   prop="edgl"
+                  align="center"
                   label="容量（KVA）">
                 </el-table-column>
                 <el-table-column
                   label="负载率（β%）">
                   <el-table-column
                     prop="hege"
+                    align="center"
                     label="合格">
                   </el-table-column>
                   <el-table-column
                     prop="buhege"
+                    align="center"
                     label="不合格">
                   </el-table-column>
                   <el-table-column
+                    align="center"
                     prop="jinggao"
                     label="警告">
                   </el-table-column>
@@ -126,89 +135,101 @@
                 style="width: 99%">
                 <el-table-column
                   prop="code"
+                  align="center"
                   label="空压机编号">
                 </el-table-column>
                 <el-table-column
                   prop="wz"
+                  align="center"
                   label="所在位置">
                 </el-table-column>
                 <el-table-column
-                  prop="value"
+                  align="center"
                   label="用电单耗">
-                </el-table-column>
-                <el-table-column
-                  label="一月">
-                  <template slot-scope="scope">
-                    <span :style="cellStyle(scope.$index, 3)">{{ scope.row['1yue'] }}</span>
-                  </template>
-                </el-table-column>
-                <el-table-column
-                  label="二月">
-                  <template slot-scope="scope">
-                    <span :style="cellStyle(scope.$index, 4)">{{ scope.row['2yue'] }}</span>
-                  </template>
-                </el-table-column>
-                <el-table-column
-                  label="三月">
-                  <template slot-scope="scope">
-                    <span :style="cellStyle(scope.$index, 5)">{{ scope.row['3yue'] }}</span>
-                  </template>
-                </el-table-column>
-                <el-table-column
-                  label="四月">
-                  <template slot-scope="scope">
-                    <span :style="cellStyle(scope.$index, 6)">{{ scope.row['4yue'] }}</span>
-                  </template>
-                </el-table-column>
-                <el-table-column
-                  label="五月">
-                  <template slot-scope="scope">
-                    <span :style="cellStyle(scope.$index, 7)">{{ scope.row['5yue'] }}</span>
-                  </template>
-                </el-table-column>
-                <el-table-column
-                  prop="6yue"
-                  label="六月">
-                  <template slot-scope="scope">
-                    <span :style="cellStyle(scope.$index, 8)">{{ scope.row['6yue'] }}</span>
-                  </template>
-                </el-table-column>
-                <el-table-column
-                  prop="7yue"
-                  label="七月">
-                  <template slot-scope="scope">
-                    <span :style="cellStyle(scope.$index, 9)">{{ scope.row['7yue'] }}</span>
-                  </template>
-                </el-table-column>
-                <el-table-column
-                  label="八月">
-                  <template slot-scope="scope">
-                    <span :style="cellStyle(scope.$index, 10)">{{ scope.row['8yue'] }}</span>
-                  </template>
-                </el-table-column>
-                <el-table-column
-                  label="九月">
-                  <template slot-scope="scope">
-                    <span :style="cellStyle(scope.$index, 11)">{{ scope.row['9yue'] }}</span>
-                  </template>
-                </el-table-column>
-                <el-table-column
-                  label="十月">
-                  <template slot-scope="scope">
-                    <span :style="cellStyle(scope.$index, 12)">{{ scope.row['10yue'] }}</span>
-                  </template>
-                </el-table-column>
-                <el-table-column
-                  label="十一月">
-                  <template slot-scope="scope">
-                    <span :style="cellStyle(scope.$index, 13)">{{ scope.row['11yue'] }}</span>
-                  </template>
-                </el-table-column>
-                <el-table-column
-                  label="十二月">
-                  <template slot-scope="scope">
-                    <span :style="cellStyle(scope.$index, 14)">{{ scope.row['12yue'] }}</span>
-                  </template>
+                  <el-table-column
+                    align="center"
+                    label="一月">
+                    <template slot-scope="scope">
+                      <span :style="cellStyle(scope.$index, 3)">{{ scope.row['1yue'] }}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    label="二月">
+                    <template slot-scope="scope">
+                      <span :style="cellStyle(scope.$index, 4)">{{ scope.row['2yue'] }}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    label="三月">
+                    <template slot-scope="scope">
+                      <span :style="cellStyle(scope.$index, 5)">{{ scope.row['3yue'] }}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    label="四月">
+                    <template slot-scope="scope">
+                      <span :style="cellStyle(scope.$index, 6)">{{ scope.row['4yue'] }}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    label="五月">
+                    <template slot-scope="scope">
+                      <span :style="cellStyle(scope.$index, 7)">{{ scope.row['5yue'] }}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    label="六月">
+                    <template slot-scope="scope">
+                      <span :style="cellStyle(scope.$index, 8)">{{ scope.row['6yue'] }}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    label="七月">
+                    <template slot-scope="scope">
+                      <span :style="cellStyle(scope.$index, 9)">{{ scope.row['7yue'] }}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    label="八月">
+                    <template slot-scope="scope">
+                      <span :style="cellStyle(scope.$index, 10)">{{ scope.row['8yue'] }}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    label="九月">
+                    <template slot-scope="scope">
+                      <span :style="cellStyle(scope.$index, 11)">{{ scope.row['9yue'] }}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    label="十月">
+                    <template slot-scope="scope">
+                      <span :style="cellStyle(scope.$index, 12)">{{ scope.row['10yue'] }}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    label="十一月">
+                    <template slot-scope="scope">
+                      <span :style="cellStyle(scope.$index, 13)">{{ scope.row['11yue'] }}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    label="十二月">
+                    <template slot-scope="scope">
+                      <span :style="cellStyle(scope.$index, 14)">{{ scope.row['12yue'] }}</span>
+                    </template>
+                  </el-table-column>
                 </el-table-column>
               </el-table>
             </div>
@@ -261,9 +282,9 @@
         })
         let orgName = orgId >= 0 ? this.options1[orgId].label : ''
         if (orgName) {
-          return orgName + '空压机能效分析'
+          return orgName + '空压机用电单耗能效分析'
         } else {
-          return '集团公司空压机能效分析'
+          return '集团公司空压机用电单耗能效分析'
         }
       }
     },
@@ -329,17 +350,17 @@
               if (item['STATE'] === 1) {
                 this.hege.push({
                   row: this.rData3.length,
-                  column: item['YUE'] + 2
+                  column: item['YUE'] + 1
                 })
               } else if (item['STATE'] === 2) {
                 this.buhege.push({
                   row: this.rData3.length,
-                  column: item['YUE'] + 2
+                  column: item['YUE'] + 1
                 })
               } else if (item['STATE'] === 3) {
                 this.jinggao.push({
                   row: this.rData3.length,
-                  column: item['YUE'] + 2
+                  column: item['YUE'] + 1
                 })
               }
               obj.code = item['CODE']
@@ -352,17 +373,17 @@
               if (item['STATE'] === 1) {
                 this.hege.push({
                   row: this.rData3.length,
-                  column: item['YUE'] + 2
+                  column: item['YUE'] + 1
                 })
               } else if (item['STATE'] === 2) {
                 this.buhege.push({
                   row: this.rData3.length,
-                  column: item['YUE'] + 2
+                  column: item['YUE'] + 1
                 })
               } else if (item['STATE'] === 3) {
                 this.jinggao.push({
                   row: this.rData3.length,
-                  column: item['YUE'] + 2
+                  column: item['YUE'] + 1
                 })
               }
               let key = item['YUE'] + 'yue'

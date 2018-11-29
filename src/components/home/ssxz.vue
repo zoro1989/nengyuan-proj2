@@ -17,13 +17,24 @@
             :picker-options="pickerOptions2">
           </el-date-picker>
           <span class="picker-txt">用能单位</span>
-          <el-cascader
-            :options="options"
-            v-model="selectedOptions"
-            change-on-select
-            size="mini"
-            :show-all-levels="false"
-          ></el-cascader>
+          <el-select
+            v-model="system_id"
+            placeholder="请选择"
+            size="mini">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+          <!--<el-cascader-->
+            <!--:options="options"-->
+            <!--v-model="selectedOptions"-->
+            <!--change-on-select-->
+            <!--size="mini"-->
+            <!--:show-all-levels="false"-->
+          <!--&gt;</el-cascader>-->
           <!--<multi-cascader-->
             <!--:options="options"-->
             <!--@on-selected="getSelected"-->
@@ -52,7 +63,7 @@
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-line class="chart-r"
                                  :titleText="chartTitle + realTimeToday + '能源费用(小时)'"
-                                 yAxisTitle="万元/时"
+                                 yAxisTitle="千元/时"
                                  seriesName="能耗"
                                  :xAxisData="fy.xAxisData"
                                  :seriesData="fy.seriesData"
@@ -145,7 +156,7 @@
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-bar class="chart-r"
                                  :titleText="chartTitle + realTimeToday + '能源费用(小时)'"
-                                 yAxisTitle="万元/时"
+                                 yAxisTitle="千元/时"
                                  :xAxisData="fy.xAxisData"
                                  :seriesData="fy.seriesData"
                                  seriesName="能耗"></chart-realtime-bar>
@@ -220,7 +231,7 @@
         <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-bar class="chart-l"
-                        :titleText="chartTitle + '一汽大众能源消耗总量'"
+                        :titleText="chartTitle + '能源消耗总量'"
                         :legendData="legendData"
                         yAxisTitle="吨标煤"
                         :yAxis="bData.nys && bData.nys.y"
@@ -242,7 +253,7 @@ import ChartBar from 'base/chart-bar/chart-bar'
 import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
 import DepartmentSelect from 'base/department-select/department-select'
 import MultiCascader from 'base/department-select/MulCheckCascader'
-import {orgTree, orgTreeList} from 'utils/dic'
+import {orgSystemIdDic} from 'utils/dic'
 import { api } from '@/config'
 import fetch from 'utils/fetch'
 let moment = require('moment')
@@ -290,8 +301,8 @@ export default {
         }]
       },
       value: '',
-      options: orgTree,
-      selectedOptions: [],
+      options: orgSystemIdDic,
+//      selectedOptions: [],
       selectGroups: '',
       configTips: '',
       system_id: '41951',
@@ -328,10 +339,10 @@ export default {
       return moment().format('MMMM') + this.sectionToChinese(moment().format('D')) + '日'
     },
     chartTitle() {
-      let orgId = orgTreeList.findIndex((item) => {
-        return this.system_id === item['SYSTEM_ID']
+      let orgId = this.options.findIndex((item) => {
+        return this.system_id === item.value
       })
-      let orgName = orgId >= 0 ? orgTreeList[orgId]['NAME'] : ''
+      let orgName = orgId >= 0 ? this.options[orgId].label : ''
       return orgName
     }
   },
@@ -341,9 +352,9 @@ export default {
         this.begin_time = this.valueDate[0]
         this.end_time = this.valueDate[1]
       }
-      if (this.selectedOptions.length > 0) {
-        this.system_id = this.selectedOptions[this.selectedOptions.length - 1]
-      }
+//      if (this.selectedOptions.length > 0) {
+//        this.system_id = this.selectedOptions[this.selectedOptions.length - 1]
+//      }
       fetch('get', api.dayNy, {system_id: this.system_id, begin_time: this.begin_time, end_time: this.end_time}).then((res) => {
         let data = res.data
         if (data.dnys && data.dnys.seriesData) {

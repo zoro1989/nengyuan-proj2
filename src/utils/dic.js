@@ -311,13 +311,14 @@ export const lxrdDic = [
   }, {
     value: '15',
     label: '天然气'
-  }, {
-    value: '32_d',
-    label: '单车热力'
-  }, {
-    value: '15_d',
-    label: '单车天然气'
   }
+  // {
+  //   value: '32_d',
+  //   label: '单车热力'
+  // }, {
+  //   value: '15_d',
+  //   label: '单车天然气'
+  // }
 ]
 export const monthDic = [
   {

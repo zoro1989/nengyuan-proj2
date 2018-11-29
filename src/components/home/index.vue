@@ -119,7 +119,7 @@
         <div class="col-lg-6 col-md-12 col-box-right">
           <chart-realtime-bar class="chart-box"
                               :titleText="realTimeToday + '能源费用(小时)'"
-                              yAxisTitle="万元/时"
+                              yAxisTitle="千元/时"
                               :xAxisData="fy.xAxisData"
                               :seriesData="fy.seriesData"
                               seriesName="费用"></chart-realtime-bar>
