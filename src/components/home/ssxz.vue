@@ -147,7 +147,7 @@
                                  :titleText="chartTitle + realTimeToday + '能源费用(小时)'"
                                  yAxisTitle="万元/时"
                                  :xAxisData="fy.xAxisData"
-                                 :seriesData="fy.xAxisData"
+                                 :seriesData="fy.seriesData"
                                  seriesName="能耗"></chart-realtime-bar>
           </div>
         </div>

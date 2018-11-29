@@ -18,6 +18,7 @@
                 class="border-bottom"
                 title="单车能源费用"
                 :data="data.je_d"
+                :isMathRound="true"
                 unit="元/辆"
                 :tongbiData="data.je_d_tb"
                 :huanbiData="data.je_d_hb"
@@ -35,6 +36,7 @@
               <data-panel
                 title="单车碳排放量"
                 :data="data.tan_d"
+                :isMathRound="true"
                 unit="kgCO<sub>2</sub>/辆"
                 :tongbiData="data.tan_d_tb"
                 :huanbiData="data.tan_d_hb"
@@ -87,6 +89,7 @@
                 class="border-right"
                 title="碳排放量"
                 :data="data.tan"
+                :isMathRound="true"
                 unit="吨CO<sub>2</sub>"
                 :tongbiData="data.tan_tb"
                 :huanbiData="data.tan_hb"
@@ -94,6 +97,7 @@
               <data-panel
                 title="能源费用"
                 :data="data.je"
+                :isMathRound="true"
                 unit="万元"
                 :tongbiData="data.je_tb"
                 :huanbiData="data.je_hb"

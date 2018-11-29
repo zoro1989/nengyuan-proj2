@@ -44,8 +44,10 @@ export const orgSystemIdDic = [
     value: '41917',
     label: '一汽新能源汽车有限公司'
   }, {
-    value: '41924',
-    label: '长春一汽富维汽车零部件股份有限公司'
+    // value: '41924',
+    // label: '长春一汽富维汽车零部件股份有限公司'
+    value: '2745731',
+    label: '天津动力总成'
   }, {
     value: '41944',
     label: '一汽铸锻有限公司'
@@ -114,8 +116,10 @@ export const orgIdDic = [
     value: '22',
     label: '一汽新能源汽车有限公司'
   }, {
-    value: '24',
-    label: '长春一汽富维汽车零部件股份有限公司'
+    // value: '24',
+    // label: '长春一汽富维汽车零部件股份有限公司'
+    value: '34',
+    label: '天津动力总成'
   }, {
     value: '25',
     label: '一汽铸锻有限公司'
@@ -184,8 +188,10 @@ export const orgIdSimpleDic = [
     value: '22',
     label: '新能源'
   }, {
-    value: '24',
-    label: '一汽富维'
+    // value: '24',
+    // label: '一汽富维'
+    value: '34',
+    label: '天津动力总成'
   }, {
     value: '25',
     label: '一汽铸锻'
@@ -485,10 +491,14 @@ export const orgTreeList = [
     'SYSTEM_ID': '41917'
   },
   {
-    'ID': '24',
+    // 'ID': '24',
+    // 'PID': '23',
+    // 'NAME': '长春一汽富维汽车零部件股份有限公司',
+    // 'SYSTEM_ID': '41924'
+    'ID': '34',
     'PID': '23',
-    'NAME': '长春一汽富维汽车零部件股份有限公司',
-    'SYSTEM_ID': '41924'
+    'NAME': '天津动力总成',
+    'SYSTEM_ID': '2745731'
   },
   {
     'ID': '25',
@@ -639,8 +649,10 @@ export const orgTree = [
     label: '零部件加工',
     children: [
       {
-        value: '41924',
-        label: '长春一汽富维汽车零部件股份有限公司'
+        // value: '41924',
+        // label: '长春一汽富维汽车零部件股份有限公司',
+        value: '2745731',
+        label: '天津动力总成'
       },
       {
         value: '41944',
