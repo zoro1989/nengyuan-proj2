@@ -27,7 +27,7 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box">
+        <div class="panel-box" v-loading="loading">
           <div class="row">
             <div class="table-box">
               <data-panel-title :title="chartTitle" :noBorder="noBorder"></data-panel-title>
@@ -58,7 +58,6 @@
                   label="容量（KVA）">
                 </el-table-column>
                 <el-table-column
-                  align="center"
                   align="center"
                   label="负载率（β%）">
                   <el-table-column
@@ -129,6 +128,10 @@
                   </el-table-column>
                 </el-table-column>
               </el-table>
+              <data-panel-title
+                v-if="!system_id && (rData3 && rData3.length > 0)"
+                :title="subSubTitle + '变压器能效分析'"
+                :noBorder="noBorder"></data-panel-title>
               <el-table
                 v-if="system_id || (rData3 && rData3.length > 0)"
                 :data="rData3"
@@ -152,84 +155,84 @@
                     align="center"
                     label="一月">
                     <template slot-scope="scope">
-                      <span :style="cellStyle(scope.$index, 3)">{{ scope.row['1yue'] }}</span>
+                      <span class="yue-box" :class="cellStyle(scope.row['1yue'])">{{ scope.row['1yue'] ? scope.row['1yue'].split('_')[0] : '' }}</span>
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="二月">
                     <template slot-scope="scope">
-                      <span :style="cellStyle(scope.$index, 4)">{{ scope.row['2yue'] }}</span>
+                      <span class="yue-box" :class="cellStyle(scope.row['2yue'])">{{ scope.row['2yue'] ? scope.row['2yue'].split('_')[0] : '' }}</span>
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="三月">
                     <template slot-scope="scope">
-                      <span :style="cellStyle(scope.$index, 5)">{{ scope.row['3yue'] }}</span>
+                      <span class="yue-box" :class="cellStyle(scope.row['3yue'])">{{ scope.row['3yue'] ? scope.row['3yue'].split('_')[0] : '' }}</span>
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="四月">
                     <template slot-scope="scope">
-                      <span :style="cellStyle(scope.$index, 6)">{{ scope.row['4yue'] }}</span>
+                      <span class="yue-box" :class="cellStyle(scope.row['4yue'])">{{ scope.row['4yue'] ? scope.row['4yue'].split('_')[0] : '' }}</span>
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="五月">
                     <template slot-scope="scope">
-                      <span :style="cellStyle(scope.$index, 7)">{{ scope.row['5yue'] }}</span>
+                      <span class="yue-box" :class="cellStyle(scope.row['5yue'])">{{ scope.row['5yue'] ? scope.row['5yue'].split('_')[0] : '' }}</span>
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="六月">
                     <template slot-scope="scope">
-                      <span :style="cellStyle(scope.$index, 8)">{{ scope.row['6yue'] }}</span>
+                      <span class="yue-box" :class="cellStyle(scope.row['6yue'])">{{ scope.row['6yue'] ? scope.row['6yue'].split('_')[0] : '' }}</span>
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="七月">
                     <template slot-scope="scope">
-                      <span :style="cellStyle(scope.$index, 9)">{{ scope.row['7yue'] }}</span>
+                      <span class="yue-box" :class="cellStyle(scope.row['7yue'])">{{ scope.row['7yue'] ? scope.row['7yue'].split('_')[0] : '' }}</span>
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="八月">
                     <template slot-scope="scope">
-                      <span :style="cellStyle(scope.$index, 10)">{{ scope.row['8yue'] }}</span>
+                      <span class="yue-box" :class="cellStyle(scope.row['8yue'])">{{ scope.row['8yue'] ? scope.row['8yue'].split('_')[0] : '' }}</span>
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="九月">
                     <template slot-scope="scope">
-                      <span :style="cellStyle(scope.$index, 11)">{{ scope.row['9yue'] }}</span>
+                      <span class="yue-box" :class="cellStyle(scope.row['9yue'])">{{ scope.row['9yue'] ? scope.row['9yue'].split('_')[0] : '' }}</span>
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="十月">
                     <template slot-scope="scope">
-                      <span :style="cellStyle(scope.$index, 12)">{{ scope.row['10yue'] }}</span>
+                      <span class="yue-box" :class="cellStyle(scope.row['10yue'])">{{ scope.row['10yue'] ? scope.row['10yue'].split('_')[0] : '' }}</span>
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="十一月">
                     <template slot-scope="scope">
-                      <span :style="cellStyle(scope.$index, 13)">{{ scope.row['11yue'] }}</span>
+                      <span class="yue-box" :class="cellStyle(scope.row['11yue'])">{{ scope.row['11yue'] ? scope.row['11yue'].split('_')[0] : '' }}</span>
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="十二月">
                     <template slot-scope="scope">
-                      <span :style="cellStyle(scope.$index, 14)">{{ scope.row['12yue'] }}</span>
+                      <span class="yue-box" :class="cellStyle(scope.row['12yue'])">{{ scope.row['12yue'] ? scope.row['12yue'].split('_')[0] : '' }}</span>
                     </template>
                   </el-table-column>
                 </el-table-column>
@@ -262,6 +265,7 @@
     },
     data() {
       return {
+        loading: false,
         pieRadius: ['13%', '60%'],
         options1: orgIdDic,
         tableData: [],
@@ -273,9 +277,7 @@
         rData2: [],
         rData3: [],
         subTitle: '',
-        hege: [],
-        buhege: [],
-        jinggao: []
+        subSubTitle: ''
       }
     },
     computed: {
@@ -305,10 +307,13 @@
         if (this.system_id) {
           this.byqList(this.system_id)
         } else {
+          this.loading = true
           fetch('get', api.djJituan, {time: this.time, lx: this.lx}).then((res) => {
             this.rData = res.data
             this.rData2 = []
+            this.loading = false
           }).catch(() => {
+            this.loading = false
           })
         }
       },
@@ -319,28 +324,22 @@
         }).catch(() => {
         })
       },
-      cellStyle (row, column, rowIndex, columnIndex) {
-        let ihege = this.hege.findIndex((item) => {
-          return item.row === row && item.column === column
-        })
-        let ibuhege = this.buhege.findIndex((item) => {
-          return item.row === row && item.column === column
-        })
-        let ijinggao = this.jinggao.findIndex((item) => {
-          return item.row === row && item.column === column
-        })
-        if (ihege >= 0) {
-          return 'background: #67C23A; color: #fff; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center;'
-        } else if (ibuhege >= 0) {
-          return 'background: #F56C6C; color: #fff; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center;'
-        } else if (ijinggao >= 0) {
-          return 'background: #E6A23C; color: #fff; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center;'
+      cellStyle (value) {
+        let status = value ? value.split('_').length === 2 ? value.split('_')[1] : '' : ''
+        if (status === '1') {
+          return 'green'
+        } else if (status === '2') {
+          return 'red'
+        } else if (status === '3') {
+          return 'yellow'
         }
       },
       orgGsClick(index) {
+        this.subSubTitle = this.rData2[index].org
         this.byqList(this.rData2[index].org_id)
       },
       byqList(orgId) {
+        this.loading = true
         let nian = this.time.split('-').length > 0 ? this.time.split('-')[0] : ''
         fetch('get', api.djList, {nian: nian, org_id: orgId, lx: this.lx}).then((res) => {
           for (let i = 0; i < res.data.length; i++) {
@@ -350,50 +349,20 @@
             })
             if (index < 0) {
               let obj = {}
-              if (item['STATE'] === 1) {
-                this.hege.push({
-                  row: this.rData3.length,
-                  column: item['YUE'] + 1
-                })
-              } else if (item['STATE'] === 2) {
-                this.buhege.push({
-                  row: this.rData3.length,
-                  column: item['YUE'] + 1
-                })
-              } else if (item['STATE'] === 3) {
-                this.jinggao.push({
-                  row: this.rData3.length,
-                  column: item['YUE'] + 1
-                })
-              }
               obj.code = item['CODE']
               obj.wz = item['WZ']
               let key = item['YUE'] + 'yue'
-              obj[key] = item['VALUE']
+              obj[key] = item['VALUE'] + '_' + item['STATE']
               this.rData3.push(obj)
             } else {
               let obj = this.rData3[index]
-              if (item['STATE'] === 1) {
-                this.hege.push({
-                  row: this.rData3.length,
-                  column: item['YUE'] + 1
-                })
-              } else if (item['STATE'] === 2) {
-                this.buhege.push({
-                  row: this.rData3.length,
-                  column: item['YUE'] + 1
-                })
-              } else if (item['STATE'] === 3) {
-                this.jinggao.push({
-                  row: this.rData3.length,
-                  column: item['YUE'] + 1
-                })
-              }
               let key = item['YUE'] + 'yue'
-              obj[key] = item['VALUE']
+              obj[key] = item['VALUE'] + '_' + item['STATE']
             }
           }
+          this.loading = false
         }).catch(() => {
+          this.loading = false
         })
       }
     }
@@ -415,6 +384,24 @@
       display: flex
       flex-direction: column
       min-width: 600px
+      .yue-box
+        position: absolute
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        display: flex
+        justify-content: center
+        align-items: center
+        &.red
+          background: #F56C6C
+          color: #fff
+        &.yellow
+          background: #E6A23C
+          color: #fff
+        &.green
+          background: #67C23A
+          color: #fff
       .org-title
         &:hover
           cursor: pointer
