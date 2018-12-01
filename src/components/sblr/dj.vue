@@ -130,7 +130,7 @@
   import ChartPie from 'base/chart-pie/chart-pie'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-  import {orgSystemIdDic} from 'utils/dic'
+  import {orgSystemIdDicNoJituan} from 'utils/dic'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -140,13 +140,13 @@
       DataPanelTitle
     },
     created() {
-      this.fetchData()
+      // this.fetchData()
     },
     data() {
       return {
         loading: false,
         tableData: [],
-        options1: orgSystemIdDic,
+        options1: orgSystemIdDicNoJituan,
         options2: [
           {
             value: '1',

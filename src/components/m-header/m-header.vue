@@ -8,8 +8,8 @@
       <div class="setting">
         <span class="item ripple"><i class="fa fa-gear"></i></span>
         <span class="item ripple"><i class="fa fa-user"></i></span>
-        <span class="item ripple"><i class="fa fa-refresh"></i></span>
-        <span class="item ripple"><i class="fa fa-question-circle"></i></span>
+        <span class="item ripple" @click="onRefresh"><i class="fa fa-refresh"></i></span>
+        <span class="item ripple" @click="onWarning"><i class="fa fa-bell"></i></span>
         <span class="item ripple" @click="onLogout"><i class="fa fa-power-off"></i></span>
       </div>
     </div>
@@ -25,9 +25,15 @@ export default {
       }
     },
   methods: {
+    onRefresh() {
+      this.$router.go(0)
+    },
     onLogout() {
       clearToken()
       this.$router.replace('/login')
+    },
+    onWarning() {
+      this.$router.replace('/home/alarm')
     }
   }
 }

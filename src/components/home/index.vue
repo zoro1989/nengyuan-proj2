@@ -51,10 +51,10 @@
               <data-panel
                 class="border-bottom"
                 title="清洁能源"
-                :data="4586"
+                :data="0"
                 unit="吨标煤"
-                :tongbiData="-12.2"
-                :huanbiData="6.7"
+                :tongbiData="-0"
+                :huanbiData="0"
               ></data-panel>
             </div>
             <div class="row">

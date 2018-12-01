@@ -131,7 +131,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-6 col-md-12 col-xs-12">
+          <div class="col-lg-12 col-md-12 col-xs-12">
             <chart-line class="chart-l"
                         :titleText="chartTitle + '能源消耗总量'"
                         yAxisTitle="吨/标煤"
@@ -229,7 +229,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-6 col-md-12 col-xs-12">
+          <div class="col-lg-12 col-md-12 col-xs-12">
             <chart-bar class="chart-l"
                         :titleText="chartTitle + '能源消耗总量'"
                         :legendData="legendData"

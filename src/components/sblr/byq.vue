@@ -44,23 +44,23 @@
                   prop="wz">
                 </el-table-column>
                 <el-table-column
-                  label="额定视在功率"
+                  label="额定视在功率(KVA)"
                   prop="edszgl">
                 </el-table-column>
                 <el-table-column
-                  label="额定空载损失"
+                  label="额定空载损失(KW)"
                   prop="edkzss">
                 </el-table-column>
                 <el-table-column
-                  label="空载电流"
+                  label="空载电流(Io%)"
                   prop="kzdl">
                 </el-table-column>
                 <el-table-column
-                  label="短路电压"
+                  label="短路电压(Uo%)"
                   prop="dldy">
                 </el-table-column>
                 <el-table-column
-                  label="额定负载损失"
+                  label="额定负载损失(KW)"
                   prop="edfzss">
                 </el-table-column>
                 <el-table-column label="操作" width="130">
@@ -96,19 +96,19 @@
         <el-form-item label="位置" :label-width="formLabelWidth">
           <el-input v-model="form.wz" :disabled="isFormReadOnly" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="额定视在功率" :label-width="formLabelWidth">
+        <el-form-item label="额定视在功率(KVA)" :label-width="formLabelWidth">
           <el-input v-model="form.edszgl" :disabled="isFormReadOnly" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="额定空载损失" :label-width="formLabelWidth">
+        <el-form-item label="额定空载损失(KW)" :label-width="formLabelWidth">
           <el-input v-model="form.edkzss" :disabled="isFormReadOnly" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="空载电流" :label-width="formLabelWidth">
+        <el-form-item label="空载电流(Io%)" :label-width="formLabelWidth">
           <el-input v-model="form.kzdl" :disabled="isFormReadOnly" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="短路电压" :label-width="formLabelWidth">
+        <el-form-item label="短路电压(Uo%)" :label-width="formLabelWidth">
           <el-input v-model="form.dldy" :disabled="isFormReadOnly" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="额定负载损失" :label-width="formLabelWidth">
+        <el-form-item label="额定负载损失(KW)" :label-width="formLabelWidth">
           <el-input v-model="form.edfzss" :disabled="isFormReadOnly" auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
@@ -125,7 +125,7 @@
   import ChartPie from 'base/chart-pie/chart-pie'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-  import {orgSystemIdDic} from 'utils/dic'
+  import {orgSystemIdDicNoJituan} from 'utils/dic'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -135,13 +135,13 @@
       DataPanelTitle
     },
     created() {
-      this.fetchData()
+      // this.fetchData()
     },
     data() {
       return {
         loading: false,
         tableData: [],
-        options1: orgSystemIdDic,
+        options1: orgSystemIdDicNoJituan,
         system_id: '',
         formLabelWidth: '120px',
         isFormReadOnly: false,

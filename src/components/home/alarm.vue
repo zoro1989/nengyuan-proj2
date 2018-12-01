@@ -38,15 +38,15 @@
                   style="width: 99%">
                   <el-table-column
                     prop="org"
-                    label="对应部门">
+                    label="分子公司">
                   </el-table-column>
                   <el-table-column
                     prop="createdAt"
-                    label="报警时间">
+                    label="日志时间">
                   </el-table-column>
                   <el-table-column
                     prop="content"
-                    label="报警内容">
+                    label="日志内容">
                   </el-table-column>
                 </el-table>
               </div>
@@ -98,7 +98,7 @@
           this.loading = false
         })
         fetch('get', api.bjList, {}).then((res) => {
-          this.rList = res.data
+          this.rList = res.data.slice(0, 50)
           this.loading = false
         }).catch(() => {
           this.loading = false

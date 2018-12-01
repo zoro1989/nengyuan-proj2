@@ -89,7 +89,7 @@
                     <el-table-column
                       align="center"
                       prop="zbjq"
-                      label="占集团公司总量百分比（%）">
+                      :label="'占' + dwFormat + '总量百分比（%）'">
                     </el-table-column>
                   </el-table-column>
                   <el-table-column
@@ -103,7 +103,7 @@
                     <el-table-column
                       align="center"
                       prop="zbbjq"
-                      label="占集团公司总量百分比（%）">
+                      :label="'占' + dwFormat + '总量百分比（%）'">
                     </el-table-column>
                   </el-table-column>
                 </el-table>
@@ -133,7 +133,7 @@
                     <el-table-column
                       prop="zbjq"
                       align="center"
-                      label="占集团公司总量百分比（%）">
+                      :label="'占' + dwFormat + '总量百分比（%）'">
                     </el-table-column>
                   </el-table-column>
                   <el-table-column
@@ -147,7 +147,7 @@
                     <el-table-column
                       prop="zbbjq"
                       align="center"
-                      label="占集团公司总量百分比（%）">
+                      :label="'占' + dwFormat + '总量百分比（%）'">
                     </el-table-column>
                   </el-table-column>
                 </el-table>

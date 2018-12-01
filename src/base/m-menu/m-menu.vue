@@ -115,6 +115,34 @@
         uniqueOpened: true
       }
     },
+    watch: {
+      '$route'(to, from) {
+        let path = to.path
+        if (path === '/home/alarm') {
+          this.selectMenuIndex = 0
+        }
+      }
+    },
+    mounted() {
+      let path = this.$route.path
+      if (path === '/home' || path === '/home/alarm') {
+        this.selectMenuIndex = 0
+      } else if (path === '/home/nyzlfx/nh' || path === '/home/nybmfx/nh' || path === '/home/nyzlfx/fy' || path === '/home/nybmfx/fy' || path === '/home/eyhtfx') {
+        this.selectMenuIndex = 1
+      } else if (path === '/home/nyylfx' || path === '/home/nyfyfx' || path === '/home/tjeyhtfx' || path === '/home/bmynfx' || path === '/home/nyfhfx' || path === '/home/djfx') {
+        this.selectMenuIndex = 2
+      } else if (path === '/home/kpi1' || path === '/home/kpi2' || path === '/home/kpi3' || path === '/home/kpi4' || path === '/home/kpi5') {
+        this.selectMenuIndex = 3
+      } else if (path === '/home/nxbyq' || path === '/home/nxkyj' || path === '/home/nxfj' || path === '/home/nxsb') {
+        this.selectMenuIndex = 4
+      } else if (path === '/home/tz1-ly' || path === '/home/tz2-gl' || path === '/home/tz3-kyj' || path === '/home/tz5-tfj' || path === '/home/tz6-sb' || path === '/home/tz7-byq' || path === '/home/tz8-qt') {
+        this.selectMenuIndex = 5
+      } else if (path === '/home/waning') {
+        this.selectMenuIndex = 6
+      } else if (path === '/home/byq' || path === '/home/kyj' || path === '/home/dj') {
+        this.selectMenuIndex = 7
+      }
+    },
     methods: {
       hideMenu() {
         this.$emit('hide-menu')
