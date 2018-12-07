@@ -314,7 +314,7 @@ export default {
       } else if (value === '15') {
         this.yAxis = [{name: '立方米/万元'}, {name: '%'}]
       } else if (value === '00') {
-        this.yAxis = [{name: '升（水）/万元'}, {name: '%'}]
+        this.yAxis = [{name: '吨（水）/万元'}, {name: '%'}]
       } else if (value === '32') {
         this.yAxis = [{name: '吉焦/万元'}, {name: '%'}]
       } else if (value === '102') {

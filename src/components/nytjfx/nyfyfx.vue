@@ -6,6 +6,7 @@
           <el-select
             slot="title1"
             v-model="system_id"
+            @change="systemChange"
             placeholder="请选择"
             size="mini">
             <el-option
@@ -89,7 +90,7 @@
                 <el-table-column
                   align="center"
                   prop="fyhbzf"
-                  label="用量环比增幅">
+                  label="费用环比增幅">
                 </el-table-column>
                 <el-table-column
                   align="center"
@@ -99,7 +100,7 @@
                 <el-table-column
                   align="center"
                   prop="fytbzf"
-                  label="用量同比增幅">
+                  label="费用同比增幅">
                 </el-table-column>
                 <el-table-column
                   align="center"
@@ -121,7 +122,7 @@
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-  import {orgIdDic, lxfyDic, chartColors} from 'utils/dic'
+  import {orgIdDic, lxfyDic, lxDic, chartColors} from 'utils/dic'
   import {tableDataFilter} from 'utils/filter'
   let moment = require('moment')
   moment.locale('zh-cn')
@@ -154,7 +155,7 @@
     },
     computed: {
       yAxis() {
-        return [{name: '费用(千元)'}, {name: '产量(辆)'}]
+        return [{name: '费用(万元)'}, {name: '产量(辆)'}]
 //        if (this.lx === '33') {
 //          return [{name: '万元'}, {name: '万千瓦时'}]
 //        } else if (this.lx === '00') {
@@ -209,6 +210,14 @@
       }
     },
     methods: {
+      systemChange(value) {
+        this.lx = ''
+        if (value === '1') {
+          this.options2 = lxfyDic
+        } else {
+          this.options2 = lxDic
+        }
+      },
       departmentStyle(index) {
         return `background: ${this.colors[index]}`
       },

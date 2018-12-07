@@ -34,6 +34,7 @@
               <el-table
                 :data="rData"
                 v-if="!system_id"
+                key="table1"
                 border
                 :header-cell-style="headerCellStyle"
                 header-cell-class-name="header-cell-class-name"
@@ -84,6 +85,7 @@
               <el-table
                 v-if="rData2 && rData2.length > 0 && !system_id"
                 :data="rData2"
+                key="table2"
                 border
                 :header-cell-style="headerCellStyle"
                 header-cell-class-name="header-cell-class-name"
@@ -135,6 +137,7 @@
               <el-table
                 v-if="system_id || (rData3 && rData3.length > 0)"
                 :data="rData3"
+                key="table3"
                 border
                 header-cell-class-name="header-cell-class-name"
                 style="width: 99%">
@@ -341,6 +344,7 @@
         this.loading = true
         let nian = this.time.split('-').length > 0 ? this.time.split('-')[0] : ''
         fetch('get', api.byqList, {nian: nian, org_id: orgId}).then((res) => {
+          this.rData3 = []
           for (let i = 0; i < res.data.length; i++) {
             let item = res.data[i]
             let index = this.rData3.findIndex((i) => {

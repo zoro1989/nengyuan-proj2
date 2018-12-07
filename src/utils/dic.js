@@ -779,7 +779,7 @@ export function getYAxis (lx) {
   } else if (lx === '33_d') {
     return [{name: '千瓦时/辆'}, {name: '产量(辆)'}]
   } else if (lx === '00_d') {
-    return [{name: '升/辆'}, {name: '产量(辆)'}]
+    return [{name: '吨/辆'}, {name: '产量(辆)'}]
   } else if (lx === '32_d') {
     return [{name: '吉焦/辆'}, {name: '产量(辆)'}]
   } else if (lx === '15_d') {

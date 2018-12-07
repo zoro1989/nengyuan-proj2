@@ -56,6 +56,7 @@
                 header-cell-class-name="header-cell-class-name"
                 style="width: 99%">
                 <el-table-column
+                  header-align="center"
                   prop="projectName"
                   min-width="135"
                   label="项目名称">
@@ -78,6 +79,7 @@
             <data-panel-title title="分析结果" :noBorder="noBorder">
             </data-panel-title>
             <el-table
+              v-if="lx.split('_').length !== 2"
               :data="rData.zf"
               border
               header-cell-class-name="header-cell-class-name"
@@ -89,37 +91,55 @@
               </el-table-column>
               <el-table-column
                 align="center"
-                v-if="lx.split('_').length !== 2"
                 prop="ylhbzf"
-                label="用量环比增幅">
+                label="用量环比增幅(%)">
               </el-table-column>
               <el-table-column
                 align="center"
-                v-if="lx.split('_').length !== 2"
                 prop="clhbzf"
-                label="产量环比增幅">
+                label="产量环比增幅(%)">
               </el-table-column>
               <el-table-column
                 align="center"
                 prop="yltbzf"
-                label="用量同比增幅">
+                label="用量同比增幅(%)">
               </el-table-column>
               <el-table-column
                 align="center"
                 prop="cltbzf"
-                label="产量同比增幅">
+                label="产量同比增幅(%)">
+              </el-table-column>
+            </el-table>
+            <el-table
+              :data="rData.zf"
+              v-if="lx.split('_').length === 2"
+              border
+              header-cell-class-name="header-cell-class-name"
+              style="width: 99%">
+              <el-table-column
+                align="center"
+                prop="yue"
+                label="月">
               </el-table-column>
               <el-table-column
                 align="center"
-                v-if="lx.split('_').length === 2"
                 prop="dylhbzf"
-                label="单车环比增幅">
+                label="单车环比增幅(%)">
               </el-table-column>
               <el-table-column
                 align="center"
-                v-if="lx.split('_').length === 2"
+                prop="clhbzf"
+                label="产量环比增幅(%)">
+              </el-table-column>
+              <el-table-column
+                align="center"
                 prop="dyltbzf"
-                label="单车同比增幅">
+                label="单车同比增幅(%)">
+              </el-table-column>
+              <el-table-column
+                align="center"
+                prop="cltbzf"
+                label="产量同比增幅(%)">
               </el-table-column>
             </el-table>
           </div>
@@ -211,14 +231,15 @@
         this.tableData = []
         let series = []
         if (this.lx.split('_').length === 2) {
+          this.legendData = ['单车实际用量', '单车同期用量', '单车上月用量', '实际产量', '同期产量', '上月产量']
           if (this.rData.dyl && this.rData.dyl.length > 0) {
             series.push({
-              name: '单车用量',
+              name: '单车实际用量',
               type: 'bar',
               data: this.rData.dyl
             })
             let obj = {}
-            obj.projectName = '单车用量'
+            obj.projectName = '单车实际用量'
             for (let i = 0; i < this.rData.dyl.length; i++) {
               let key = this.rData.xAxisData[i] + 'yue'
               obj[key] = this.rData.dyl[i]
@@ -254,6 +275,7 @@
             this.tableData.push(obj)
           }
         } else {
+          this.legendData = ['实际用量', '同期用量', '上月用量', '实际产量', '同期产量', '上月产量']
           if (this.rData.yl && this.rData.yl.length > 0) {
             series.push({
               name: '实际用量',
