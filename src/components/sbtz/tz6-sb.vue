@@ -159,7 +159,6 @@
   import fetch from 'utils/fetch'
   import {orgSystemIdDic} from 'utils/dic'
   import { Message } from 'element-ui'
-  import axios from 'axios'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -244,11 +243,7 @@
         this.$refs[formName].validate((valid) => {
             if (valid) {
               this.loading = true
-              let formData = new FormData()
-              formData.append('system_id', this.form.system_id)
-              formData.append('nian', this.form.date)
-              formData.append('file', this.importFile)
-              axios.post(api.sbSbCreate, formData).then(() => {
+              fetch('post', api.sbSbCreate, {system_id: this.form.system_id, nian: this.form.date, file: this.importFile}).then(() => {
                 this.dialogFormVisible = false
                 Message({
                   message: '保存成功',
