@@ -4,15 +4,14 @@ import { apiStatus } from '@/config'
 
 axios.defaults.withCredentials = true
 
-let fetch = (type, url, params, data = false, isFormat = true) => {
+let fetch = (type, url, params, isFormData = true, showMessage = false) => {
   let service = axios.create({
     timeout: 30000
   })
-
-  axios.defaults.headers.post['Content-Type'] = isFormat ? 'application/x-www-form-urlencoded;charset=utf-8' : 'application/json;charset=utf-8'
+  axios.defaults.headers.post['Content-Type'] = isFormData ? 'multipart/form-data;charset=utf-8' : 'application/json;charset=utf-8'
   service.interceptors.request.use(config => {
     // 需要token的在这里生成
-    // config.headers['X-Token'] = 'tokenStr'
+    // config.headers['Authorization'] = getToken()
     return config
   }, error => {
     console.log('request error', error)
@@ -29,6 +28,12 @@ let fetch = (type, url, params, data = false, isFormat = true) => {
       })
       return Promise.reject(res)
     } else {
+      if (showMessage) {
+        Message({
+          message: res.msg,
+          type: 'success'
+        })
+      }
       return res
     }
   }, error => {
@@ -44,22 +49,17 @@ let fetch = (type, url, params, data = false, isFormat = true) => {
     url: url,
     method: type
   }
-  if (data) {
+  if (type === 'get') {
     p.params = params
-    if (isFormat) {
-      let qs = require('qs')
-      data = qs.stringify(data)
-    }
-    p.data = data
   } else {
-    if (type === 'get') {
-      p.params = params
-    } else {
-      if (isFormat) {
-        let qs = require('qs')
-        params = qs.stringify(params)
+    if (isFormData) {
+      let fd = new FormData()
+      for (let o in params) {
+        fd.append(o, params[o])
       }
-      p.data = params
+      p.data = fd
+    } else {
+      p.data = JSON.stringify(params)
     }
   }
 

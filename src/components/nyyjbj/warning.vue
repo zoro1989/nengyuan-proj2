@@ -2,7 +2,7 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <select-title title1="用能单位" title2="选择时间" @search="onSearch" :showSearch="true">
+        <select-title title1="用能单位" title2="开始时间" title3="结束时间" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
             v-model="system_id"
@@ -18,13 +18,18 @@
           </el-select>
           <el-date-picker
             slot="title2"
-            v-model="selectDate"
-            range-separator="～"
-            type="daterange"
+            v-model="begin_time"
+            type="year"
             size="mini"
             value-format="yyyy-MM"
-            start-placeholder="开始日期"
-            end-placeholder="结束日期"
+            placeholder="请选择">
+          </el-date-picker>
+          <el-date-picker
+            slot="title3"
+            v-model="end_time"
+            type="year"
+            size="mini"
+            value-format="yyyy-MM"
             placeholder="请选择">
           </el-date-picker>
         </select-title>
@@ -42,20 +47,26 @@
                 label="报警部门">
               </el-table-column>
               <el-table-column
-                prop="level"
+                prop="dj"
                 label="报警等级">
               </el-table-column>
               <el-table-column
-                prop="date"
                 label="报警时间">
+                <template slot-scope="scope">
+                  <span>{{scope.row.nian}}年{{scope.row.yue}}月</span>
+                </template>
               </el-table-column>
               <el-table-column
-                prop="name"
+                prop="mc"
                 label="报警名称">
               </el-table-column>
               <el-table-column
-                prop="content"
+                prop="nr"
                 label="报警内容">
+              </el-table-column>
+              <el-table-column
+                prop="yczb"
+                label="异常指标">
               </el-table-column>
             </el-table>
           </div>
@@ -69,8 +80,8 @@
   import DataPanelTitle from 'base/data-panel-title/data-panel-title'
   import ChartPie from 'base/chart-pie/chart-pie'
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
-//  import { api } from '@/config'
-//  import fetch from 'utils/fetch'
+  import { api } from '@/config'
+  import fetch from 'utils/fetch'
   import {orgIdSimpleDic} from 'utils/dic'
 //  import {tableDataBMFilter} from 'utils/filter'
   let moment = require('moment')
@@ -92,74 +103,20 @@
         tableData: [],
         noBorder: true,
         system_id: '',
-        selectDate: '',
-        year: '',
-        month: '',
-        rData: []
+        begin_time: '',
+        end_time: ''
       }
     },
     methods: {
       onSearch() {
         this.loading = true
-        setTimeout(() => {
-          this.tableData = [
-            {
-              org: '吉林汽车',
-              level: '1',
-              date: '2018-10',
-              content: '万元产值综合能耗实际值大于计划值9.98%',
-              name: '单耗超标'
-            },
-            {
-              org: '一汽丰越',
-              level: '1',
-              date: '2018-6',
-              content: '万元产值综合能耗实际值大于计划值1.11%',
-              name: '单耗超标'
-            },
-            {
-              org: '天津夏利',
-              level: '5',
-              date: '2018-6',
-              content: '万元产值综合能耗实际值大于计划值142.66%',
-              name: '单耗超标'
-            },
-            {
-              org: '一汽模具',
-              level: '1',
-              date: '2018-6',
-              content: '万元产值综合能耗实际值大于计划值2.2%',
-              name: '单耗超标'
-            },
-            {
-              org: '吉林汽车',
-              level: '1',
-              date: '2018-6',
-              content: '实际电量大于计划电量13%',
-              name: '用量超标'
-            },
-            {
-              org: '天津夏利',
-              level: '1',
-              date: '2018-6',
-              content: '实际电量大于计划电量144%',
-              name: '用量超标'
-            }
-          ]
+        this.loading = true
+        fetch('get', api.ycFind, {id: this.system_id, begin_time: this.begin_time, end_time: this.end_time}).then((res) => {
+          this.tableData = res.data
           this.loading = false
-        }, 1000)
-//        let dateArr = this.selectDate.split('-')
-//        if (dateArr.length > 0) {
-//          this.year = dateArr[0]
-//          this.month = dateArr[1]
-//        }
-//        this.loading = true
-//        fetch('get', api.bumenyongnengfx, {id: this.system_id.join(','), year: this.year, month: this.month}).then((res) => {
-//          this.rData = res.data
-//          this.loading = false
-//        }).catch(() => {
-//          this.loading = false
-//        })
+        }).catch(() => {
+          this.loading = false
+        })
       }
     }
   }

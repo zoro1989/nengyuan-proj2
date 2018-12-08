@@ -64,7 +64,20 @@ const api = {
   sbByqList: apiPath + 'sb/byq/list',
   sbByqCreate: apiPath + 'sb/byq/create',
   sbQtList: apiPath + 'sb/qt/list',
-  sbQtCreate: apiPath + 'sb/qt/create'
+  sbQtCreate: apiPath + 'sb/qt/create',
+  jihuaCreate: apiPath + 'jihua/create',
+  ycFind: apiPath + 'api/yc/find',
+  userList: apiPath + 'api/user/list',
+  userFind: apiPath + 'api/user/find',
+  userCreate: apiPath + 'api/user/create',
+  userDelete: apiPath + 'api/user/delete',
+  userUpdate: apiPath + 'api/user/update',
+  userUfind: apiPath + 'api/user/ufind',
+  orgShow: apiPath + 'api/org/show',
+  orgFind: apiPath + 'api/org/find',
+  orgCreate: apiPath + 'api/org/create',
+  orgDelete: apiPath + 'api/org/delete',
+  orgUpdate: apiPath + 'api/org/update'
 }
 
 const apiDict = {

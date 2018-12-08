@@ -46,6 +46,10 @@ const Taizhang8Qt = () => import('components/sbtz/tz8-qt')
 
 const Warning = () => import('components/nyyjbj/warning')
 
+const Jhdr = () => import('components/jhdr/jhdr')
+const Yhgl = () => import('components/yhgl/yhgl')
+const Zzjggl = () => import('components/yhgl/zzjggl')
+
 Vue.use(Router)
 
 export default new Router({
@@ -247,6 +251,21 @@ export default new Router({
           path: 'waning',
           name: '台账',
           component: Warning
+        },
+        {
+          path: 'jhdr',
+          name: '计划导入',
+          component: Jhdr
+        },
+        {
+          path: 'yhgl',
+          name: '用户管理',
+          component: Yhgl
+        },
+        {
+          path: 'zzjggl',
+          name: '组织机构管理',
+          component: Zzjggl
         }
       ]
     }

@@ -3,6 +3,7 @@ import { api } from '@/config'
 import fetch from 'utils/fetch'
 import router from '@/router'
 const TOKEN_KEY = '__token__'
+const ROLE_KEY = '__role__'
 let timer
 export function refreshToken() {
   if (timer) {
@@ -25,6 +26,12 @@ export function setToken(tokenStr) {
 }
 export function getToken() {
   return storage.get(TOKEN_KEY, '')
+}
+export function setRole(roleStr) {
+  return storage.set(ROLE_KEY, roleStr)
+}
+export function getRole() {
+  return storage.get(ROLE_KEY, '')
 }
 export function clearToken () {
   storage.remove(TOKEN_KEY)

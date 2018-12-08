@@ -31,24 +31,63 @@
                 </el-table>
               </div>
               <div class="row">
-                <el-table
-                  :data="rList"
-                  border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
-                  <el-table-column
-                    prop="org"
-                    label="分子公司">
-                  </el-table-column>
-                  <el-table-column
-                    prop="createdAt"
-                    label="日志时间">
-                  </el-table-column>
-                  <el-table-column
-                    prop="content"
-                    label="日志内容">
-                  </el-table-column>
-                </el-table>
+                <el-tabs v-model="activeTab" type="card" style="width: 100%;">
+                  <el-tab-pane label="报警信息" name="1">
+                    <el-table
+                      class="token-table"
+                      :data="wList"
+                      border
+                      header-cell-class-name="header-cell-class-name"
+                      style="width: 99%">
+                      <el-table-column
+                        prop="org"
+                        label="报警部门">
+                      </el-table-column>
+                      <el-table-column
+                        prop="dj"
+                        label="报警等级">
+                      </el-table-column>
+                      <el-table-column
+                        label="报警时间">
+                        <template slot-scope="scope">
+                          <span>{{scope.row.nian}}年{{scope.row.yue}}月</span>
+                        </template>
+                      </el-table-column>
+                      <el-table-column
+                        prop="mc"
+                        label="报警名称">
+                      </el-table-column>
+                      <el-table-column
+                        prop="nr"
+                        label="报警内容">
+                      </el-table-column>
+                      <el-table-column
+                        prop="yczb"
+                        label="异常指标">
+                      </el-table-column>
+                    </el-table>
+                  </el-tab-pane>
+                  <el-tab-pane label="日志信息" name="2">
+                    <el-table
+                      :data="rList"
+                      border
+                      header-cell-class-name="header-cell-class-name"
+                      style="width: 99%">
+                      <el-table-column
+                        prop="org"
+                        label="分子公司">
+                      </el-table-column>
+                      <el-table-column
+                        prop="createdAt"
+                        label="日志时间">
+                      </el-table-column>
+                      <el-table-column
+                        prop="content"
+                        label="日志内容">
+                      </el-table-column>
+                    </el-table>
+                  </el-tab-pane>
+                </el-tabs>
               </div>
             </div>
           </div>
@@ -61,7 +100,7 @@
   import SelectTitle from 'base/select-title/select-title'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-  import {getToken} from 'common/js/cache'
+//  import {getToken} from 'common/js/cache'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -69,17 +108,20 @@
       SelectTitle
     },
     created() {
-      if (!getToken()) {
-        this.$router.replace('/login')
-      } else {
-        this.initData()
-      }
+//      if (!getToken()) {
+//        this.$router.replace('/login')
+//      } else {
+//        this.initData()
+//      }
+      this.initData()
     },
     data() {
       return {
         loading: false,
         rToken: [],
-        rList: []
+        rList: [],
+        wList: [],
+        activeTab: '1'
       }
     },
     methods: {
@@ -99,6 +141,12 @@
         })
         fetch('get', api.bjList, {}).then((res) => {
           this.rList = res.data.slice(0, 50)
+          this.loading = false
+        }).catch(() => {
+          this.loading = false
+        })
+        fetch('get', api.ycFind, {begin_time: moment().format('YYYY-MM'), end_time: moment().format('YYYY-MM')}).then((res) => {
+          this.wList = res.data.slice(0, 50)
           this.loading = false
         }).catch(() => {
           this.loading = false
@@ -138,7 +186,7 @@
         width: 25px
         height: 10px
       .table-box > .row
-        min-height: calc(50vh - 90px)
+        min-height: calc(50vh - 85px)
       .chart-box
         min-height: 350px
         border-radius: 0px

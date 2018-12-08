@@ -8,7 +8,7 @@
             <strong>首页</strong>
           </span>
         </li>
-        <li>
+        <li v-if="role">
           <span :class="selectMenuIndex === 1 ? 'active' : ''">
             <i class="fa fa-search"></i>
             <strong>能源综合分析</strong>
@@ -31,7 +31,7 @@
             <li><span @click="changeRoute('/home/eyhtfx', 1)"><i class="fa fa-pie-chart"></i>二氧化碳量分布</span></li>
           </ul>
         </li>
-        <li>
+        <li v-if="role">
           <span :class="selectMenuIndex === 2 ? 'active' : ''">
             <i class="fa fa-edit"></i>
             <strong>能源统计分析</strong>
@@ -45,7 +45,7 @@
             <li><span @click="changeRoute('/home/djfx', 2)"><i class="fa fa-flash"></i>电价分析</span></li>
           </ul>
         </li>
-        <li>
+        <li v-if="role">
           <span :class="selectMenuIndex === 3 ? 'active' : ''">
             <i class="fa fa-line-chart"></i>
             <strong>KPI指标分析</strong>
@@ -58,19 +58,19 @@
             <li><span @click="changeRoute('/home/kpi5', 3)"><i class="fa fa-trophy"></i>KPI评价考核表</span></li>
           </ul>
         </li>
-        <li>
+        <li v-if="role">
           <span :class="selectMenuIndex === 4 ? 'active' : ''">
             <i class="fa fa-gears"></i>
             <strong>设备能效分析</strong>
           </span>
           <ul>
-            <li><span @click="changeRoute('/home/nxbyq', 4)"><i class="fa fa-gear"></i>变压器</span></li>
-            <li><span @click="changeRoute('/home/nxkyj', 4)"><i class="fa fa-gear"></i>空压机</span></li>
-            <li><span @click="changeRoute('/home/nxfj', 4)"><i class="fa fa-gear"></i>风机</span></li>
-            <li><span @click="changeRoute('/home/nxsb', 4)"><i class="fa fa-gear"></i>水泵</span></li>
+            <li><span @click="changeRoute('/home/nxbyq', 4)"><i class="fa fa-plug"></i>变压器</span></li>
+            <li><span @click="changeRoute('/home/nxkyj', 4)"><i class="fa fa-industry"></i>空压机</span></li>
+            <li><span @click="changeRoute('/home/nxfj', 4)"><i class="fa fa-cloud"></i>风机</span></li>
+            <li><span @click="changeRoute('/home/nxsb', 4)"><i class="fa fa-tint"></i>水泵</span></li>
           </ul>
         </li>
-        <li>
+        <li v-if="role">
           <span :class="selectMenuIndex === 5 ? 'active' : ''">
             <i class="fa fa-book"></i>
             <strong>设备台账</strong>
@@ -85,21 +85,37 @@
             <li><span @click="changeRoute('/home/tz8-qt', 5)"><i class="fa fa-file-text-o"></i>其他台账</span></li>
           </ul>
         </li>
-        <li>
+        <li v-if="role">
           <span :class="selectMenuIndex === 6 ? 'active' : ''" @click="changeRoute('/home/waning', 6)">
             <i class="fa fa-bell-o"></i>
             <strong>能源预警报警</strong>
           </span>
         </li>
-        <li>
+        <li v-if="role">
           <span :class="selectMenuIndex === 7 ? 'active' : ''">
-            <i class="fa fa-gears"></i>
+            <i class="fa fa-i-cursor"></i>
             <strong>设备录入</strong>
           </span>
           <ul>
-            <li><span @click="changeRoute('/home/byq', 7)"><i class="fa fa-gear"></i>变压器</span></li>
-            <li><span @click="changeRoute('/home/kyj', 7)"><i class="fa fa-gear"></i>空压机</span></li>
-            <li><span @click="changeRoute('/home/dj', 7)"><i class="fa fa-gear"></i>电机</span></li>
+            <li><span @click="changeRoute('/home/byq', 7)"><i class="fa fa-plug"></i>变压器</span></li>
+            <li><span @click="changeRoute('/home/kyj', 7)"><i class="fa fa-industry"></i>空压机</span></li>
+            <li><span @click="changeRoute('/home/dj', 7)"><i class="fa fa-flash"></i>电机</span></li>
+          </ul>
+        </li>
+        <li v-if="role">
+          <span :class="selectMenuIndex === 8 ? 'active' : ''" @click="changeRoute('/home/jhdr', 8)">
+            <i class="fa fa-paper-plane"></i>
+            <strong>计划导入</strong>
+          </span>
+        </li>
+        <li v-if="role">
+          <span :class="selectMenuIndex === 9 ? 'active' : ''">
+            <i class="fa fa-user-o"></i>
+            <strong>系统管理</strong>
+          </span>
+          <ul>
+            <li><span @click="changeRoute('/home/yhgl', 9)"><i class="fa fa-user-o"></i>用户管理</span></li>
+            <li><span @click="changeRoute('/home/zzjggl', 9)"><i class="fa fa-sitemap"></i>组织机构管理</span></li>
           </ul>
         </li>
       </ul>
@@ -107,6 +123,7 @@
   </transition>
 </template>
 <script>
+  import {getRole} from 'common/js/cache'
   export default {
     data() {
       return {
@@ -121,6 +138,12 @@
         if (path === '/home/alarm') {
           this.selectMenuIndex = 0
         }
+      }
+    },
+    computed: {
+      role() {
+        console.log(getRole())
+        return getRole() === '1'
       }
     },
     mounted() {
@@ -141,6 +164,10 @@
         this.selectMenuIndex = 6
       } else if (path === '/home/byq' || path === '/home/kyj' || path === '/home/dj') {
         this.selectMenuIndex = 7
+      } else if (path === '/home/jhdr') {
+        this.selectMenuIndex = 8
+      } else if (path === '/home/yhgl' || path === '/home/zzjggl') {
+        this.selectMenuIndex = 9
       }
     },
     methods: {

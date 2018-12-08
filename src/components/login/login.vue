@@ -9,8 +9,12 @@
           <div class="tab-box">
             <div class="tab">
               <div class="tab-item" :class="{ active: tabIndex === 0 }" @click="tabChange(0)">能源管理分析系统</div>
-              <div class="tab-item" :class="{ active: tabIndex === 1 }" @click="tabChange(1)">能源网络查询系统</div>
-              <div class="tab-item" :class="{ active: tabIndex === 2 }" @click="tabChange(2)">能源数据直报系统</div>
+              <a href="http://10.7.62.219" target="_blank">
+                <div class="tab-item" :class="{ active: tabIndex === 1 }">能源网络查询系统</div>
+              </a>
+              <a href="http://10.7.64.219/sys/system/login.jsp" target="_blank">
+                <div class="tab-item" :class="{ active: tabIndex === 2 }">能源数据直报系统</div>
+              </a>
             </div>
             <div class="tab-panel">
               <div class="tab-title">欢迎登录</div>
@@ -34,7 +38,9 @@
 </template>
 <script>
 import { Message } from 'element-ui'
-import {setToken} from 'common/js/cache'
+import {setToken, setRole} from 'common/js/cache'
+import { api } from '@/config'
+import fetch from 'utils/fetch'
 export default {
   data() {
     return {
@@ -62,25 +68,31 @@ export default {
         })
         return
       }
-      if (this.username !== 'admin') {
+      if (this.username === 'admin' && this.password === '111111') {
+        setToken('123456')
+        setRole('1')
+        this.$router.replace('/home/alarm')
         Message({
-          message: '账号不存在',
-          type: 'error'
+          message: '登录成功',
+          type: 'success'
         })
-        return
-      }
-      if (this.password !== '111111') {
+      } else if (this.username === 'zhulin' && this.password === '111111') {
+        setToken('123456')
+        setRole('0')
+        this.$router.replace('/home/alarm')
         Message({
-          message: '账号名或密码错误',
-          type: 'error'
+          message: '登录成功',
+          type: 'success'
         })
-        return
       }
-      setToken('123456')
-      this.$router.replace('/home/alarm')
-      Message({
-        message: '登录成功',
-        type: 'success'
+      fetch('post', api.userUfind, {username: this.username, password: this.password}).then((res) => {
+        setToken('123456')
+        this.$router.replace('/home/alarm')
+        Message({
+          message: '登录成功',
+          type: 'success'
+        })
+      }).catch(() => {
       })
     }
   }
