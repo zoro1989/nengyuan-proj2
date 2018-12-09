@@ -5,7 +5,7 @@
         <select-title title1="用能单位" title2="开始时间" title3="结束时间" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
-            v-model="system_id"
+            v-model="org_id"
             class="multiple-org"
             placeholder="请选择"
             size="mini">
@@ -102,7 +102,7 @@
         options1: orgIdSimpleDic,
         tableData: [],
         noBorder: true,
-        system_id: '',
+        org_id: '',
         begin_time: '',
         end_time: ''
       }
@@ -111,7 +111,7 @@
       onSearch() {
         this.loading = true
         this.loading = true
-        fetch('get', api.ycFind, {id: this.system_id, begin_time: this.begin_time, end_time: this.end_time}).then((res) => {
+        fetch('get', api.ycFind, {org_id: this.org_id, begin_time: this.begin_time, end_time: this.end_time}).then((res) => {
           this.tableData = res.data
           this.loading = false
         }).catch(() => {
@@ -143,6 +143,8 @@
         display: inline-block
         width: 25px
         height: 10px
-      .panel-box > .row
-        min-height: calc(100vh - 160px)
+      .panel-box
+        padding-top: 10px
+        > .row
+          min-height: calc(100vh - 170px)
 </style>

@@ -134,15 +134,16 @@
       appendNode() {
         this.formAdd.pid = this.currentData.id
         fetch('post', api.orgCreate, this.formAdd, true, true).then((res) => {
-          let newId = res.data.id
-          const newChild = { id: newId, name: res.data.name, childrens: [] }
-          if (!this.currentData.childrens) {
-            this.$set(this.currentData, 'childrens', [])
-          }
-          this.currentData.childrens.push(newChild)
-          this.$nextTick(() => {
-            this.$refs.tree.setCurrentKey(newId)
-          })
+//          let newId = res.data.id
+//          const newChild = { id: newId, name: res.data.name, childrens: [] }
+//          if (!this.currentData.childrens) {
+//            this.$set(this.currentData, 'childrens', [])
+//          }
+//          this.currentData.childrens.push(newChild)
+//          this.$nextTick(() => {
+//            this.$refs.tree.setCurrentKey(newId)
+//          })
+          this.listData()
           this.addDialogVisible = false
         }).catch(() => {
         })
@@ -156,9 +157,9 @@
           .then(_ => {
             fetch('post', api.orgDelete, {id: data.id}, true, true).then((res) => {
               const parent = this.currentNode.parent
-              const children = parent.data.children || parent.data
-              const index = children.findIndex(d => d.id === this.currentData.id)
-              children.splice(index, 1)
+              const childrens = parent.data.childrens || parent.data
+              const index = childrens.findIndex(d => d.id === this.currentData.id)
+              childrens.splice(index, 1)
             }).catch(() => {
             })
           })

@@ -142,7 +142,6 @@
     },
     computed: {
       role() {
-        console.log(getRole())
         return getRole() === '1'
       }
     },

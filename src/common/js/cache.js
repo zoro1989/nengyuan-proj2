@@ -34,5 +34,5 @@ export function getRole() {
   return storage.get(ROLE_KEY, '')
 }
 export function clearToken () {
-  storage.remove(TOKEN_KEY)
+  storage.remove(ROLE_KEY)
 }
