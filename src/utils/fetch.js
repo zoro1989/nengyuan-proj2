@@ -30,7 +30,7 @@ let fetch = (type, url, params, isFormData = true, showMessage = false) => {
     } else {
       if (showMessage) {
         Message({
-          message: res.msg,
+          message: res.msg || '操作成功',
           type: 'success'
         })
       }

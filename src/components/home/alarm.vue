@@ -100,7 +100,7 @@
   import SelectTitle from 'base/select-title/select-title'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-//  import {getToken} from 'common/js/cache'
+  import {getRole} from 'common/js/cache'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -108,12 +108,11 @@
       SelectTitle
     },
     created() {
-//      if (!getToken()) {
-//        this.$router.replace('/login')
-//      } else {
-//        this.initData()
-//      }
-      this.initData()
+      if (!getRole()) {
+        this.$router.replace('/login')
+      } else {
+        this.initData()
+      }
     },
     data() {
       return {

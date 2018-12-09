@@ -38,7 +38,7 @@
 </template>
 <script>
 import { Message } from 'element-ui'
-import {setToken, setRole} from 'common/js/cache'
+import {setRole} from 'common/js/cache'
 import { api } from '@/config'
 import fetch from 'utils/fetch'
 export default {
@@ -69,16 +69,7 @@ export default {
         return
       }
       if (this.username === 'admin' && this.password === '111111') {
-        setToken('123456')
         setRole('1')
-        this.$router.replace('/home/alarm')
-        Message({
-          message: '登录成功',
-          type: 'success'
-        })
-      } else if (this.username === 'zhulin' && this.password === '111111') {
-        setToken('123456')
-        setRole('0')
         this.$router.replace('/home/alarm')
         Message({
           message: '登录成功',
@@ -86,7 +77,7 @@ export default {
         })
       }
       fetch('post', api.userUfind, {username: this.username, password: this.password}).then((res) => {
-        setToken('123456')
+        setRole(res.data.role)
         this.$router.replace('/home/alarm')
         Message({
           message: '登录成功',

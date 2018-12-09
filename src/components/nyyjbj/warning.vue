@@ -19,7 +19,7 @@
           <el-date-picker
             slot="title2"
             v-model="begin_time"
-            type="year"
+            type="month"
             size="mini"
             value-format="yyyy-MM"
             placeholder="请选择">
@@ -27,7 +27,7 @@
           <el-date-picker
             slot="title3"
             v-model="end_time"
-            type="year"
+            type="month"
             size="mini"
             value-format="yyyy-MM"
             placeholder="请选择">

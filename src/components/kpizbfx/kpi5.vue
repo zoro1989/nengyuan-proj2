@@ -90,7 +90,6 @@
 <script>
   import SelectTitle from 'base/select-title/select-title'
   import {orgSystemIdDic} from 'utils/dic'
-  import { Message } from 'element-ui'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
   let moment = require('moment')
@@ -173,11 +172,7 @@
         for (let i = 0; i < this.rList.length; i++) {
           newArr.push(JSON.stringify(this.rList[i]))
         }
-        fetch('post', api.zbKpiPjCreate, {system_id: this.system_id, date: this.date, datas: newArr.join(';')}, false, true).then((res) => {
-          Message({
-            message: '保存成功',
-            type: 'success'
-          })
+        fetch('post', api.zbKpiPjCreate, {system_id: this.system_id, date: this.date, datas: newArr.join(';')}, true, true).then((res) => {
           this.loading = false
         }).catch(() => {
           this.loading = false

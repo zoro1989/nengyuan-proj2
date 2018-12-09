@@ -14,15 +14,15 @@
                 style="width: 100%">
                 <el-table-column
                   label="用户名"
-                  prop="code">
+                  prop="userName">
                 </el-table-column>
                 <el-table-column
                   label="角色">
                   <template slot-scope="scope">
-                    <span>{{scope.row.role === 1 ? '管理员' : '普通用户'}}</span>
+                    <span>{{scope.row.role === '1' ? '管理员' : '普通用户'}}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="操作" width="130">
+                <el-table-column label="操作" width="230">
                   <template slot-scope="scope">
                     <el-button type="success" icon="el-icon-edit" circle @click="editRow(scope.$index)"></el-button>
                     <el-button icon="el-icon-search" circle @click="viewRow(scope.$index)"></el-button>
@@ -35,15 +35,15 @@
         </div>
       </div>
     </div>
-    <el-dialog title="变压器" :visible.sync="dialogFormVisible" :append-to-body="true">
-      <el-form :model="form">
-        <el-form-item label="用户名" :label-width="formLabelWidth">
+    <el-dialog title="信息" :visible.sync="dialogFormVisible" :append-to-body="true">
+      <el-form :model="form" :rules="rules" ref="ruleForm">
+        <el-form-item label="用户名" :label-width="formLabelWidth" prop="username">
           <el-input v-model="form.username" :disabled="isFormReadOnly" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="密码" :label-width="formLabelWidth">
+        <el-form-item label="密码" :label-width="formLabelWidth" v-if="!isFormReadOnly" prop="password">
           <el-input v-model="form.password" :disabled="isFormReadOnly" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="角色" :label-width="formLabelWidth">
+        <el-form-item label="角色" :label-width="formLabelWidth" prop="role">
           <el-select
             :disabled="isFormReadOnly"
             v-model="form.role"
@@ -55,7 +55,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">{{isFormReadOnly ? '关 闭' : '取 消'}}</el-button>
-        <el-button type="primary" @click="onSave" v-if="!isFormReadOnly">确 定</el-button>
+        <el-button type="primary" @click="onSave('ruleForm')" v-if="!isFormReadOnly">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -85,7 +85,18 @@
         formLabelWidth: '120px',
         isFormReadOnly: false,
         dialogFormVisible: false,
-        form: {}
+        form: {},
+        rules: {
+          'username': [
+            { required: true, message: '请填写用户名', trigger: 'blur' }
+          ],
+          'password': [
+            { required: true, message: '请填写密码', trigger: 'blur' }
+          ],
+          'role': [
+            { required: true, message: '请选择角色', trigger: 'blur' }
+          ]
+        }
       }
     },
     methods: {
@@ -99,40 +110,56 @@
         this.isFormReadOnly = false
         fetch('get', api.userFind, {id: this.tableData[index].id}).then((res) => {
           this.form = res.data
+          this.form.username = res.data.userName
         }).catch(() => {
         })
       },
       viewRow(index) {
         this.dialogFormVisible = true
         this.isFormReadOnly = true
-        this.form = this.tableData[index]
+        fetch('get', api.userFind, {id: this.tableData[index].id}).then((res) => {
+          this.form = res.data
+          this.form.username = res.data.userName
+        }).catch(() => {
+        })
       },
       deleteRow(index) {
         this.$confirm('确认要删除该用户吗？')
           .then(_ => {
-            fetch('post', api.userDelete, {id: this.tableData[index].id}, false, true).then((res) => {
+            fetch('post', api.userDelete, {id: this.tableData[index].id}, true, true).then((res) => {
               this.tableData.splice(index, 1)
             }).catch(() => {
             })
           })
           .catch(_ => {})
       },
-      onSave() {
-        if (this.form.id) {
-          fetch('post', api.userUpdate, this.form).then((res) => {
-            this.fetchData()
-            this.dialogFormVisible = false
-          }).catch(() => {
-            this.dialogFormVisible = false
-          })
-        } else {
-          fetch('post', api.userCreate, this.form).then((res) => {
-            this.fetchData()
-            this.dialogFormVisible = false
-          }).catch(() => {
-            this.dialogFormVisible = false
-          })
-        }
+      onSave(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            this.loading = true
+            if (this.form.id) {
+              fetch('post', api.userUpdate, this.form, true, true).then((res) => {
+                this.loading = false
+                this.dialogFormVisible = false
+                this.fetchData()
+              }).catch(() => {
+                this.loading = false
+                this.dialogFormVisible = false
+              })
+            } else {
+              fetch('post', api.userCreate, this.form, true, true).then((res) => {
+                this.loading = false
+                this.dialogFormVisible = false
+                this.fetchData()
+              }).catch(() => {
+                this.loading = false
+                this.dialogFormVisible = false
+              })
+            }
+          } else {
+            return false
+          }
+        })
       },
       fetchData() {
         this.loading = true

@@ -218,12 +218,8 @@
         this.$refs[formName].validate((valid) => {
             if (valid) {
               this.loading = true
-              fetch('post', api.sbByqCreate, {system_id: this.form.system_id, nian: this.form.date, file: this.importFile}).then(() => {
+              fetch('post', api.sbByqCreate, {system_id: this.form.system_id, nian: this.form.date, file: this.importFile}, true, true).then(() => {
                 this.dialogFormVisible = false
-                Message({
-                  message: '保存成功',
-                  type: 'success'
-                })
                 this.loading = false
                 this.date = this.form.date
                 this.system_id = this.form.system_id
@@ -231,11 +227,6 @@
               }).catch(() => {
                 this.loading = false
               })
-//              fetch('post', api.sbLyCreate, {system_id: this.form.system_id, date: this.form.date, file: this.importFile}).then((res) => {
-//                this.loading = false
-//              }).catch(() => {
-//                this.loading = false
-//              })
             } else {
               return false
             }

@@ -104,10 +104,7 @@
         treeData: [],
         isFormReadOnly: true,
         info: {},
-        formAdd: {
-          name: '',
-          system: ''
-        },
+        formAdd: {},
         formLabelWidth: '140px',
         deleteDialogVisible: false,
         addDialogVisible: false,
@@ -135,16 +132,14 @@
         this.addDialogVisible = true
       },
       appendNode() {
-        this.info.name = this.formAdd.name
-        this.info.system = this.formAdd.system
-        this.info.pid = this.currentData.id
-        fetch('post', api.orgCreate, this.info).then((res) => {
+        this.formAdd.pid = this.currentData.id
+        fetch('post', api.orgCreate, this.formAdd, true, true).then((res) => {
           let newId = res.data.id
-          const newChild = { id: newId, name: res.data.name, children: [] }
-          if (!this.currentData.children) {
-            this.$set(this.currentData, 'children', [])
+          const newChild = { id: newId, name: res.data.name, childrens: [] }
+          if (!this.currentData.childrens) {
+            this.$set(this.currentData, 'childrens', [])
           }
-          this.currentData.children.push(newChild)
+          this.currentData.childrens.push(newChild)
           this.$nextTick(() => {
             this.$refs.tree.setCurrentKey(newId)
           })
@@ -154,11 +149,12 @@
       },
       edit(data) {
         this.isFormReadOnly = false
+        this.getInfo(data.id)
       },
       remove(node, data) {
         this.$confirm('是否删除节点？（子节点也将被删除）')
           .then(_ => {
-            fetch('post', api.orgDelete + data.id, {}).then((res) => {
+            fetch('post', api.orgDelete, {id: data.id}, true, true).then((res) => {
               const parent = this.currentNode.parent
               const children = parent.data.children || parent.data
               const index = children.findIndex(d => d.id === this.currentData.id)
@@ -206,6 +202,8 @@
         })
       },
       handleCommand(command) {
+        this.currentData = command.data
+        this.currentNode = command.node
         if (command.name === 'append') {
           this.append(command.data)
         } else if (command.name === 'edit') {
