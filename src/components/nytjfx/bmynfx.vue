@@ -30,8 +30,9 @@
       </div>
       <div class="col-box-left-right-bottom">
         <div class="panel-box" v-loading="loading">
-          <div class="row" ref="row">
+          <report-table class="row" ref="row" className="table1" reportName="部门用能分析">
             <el-table
+              slot="table"
               :data="filterRData"
               border
               header-cell-class-name="header-cell-class-name"
@@ -99,7 +100,7 @@
                 </el-table-column>
               </el-table-column>
             </el-table>
-          </div>
+          </report-table>
         </div>
       </div>
     </div>
@@ -114,6 +115,7 @@
   import fetch from 'utils/fetch'
   import {orgIdSimpleDic} from 'utils/dic'
   import {tableDataBMFilter} from 'utils/filter'
+  import ReportTable from 'base/report-table/report-table'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -121,7 +123,8 @@
       SelectTitle,
       ChartPie,
       DataPanelTitle,
-      ChartBarLine
+      ChartBarLine,
+      ReportTable
     },
     created() {
     },

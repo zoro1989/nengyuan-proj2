@@ -40,8 +40,9 @@
                                 :yAxis="y"
                                 :titleText="chartTitle"></chart-bar-line>
               </div>
-              <div class="row" ref="row">
+              <report-table class="row" ref="row" className="table1" reportName="电价分析">
                 <el-table
+                  slot="table"
                   :data="rData.list"
                   border
                   header-cell-class-name="header-cell-class-name"
@@ -67,7 +68,7 @@
                     label="电量(万千瓦时)">
                   </el-table-column>
                 </el-table>
-              </div>
+              </report-table>
             </div>
           </div>
         </div>
@@ -83,6 +84,7 @@
   import { api } from '@/config'
   import fetch from 'utils/fetch'
   import {orgIdSimpleDic} from 'utils/dic'
+  import ReportTable from 'base/report-table/report-table'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -90,7 +92,8 @@
       SelectTitle,
       ChartPie,
       DataPanelTitle,
-      ChartBarLine
+      ChartBarLine,
+      ReportTable
     },
     created() {
     },

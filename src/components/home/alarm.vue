@@ -70,12 +70,12 @@
                         prop="nr"
                         label="报警内容">
                       </el-table-column>
-                      <el-table-column
-                        align="center"
-                        width="250"
-                        prop="yczb"
-                        label="异常指标">
-                      </el-table-column>
+                      <!--<el-table-column-->
+                        <!--align="center"-->
+                        <!--width="250"-->
+                        <!--prop="yczb"-->
+                        <!--label="异常指标">-->
+                      <!--</el-table-column>-->
                     </el-table>
                   </el-tab-pane>
                   <el-tab-pane label="日志信息" name="2">

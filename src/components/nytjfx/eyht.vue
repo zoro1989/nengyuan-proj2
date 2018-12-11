@@ -50,8 +50,9 @@
                                 :yAxis="yAxis"
                                 :titleText="chartTitle"></chart-bar-line>
               </div>
-              <div class="row">
+              <report-table class="row" className="table1" reportName="二氧化碳分析">
                 <el-table
+                  slot="table"
                   :data="filterTableData"
                   border
                   header-cell-class-name="header-cell-class-name"
@@ -74,11 +75,12 @@
                     :label="item + '月'">
                   </el-table-column>
                 </el-table>
-              </div>
+              </report-table>
             </div>
-            <div class="col-lg-4 col-md-12 table-box box-right">
-              <data-panel-title title="分析结果" :noBorder="noBorder"></data-panel-title>
+            <report-table class="col-lg-4 col-md-12 table-box box-right" className="table2" reportName="二氧化碳分析结果">
+              <data-panel-title slot="title" title="分析结果" :noBorder="noBorder"></data-panel-title>
               <el-table
+                slot="table"
                 :data="rData.zf"
                 border
                 header-cell-class-name="header-cell-class-name"
@@ -123,7 +125,7 @@
                   label="单车碳同比增幅(%)">
                 </el-table-column>
               </el-table>
-            </div>
+            </report-table>
           </div>
         </div>
       </div>
@@ -139,6 +141,7 @@
   import fetch from 'utils/fetch'
   import {orgIdDic, lxTanDic, chartColors} from 'utils/dic'
   import {tableDataFilter} from 'utils/filter'
+  import ReportTable from 'base/report-table/report-table'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -146,7 +149,8 @@
       SelectTitle,
       ChartPie,
       DataPanelTitle,
-      ChartBarLine
+      ChartBarLine,
+      ReportTable
     },
     created() {
     },
