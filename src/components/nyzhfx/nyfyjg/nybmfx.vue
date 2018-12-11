@@ -62,8 +62,9 @@
                              :seriesData="rData.bjq_pie && rData.bjq_pie.seriesData"></chart-pie>
                 </div>
               </div>
-              <div class="row">
+              <report-table class="row" className="table1" :reportName="type === 'nh' ? '部门能源消耗结构' : '部门能源费用结构'">
                 <el-table
+                  slot="table"
                   v-if="type === 'nh'"
                   :data="sortTable(rData.list)"
                   border
@@ -108,6 +109,7 @@
                   </el-table-column>
                 </el-table>
                 <el-table
+                  slot="table"
                   v-if="type === 'fy'"
                   :data="sortTable(rData.list)"
                   border
@@ -151,7 +153,7 @@
                     </el-table-column>
                   </el-table-column>
                 </el-table>
-              </div>
+              </report-table>
             </div>
             <!--<div class="col-lg-4 col-md-12 table-box box-right">-->
               <!--<data-panel-title title="分析结果" :noBorder="noBorder"></data-panel-title>-->
@@ -167,6 +169,7 @@
   import DataPanelTitle from 'base/data-panel-title/data-panel-title'
   import ChartPie from 'base/chart-pie/chart-pie'
   import {filter, tableDataFilter} from 'utils/filter'
+  import ReportTable from 'base/report-table/report-table'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
   let moment = require('moment')
@@ -175,7 +178,8 @@
     components: {
       SelectTitle,
       ChartPie,
-      DataPanelTitle
+      DataPanelTitle,
+      ReportTable
     },
     created() {
 //      setTimeout(() => {

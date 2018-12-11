@@ -73,12 +73,12 @@
                 prop="nr"
                 label="报警内容">
               </el-table-column>
-              <el-table-column
-                align="center"
-                prop="yczb"
-                width="250"
-                label="异常指标">
-              </el-table-column>
+              <!--<el-table-column-->
+                <!--align="center"-->
+                <!--prop="yczb"-->
+                <!--width="250"-->
+                <!--label="异常指标">-->
+              <!--</el-table-column>-->
             </el-table>
           </div>
         </div>

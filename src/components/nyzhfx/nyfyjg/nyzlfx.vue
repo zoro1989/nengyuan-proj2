@@ -57,13 +57,14 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-lg-6 col-md-12">
+                <report-table class="col-lg-6 col-md-12" className="table1" :reportName="type === 'nh' ? '种类能源消耗结构-基础期' : '种类能源费用结构-基础期'">
                   <el-table
+                    slot="table"
                     v-if="type === 'nh'"
                     :data="filterJcqData"
                     border
                     header-cell-class-name="header-cell-class-name"
-                    style="width: 98%">
+                    style="width: 98%; margin-left: 2%">
                     <el-table-column
                       align="center"
                       prop="nyzl"
@@ -86,11 +87,12 @@
                     </el-table-column>
                   </el-table>
                   <el-table
+                    slot="table"
                     v-if="type === 'fy'"
                     :data="filterJcqData"
                     border
                     header-cell-class-name="header-cell-class-name"
-                    style="width: 98%">
+                    style="width: 98%; margin-left: 2%">
                     <el-table-column
                       align="center"
                       prop="fyzl"
@@ -112,14 +114,15 @@
                       label="占比（%）">
                     </el-table-column>
                   </el-table>
-                </div>
-                <div class="col-lg-6 col-md-12">
+                </report-table>
+                <report-table class="col-lg-6 col-md-12" className="table2" :reportName="type === 'nh' ? '种类能源消耗结构-比较期' : '种类能源费用结构-比较期'">
                   <el-table
+                    slot="table"
                     v-if="type === 'nh'"
                     :data="filterBjqData"
                     border
                     header-cell-class-name="header-cell-class-name"
-                    style="width: 98%">
+                    style="width: 98%; margin-left: 2%">
                     <el-table-column
                       align="center"
                       prop="nyzl"
@@ -142,11 +145,12 @@
                     </el-table-column>
                   </el-table>
                   <el-table
+                    slot="table"
                     v-if="type === 'fy'"
                     :data="filterBjqData"
                     border
                     header-cell-class-name="header-cell-class-name"
-                    style="width: 98%">
+                    style="width: 98%; margin-left: 2%">
                     <el-table-column
                       align="center"
                       prop="fyzl"
@@ -168,12 +172,13 @@
                       label="占比（%）">
                     </el-table-column>
                   </el-table>
-                </div>
+                </report-table>
               </div>
             </div>
-            <div class="col-lg-4 col-md-12 table-box box-right">
-              <data-panel-title :title="type === 'nh' ? '能源消耗结构增幅分析' : '能源费用结构增幅分析'" :noBorder="noBorder"></data-panel-title>
+            <report-table class="col-lg-4 col-md-12 table-box box-right" className="table3" :reportName="type === 'nh' ? '能源消耗结构增幅分析' : '能源费用结构增幅分析'">
+              <data-panel-title slot="title" :title="type === 'nh' ? '能源消耗结构增幅分析' : '能源费用结构增幅分析'" :noBorder="noBorder"></data-panel-title>
               <el-table
+                slot="table"
                 v-if="type === 'nh'"
                 :data="rData.list_zf"
                 border
@@ -191,6 +196,7 @@
                 </el-table-column>
               </el-table>
               <el-table
+                slot="table"
                 v-if="type === 'fy'"
                 :data="rData.list_zf"
                 border
@@ -207,7 +213,7 @@
                   label="增幅率">
                 </el-table-column>
               </el-table>
-            </div>
+            </report-table>
           </div>
         </div>
       </div>
@@ -222,13 +228,15 @@
   import fetch from 'utils/fetch'
   import {orgSystemIdDic} from 'utils/dic'
   import {tableDataFilter} from 'utils/filter'
+  import ReportTable from 'base/report-table/report-table'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
     components: {
       SelectTitle,
       ChartPie,
-      DataPanelTitle
+      DataPanelTitle,
+      ReportTable
     },
     created() {
       this.fetchData()

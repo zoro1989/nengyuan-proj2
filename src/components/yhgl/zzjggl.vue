@@ -65,16 +65,7 @@
                   <el-radio v-model="formAdd.system" label="10">之后子公司</el-radio>
                 </el-form-item>
                 <el-form-item label="直报系统公司" :label-width="formLabelWidth" prop="system_id">
-                  <el-select
-                    v-model="formAdd.system_id"
-                    placeholder="请选择">
-                    <el-option
-                      v-for="item in options1"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value">
-                    </el-option>
-                  </el-select>
+                  <el-input v-model="formAdd.system_id" type="number" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="公司等级" :label-width="formLabelWidth">
                   <el-input v-model="formAdd.levels" auto-complete="off"></el-input>

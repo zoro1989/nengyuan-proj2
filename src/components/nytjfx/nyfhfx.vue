@@ -71,8 +71,9 @@
                   <span>平均值：{{avgVal}}</span>
                 </div>
               </div>
-              <div class="row">
+              <report-table class="row" className="table1" reportName="能源负荷分析">
                 <el-table
+                  slot="table"
                   :data="tableData"
                   border
                   header-cell-class-name="header-cell-class-name"
@@ -95,7 +96,7 @@
                     :label="month ? item + '日' : item + '月'">
                   </el-table-column>
                 </el-table>
-              </div>
+              </report-table>
             </div>
             <!--<div class="col-lg-4 col-md-12 table-box box-right">-->
               <!--<data-panel-title title="分析结果" :noBorder="noBorder"></data-panel-title>-->
@@ -114,6 +115,7 @@
   import { api } from '@/config'
   import fetch from 'utils/fetch'
   import {orgSystemIdDic, lxrdDic, monthDic, chartColors} from 'utils/dic'
+  import ReportTable from 'base/report-table/report-table'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -121,7 +123,8 @@
       SelectTitle,
       ChartPie,
       DataPanelTitle,
-      ChartBarLine
+      ChartBarLine,
+      ReportTable
     },
     created() {
     },
