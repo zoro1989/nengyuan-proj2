@@ -61,7 +61,7 @@
                 </el-table-column>
                 <el-table-column
                   align="center"
-                  label="负载率（β%）">
+                  label="用电单耗(千万时/立方米)">
                   <el-table-column
                     prop="hege"
                     align="center"
@@ -112,7 +112,7 @@
                   label="容量（KVA）">
                 </el-table-column>
                 <el-table-column
-                  label="负载率（β%）">
+                  label="用电单耗(千万时/立方米)">
                   <el-table-column
                     prop="hege"
                     align="center"

@@ -33,8 +33,9 @@
               <el-button class="search-btn" icon="el-icon-plus" type="primary" size="mini" @click="onAdd">新增</el-button>
               <el-button class="search-btn" type="primary" size="mini" @click="onSave">
                 <i class="fa fa-save"></i>保存</el-button>
-              <div class="row">
+              <report-table class="row" className="table1" reportName="评价考核表">
                 <el-table
+                  slot="table"
                   class="token-table"
                   show-summary
                   :summary-method="getSummaries"
@@ -79,7 +80,7 @@
                     </template>
                   </el-table-column>
                 </el-table>
-              </div>
+              </report-table>
             </div>
           </div>
         </div>
@@ -92,11 +93,13 @@
   import {orgSystemIdDic} from 'utils/dic'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
+  import ReportTable from 'base/report-table/report-table'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
     components: {
-      SelectTitle
+      SelectTitle,
+      ReportTable
     },
     data() {
       return {
