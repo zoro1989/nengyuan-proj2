@@ -40,28 +40,39 @@
                       header-cell-class-name="header-cell-class-name"
                       style="width: 99%">
                       <el-table-column
+                        align="center"
+                        width="250"
                         prop="org"
                         label="报警部门">
                       </el-table-column>
                       <el-table-column
+                        align="center"
+                        width="100"
                         prop="dj"
                         label="报警等级">
                       </el-table-column>
                       <el-table-column
+                        align="center"
+                        width="180"
                         label="报警时间">
                         <template slot-scope="scope">
                           <span>{{scope.row.nian}}年{{scope.row.yue}}月</span>
                         </template>
                       </el-table-column>
                       <el-table-column
+                        width="180"
+                        align="center"
                         prop="mc"
                         label="报警名称">
                       </el-table-column>
                       <el-table-column
+                        align="center"
                         prop="nr"
                         label="报警内容">
                       </el-table-column>
                       <el-table-column
+                        align="center"
+                        width="250"
                         prop="yczb"
                         label="异常指标">
                       </el-table-column>
@@ -74,14 +85,17 @@
                       header-cell-class-name="header-cell-class-name"
                       style="width: 99%">
                       <el-table-column
+                        align="center"
                         prop="org"
                         label="分子公司">
                       </el-table-column>
                       <el-table-column
+                        align="center"
                         prop="createdAt"
                         label="日志时间">
                       </el-table-column>
                       <el-table-column
+                        align="center"
                         prop="content"
                         label="日志内容">
                       </el-table-column>

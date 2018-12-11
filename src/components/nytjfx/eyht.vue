@@ -57,6 +57,7 @@
                   header-cell-class-name="header-cell-class-name"
                   style="width: 99%">
                   <el-table-column
+                    header-align="center"
                     prop="projectName"
                     min-width="120"
                     label="项目名称">
@@ -90,36 +91,36 @@
                 <el-table-column
                   align="center"
                   prop="clhbzf"
-                  label="产量环比增幅">
+                  label="产量环比增幅(%)">
                 </el-table-column>
                 <el-table-column
                   align="center"
                   prop="cltbzf"
-                  label="产量同比增幅">
+                  label="产量同比增幅(%)">
                 </el-table-column>
                 <el-table-column
                   align="center"
                   v-if="lx !== 'dtan'"
                   prop="tanhbzf"
-                  label="碳环比增幅">
+                  label="碳环比增幅(%)">
                 </el-table-column>
                 <el-table-column
                   align="center"
                   v-if="lx !== 'dtan'"
                   prop="tantbzf"
-                  label="碳同比增幅">
+                  label="碳同比增幅(%)">
                 </el-table-column>
                 <el-table-column
                   align="center"
                   v-if="lx === 'dtan'"
                   prop="dtanhbzf"
-                  label="单车碳环比增幅">
+                  label="单车碳环比增幅(%)">
                 </el-table-column>
                 <el-table-column
                   align="center"
                   v-if="lx === 'dtan'"
                   prop="dtantbzf"
-                  label="单车碳同比增幅">
+                  label="单车碳同比增幅(%)">
                 </el-table-column>
               </el-table>
             </div>

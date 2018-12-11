@@ -78,6 +78,7 @@
                   header-cell-class-name="header-cell-class-name"
                   style="width: 99%">
                   <el-table-column
+                    header-align="center"
                     prop="projectName"
                     min-width="200"
                     label="项目名称">

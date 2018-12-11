@@ -80,6 +80,7 @@
                 style="width: 99%">
                 <el-table-column
                   prop="projectName"
+                  header-align="center"
                   min-width="200"
                   label="项目名称">
                   <template slot-scope="scope">

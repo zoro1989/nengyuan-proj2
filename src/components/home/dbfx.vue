@@ -91,13 +91,13 @@ export default {
   computed: {
     yAxis() {
       if (this.lx === 'D_D') {
-        return [{name: '万千瓦时'}]
+        return [{name: '千瓦时/辆'}]
       } else if (this.lx === 'S_D') {
-        return [{name: '吨'}]
+        return [{name: '吨/辆'}]
       } else if (this.lx === 'R_D') {
-        return [{name: '吉焦'}]
+        return [{name: '吉焦/辆'}]
       } else if (this.lx === 'Q_D') {
-        return [{name: '万立方米'}]
+        return [{name: '立方米/辆'}]
       } else {
         return []
       }

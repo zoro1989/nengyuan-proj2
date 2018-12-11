@@ -135,9 +135,9 @@
             <chart-line class="chart-l"
                         :titleText="chartTitle + '能源消耗总量'"
                         yAxisTitle="吨/标煤"
-                        :yAxis="bData.nys && bData.nys.y"
-                        :xAxisData="bData.nys && bData.nys.xAxisData"
-                        :series="bData.nys && bData.nys.seriesData"
+                        :yAxis="bData.allnys && bData.allnys.y"
+                        :xAxisData="bData.allnys && bData.allnys.xAxisData"
+                        :series="bData.allnys && bData.allnys.seriesData"
                         chartColor="#5a63ee"></chart-line>
           </div>
         </div>
@@ -234,9 +234,9 @@
                         :titleText="chartTitle + '能源消耗总量'"
                         :legendData="legendData"
                         yAxisTitle="吨标煤"
-                        :yAxis="bData.nys && bData.nys.y"
-                        :xAxisData="bData.nys && bData.nys.xAxisData"
-                        :series="bData.nys && bData.nys.seriesData"
+                        :yAxis="bData.allnys && bData.allnys.y"
+                        :xAxisData="bData.allnys && bData.allnys.xAxisData"
+                        :series="bData.allnys && bData.allnys.seriesData"
                         chartColor="#4a14dd"
                         :stack="'1'"></chart-bar>
           </div>
@@ -362,7 +362,7 @@ export default {
             name: '单车综合能耗',
             data: data.dnys.seriesData
           }]
-          data.dnys.y = [{name: '吨标煤'}]
+          data.dnys.y = [{name: '吨标煤/辆'}]
         }
         if (data.dfys && data.dfys.seriesData) {
           data.dfys.seriesData = [{
@@ -376,14 +376,14 @@ export default {
             name: '单车电',
             data: data.dds.seriesData
           }]
-          data.dds.y = [{name: '千瓦时/量'}]
+          data.dds.y = [{name: '千瓦时/辆'}]
         }
         if (data.dss && data.dss.seriesData) {
           data.dss.seriesData = [{
             name: '单车水',
-            data: data.dds.seriesData
+            data: data.dss.seriesData
           }]
-          data.dds.y = [{name: '升/辆'}]
+          data.dss.y = [{name: '升/辆'}]
         }
         if (data.drs && data.drs.seriesData) {
           data.drs.seriesData = [{
@@ -401,7 +401,8 @@ export default {
         }
         if (data.nys && data.nys.seriesData &&
           data.fnys && data.fnys.seriesData) {
-          data.nys.seriesData = [
+          data.allnys = {}
+          data.allnys.seriesData = [
             {
               name: '生产消耗',
               data: data.nys.seriesData
@@ -411,7 +412,8 @@ export default {
               data: data.fnys.seriesData
             }
           ]
-          data.fnys.y = [{name: '吨标煤'}]
+          data.allnys.xAxisData = data.nys.xAxisData
+          data.allnys.y = [{name: '吨标煤'}]
         }
         this.bData = data
       }).catch(() => {

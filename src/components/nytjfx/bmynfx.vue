@@ -38,6 +38,7 @@
               style="width: 99%">
               <el-table-column
                 prop="org"
+                align="center"
                 min-width="150"
                 label="用能单位">
               </el-table-column>

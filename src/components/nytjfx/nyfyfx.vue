@@ -90,22 +90,22 @@
                 <el-table-column
                   align="center"
                   prop="fyhbzf"
-                  label="费用环比增幅">
+                  label="费用环比增幅(%)">
                 </el-table-column>
                 <el-table-column
                   align="center"
                   prop="clhbzf"
-                  label="产量环比增幅">
+                  label="产量环比增幅(%)">
                 </el-table-column>
                 <el-table-column
                   align="center"
                   prop="fytbzf"
-                  label="费用同比增幅">
+                  label="费用同比增幅(%)">
                 </el-table-column>
                 <el-table-column
                   align="center"
                   prop="cltbzf"
-                  label="产量同比增幅">
+                  label="产量同比增幅(%)">
                 </el-table-column>
               </el-table>
             </div>

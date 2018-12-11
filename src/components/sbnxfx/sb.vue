@@ -6,6 +6,7 @@
           <el-select
             slot="title1"
             v-model="system_id"
+            @change="selectChange"
             clearable
             placeholder="请选择"
             size="mini">
@@ -19,9 +20,9 @@
           <el-date-picker
             slot="title2"
             v-model="time"
-            :type="system_id ? 'year' : 'month'"
+            :type="system_id !== '1' ? 'year' : 'month'"
             size="mini"
-            :value-format="system_id ? 'yyyy' : 'yyyy-MM'"
+            :value-format="system_id !== '1' ? 'yyyy' : 'yyyy-MM'"
             placeholder="选择日期">
           </el-date-picker>
         </select-title>
@@ -34,7 +35,7 @@
               <el-table
                 :data="rData"
                 key="table1"
-                v-if="!system_id"
+                v-if="system_id === '1'"
                 border
                 :header-cell-style="headerCellStyle"
                 header-cell-class-name="header-cell-class-name"
@@ -79,11 +80,11 @@
                 </el-table-column>
               </el-table>
               <data-panel-title
-                v-if="rData2 && rData2.length > 0 && !system_id"
+                v-if="rData2 && rData2.length > 0 && system_id === '1'"
                 :title="subTitle + '部门水泵能效分析'"
                 :noBorder="noBorder"></data-panel-title>
               <el-table
-                v-if="rData2 && rData2.length > 0 && !system_id"
+                v-if="rData2 && rData2.length > 0 && system_id === '1'"
                 :data="rData2"
                 key="table2"
                 border
@@ -131,11 +132,11 @@
                 </el-table-column>
               </el-table>
               <data-panel-title
-                v-if="!system_id && (rData3 && rData3.length > 0)"
+                v-if="system_id === '1' && (rData3 && rData3.length > 0)"
                 :title="subSubTitle + '变压器能效分析'"
                 :noBorder="noBorder"></data-panel-title>
               <el-table
-                v-if="system_id || (rData3 && rData3.length > 0)"
+                v-if="system_id !== '1' || (rData3 && rData3.length > 0)"
                 :data="rData3"
                 key="table3"
                 border
@@ -289,25 +290,21 @@
           return this.system_id === item.value
         })
         let orgName = orgId >= 0 ? this.options1[orgId].label : ''
-        if (orgName) {
-          return orgName + '水泵电机负荷率能效分析'
-        } else {
-          return '集团公司水泵电机负荷率能效分析'
-        }
+        return orgName + '水泵电机负荷率能效分析'
       }
     },
     methods: {
       headerCellStyle(cell) {
         if (cell.rowIndex === 1 && cell.columnIndex === 0) {
-          return 'background: #67C23A; color: #fff'
+          return 'background: #67C23A;'
         } else if (cell.rowIndex === 1 && cell.columnIndex === 1) {
-          return 'background: #F56C6C; color: #fff'
+          return 'background: #F56C6C;'
         } else if (cell.rowIndex === 1 && cell.columnIndex === 2) {
-          return 'background: #E6A23C; color: #fff'
+          return 'background: #FFFF00;'
         }
       },
       onSearch() {
-        if (this.system_id) {
+        if (this.system_id !== '1') {
           this.byqList(this.system_id)
         } else {
           this.loading = true
@@ -368,6 +365,12 @@
         }).catch(() => {
           this.loading = false
         })
+      },
+      selectChange() {
+        this.time = ''
+        this.rData = []
+        this.rData2 = []
+        this.rData3 = []
       }
     }
   }
@@ -399,13 +402,10 @@
         align-items: center
         &.red
           background: #F56C6C
-          color: #fff
         &.yellow
-          background: #E6A23C
-          color: #fff
+          background: #FFFF00
         &.green
           background: #67C23A
-          color: #fff
       .org-title
         &:hover
           cursor: pointer

@@ -43,29 +43,40 @@
               header-cell-class-name="header-cell-class-name"
               style="width: 99%">
               <el-table-column
+                align="center"
+                width="250"
                 prop="org"
                 label="报警部门">
               </el-table-column>
               <el-table-column
+                align="center"
                 prop="dj"
+                width="100"
                 label="报警等级">
               </el-table-column>
               <el-table-column
+                align="center"
+                width="180"
                 label="报警时间">
                 <template slot-scope="scope">
                   <span>{{scope.row.nian}}年{{scope.row.yue}}月</span>
                 </template>
               </el-table-column>
               <el-table-column
+                align="center"
                 prop="mc"
+                width="180"
                 label="报警名称">
               </el-table-column>
               <el-table-column
+                align="center"
                 prop="nr"
                 label="报警内容">
               </el-table-column>
               <el-table-column
+                align="center"
                 prop="yczb"
+                width="250"
                 label="异常指标">
               </el-table-column>
             </el-table>
