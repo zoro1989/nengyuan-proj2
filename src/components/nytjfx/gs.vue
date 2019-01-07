@@ -2,19 +2,15 @@
   <div class="info">
     <div class="col-box">
       <select-title title1="用能单位" title2="选择时间" title3="能源类型" @search="onSearch" :showSearch="true">
-        <el-select
+        <el-cascader
           slot="title1"
+          change-on-select
+          :options="options1"
+          :show-all-levels="false"
           v-model="system_id"
           placeholder="请选择"
-          size="mini"
-          @change="selectChange">
-          <el-option
-            v-for="item in options1"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
+          size="mini">
+        </el-cascader>
         <span slot="title2">
           <el-date-picker
             v-model="year"
@@ -114,7 +110,7 @@
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-  import {orgSystemIdDic, lxdDic, monthDic, chartColors} from 'utils/dic'
+  import {orgSystemIdDicCasc, lxdDic, monthDic, chartColors} from 'utils/dic'
   import ReportTable from 'base/report-table/report-table'
   let moment = require('moment')
   moment.locale('zh-cn')
@@ -139,7 +135,7 @@
         valueYear: '',
         valueMonth: '',
         valueSelect: '',
-        options1: orgSystemIdDic,
+        options1: orgSystemIdDicCasc,
         options2: lxdDic,
         options3: monthDic,
         tableData: [],
@@ -147,7 +143,7 @@
         noBorder: true,
         calendarData: [],
         lx: '33',
-        system_id: '',
+        system_id: [],
         year: '',
         month: '',
         rData: {},
@@ -183,10 +179,22 @@
         }
       },
       chartTitle() {
-        let orgId = this.options1.findIndex((item) => {
-          return this.system_id === item.value
+//        let orgId = this.options1.findIndex((item) => {
+//          return this.system_id === item.value
+//        })
+        let orgName = ''
+        this.options1.map((item) => {
+          if (this.system_id.length > 0 && this.system_id[this.system_id.length - 1] === item.value) {
+            orgName = item.label
+          }
+          if (item.children && item.children.length > 0 && this.system_id.length > 1) {
+            item.children.map((i) => {
+              if (this.system_id.length > 0 && this.system_id[this.system_id.length - 1] === i.value) {
+                orgName = i.label
+              }
+            })
+          }
         })
-        let orgName = orgId >= 0 ? this.options1[orgId].label : ''
         let lxId = this.options2.findIndex((item) => {
           return this.lx === item.value
         })
@@ -219,7 +227,7 @@
     methods: {
       fetchData() {
         this.loading = true
-        fetch('get', api.nyylfxDay, {id: this.system_id, year: this.year, month: this.month}).then((res) => {
+        fetch('get', api.nyylfxDay, {id: this.system_id[this.system_id.length - 1] || '', year: this.year, month: this.month}).then((res) => {
           this.tableData = []
           this.rData = res.data
           // 电
@@ -455,8 +463,7 @@
       },
       dateChange(value) {
         this.dateTime = value
-      },
-      selectChange(value) {}
+      }
     }
   }
 </script>

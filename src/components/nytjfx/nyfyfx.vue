@@ -124,7 +124,7 @@
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-  import {orgIdDic, lxfyDic, lxDic, chartColors} from 'utils/dic'
+  import {orgIdDic, lxfyDic, lxfyNoCarDic, chartColors} from 'utils/dic'
   import {tableDataFilter} from 'utils/filter'
   import ReportTable from 'base/report-table/report-table'
   let moment = require('moment')
@@ -219,7 +219,7 @@
         if (value === '1') {
           this.options2 = lxfyDic
         } else {
-          this.options2 = lxDic
+          this.options2 = lxfyNoCarDic
         }
       },
       departmentStyle(index) {
