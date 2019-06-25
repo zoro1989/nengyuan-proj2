@@ -4,6 +4,7 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+@import "variable.styl"
 @-ms-viewport {
   width: device-width;
 }
@@ -57,6 +58,11 @@ html {
   box-sizing: border-box
   border-radius: 5px
   flex: 1
+  overflow: hidden
+}
+.panel-box.home {
+  border: 1px solid $color-theme
+  background: transparent
 }
 .panel-box.flip-box {
   height: 100%
@@ -66,7 +72,6 @@ html {
   height: 100%
   width: 100%
   position: relative
-  background: #fff
   padding: 5px
   border-radius: 5px
 }
@@ -74,9 +79,9 @@ html {
   width: 100%
   background: #fff
 }
-.table-box.box-right {
-  border-left: 1px solid #75c4ef
-  padding-left: 10px
+.table-box.box-bottom {
+  border-top: 1px solid #75c4ef
+  padding-top: 10px
 }
 @media (max-width: 992px)
   .col-box-top-bottom {

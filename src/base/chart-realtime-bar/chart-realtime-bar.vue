@@ -60,14 +60,14 @@ export default {
   },
   methods: {
     titleClick() {
-      this.$router.replace('/home/ssxz')
+      this.$router.replace('/home/ss/ssxz')
     },
     makeChart(newData) {
       this.chart = echarts.init(this.$refs.chart)
 
       // 指定图表的配置项和数据
       const option = {
-        color: [this.chartColor],
+//        color: [this.chartColor],
         title: {
           show: false
 //          text: this.titleText,
@@ -84,7 +84,7 @@ export default {
           axisPointer: {
             type: 'cross',
             label: {
-              backgroundColor: '#283b56'
+              backgroundColor: '#2e77d8'
             }
           }
         },
@@ -98,7 +98,7 @@ export default {
           boundaryGap: true,
           axisLine: {
             lineStyle: {
-              color: '#666'
+              color: '#9edcf6'
             }
           },
           axisTick: {
@@ -128,7 +128,15 @@ export default {
           boundaryGap: [0.2, 0.2],
           axisLine: {
             lineStyle: {
-              color: '#666'
+              color: '#9edcf6'
+            }
+          },
+          nameTextStyle: {
+            color: '#9edcf6'
+          },
+          splitLine: {
+            lineStyle: {
+              color: '#2e77d8'
             }
           }
         },
@@ -137,12 +145,23 @@ export default {
             name: this.seriesName,
             type: 'bar',
             itemStyle: {
-              barBorderRadius: [3, 3, 0, 0]
+              barBorderRadius: [5, 5, 0, 0],
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0, 0, 0, 1,
+                  [
+                    {offset: 0, color: '#08d5ef'},
+                    {offset: 0.5, color: '#04e9dc'},
+                    {offset: 1, color: '#00fec7'}
+                  ]
+                )
+              }
             },
             label: {
               normal: {
                 show: true,
-                position: 'top'
+                position: 'top',
+                color: '#fff'
               }
             },
             data: newData
@@ -210,10 +229,9 @@ export default {
       display: flex
       align-items: center
       justify-content: center
-      background: $color-background
       cursor: pointer
       a
         color: $color-text
       &:hover
-        color: #fc3507
+        color: $color-sub-text
 </style>

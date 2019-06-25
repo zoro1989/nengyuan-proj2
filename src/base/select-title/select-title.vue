@@ -1,11 +1,11 @@
 <template>
   <div class="select-title">
     <div class="title-l">
-      <span class="picker-txt">{{title1}}</span>
+      <span class="picker-txt">{{title1}}：</span>
       <slot name="title1"></slot>
-      <span class="picker-txt" v-if="title2">{{title2}}</span>
+      <span class="picker-txt" v-if="title2">{{title2}}：</span>
       <slot name="title2"></slot>
-      <span class="picker-txt" v-if="title3">{{title3}}</span>
+      <span class="picker-txt" v-if="title3">{{title3}}：</span>
       <slot name="title3"></slot>
       <el-button class="search-btn" v-if="showSearch" type="primary" icon="el-icon-search" size="mini" @click="onSearch">搜索</el-button>
     </div>
@@ -36,7 +36,7 @@
     },
     methods: {
       onClose() {
-        this.$router.replace('/home')
+        this.$router.replace('/home/ss')
       },
       onSearch() {
         this.$emit('search')
@@ -55,6 +55,9 @@
     border-radius: 5px
     color: #333
     justify-content: space-between
+    &.home
+      background: transparent
+      color: #fff
     .title-r
       .fa
         margin: 0 5px

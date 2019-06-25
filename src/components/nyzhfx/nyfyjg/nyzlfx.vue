@@ -39,7 +39,7 @@
       <div class="col-box-left-right-bottom">
         <div class="panel-box" v-loading="loading">
           <div class="row">
-            <div class="col-lg-8 col-md-12 table-box">
+            <div class="col-lg-12 col-md-12 table-box">
               <div class="row">
                 <div class="col-lg-6 col-md-12">
                   <chart-pie class="chart-box"
@@ -48,15 +48,6 @@
                              :radius="pieRadius"
                              :seriesData="rData.jcq_pie && rData.jcq_pie.seriesData"></chart-pie>
                 </div>
-                <div class="col-lg-6 col-md-12">
-                  <chart-pie class="chart-box"
-                             :isSort="false"
-                             :titleText="type === 'nh' ? bjqFormat + dwFormat + '能源消耗结构' : bjqFormat + dwFormat + '能源费用结构'"
-                             :radius="pieRadius"
-                             :seriesData="rData.bjq_pie && rData.bjq_pie.seriesData"></chart-pie>
-                </div>
-              </div>
-              <div class="row">
                 <report-table class="col-lg-6 col-md-12" className="table1" :reportName="type === 'nh' ? '种类能源消耗结构-基础期' : '种类能源费用结构-基础期'">
                   <el-table
                     slot="table"
@@ -115,6 +106,15 @@
                     </el-table-column>
                   </el-table>
                 </report-table>
+              </div>
+              <div class="row">
+                <div class="col-lg-6 col-md-12">
+                  <chart-pie class="chart-box"
+                             :isSort="false"
+                             :titleText="type === 'nh' ? bjqFormat + dwFormat + '能源消耗结构' : bjqFormat + dwFormat + '能源费用结构'"
+                             :radius="pieRadius"
+                             :seriesData="rData.bjq_pie && rData.bjq_pie.seriesData"></chart-pie>
+                </div>
                 <report-table class="col-lg-6 col-md-12" className="table2" :reportName="type === 'nh' ? '种类能源消耗结构-比较期' : '种类能源费用结构-比较期'">
                   <el-table
                     slot="table"
@@ -175,42 +175,48 @@
                 </report-table>
               </div>
             </div>
-            <report-table class="col-lg-4 col-md-12 table-box box-right" className="table3" :reportName="type === 'nh' ? '能源消耗结构增幅分析' : '能源费用结构增幅分析'">
+          </div>
+          <div class="row">
+            <report-table class="col-lg-12 col-md-12 table-box box-bottom" className="table3" :reportName="type === 'nh' ? '能源消耗结构增幅分析' : '能源费用结构增幅分析'">
               <data-panel-title slot="title" :title="type === 'nh' ? '能源消耗结构增幅分析' : '能源费用结构增幅分析'" :noBorder="noBorder"></data-panel-title>
               <el-table
                 slot="table"
                 v-if="type === 'nh'"
-                :data="rData.list_zf"
+                :data="rData.zfl"
                 border
                 header-cell-class-name="header-cell-class-name"
                 style="width: 100%">
                 <el-table-column
                   align="center"
-                  prop="nyzl"
+                  prop="zl"
                   label="能源种类">
                 </el-table-column>
                 <el-table-column
                   align="center"
-                  prop="zf"
-                  label="增幅率(%)">
+                  v-for="(item, index) in rData.list_zf"
+                  :key="index"
+                  :prop="'zf' + index"
+                  :label="item.nyzl">
                 </el-table-column>
               </el-table>
               <el-table
                 slot="table"
                 v-if="type === 'fy'"
-                :data="rData.list_zf"
+                :data="rData.zfl"
                 border
                 header-cell-class-name="header-cell-class-name"
                 style="width: 100%">
                 <el-table-column
                   align="center"
-                  prop="fyzl"
+                  prop="zl"
                   label="费用种类">
                 </el-table-column>
                 <el-table-column
-                  prop="zf"
                   align="center"
-                  label="增幅率">
+                  v-for="(item, index) in rData.list_zf"
+                  :key="index"
+                  :prop="'zf' + index"
+                  :label="item.fyzl">
                 </el-table-column>
               </el-table>
             </report-table>
@@ -251,7 +257,7 @@
       return {
         loading: false,
         rData: {},
-        system_id: '2611',
+        system_id: '42052',
         jcq_sj: moment().subtract(13, 'months').format('YYYY-MM'),
         bjq_sj: moment().subtract(1, 'months').format('YYYY-MM'),
         strucPie1: [],
@@ -294,7 +300,13 @@
         this.computedFormat()
         if (this.type === 'nh') {
           fetch('get', api.queryNyZlFx, {system_id: this.system_id, jcq_sj: this.jcq_sj, bjq_sj: this.bjq_sj}).then((res) => {
+            let zfl = {}
+            zfl.zl = '增幅率（%）'
+            res.data.list_zf && res.data.list_zf.forEach((item, i) => {
+              zfl['zf' + i] = (item.zf)
+            })
             this.rData = res.data
+            this.rData.zfl = [zfl]
             this.loading = false
           }).catch(() => {
             this.rData = {}
@@ -302,7 +314,13 @@
           })
         } else {
           fetch('get', api.queryNyFyJg, {system_id: this.system_id, jcq_sj: this.jcq_sj, bjq_sj: this.bjq_sj}).then((res) => {
+            let zfl = {}
+            zfl.zl = '增幅率（%）'
+            res.data.list_zf && res.data.list_zf.forEach((item, i) => {
+              zfl['zf' + i] = (item.zf)
+            })
             this.rData = res.data
+            this.rData.zfl = [zfl]
             this.loading = false
           }).catch(() => {
             this.rData = {}
@@ -324,15 +342,8 @@
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .info-container
-    overflow: auto
-    -webkit-overflow-scrolling: touch
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
     .info
-      background: $color-sub-text
+      background-color: $color-background-sub
       display: flex
       flex-direction: column
       min-width: 600px

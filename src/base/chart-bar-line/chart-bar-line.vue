@@ -101,7 +101,7 @@ export default {
               color: '#283b56'
             },
             label: {
-              backgroundColor: '#283b56'
+              backgroundColor: '#2e77d8'
             }
           }
         },
@@ -110,7 +110,7 @@ export default {
           bottom: 0,
           data: this.legendData,
           textStyle: {
-            color: '#666'
+            color: '#9edcf6'
           }
         },
         grid: {
@@ -134,7 +134,7 @@ export default {
             },
             axisLine: {
               lineStyle: {
-                color: '#666'
+                color: '#9edcf6'
               }
             }
           }
@@ -150,7 +150,15 @@ export default {
               interval: this.yAxis[i].interval,
               axisLine: {
                 lineStyle: {
-                  color: '#666'
+                  color: '#9edcf6'
+                }
+              },
+              nameTextStyle: {
+                color: '#9edcf6'
+              },
+              splitLine: {
+                lineStyle: {
+                  color: '#2e77d8'
                 }
               }
             })
@@ -261,8 +269,6 @@ export default {
       display: flex
       align-items: center
       justify-content: center
-      background: $color-background
-      cursor: pointer
       a
         color: $color-text
 </style>

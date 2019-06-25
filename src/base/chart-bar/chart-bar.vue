@@ -15,8 +15,14 @@ export default {
       default: '图表标题'
     },
     chartColor: {
-      type: String,
-      default: '#49b5ef'
+      type: Array,
+      default: function () {
+        return [
+          {offset: 0, color: '#08d5ef'},
+          {offset: 0.5, color: '#04e9dc'},
+          {offset: 1, color: '#00fec7'}
+        ]
+      }
     },
     titleTextColor: {
       type: String,
@@ -95,7 +101,7 @@ export default {
       this.chart = echarts.init(this.$refs.chart)
       // 指定图表的配置项和数据
       const option = {
-        color: [this.chartColor, '#8c6be6'],
+//        color: [this.chartColor, '#8c6be6'],
         title: {
           show: false
 //          text: this.titleText,
@@ -110,7 +116,7 @@ export default {
           axisPointer: {
             type: 'cross',
             label: {
-              backgroundColor: '#283b56'
+              backgroundColor: '#2e77d8'
             }
           }
         },
@@ -124,7 +130,7 @@ export default {
           bottom: 0,
           data: this.legendData,
           textStyle: {
-            color: '#666'
+            color: '#9edcf6'
           }
         },
         xAxis: [
@@ -133,7 +139,7 @@ export default {
             boundaryGap: true,
             axisLine: {
               lineStyle: {
-                color: '#666'
+                color: '#9edcf6'
               }
             },
             axisTick: {
@@ -166,7 +172,15 @@ export default {
               interval: this.yAxis[i].interval,
               axisLine: {
                 lineStyle: {
-                  color: '#666'
+                  color: '#9edcf6'
+                }
+              },
+              nameTextStyle: {
+                color: '#9edcf6'
+              },
+              splitLine: {
+                lineStyle: {
+                  color: '#2e77d8'
                 }
               }
             })
@@ -175,6 +189,15 @@ export default {
         })(),
         series: ((vm, series) => {
           let res = []
+          let colorSet = []
+          colorSet.push(this.chartColor)
+          if (vm.stack !== null) {
+            colorSet.push([
+              {offset: 0, color: '#189def'},
+              {offset: 0.5, color: '#337cfc'},
+              {offset: 1, color: '#8a5fff'}
+            ])
+          }
           for (let i = 0; i < series.length; i++) {
             res.push({
               name: series[i].name,
@@ -183,7 +206,13 @@ export default {
               data: series[i].data,
               stack: vm.stack,
               itemStyle: {
-                barBorderRadius: vm.stack === null ? [3, 3, 0, 0] : i === series.length - 1 ? [3, 3, 0, 0] : [0, 0, 0, 0]
+                barBorderRadius: vm.stack === null ? [3, 3, 0, 0] : i === series.length - 1 ? [3, 3, 0, 0] : [0, 0, 0, 0],
+                normal: {
+                  color: new echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,
+                    vm.stack === null ? this.chartColor : colorSet[i]
+                  )
+                }
               }
             })
           }
@@ -238,8 +267,6 @@ export default {
       display: flex
       align-items: center
       justify-content: center
-      background: $color-background
-      cursor: pointer
       a
         color: $color-text
 </style>

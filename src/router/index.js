@@ -69,26 +69,26 @@ export default new Router({
       component: Home,
       children: [
         {
-          path: '',
+          path: 'ss',
           component: HomeIndex
         },
         {
-          path: 'ssxz',
+          path: 'ss/ssxz',
           name: '实时下钻',
           component: Ssxz
         },
         {
-          path: 'zhnh',
+          path: 'ss/zhnh',
           name: '综合能耗',
           component: Zhnh
         },
         {
-          path: 'nyylfy',
+          path: 'ss/nyylfy',
           name: '能源用量费用',
           component: Nyylfy
         },
         {
-          path: 'dbfx',
+          path: 'ss/dbfx',
           name: '对比分析',
           component: Dbfx
         },

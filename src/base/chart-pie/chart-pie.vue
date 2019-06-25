@@ -376,7 +376,6 @@ export default {
       display: flex
       align-items: center
       justify-content: center
-      cursor: pointer
       a
         color: $color-text
 </style>

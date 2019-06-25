@@ -30,14 +30,12 @@ export default {
     display: flex
     align-items: center
     justify-content: center
-    background: $color-background
-    cursor: pointer
-    border-bottom: 1px solid $color-sub-text
+    border-bottom: 1px solid $color-theme
     &.no-border
       border-bottom: none
     a
       color: $color-text
     &.xiazuan:hover
       a
-        color: #fc3507
+        color: $color-sub-text
 </style>

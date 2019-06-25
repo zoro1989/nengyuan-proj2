@@ -2,7 +2,7 @@
   <div class="data-panel">
     <span class="row data-title" @click="titleClick">{{title}}</span>
     <div class="row data-content">
-      <span class="row-item"><span class="big">{{dataText}}</span><span v-html="unitTxt"></span></span>
+      <span class="row-item"><span class="big" :class="isLinear ? 'linear' : ''">{{dataText}}</span><span v-html="unitTxt"></span></span>
     </div>
     <template v-if="showType === 'row' && showBi === 'show'">
       <div class="row bili">
@@ -54,6 +54,10 @@ export default {
     isMathRound: {
       type: Boolean,
       default: false
+    },
+    isLinear: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -94,9 +98,7 @@ export default {
 <style lang="stylus" scoped>
   @import "~common/stylus/variable.styl"
   .data-panel
-    cursor: pointer
-    background: $color-background
-    color: #333
+    color: $color-sub-text
     padding: 5px
     height: 100%
     display: flex
@@ -107,11 +109,11 @@ export default {
       .data-content
         min-height: auto!important
     &.border-right
-      border-right: 1px solid $color-sub-text
+      border-right: 1px solid $color-theme
     &.border-left
-      border-left: 1px solid $color-sub-text
+      border-left: 1px solid $color-theme
     &.border-bottom
-      border-bottom: 1px solid $color-sub-text
+      border-bottom: 1px solid $color-theme
     .row
       justify-content: center
       overflow: hidden
@@ -128,20 +130,20 @@ export default {
       &.xiazuan:hover
         color: $color-theme
       .row-item
-        color: #888
         .sub
           font-size: 10px
         .big
           font-size: $font-size-large-x-x
-          color: #333
+          color: $color-text
+          &.linear
+            background-image: linear-gradient(to bottom, #00ff7e 0%, #00d3fc 100%);
+            -webkit-background-clip: text
+            background-clip: text
+            color: transparent
         .big2
           font-size: $font-size-large-x
         .down
-          color: #08ae5e
+          color: #41dd51
         .up
-          color: #ef3d14
-        &.bi
-          color: $color-sub-text
-    .subtitle
-      color: #ffffff
+          color: #ff2620
 </style>

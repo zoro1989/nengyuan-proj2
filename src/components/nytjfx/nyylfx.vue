@@ -30,14 +30,8 @@
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .info-container
-    overflow: auto
-    -webkit-overflow-scrolling: touch
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
     .el-tabs
+      background-color: #fff
       height: 100%
       .el-tabs__content
         height: calc(100% - 55px)

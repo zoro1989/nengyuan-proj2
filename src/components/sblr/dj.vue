@@ -26,7 +26,7 @@
               <el-table
                 :data="tableData"
                 border
-                :header-cell-style="{background: '#f5f8fa'}"
+                header-cell-class-name="header-cell-class-name"
                 :default-sort = "{prop: 'cjrq', order: 'descending'}"
                 style="width: 100%">
                 <el-table-column
@@ -158,7 +158,7 @@
           }
         ],
         system_id: '',
-        formLabelWidth: '120px',
+        formLabelWidth: '140px',
         isFormReadOnly: false,
         dialogFormVisible: false,
         form: {}
@@ -224,15 +224,8 @@
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .info-container
-    overflow: auto
-    -webkit-overflow-scrolling: touch
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
     .info
-      background: $color-sub-text
+      background-color: $color-background-sub
       display: flex
       flex-direction: column
       min-width: 600px

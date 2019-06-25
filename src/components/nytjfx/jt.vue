@@ -40,7 +40,7 @@
     <div class="col-box-left-right-bottom">
       <div class="panel-box" v-loading="loading">
         <div class="row">
-          <div class="col-lg-8 col-md-12 table-box">
+          <div class="col-lg-12 col-md-12 table-box">
             <div class="row">
               <chart-bar-line class="chart-box"
                               :legendData="legendData"
@@ -76,73 +76,49 @@
               </el-table>
             </report-table>
           </div>
-          <report-table class="col-lg-4 col-md-12 table-box box-right" className="table2" reportName="集团用量分析结果">
+        </div>
+        <div class="row">
+          <report-table class="col-lg-12 col-md-12 table-box box-bottom" className="table2" reportName="集团用量分析结果">
             <data-panel-title slot="title" title="分析结果" :noBorder="noBorder">
             </data-panel-title>
             <el-table
               slot="table"
               v-if="lx.split('_').length !== 2"
-              :data="rData.zf"
+              :data="rData.zfl"
               border
               header-cell-class-name="header-cell-class-name"
               style="width: 99%">
               <el-table-column
                 align="center"
-                prop="yue"
+                prop="zl"
                 label="月">
               </el-table-column>
               <el-table-column
                 align="center"
-                prop="ylhbzf"
-                label="用量环比增幅(%)">
-              </el-table-column>
-              <el-table-column
-                align="center"
-                prop="clhbzf"
-                label="产量环比增幅(%)">
-              </el-table-column>
-              <el-table-column
-                align="center"
-                prop="yltbzf"
-                label="用量同比增幅(%)">
-              </el-table-column>
-              <el-table-column
-                align="center"
-                prop="cltbzf"
-                label="产量同比增幅(%)">
+                v-for="(item, index) in rData.zf"
+                :key="index"
+                :prop="'zf' + index"
+                :label="item.yue + '月'">
               </el-table-column>
             </el-table>
             <el-table
               slot="table"
-              :data="rData.zf"
+              :data="rData.zfl"
               v-if="lx.split('_').length === 2"
               border
               header-cell-class-name="header-cell-class-name"
               style="width: 99%">
               <el-table-column
                 align="center"
-                prop="yue"
+                prop="zl"
                 label="月">
               </el-table-column>
               <el-table-column
                 align="center"
-                prop="dylhbzf"
-                label="单车环比增幅(%)">
-              </el-table-column>
-              <el-table-column
-                align="center"
-                prop="clhbzf"
-                label="产量环比增幅(%)">
-              </el-table-column>
-              <el-table-column
-                align="center"
-                prop="dyltbzf"
-                label="单车同比增幅(%)">
-              </el-table-column>
-              <el-table-column
-                align="center"
-                prop="cltbzf"
-                label="产量同比增幅(%)">
+                v-for="(item, index) in rData.zf"
+                :key="index"
+                :prop="'zf' + index"
+                :label="item.yue + '月'">
               </el-table-column>
             </el-table>
           </report-table>
@@ -279,6 +255,21 @@
             }
             this.tableData.push(obj)
           }
+          let zfl1 = {}
+          let zfl2 = {}
+          let zfl3 = {}
+          let zfl4 = {}
+          zfl1.zl = '单车环比增幅(%)'
+          zfl2.zl = '产量环比增幅(%)'
+          zfl3.zl = '单车同比增幅(%)'
+          zfl4.zl = '产量同比增幅(%)'
+          this.rData.zf && this.rData.zf.forEach((item, i) => {
+            zfl1['zf' + i] = (item.dylhbzf)
+            zfl2['zf' + i] = (item.clhbzf)
+            zfl3['zf' + i] = (item.dyltbzf)
+            zfl4['zf' + i] = (item.cltbzf)
+          })
+          this.rData.zfl = [zfl1, zfl2, zfl3, zfl4]
         } else {
           this.legendData = ['实际用量', '同期用量', '上月用量', '实际产量', '同期产量', '上月产量']
           if (this.rData.yl && this.rData.yl.length > 0) {
@@ -323,6 +314,21 @@
             }
             this.tableData.push(obj)
           }
+          let zfl1 = {}
+          let zfl2 = {}
+          let zfl3 = {}
+          let zfl4 = {}
+          zfl1.zl = '用量环比增幅(%)'
+          zfl2.zl = '产量环比增幅(%)'
+          zfl3.zl = '用量同比增幅(%)'
+          zfl4.zl = '产量同比增幅(%)'
+          this.rData.zf && this.rData.zf.forEach((item, i) => {
+            zfl1['zf' + i] = (item.ylhbzf)
+            zfl2['zf' + i] = (item.clhbzf)
+            zfl3['zf' + i] = (item.yltbzf)
+            zfl4['zf' + i] = (item.cltbzf)
+          })
+          this.rData.zfl = [zfl1, zfl2, zfl3, zfl4]
         }
         if (this.rData.cl && this.rData.cl.length > 0) {
           series.push({
@@ -376,6 +382,8 @@
           this.makeData()
           this.loading = false
         }).catch(() => {
+          this.rData = {}
+          this.tableData = []
           this.loading = false
         })
       }
@@ -386,7 +394,7 @@
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .info
-    background: $color-sub-text
+    background-color: $color-background-sub
     display: flex
     flex-direction: column
     min-width: 600px

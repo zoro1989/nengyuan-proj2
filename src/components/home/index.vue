@@ -1,10 +1,10 @@
 <template>
   <div class="home-container">
-    <div class="home">
+    <div class="info">
       <div class="row">
         <div class="panel col-lg-4-4 col-md-12 col-box">
-          <div class="panel-box">
-            <data-panel-title :title="lastMonth + '能源绩效'" link="/home/zhnh"></data-panel-title>
+          <div class="panel-box home">
+            <data-panel-title :title="lastMonth + '能源绩效'" link="/home/ss/zhnh"></data-panel-title>
             <div class="row">
               <data-panel
                 class="border-right border-bottom"
@@ -45,12 +45,13 @@
           </div>
         </div>
         <div class="panel col-lg-4-2 col-md-12 col-box-top-bottom">
-          <div class="panel-box flip-box">
+          <div class="panel-box home flip-box">
             <data-panel-title :title="lastMonth + '清洁能源用量'"></data-panel-title>
             <div class="row">
               <data-panel
                 class="border-bottom"
                 title="清洁能源"
+                :isLinear="true"
                 :data="0"
                 unit="吨标煤"
                 :tongbiData="-0"
@@ -64,8 +65,8 @@
           </div>
         </div>
         <div class="panel col-lg-4-4 col-md-12 col-box">
-          <div class="panel-box">
-            <data-panel-title :title="lastMonth + '能耗信息'" link="/home/nyylfy"></data-panel-title>
+          <div class="panel-box home">
+            <data-panel-title :title="lastMonth + '能耗信息'" link="/home/ss/nyylfy"></data-panel-title>
             <div class="row">
               <data-panel
                 class="border-right border-bottom"
@@ -248,14 +249,9 @@
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .home-container
-    position: absolute
-    top: 0
-    left: 0
-    width: 100%
-    bottom: 0
-    overflow: auto
-    -webkit-overflow-scrolling: touch
-    .home
-      background: $color-sub-text
+    .info
+      background-image: $color-background-linear
       min-width: 600px
+      .panel-box
+        border-radius: 60px
 </style>

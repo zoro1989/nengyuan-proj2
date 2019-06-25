@@ -1,12 +1,9 @@
 <template>
   <div>
     <m-header></m-header>
-    <div class="container">
-      <!--<m-menu v-show="menuShow" @hide-menu="hideMenu"></m-menu>-->
-      <m-menu></m-menu>
-      <!--<h-menu v-show="hMenuShow" @hide-hmenu="hideMenu"></h-menu>-->
+    <m-menu v-if="$route.path.indexOf('/home/ss') < 0 "></m-menu>
+    <div class="container" :class="$route.path.indexOf('/home/ss') < 0 ? 'h2' : 'h1'">
       <div class="main">
-        <!--<m-news @toggle-menu="toggleMenu" @toggle-hmenu="toggleHMenu"></m-news>-->
         <router-view/>
       </div>
     </div>
@@ -35,16 +32,9 @@
 </script>
 <style scoped lang="stylus">
   .container
-    display: flex
-    position: fixed
-    top: 70px
-    bottom: 0
-    left: 0
-    width: 100%
-    .main
-      position: absolute
-      left: 180px
-      top: 0
-      bottom: 0
-      right: 0
+    &.h1
+      margin-top: 70px
+    &.h2
+      margin-top: 110px
+      color: #006195
 </style>

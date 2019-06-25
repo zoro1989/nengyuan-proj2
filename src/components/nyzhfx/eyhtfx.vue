@@ -26,7 +26,7 @@
       <div class="col-box-left-right-bottom">
         <div class="panel-box" v-loading="loading">
           <div class="row">
-            <div class="col-lg-8 col-md-12 table-box">
+            <div class="col-lg-12 col-md-12 table-box">
               <div class="row">
                 <div class="col-lg-6 col-md-12">
                   <chart-pie class="chart-box"
@@ -36,16 +36,6 @@
                              @pieClick="pieClick"
                              :seriesData="rData.jcq_pie && rData.jcq_pie.seriesData"></chart-pie>
                 </div>
-                <div class="col-lg-6 col-md-12">
-                  <chart-pie class="chart-box"
-                             :isSort="false"
-                             :titleText="bjqFormat + '集团公司二氧化碳排放量分布'"
-                             :radius="pieRadius"
-                             @pieClick="pieClick"
-                             :seriesData="rData.bjq_pie && rData.bjq_pie.seriesData"></chart-pie>
-                </div>
-              </div>
-              <div class="row">
                 <report-table class="col-lg-6 col-md-12" className="table1" reportName="二氧化碳排放-基础期">
                   <el-table
                     slot="table"
@@ -72,6 +62,16 @@
                     </el-table-column>
                   </el-table>
                 </report-table>
+              </div>
+              <div class="row">
+                <div class="col-lg-6 col-md-12">
+                  <chart-pie class="chart-box"
+                             :isSort="false"
+                             :titleText="bjqFormat + '集团公司二氧化碳排放量分布'"
+                             :radius="pieRadius"
+                             @pieClick="pieClick"
+                             :seriesData="rData.bjq_pie && rData.bjq_pie.seriesData"></chart-pie>
+                </div>
                 <report-table class="col-lg-6 col-md-12" className="table2" reportName="二氧化碳排放-比较期">
                   <el-table
                     slot="table"
@@ -100,24 +100,27 @@
                 </report-table>
               </div>
             </div>
-            <report-table class="col-lg-4 col-md-12 table-box box-right" className="table3" reportName="能源消耗结构增幅分析">
+          </div>
+          <div class="row">
+            <report-table class="col-lg-12 col-md-12 table-box box-bottom" className="table3" reportName="能源消耗结构增幅分析">
               <data-panel-title slot="title" title="能源消耗结构增幅分析" :noBorder="noBorder"></data-panel-title>
               <el-table
                 slot="table"
-                :data="rData.list_zf"
+                :data="rData.zfl"
                 border
                 header-cell-class-name="header-cell-class-name"
                 style="width: 100%">
                 <el-table-column
                   align="center"
-                  prop="nybm"
+                  prop="zl"
                   label="能源部门">
                 </el-table-column>
                 <el-table-column
                   align="center"
-                  prop="zf"
-                  width="100"
-                  label="增幅率(%)">
+                  v-for="(item, index) in rData.list_zf"
+                  :key="index"
+                  :prop="'zf' + index"
+                  :label="item.nybm">
                 </el-table-column>
               </el-table>
             </report-table>
@@ -188,7 +191,13 @@
         this.loading = true
         this.computedFormat()
         fetch('get', api.queryNyEyHtLFx, {org_pid: this.org_pid, jcq_sj: this.jcq_sj, bjq_sj: this.bjq_sj}).then((res) => {
+          let zfl = {}
+          zfl.zl = '增幅率（%）'
+          res.data.list_zf && res.data.list_zf.forEach((item, i) => {
+            zfl['zf' + i] = (item.zf)
+          })
           this.rData = res.data
+          this.rData.zfl = [zfl]
           this.loading = false
         }).catch(() => {
           this.rData = {}
@@ -221,15 +230,8 @@
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .info-container
-    overflow: auto
-    -webkit-overflow-scrolling: touch
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
     .info
-      background: $color-sub-text
+      background-color: $color-background-sub
       display: flex
       flex-direction: column
       min-width: 600px

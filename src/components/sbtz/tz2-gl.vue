@@ -264,15 +264,8 @@
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .info-container
-    overflow: auto
-    -webkit-overflow-scrolling: touch
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
     .info
-      background: $color-sub-text
+      background-color: $color-background-sub
       display: flex
       flex-direction: column
       min-width: 600px

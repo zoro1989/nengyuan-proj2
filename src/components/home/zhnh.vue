@@ -2,7 +2,7 @@
   <div class="cost-info-container">
     <div class="cost-info">
       <div class="col-box">
-        <select-title title1="选择日期" title2="指标类别">
+        <select-title class="home" title1="选择日期" title2="指标类别">
           <el-date-picker
             slot="title1"
             :clearable="false"
@@ -30,7 +30,7 @@
       </div>
       <div class="row">
         <div class="col-lg-5 col-md-12 col-box-left">
-          <div class="panel-box">
+          <div class="panel-box home">
             <data-panel-title :title="lastMonth + '能源绩效'"></data-panel-title>
             <div class="row">
               <data-panel
@@ -92,7 +92,7 @@
           </div>
         </div>
         <div class="col-lg-7 col-md-12 col-box-right">
-          <div class="panel-box">
+          <div class="panel-box home">
             <data-panel-title :title="lastMonth + '能耗信息'"></data-panel-title>
             <div class="row">
               <data-panel
@@ -291,7 +291,7 @@ export default {
       })
     },
     onClose() {
-      this.$router.replace('/home')
+      this.$router.replace('/home/ss')
     },
     dateChange(value) {
       this.lastMonth = moment(value).format('MMMM')
@@ -331,15 +331,8 @@ export default {
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .cost-info-container
-    overflow: auto
-    -webkit-overflow-scrolling: touch
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
     .cost-info
-      background: $color-sub-text
+      background-image: $color-background-linear
       display: flex
       flex-direction: column
       min-height: 100%

@@ -3,14 +3,14 @@
     <div class="realtime-tripping">
       <div class="tripping-title">
         <div class="title-l">
-          <span class="picker-txt">选择日期</span>
+          <span class="picker-txt">选择日期：</span>
           <el-date-picker
             v-model="time"
             value-format="yyyy-MM-dd"
             size="mini"
             placeholder="选择日期">
           </el-date-picker>
-          <span class="picker-txt">能源类别</span>
+          <span class="picker-txt">能源类别：</span>
           <el-select
             v-model="lx"
             placeholder="请选择"
@@ -35,7 +35,11 @@
                      :yAxis="yAxis"
                      :series="seriesData1"
                      :xAxisData="data1.xAxisData"
-                     chartColor="#48daf6"></chart-bar>
+                     :chartColor="[
+                          {offset: 0, color: '#e2f88b'},
+                          {offset: 0.5, color: '#70f1c2'},
+                          {offset: 1, color: '#17eced'}
+                          ]"></chart-bar>
         </div>
         <div class="col-box-left-right-bottom">
           <chart-bar class="chart-box"
@@ -43,7 +47,11 @@
                      :yAxis="yAxis"
                      :series="seriesData2"
                      :xAxisData="data2.xAxisData"
-                     chartColor="#916fe9"></chart-bar>
+                     :chartColor="[
+                          {offset: 0, color: '#00ffc0'},
+                          {offset: 0.5, color: '#0bd0fb'},
+                          {offset: 1, color: '#4f72ff'}
+                          ]"></chart-bar>
         </div>
       </div>
     </div>
@@ -147,7 +155,7 @@ export default {
       this.fetchData()
     },
     onClose() {
-      this.$router.replace('/home/ssxz')
+      this.$router.replace('/home/ss/ssxz')
     }
   },
   mounted() {
@@ -159,15 +167,8 @@ export default {
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .realtime-tripping-container
-    overflow: auto
-    -webkit-overflow-scrolling: touch
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
     .realtime-tripping
-      background: $color-sub-text
+      background-image: $color-background-linear
       display: flex
       flex-direction: column
       min-width: 600px
@@ -176,9 +177,8 @@ export default {
         height: 40px
         line-height: 40px
         flex: 0 0 40px
-        background: #fff
         border-radius: 5px
-        color: #333
+        color: $color-text
         display: flex
         justify-content: space-between
         padding: 0 10px 0 10px
@@ -195,7 +195,7 @@ export default {
             cursor: pointer
           .fa
             margin: 0 5px
-            color: #899eb6
+            color: #fff
             font-size: $font-size-large
             cursor: pointer
       .tripping-content

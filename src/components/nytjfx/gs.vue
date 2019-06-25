@@ -452,6 +452,8 @@
           }
           this.loading = false
         }).catch(() => {
+          this.tableData = []
+          this.rData = {}
           this.loading = false
         })
       },
@@ -471,7 +473,7 @@
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .info
-    background: $color-sub-text
+    background-color: $color-background-sub
     display: flex
     flex-direction: column
     min-width: 600px

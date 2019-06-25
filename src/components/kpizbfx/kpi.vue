@@ -28,7 +28,7 @@
       <div class="col-box-left-right-bottom">
         <div class="panel-box" v-loading="loading">
           <div class="row">
-            <div class="col-lg-8 col-md-12 table-box">
+            <div class="col-lg-12 col-md-12 table-box">
               <div class="row">
                 <chart-bar-line class="chart-box"
                                 :legendData="legendData"
@@ -75,7 +75,9 @@
                 </el-table>
               </report-table>
             </div>
-            <report-table class="col-lg-4 col-md-12 table-box box-right" className="table2" reportName="KPI分析结果">
+          </div>
+          <div class="row">
+            <report-table class="col-lg-12 col-md-12 table-box box-bottom" className="table2" reportName="KPI分析结果">
               <data-panel-title slot="title" title="分析结果" :noBorder="noBorder"></data-panel-title>
               <el-table
                 slot="table"
@@ -377,6 +379,9 @@
           })
           this.loading = false
         }).catch(() => {
+          this.rData = {}
+          this.rlist = []
+          this.seriesData = []
           this.loading = false
         })
       }
@@ -387,15 +392,8 @@
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .info-container
-    overflow: auto
-    -webkit-overflow-scrolling: touch
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
     .info
-      background: $color-sub-text
+      background-color: $color-background-sub
       display: flex
       flex-direction: column
       min-width: 600px

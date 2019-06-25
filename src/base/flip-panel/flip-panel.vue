@@ -48,9 +48,7 @@ export default {
 <style lang="stylus" scoped>
   @import "~common/stylus/variable.styl"
   .data-panel
-    cursor: pointer
-    background: $color-background
-    color: #333
+    color: $color-sub-text
     padding: 5px
     height: 100%
     display: flex
@@ -58,16 +56,15 @@ export default {
     width: 100%
     flex-direction: column
     &.border-right
-      border-right: 1px solid $color-sub-text
+      border-right: 1px solid $color-theme
     &.border-bottom
-      border-bottom: 1px solid $color-sub-text
+      border-bottom: 1px solid $color-theme
     .row
       justify-content: center
       height: 40px
       line-height: 40px
       .row-item
-        color: #888
         .big
           font-size: $font-size-large-x-x
-          color: #333
+          color: $color-text
 </style>

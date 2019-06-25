@@ -3,7 +3,7 @@
     <div class="realtime-tripping">
       <div class="tripping-title">
         <div class="title-l">
-          <span class="picker-txt">选择日期</span>
+          <span class="picker-txt">选择日期：</span>
           <el-date-picker
             v-model="valueDate"
             type="daterange"
@@ -16,7 +16,7 @@
             end-placeholder="结束日期"
             :picker-options="pickerOptions2">
           </el-date-picker>
-          <span class="picker-txt">用能单位</span>
+          <span class="picker-txt">用能单位：</span>
           <el-cascader
             change-on-select
             :show-all-levels="false"
@@ -40,7 +40,7 @@
           <el-button class="search-btn" type="primary" icon="el-icon-search" size="mini" @click="onSearch">搜索</el-button>
         </div>
         <div class="title-r">
-          <span class="analyze-btn ripple"><router-link to="/home/dbfx">对比分析</router-link></span>
+          <span class="analyze-btn ripple"><router-link to="/home/ss/dbfx">对比分析</router-link></span>
           <span @click="channgeChart('0')" class="ripple"><i class="fa fa-line-chart"></i></span>
           <span @click="channgeChart('1')" class="ripple"><i class="fa fa-bar-chart"></i></span>
           <span @click="onClose" class="ripple"><i class="fa fa-times"></i></span>
@@ -168,7 +168,11 @@
                         :yAxis="bData.dnys && bData.dnys.y"
                         :xAxisData="bData.dnys && bData.dnys.xAxisData"
                         :series="bData.dnys && bData.dnys.seriesData"
-                        chartColor="#48d9f5"></chart-bar>
+                        :chartColor="[
+                          {offset: 0, color: '#00ffc0'},
+                          {offset: 0.5, color: '#00fffb'},
+                          {offset: 1, color: '#1d90ed'}
+                          ]"></chart-bar>
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-bar class="chart-r"
@@ -178,7 +182,11 @@
                         :yAxis="bData.dfys && bData.dfys.y"
                         :xAxisData="bData.dfys && bData.dfys.xAxisData"
                         :series="bData.dfys && bData.dfys.seriesData"
-                        chartColor="#8c6be6"></chart-bar>
+                       :chartColor="[
+                          {offset: 0, color: '#e3f88b'},
+                          {offset: 0.5, color: '#73f1c1'},
+                          {offset: 1, color: '#0eebf1'}
+                          ]"></chart-bar>
           </div>
         </div>
         <div class="row">
@@ -190,7 +198,11 @@
                        :yAxis="bData.dds && bData.dds.y"
                         :xAxisData="bData.dds && bData.dds.xAxisData"
                         :series="bData.dds && bData.dds.seriesData"
-                        chartColor="#8c6be6"></chart-bar>
+                       :chartColor="[
+                          {offset: 0, color: '#bcedff'},
+                          {offset: 0.5, color: '#6eecf9'},
+                          {offset: 1, color: '#0bebf2'}
+                          ]"></chart-bar>
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-bar class="chart-r"
@@ -200,7 +212,11 @@
                        :yAxis="bData.dss && bData.dss.y"
                         :xAxisData="bData.dss && bData.dss.xAxisData"
                         :series="bData.dss && bData.dss.seriesData"
-                        chartColor="#56e197"></chart-bar>
+                       :chartColor="[
+                          {offset: 0, color: '#00ffc0'},
+                          {offset: 0.5, color: '#0bd0fb'},
+                          {offset: 1, color: '#4f72ff'}
+                          ]"></chart-bar>
           </div>
         </div>
         <div class="row">
@@ -212,7 +228,11 @@
                        :yAxis="bData.drs && bData.drs.y"
                         :xAxisData="bData.drs && bData.drs.xAxisData"
                         :series="bData.drs && bData.drs.seriesData"
-                        chartColor="#ff8f06"></chart-bar>
+                       :chartColor="[
+                          {offset: 0, color: '#e2f88b'},
+                          {offset: 0.5, color: '#70f1c2'},
+                          {offset: 1, color: '#17eced'}
+                          ]"></chart-bar>
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-bar class="chart-r"
@@ -222,7 +242,11 @@
                        :yAxis="bData.dqs && bData.dqs.y"
                         :xAxisData="bData.dqs && bData.dqs.xAxisData"
                         :series="bData.dqs && bData.dqs.seriesData"
-                        chartColor="#838389"></chart-bar>
+                       :chartColor="[
+                          {offset: 0, color: '#baedff'},
+                          {offset: 0.5, color: '#55ecf7'},
+                          {offset: 1, color: '#0eebf2'}
+                          ]"></chart-bar>
           </div>
         </div>
         <div class="row">
@@ -234,7 +258,11 @@
                         :yAxis="bData.allnys && bData.allnys.y"
                         :xAxisData="bData.allnys && bData.allnys.xAxisData"
                         :series="bData.allnys && bData.allnys.seriesData"
-                        chartColor="#4a14dd"
+                       :chartColor="[
+                          {offset: 0, color: '#b3edfe'},
+                          {offset: 0.5, color: '#50ecf7'},
+                          {offset: 1, color: '#0febf2'}
+                          ]"
                         :stack="'1'"></chart-bar>
           </div>
         </div>
@@ -449,7 +477,7 @@ export default {
       this.showflag = status
     },
     onClose() {
-      this.$router.replace('/home')
+      this.$router.replace('/home/ss')
     },
     sectionToChinese(section) {
       let chinese = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
@@ -484,15 +512,8 @@ export default {
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .realtime-tripping-container
-    overflow: auto
-    -webkit-overflow-scrolling: touch
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
     .realtime-tripping
-      background: $color-sub-text
+      background-image: $color-background-linear
       display: flex
       flex-direction: column
       min-height: 100%
@@ -504,9 +525,8 @@ export default {
         margin: 10px
         height: 40px
         line-height: 40px
-        background: #fff
         border-radius: 5px
-        color: #333
+        color: $color-text
         display: flex
         justify-content: space-between
         padding: 0 10px 0 10px
@@ -527,7 +547,7 @@ export default {
               color: #fff
           .fa
             margin: 0 5px
-            color: #899eb6
+            color: #fff
             font-size: $font-size-large
             cursor: pointer
       .tripping-content
@@ -537,13 +557,11 @@ export default {
         .chart-l
           min-height: 250px
           position: relative
-          background: #fff
           margin: 0 10px 10px 10px
           border-radius: 5px
         .chart-r
           min-height: 250px
           position: relative
-          background: #fff
           margin: 0 10px 10px 0
           border-radius: 5px
 </style>

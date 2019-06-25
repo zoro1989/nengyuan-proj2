@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     titleClick() {
-      this.$router.replace('/home/ssxz')
+      this.$router.replace('/home/ss/ssxz')
     },
     makeChart(newData) {
       this.chart = echarts.init(this.$refs.chart)
@@ -88,7 +88,7 @@ export default {
           axisPointer: {
             type: 'cross',
             label: {
-              backgroundColor: '#283b56'
+              backgroundColor: '#2e77d8'
             }
           }
         },
@@ -102,7 +102,7 @@ export default {
           boundaryGap: true,
           axisLine: {
             lineStyle: {
-              color: '#666'
+              color: '#9edcf6'
             }
           },
           axisTick: {
@@ -133,7 +133,15 @@ export default {
             boundaryGap: [0.2, 0.2],
             axisLine: {
               lineStyle: {
-                color: '#666'
+                color: '#9edcf6'
+              }
+            },
+            nameTextStyle: {
+              color: '#9edcf6'
+            },
+            splitLine: {
+              lineStyle: {
+                color: '#2e77d8'
               }
             }
           }
@@ -142,12 +150,32 @@ export default {
           {
             name: this.seriesName,
             type: 'line',
-            areaStyle: this.showArea ? {} : undefined,
+            areaStyle: this.showArea ? {
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0, 0, 0, 1,
+                  [
+                    {offset: 0, color: '#02fac8'},
+                    {offset: 0.5, color: '#18c1e3'},
+                    {offset: 1, color: '#4365ef'}
+                  ]
+                )
+              }
+            } : undefined,
+            symbol: 'circle',
+            symbolSize: 6,
             label: {
               normal: {
                 show: true,
-                position: 'top'
+                position: 'top',
+                color: '#fff'
               }
+            },
+            lineStyle: {
+              color: 'transparent'
+            },
+            itemStyle: {
+              color: '#e889b5'
             },
             data: newData
 //            data: (function () {
@@ -216,10 +244,9 @@ export default {
       display: flex
       align-items: center
       justify-content: center
-      background: $color-background
       cursor: pointer
       a
         color: $color-text
       &:hover
-        color: #fc3507
+        color: $color-sub-text
 </style>

@@ -142,7 +142,7 @@
         return moment().isAfter(this.rToken[index].validTime) ? 'background: #F56C6C; color: #fff;' : 'background: #67C23A; color: #fff;'
       },
       goHome() {
-        this.$router.replace('/home')
+        this.$router.replace('/home/ss')
       },
       initData() {
         this.loading = true
@@ -172,13 +172,6 @@
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .info-container
-    overflow: auto
-    -webkit-overflow-scrolling: touch
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
     .info
       background: $color-sub-text
       display: flex

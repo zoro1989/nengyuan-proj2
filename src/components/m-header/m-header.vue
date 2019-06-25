@@ -6,8 +6,8 @@
         <span class="title">中国一汽集团能源管理分析系统</span>
       </div>
       <div class="setting">
-        <span class="item ripple"><i class="fa fa-gear"></i></span>
-        <span class="item ripple"><i class="fa fa-user"></i></span>
+        <span class="item ripple" @click="onHome"><i class="fa fa-home"></i></span>
+        <span class="item ripple" @click="onUser"><i class="fa fa-user"></i></span>
         <span class="item ripple" @click="onRefresh"><i class="fa fa-refresh"></i></span>
         <span class="item ripple" @click="onWarning"><i class="fa fa-bell"></i></span>
         <span class="item ripple" @click="onLogout"><i class="fa fa-power-off"></i></span>
@@ -25,6 +25,12 @@ export default {
       }
     },
   methods: {
+    onHome() {
+      this.$router.replace('/home/ss')
+    },
+    onUser() {
+      this.$router.replace('/home/nyzlfx/nh')
+    },
     onRefresh() {
       this.$router.go(0)
     },
@@ -42,10 +48,14 @@ export default {
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .header
-    background: url(bg.png) $color-theme-d no-repeat
-    background-size:cover
-    background-position: right
+    background-image: url(title.png)
+    background-repeat: repeat-x
     height: 70px
+    position: fixed
+    z-index: 10
+    top: 0
+    left: 0
+    width: 100%
     display: flex
     justify-content: space-between
     align-items: center

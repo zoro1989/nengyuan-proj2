@@ -2,7 +2,7 @@
   <div class="flip" ref="flip">
     <div class="flip-group" ref="flipGroup">
       <span v-for="(item, index) in data" v-bind:key="index" class="flip-item" ref="flipItem">
-        {{item}}<span class="flip-txt">&nbsp;&nbsp;千瓦时</span>
+        <span class="linear-text">{{item}}</span><span class="flip-txt">&nbsp;&nbsp;千瓦时</span>
       </span>
     </div>
   </div>
@@ -79,7 +79,12 @@ export default {
         display: block
         height: 40px
         line-height: 40px
+        .linear-text
+          background-image: linear-gradient(to bottom, #00ff7e 0%, #00d3fc 100%);
+          -webkit-background-clip: text
+          background-clip: text
+          color: transparent
         .flip-txt
-          color: #888
+          color: $color-sub-text
           font-size: 16px
 </style>
