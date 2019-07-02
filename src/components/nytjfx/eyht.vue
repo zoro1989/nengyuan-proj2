@@ -142,7 +142,7 @@
         year: '',
         rData: {},
         lx: 'tan',
-        legendData: ['实际碳', '同期碳', '上月碳', '产量', '同期产量', '上月产量'],
+        legendData: ['本期碳', '同期碳', '上月碳', '产量', '同期产量', '上月产量'],
         seriesData: [],
         y: [{name: '辆'}, {name: '亿元'}]
       }
@@ -213,12 +213,12 @@
         if (this.lx === 'tan') {
           if (this.rData.tan && this.rData.tan.length > 0) {
             series.push({
-              name: '实际碳',
+              name: '本期碳',
               type: 'bar',
               data: this.rData.tan
             })
             let obj = {}
-            obj.projectName = '实际碳'
+            obj.projectName = '本期碳'
             for (let i = 0; i < this.rData.tan.length; i++) {
               let key = this.rData.xAxisData[i] + 'yue'
               obj[key] = this.rData.tan[i]
@@ -256,12 +256,12 @@
         } else if (this.lx === 'dtan') {
           if (this.rData.dtan && this.rData.dtan.length > 0) {
             series.push({
-              name: '实际单碳',
+              name: '本期单碳',
               type: 'bar',
               data: this.rData.dtan
             })
             let obj = {}
-            obj.projectName = '实际单碳'
+            obj.projectName = '本期单碳'
             for (let i = 0; i < this.rData.dtan.length; i++) {
               let key = this.rData.xAxisData[i] + 'yue'
               obj[key] = this.rData.dtan[i]

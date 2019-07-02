@@ -138,6 +138,7 @@
                           :legendData="jnBar.legendData"
                           :series="jnBar.series"
                           :xAxisData="jnBar.xAxisData"
+                          :isHome="true"
                           :yAxis="y"
                           :titleText="lastMonth + '能源用量与节能指标同比分析'"></chart-bar-line>
         </div>

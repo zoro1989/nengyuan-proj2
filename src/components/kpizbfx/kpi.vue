@@ -165,7 +165,7 @@
         system_id: '',
         year: '',
         rData: {},
-        legendData: ['产量（辆）', '实际产值（万元）', '计划单月万元产值能耗', '实际单月万元产值能耗', '计划累计万元产值能耗', '实际累计万元产值能耗'],
+        legendData: ['产量（辆）', '本期产值（万元）', '计划单月万元产值能耗', '本期单月万元产值能耗', '计划累计万元产值能耗', '本期累计万元产值能耗'],
         seriesData: [],
         rlist: []
       }
@@ -298,12 +298,12 @@
           }
           if (res.data.cz && res.data.cz.length > 0) {
 //            series.push({
-//              name: '实际产值（万元）',
+//              name: '本期产值（万元）',
 //              type: 'line',
 //              data: res.data.cz
 //            })
             let obj = {}
-            obj.projectName = '实际产值（万元）'
+            obj.projectName = '本期产值（万元）'
             obj.yearTarget = '0'
             for (let i = 0; i < res.data.cz.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
@@ -328,12 +328,12 @@
           }
           if (res.data.sjcznh && res.data.sjcznh.length > 0) {
             series.push({
-              name: '实际单月' + this.tableTitile,
+              name: '本期单月' + this.tableTitile,
               type: 'bar',
               data: res.data.sjcznh
             })
             let obj = {}
-            obj.projectName = '实际单月' + this.tableTitile
+            obj.projectName = '本期单月' + this.tableTitile
             obj.yearTarget = '0'
             for (let i = 0; i < res.data.sjcznh.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
@@ -358,12 +358,12 @@
           }
           if (res.data.sjljcznh && res.data.sjljcznh.length > 0) {
             series.push({
-              name: '实际累计' + this.tableTitile,
+              name: '本期累计' + this.tableTitile,
               type: 'line',
               data: res.data.sjljcznh
             })
             let obj = {}
-            obj.projectName = '实际累计' + this.tableTitile
+            obj.projectName = '本期累计' + this.tableTitile
             obj.yearTarget = '0'
             for (let i = 0; i < res.data.sjljcznh.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'

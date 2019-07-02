@@ -49,7 +49,7 @@
                 <el-table-column
                   align="center"
                   prop="czzhnh"
-                  label="实际值">
+                  label="本期值">
                 </el-table-column>
                 <el-table-column
                   align="center"
@@ -63,7 +63,7 @@
                 <el-table-column
                   align="center"
                   prop="s"
-                  label="实际值">
+                  label="本期值">
                 </el-table-column>
                 <el-table-column
                   align="center"
@@ -77,7 +77,7 @@
                 <el-table-column
                   align="center"
                   prop="zhnh"
-                  label="实际值">
+                  label="本期值">
                 </el-table-column>
                 <el-table-column
                   align="center"
@@ -91,7 +91,7 @@
                 <el-table-column
                   align="center"
                   prop="dczzhnh"
-                  label="实际值">
+                  label="本期值">
                 </el-table-column>
                 <el-table-column
                   align="center"

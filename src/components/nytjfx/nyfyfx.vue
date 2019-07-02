@@ -141,7 +141,7 @@
         year: '',
         lx: '',
         rData: {},
-        legendData: ['实际费用', '同期费用', '上月费用', '实际产量', '同期产量', '上月产量'],
+        legendData: ['本期费用', '同期费用', '上月费用', '本期产量', '同期产量', '上月产量'],
         seriesData: [],
         y: [{name: '辆'}, {name: '亿元'}]
       }
@@ -222,12 +222,12 @@
           let series = []
           if (res.data.fy && res.data.fy.length > 0) {
             series.push({
-              name: '实际费用',
+              name: '本期费用',
               type: 'bar',
               data: res.data.fy
             })
             let obj = {}
-            obj.projectName = '实际费用'
+            obj.projectName = '本期费用'
             for (let i = 0; i < res.data.fy.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
               obj[key] = res.data.fy[i]
@@ -264,12 +264,12 @@
           }
           if (res.data.cl && res.data.cl.length > 0) {
             series.push({
-              name: '实际产量',
+              name: '本期产量',
               type: 'line',
               data: res.data.cl
             })
             let obj = {}
-            obj.projectName = '实际产量'
+            obj.projectName = '本期产量'
             for (let i = 0; i < res.data.cl.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'
               obj[key] = res.data.cl[i]

@@ -140,3 +140,12 @@ export function tableDataBMFilter(tableData) {
     return item
   })
 }
+export function filterLegend(str) {
+  let arr = []
+  for (let i = 0; i < str.length; i++) {
+    let newStr = str[i].replace(/实际/g, '本期')
+    let newStr2 = newStr.replace(/上期同期/g, '同期')
+    arr.push(newStr2)
+  }
+  return arr
+}

@@ -162,7 +162,7 @@
         year: '',
         lx: '',
         rData: {},
-        legendData: ['实际用量', '同期用量', '上月用量', '实际产量', '同期产量', '上月产量'],
+        legendData: ['本期用量', '同期用量', '上月用量', '本期产量', '同期产量', '上月产量'],
         seriesData: []
       }
     },
@@ -212,15 +212,15 @@
         this.tableData = []
         let series = []
         if (this.lx.split('_').length === 2) {
-          this.legendData = ['单车实际用量', '单车同期用量', '单车上月用量', '实际产量', '同期产量', '上月产量']
+          this.legendData = ['单车本期用量', '单车同期用量', '单车上月用量', '本期产量', '同期产量', '上月产量']
           if (this.rData.dyl && this.rData.dyl.length > 0) {
             series.push({
-              name: '单车实际用量',
+              name: '单车本期用量',
               type: 'bar',
               data: this.rData.dyl
             })
             let obj = {}
-            obj.projectName = '单车实际用量'
+            obj.projectName = '单车本期用量'
             for (let i = 0; i < this.rData.dyl.length; i++) {
               let key = this.rData.xAxisData[i] + 'yue'
               obj[key] = this.rData.dyl[i]
@@ -271,15 +271,15 @@
           })
           this.rData.zfl = [zfl1, zfl2, zfl3, zfl4]
         } else {
-          this.legendData = ['实际用量', '同期用量', '上月用量', '实际产量', '同期产量', '上月产量']
+          this.legendData = ['本期用量', '同期用量', '上月用量', '本期产量', '同期产量', '上月产量']
           if (this.rData.yl && this.rData.yl.length > 0) {
             series.push({
-              name: '实际用量',
+              name: '本期用量',
               type: 'bar',
               data: this.rData.yl
             })
             let obj = {}
-            obj.projectName = '实际用量'
+            obj.projectName = '本期用量'
             for (let i = 0; i < this.rData.yl.length; i++) {
               let key = this.rData.xAxisData[i] + 'yue'
               obj[key] = this.rData.yl[i]
@@ -332,12 +332,12 @@
         }
         if (this.rData.cl && this.rData.cl.length > 0) {
           series.push({
-            name: '实际产量',
+            name: '本期产量',
             type: 'line',
             data: this.rData.cl
           })
           let obj = {}
-          obj.projectName = '实际产量'
+          obj.projectName = '本期产量'
           for (let i = 0; i < this.rData.cl.length; i++) {
             let key = this.rData.xAxisData[i] + 'yue'
             obj[key] = this.rData.cl[i]

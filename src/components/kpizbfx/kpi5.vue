@@ -74,7 +74,7 @@
                   <el-table-column
                     align="center"
                     prop="sum"
-                    label="实际得分合计">
+                    label="本期得分合计">
                     <template slot-scope="scope">
                       <span>{{Math.round((scope.row.fs * 1) * (scope.row.qz * 1) / 100)}}</span>
                     </template>

@@ -129,7 +129,7 @@
         loading: false,
         strucPie1: [],
         strucPie2: [],
-        legendData: ['实际用量'],
+        legendData: ['本期用量'],
         seriesData: [],
         pieRadius: ['13%', '60%'],
         valueYear: '',
@@ -241,7 +241,7 @@
             this.minVal = res.data.dmin
             this.avgVal = res.data.daverage
             let obj = {}
-            obj.projectName = '实际电量'
+            obj.projectName = '本期电量'
             for (let i = 0; i < res.data.d.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -263,7 +263,7 @@
             this.minVal = res.data.smin
             this.avgVal = res.data.saverage
             let obj = {}
-            obj.projectName = '实际水量'
+            obj.projectName = '本期水量'
             for (let i = 0; i < res.data.s.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -285,7 +285,7 @@
             this.minVal = res.data.rmin
             this.avgVal = res.data.raverage
             let obj = {}
-            obj.projectName = '实际热量'
+            obj.projectName = '本期热量'
             for (let i = 0; i < res.data.r.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -307,7 +307,7 @@
             this.minVal = res.data.qmin
             this.avgVal = res.data.qaverage
             let obj = {}
-            obj.projectName = '实际气量'
+            obj.projectName = '本期气量'
             for (let i = 0; i < res.data.q.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -329,7 +329,7 @@
             this.minVal = res.data.nymin
             this.avgVal = res.data.nyaverage
             let obj = {}
-            obj.projectName = '实际能源消耗总量'
+            obj.projectName = '本期能源消耗总量'
             for (let i = 0; i < res.data.ny.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -350,7 +350,7 @@
             this.minVal = res.data.ddmin
             this.avgVal = res.data.ddaverage
             let obj = {}
-            obj.projectName = '实际单车电量'
+            obj.projectName = '本期单车电量'
             for (let i = 0; i < res.data.dd.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -372,7 +372,7 @@
             this.minVal = res.data.sdmin
             this.avgVal = res.data.sdaverage
             let obj = {}
-            obj.projectName = '实际单车水量'
+            obj.projectName = '本期单车水量'
             for (let i = 0; i < res.data.sd.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -394,7 +394,7 @@
             this.minVal = res.data.rdmin
             this.avgVal = res.data.rdaverage
             let obj = {}
-            obj.projectName = '实际单车热力'
+            obj.projectName = '本期单车热力'
             for (let i = 0; i < res.data.rd.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -416,7 +416,7 @@
             this.minVal = res.data.qdmin
             this.avgVal = res.data.qdaverage
             let obj = {}
-            obj.projectName = '实际单车天然气'
+            obj.projectName = '本期单车天然气'
             for (let i = 0; i < res.data.qd.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -438,7 +438,7 @@
             this.minVal = res.data.nydmin
             this.avgVal = res.data.nydaverage
             let obj = {}
-            obj.projectName = '实际单车能源消耗总量'
+            obj.projectName = '本期单车能源消耗总量'
             for (let i = 0; i < res.data.nyd.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'

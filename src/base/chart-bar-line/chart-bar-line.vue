@@ -7,7 +7,7 @@
 </template>
 <script>
 import echarts from 'echarts'
-import {filterArr} from 'utils/filter'
+import {filterArr, filterLegend} from 'utils/filter'
 import NoResult from 'base/no-result/no-result'
 export default {
   props: {
@@ -18,7 +18,7 @@ export default {
     chartColor: {
       type: Array,
       default: function () {
-        return ['#0a00dd', '#09cdf7', '#00ffc6', '#8c6be6', '#ff8dc2', '#ff9c00']
+        return ['#0084ff', '#09cdf7', '#f8c1da', '#8c6be6', '#33f3ff', '#ff9c00']
       }
     },
     titleTextColor: {
@@ -54,6 +54,10 @@ export default {
       }
     },
     isOnlyLine: {
+      type: Boolean,
+      default: false
+    },
+    isHome: {
       type: Boolean,
       default: false
     }
@@ -108,9 +112,9 @@ export default {
         legend: {
           padding: [5, 0, 0, 0],
           bottom: 0,
-          data: this.legendData,
+          data: this.isHome ? this.legendData : filterLegend(this.legendData),
           textStyle: {
-            color: '#9edcf6'
+            color: this.isHome ? '#9edcf6' : '#666'
           }
         },
         grid: {
@@ -134,8 +138,11 @@ export default {
             },
             axisLine: {
               lineStyle: {
-                color: '#9edcf6'
+                color: this.isHome ? '#9edcf6' : '#666'
               }
+            },
+            nameTextStyle: {
+              color: this.isHome ? '#9edcf6' : '#666'
             }
           }
         ],
@@ -150,11 +157,11 @@ export default {
               interval: this.yAxis[i].interval,
               axisLine: {
                 lineStyle: {
-                  color: '#9edcf6'
+                  color: this.isHome ? '#9edcf6' : '#666'
                 }
               },
               nameTextStyle: {
-                color: '#9edcf6'
+                color: this.isHome ? '#9edcf6' : '#666'
               },
               splitLine: {
                 lineStyle: {
@@ -214,7 +221,7 @@ export default {
                 barBorderRadius: [3, 3, 0, 0]
               }
             }
-            if (series[i].type === 'bar' && series[i].name.indexOf('实际') >= 0 &&
+            if (series[i].type === 'bar' && (series[i].name.indexOf('实际') >= 0 || series[i].name.indexOf('本期') >= 0) &&
               series[i + 1] && series[i].type === 'bar' && series[i + 1].name.indexOf('计划') >= 0) {
               for (let j = 0; j < series[i].data.length; j++) {
                 if (series[i].data[j] !== 0 && series[i + 1].data[j] !== 0 &&

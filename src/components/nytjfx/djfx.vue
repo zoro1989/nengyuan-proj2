@@ -123,7 +123,7 @@
         let orgName = orgId >= 0 ? this.options1[orgId].label : ''
         if (this.selectDate && orgName) {
           let monthText = moment(this.selectDate).format('YYYY年MM月')
-          return orgName + monthText + '实际电价分析'
+          return orgName + monthText + '本期电价分析'
         } else {
           return ''
         }
