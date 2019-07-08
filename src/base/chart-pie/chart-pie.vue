@@ -75,6 +75,10 @@ export default {
     isSort: {
       type: Boolean,
       default: true
+    },
+    isHome: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
@@ -125,7 +129,12 @@ export default {
         },
         toolbox: {
           feature: {
-            saveAsImage: {}
+            saveAsImage: {
+              iconStyle: {
+                color: this.isHome ? '#fff' : '#666',
+                borderColor: this.isHome ? '#fff' : '#666'
+              }
+            }
           }
         },
         tooltip: {
@@ -142,7 +151,7 @@ export default {
             orient: 'vertical',
             data: filterArr(this.legendData),
             textStyle: {
-              color: '#666'
+              color: this.isHome ? '#fff' : '#666'
             }
         },
         series: [
@@ -152,7 +161,20 @@ export default {
             radius: this.radius,
             center: this.center,
             label: {
-              formatter: !this.isShowLabel ? '{d}%' : undefined
+              formatter: !this.isShowLabel ? '{d}%' : undefined,
+              normal: {
+                textStyle: {
+                  fontSize: 18,
+                  color: this.isHome ? '#fff' : '#666'
+                }
+              }
+            },
+            labelLine: {
+              normal: {
+                lineStyle: {
+                  color: this.isHome ? '#fff' : '#666'
+                }
+              }
             },
             data: (function (vm, seriesData) {
               let copyData = JSON.parse(JSON.stringify(seriesData))

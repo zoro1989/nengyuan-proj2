@@ -14,19 +14,118 @@
                 <el-table
                   class="token-table"
                   :data="rToken"
-                  :show-header="false"
                   border
                   header-cell-class-name="header-cell-class-name"
                   style="width: 99%">
                   <el-table-column
                     prop="org"
+                    align="center"
+                    min-width="220"
                     label="公司名称">
                   </el-table-column>
                   <el-table-column
-                    label="状态">
+                    min-width="50"
+                    align="center"
+                    :label="'通讯\n状态'">
                     <template slot-scope="scope">
                       <span class="dbl" :style="dblStyle(scope.$index)"></span>
                     </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    label="电表">
+                    <el-table-column
+                      align="center"
+                      prop="dcj"
+                      label="采集">
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      prop="dscl"
+                      label="上传率">
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      prop="dzql"
+                      label="准确率">
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      prop="dzc"
+                      label="正常传输">
+                    </el-table-column>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    label="水表">
+                    <el-table-column
+                      align="center"
+                      prop="scj"
+                      label="采集">
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      prop="sscl"
+                      label="上传率">
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      prop="szql"
+                      label="准确率">
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      prop="szc"
+                      label="正常传输">
+                    </el-table-column>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    label="天然气表">
+                    <el-table-column
+                      align="center"
+                      prop="qcj"
+                      label="采集">
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      prop="qscl"
+                      label="上传率">
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      prop="qzql"
+                      label="准确率">
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      prop="qzc"
+                      label="正常传输">
+                    </el-table-column>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    label="热力表">
+                    <el-table-column
+                      align="center"
+                      prop="rcj"
+                      label="采集">
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      prop="rscl"
+                      label="上传率">
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      prop="rzql"
+                      label="准确率">
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      prop="rzc"
+                      label="正常传输">
+                    </el-table-column>
                   </el-table-column>
                 </el-table>
               </div>

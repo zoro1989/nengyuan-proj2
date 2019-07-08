@@ -178,6 +178,7 @@
                         :series="zcData.series"
                         :xAxisData="zcData.xAxisData"
                         :yAxis="yAxis"
+                        :isHome="true"
                         :titleText="lastMonth + '整车制造' + chartTitle"></chart-bar-line>
       </div>
       <div class="col-box-bottom">
@@ -188,6 +189,7 @@
                             :series="lbjData.series"
                             :xAxisData="lbjData.xAxisData"
                             :yAxis="yAxis"
+                            :isHome="true"
                             :titleText="lastMonth + '零部件加工' + chartTitle"></chart-bar-line>
           </div>
           <div class="col-lg-4 col-md-12">
@@ -196,6 +198,7 @@
                             :series="wlData.series"
                             :xAxisData="wlData.xAxisData"
                             :yAxis="yAxis"
+                            :isHome="true"
                             :titleText="lastMonth + '物流' + chartTitle"></chart-bar-line>
           </div>
         </div>

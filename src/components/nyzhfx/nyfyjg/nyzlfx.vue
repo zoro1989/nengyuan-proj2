@@ -46,6 +46,7 @@
                              :isSort="false"
                              :titleText="type === 'nh' ? jcqFormat + dwFormat + '能源消耗结构' : jcqFormat + dwFormat + '能源费用结构'"
                              :radius="pieRadius"
+                             :legendData="rData.jcq_pie && rData.jcq_pie.legendData"
                              :seriesData="rData.jcq_pie && rData.jcq_pie.seriesData"></chart-pie>
                 </div>
                 <report-table class="col-lg-6 col-md-12" className="table1" :reportName="type === 'nh' ? '种类能源消耗结构-基础期' : '种类能源费用结构-基础期'">
@@ -113,6 +114,7 @@
                              :isSort="false"
                              :titleText="type === 'nh' ? bjqFormat + dwFormat + '能源消耗结构' : bjqFormat + dwFormat + '能源费用结构'"
                              :radius="pieRadius"
+                             :legendData="rData.bjq_pie && rData.bjq_pie.legendData"
                              :seriesData="rData.bjq_pie && rData.bjq_pie.seriesData"></chart-pie>
                 </div>
                 <report-table class="col-lg-6 col-md-12" className="table2" :reportName="type === 'nh' ? '种类能源消耗结构-比较期' : '种类能源费用结构-比较期'">

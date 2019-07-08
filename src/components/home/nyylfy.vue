@@ -192,6 +192,7 @@
       <div class="row">
         <div class="col-lg-6 col-md-12 col-xs-12 col-box-left">
           <chart-pie class="chart-box"
+                     :isHome="true"
                      :titleText="lastMonth + chartTitle + '量占比'"
                      :radius="quantityChartRadius"
                      ref="quantity"
@@ -205,6 +206,7 @@
         </div>
         <div class="col-lg-6 col-md-12 col-xs-12 col-box-right">
           <chart-pie class="chart-box"
+                     :isHome="true"
                      :titleText="lastMonth + chartTitle + '费用占比'"
                      :radius="feeChartRadius"
                      :isShowLabel="isShowLabel"
@@ -226,6 +228,7 @@
                         :series="barDb.series"
                         :xAxisData="barDb.xAxisData"
                         :yAxis="yAxis"
+                        :isHome="true"
                         titleText="能源用量与费用对比分析"></chart-bar-line>
       </div>
     </div>

@@ -34,6 +34,7 @@
                              :titleText="jcqFormat + '集团公司二氧化碳排放量分布'"
                              :radius="pieRadius"
                              @pieClick="pieClick"
+                             :legendData="rData.jcq_pie && rData.jcq_pie.legendData"
                              :seriesData="rData.jcq_pie && rData.jcq_pie.seriesData"></chart-pie>
                 </div>
                 <report-table class="col-lg-6 col-md-12" className="table1" reportName="二氧化碳排放-基础期">
@@ -70,6 +71,7 @@
                              :titleText="bjqFormat + '集团公司二氧化碳排放量分布'"
                              :radius="pieRadius"
                              @pieClick="pieClick"
+                             :legendData="rData.bjq_pie && rData.bjq_pie.legendData"
                              :seriesData="rData.bjq_pie && rData.bjq_pie.seriesData"></chart-pie>
                 </div>
                 <report-table class="col-lg-6 col-md-12" className="table2" reportName="二氧化碳排放-比较期">

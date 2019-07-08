@@ -129,6 +129,7 @@
       <div class="row">
         <div class="col-lg-3 col-md-12 col-box">
           <chart-pie class="chart-box"
+                     :isHome="true"
                      :titleText="lastMonth + '能源消耗结构'"
                      :seriesData="strucPie"
                      :radius="analyzeChartRadius"></chart-pie>
@@ -144,6 +145,7 @@
         </div>
         <div class="col-lg-3 col-md-12 col-box">
           <chart-pie class="chart-box"
+                     :isHome="true"
                      :titleText="lastMonth + '能源费用结构'"
                      :seriesData="costPie"
                      :radius="feeChartRadius"></chart-pie>

@@ -2,7 +2,17 @@
   <div class="data-panel">
     <span class="row data-title" @click="titleClick">{{title}}</span>
     <div class="row data-content">
-      <span class="row-item"><span class="big" :class="isLinear ? 'linear' : ''">{{dataText}}</span><span v-html="unitTxt"></span></span>
+      <span class="row-item"><svg  v-if="isLinear" viewBoxs="0 0 100% 38" width="35" height="38" class="svgBox">
+          <defs>
+            <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="0" y1="10" x2="0" y2="38">
+              <stop  offset="0" style="stop-color:#00fe81"/>
+              <stop  offset="0.5" style="stop-color:#00e8be"/>
+              <stop  offset="1" style="stop-color:#00d4f9"/>
+            </linearGradient>
+          </defs>
+          <text text-anchor="middle" class="svg-txt" x="50%" y="34px">{{dataText}}</text>
+        </svg><span class="big" v-if="!isLinear">{{dataText}}</span><span v-html="unitTxt"></span>
+      </span>
     </div>
     <template v-if="showType === 'row' && showBi === 'show'">
       <div class="row bili">
@@ -123,23 +133,21 @@ export default {
         align-items: center
       &.data-content
         min-height: 40px
-        align-items: flex-start
+        align-items: flex-end
       &.bili
         min-height: 35px
         align-items: center
       &.xiazuan:hover
         color: $color-theme
       .row-item
+        .svg-txt
+          fill:url(#SVGID_1_)
+          font-size:40px
         .sub
           font-size: 10px
         .big
           font-size: $font-size-large-x-x
           color: $color-text
-          &.linear
-            background-image: linear-gradient(to bottom, #00ff7e 0%, #00d3fc 100%);
-            -webkit-background-clip: text
-            background-clip: text
-            color: transparent
         .big2
           font-size: $font-size-large-x
         .down

@@ -130,7 +130,7 @@ export default {
           bottom: 0,
           data: this.legendData,
           textStyle: {
-            color: '#9edcf6'
+            color: '#fff'
           }
         },
         xAxis: [
@@ -139,7 +139,7 @@ export default {
             boundaryGap: true,
             axisLine: {
               lineStyle: {
-                color: '#9edcf6'
+                color: '#fff'
               }
             },
             axisTick: {
@@ -172,11 +172,11 @@ export default {
               interval: this.yAxis[i].interval,
               axisLine: {
                 lineStyle: {
-                  color: '#9edcf6'
+                  color: '#fff'
                 }
               },
               nameTextStyle: {
-                color: '#9edcf6'
+                color: '#fff'
               },
               splitLine: {
                 lineStyle: {

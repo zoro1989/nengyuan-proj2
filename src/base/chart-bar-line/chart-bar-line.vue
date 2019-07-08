@@ -94,7 +94,12 @@ export default {
         color: this.chartColor,
         toolbox: {
           feature: {
-            saveAsImage: {}
+            saveAsImage: {
+              iconStyle: {
+                color: this.isHome ? '#fff' : '#666',
+                borderColor: this.isHome ? '#fff' : '#666'
+              }
+            }
           }
         },
         tooltip: {
@@ -112,9 +117,9 @@ export default {
         legend: {
           padding: [5, 0, 0, 0],
           bottom: 0,
-          data: this.isHome ? this.legendData : filterLegend(this.legendData),
+          data: this.isHome ? filterLegend(this.legendData) : this.legendData,
           textStyle: {
-            color: this.isHome ? '#9edcf6' : '#666'
+            color: this.isHome ? '#fff' : '#666'
           }
         },
         grid: {
@@ -138,11 +143,11 @@ export default {
             },
             axisLine: {
               lineStyle: {
-                color: this.isHome ? '#9edcf6' : '#666'
+                color: this.isHome ? '#fff' : '#666'
               }
             },
             nameTextStyle: {
-              color: this.isHome ? '#9edcf6' : '#666'
+              color: this.isHome ? '#fff' : '#666'
             }
           }
         ],
@@ -157,11 +162,11 @@ export default {
               interval: this.yAxis[i].interval,
               axisLine: {
                 lineStyle: {
-                  color: this.isHome ? '#9edcf6' : '#666'
+                  color: this.isHome ? '#fff' : '#666'
                 }
               },
               nameTextStyle: {
-                color: this.isHome ? '#9edcf6' : '#666'
+                color: this.isHome ? '#fff' : '#666'
               },
               splitLine: {
                 lineStyle: {

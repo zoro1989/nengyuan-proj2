@@ -1,6 +1,6 @@
 <template>
   <div :class="className" class="report-table">
-    <span class="export-excel ripple" @click="exportExcel"><i class="el-icon-download"></i></span>
+    <span class="export-excel ripple" @click="exportExcel"><i class="el-icon-download" :class="isHome ? 'home-class' : ''"></i></span>
     <slot name="title"></slot>
     <slot name="table"></slot>
   </div>
@@ -16,6 +16,10 @@
       reportName: {
         type: String,
         default: '测试'
+      },
+      isHome: {
+        type: Boolean,
+        default: false
       }
     },
     methods: {
@@ -36,4 +40,6 @@
       font-size: 16px
       position: absolute
       z-index: 20
+      .home-class
+        color: #fff
 </style>

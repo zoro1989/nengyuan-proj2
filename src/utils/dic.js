@@ -117,13 +117,12 @@ let orgList = [
   }
 ]
 export const orgSystemIdDic = orgList
-export const orgListShort = [orgList[2], orgList[3], orgList[5], orgList[7]]
 let orgListCasc = JSON.parse(JSON.stringify(orgList))
 orgListCasc[4].children = [{
   value: '1546481',
   label: '大众汽车（长春）'
 }]
-export const orgSystemIdDicCasc = orgListCasc
+export const orgSystemIdDicCasc = [orgListCasc[2], orgListCasc[3], orgListCasc[4], orgListCasc[5], orgListCasc[7]]
 let orgListNoJituan = JSON.parse(JSON.stringify(orgList))
 orgListNoJituan.shift()
 export const orgSystemIdDicNoJituan = orgListNoJituan
