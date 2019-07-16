@@ -164,7 +164,6 @@ export default {
               formatter: !this.isShowLabel ? '{d}%' : undefined,
               normal: {
                 textStyle: {
-                  fontSize: 18,
                   color: this.isHome ? '#fff' : '#666'
                 }
               }

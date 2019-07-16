@@ -135,7 +135,7 @@
     watch: {
       '$route'(to, from) {
         let path = to.path
-        if (path === '/home/alarm') {
+        if (path === '/home/ss/alarm') {
           this.selectMenuIndex = 0
         }
       }
@@ -147,7 +147,7 @@
     },
     mounted() {
       let path = this.$route.path
-      if (path === '/home' || path === '/home/alarm') {
+      if (path === '/home' || path === '/home/ss/alarm') {
         this.selectMenuIndex = 0
       } else if (path === '/home/nyzlfx/nh' || path === '/home/nybmfx/nh' || path === '/home/nyzlfx/fy' || path === '/home/nybmfx/fy' || path === '/home/eyhtfx') {
         this.selectMenuIndex = 1

@@ -70,7 +70,7 @@ export default {
       }
       if (this.username === 'admin' && this.password === '111111') {
         setRole('1')
-        this.$router.replace('/home/alarm')
+        this.$router.replace('/home/ss/alarm')
         Message({
           message: '登录成功',
           type: 'success'
@@ -78,7 +78,7 @@ export default {
       }
       fetch('post', api.userUfind, {username: this.username, password: this.password}).then((res) => {
         setRole(res.data.role)
-        this.$router.replace('/home/alarm')
+        this.$router.replace('/home/ss/alarm')
         Message({
           message: '登录成功',
           type: 'success'

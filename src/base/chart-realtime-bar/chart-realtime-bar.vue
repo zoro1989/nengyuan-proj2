@@ -107,7 +107,9 @@ export default {
           axisLabel: {
             interval: 0
           },
-          data: this.xAxisData
+          data: this.xAxisData && this.xAxisData.map((item) => {
+            return item + '时'
+          })
 //          data: (function () {
 //            var now = moment()
 //            var res = []

@@ -149,3 +149,8 @@ export function filterLegend(str) {
   }
   return arr
 }
+export function filterSeries(str) {
+  let newStr = str.replace(/实际/g, '本期')
+  let newStr2 = newStr.replace(/上期同期/g, '同期')
+  return newStr2
+}

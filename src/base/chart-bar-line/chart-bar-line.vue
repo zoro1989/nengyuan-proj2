@@ -7,7 +7,7 @@
 </template>
 <script>
 import echarts from 'echarts'
-import {filterArr, filterLegend} from 'utils/filter'
+import {filterArr, filterLegend, filterSeries} from 'utils/filter'
 import NoResult from 'base/no-result/no-result'
 export default {
   props: {
@@ -18,7 +18,7 @@ export default {
     chartColor: {
       type: Array,
       default: function () {
-        return ['#0084ff', '#09cdf7', '#f8c1da', '#8c6be6', '#33f3ff', '#ff9c00']
+        return ['#0084ff', '#09cdf7', '#f8c1da', '#ff9c00', '#33f3ff', '#8c6be6']
       }
     },
     titleTextColor: {
@@ -213,7 +213,7 @@ export default {
           let res = []
           for (let i = 0; i < series.length; i++) {
             let item = {}
-            item.name = series[i].name
+            item.name = filterSeries(series[i].name)
             item.type = series[i].type
             if (item.type === 'line') {
               if (!this.isOnlyLine) {

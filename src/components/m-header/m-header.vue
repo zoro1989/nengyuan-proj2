@@ -6,11 +6,11 @@
         <span class="title">中国一汽集团能源管理分析系统</span>
       </div>
       <div class="setting">
-        <span class="item ripple" @click="onHome"><i class="fa fa-home"></i></span>
-        <span class="item ripple" @click="onUser"><i class="fa fa-user"></i></span>
-        <span class="item ripple" @click="onRefresh"><i class="fa fa-refresh"></i></span>
-        <span class="item ripple" @click="onWarning"><i class="fa fa-bell"></i></span>
-        <span class="item ripple" @click="onLogout"><i class="fa fa-power-off"></i></span>
+        <span class="item ripple" @click="onHome"><i title="首页" class="fa fa-home"></i></span>
+        <span class="item ripple" @click="onUser"><i title="用户菜单" class="fa fa-user"></i></span>
+        <span class="item ripple" @click="onRefresh"><i title="刷新" class="fa fa-refresh"></i></span>
+        <span class="item ripple" @click="onWarning"><i title="报警" class="fa fa-bell"></i></span>
+        <span class="item ripple" @click="onLogout"><i title="退出系统" class="fa fa-power-off"></i></span>
       </div>
     </div>
   </transition>
@@ -39,7 +39,7 @@ export default {
       this.$router.replace('/login')
     },
     onWarning() {
-      this.$router.replace('/home/alarm')
+      this.$router.replace('/home/ss/alarm')
     }
   }
 }

@@ -51,7 +51,7 @@
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-line class="chart-l"
                                  :titleText="chartTitle + realTimeToday + '能源用量(小时)'"
-                                 yAxisTitle="吨标煤/时"
+                                 yAxisTitle="吨标煤"
                                  seriesName="能耗"
                                  :xAxisData="ny.xAxisData"
                                  :seriesData="ny.seriesData"
@@ -60,7 +60,7 @@
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-line class="chart-r"
                                  :titleText="chartTitle + realTimeToday + '能源费用(小时)'"
-                                 yAxisTitle="千元/时"
+                                 yAxisTitle="千元"
                                  seriesName="能耗"
                                  :xAxisData="fy.xAxisData"
                                  :seriesData="fy.seriesData"
@@ -144,7 +144,7 @@
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-line class="chart-l"
                                  :titleText="chartTitle + realTimeToday + '能源用量(小时)'"
-                                 yAxisTitle="吨标煤/时"
+                                 yAxisTitle="吨标煤"
                                  seriesName="能耗"
                                  :xAxisData="ny.xAxisData"
                                  :seriesData="ny.seriesData"
@@ -153,7 +153,7 @@
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-bar class="chart-r"
                                  :titleText="chartTitle + realTimeToday + '能源费用(小时)'"
-                                 yAxisTitle="千元/时"
+                                 yAxisTitle="千元"
                                  :xAxisData="fy.xAxisData"
                                  :seriesData="fy.seriesData"
                                  seriesName="能耗"></chart-realtime-bar>

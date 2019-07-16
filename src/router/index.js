@@ -93,6 +93,11 @@ export default new Router({
           component: Dbfx
         },
         {
+          path: 'ss/alarm',
+          name: '能源预警',
+          component: Alarm
+        },
+        {
           path: 'nyzlfx/fy',
           name: '能源种类分析',
           component: Zlfy
@@ -206,11 +211,6 @@ export default new Router({
           path: 'kpi5',
           name: 'kpi指标分析',
           component: KPI5
-        },
-        {
-          path: 'alarm',
-          name: '能源预警',
-          component: Alarm
         },
         {
           path: 'tz1-ly',

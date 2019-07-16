@@ -111,7 +111,7 @@
         <div class="col-lg-6 col-md-12 col-box-left">
           <chart-realtime-line class="chart-box"
                                :titleText="realTimeToday + '能源用量(小时)'"
-                               yAxisTitle="吨标煤/时"
+                               yAxisTitle="吨标煤"
                                seriesName="能耗"
                                :xAxisData="ny.xAxisData"
                                :seriesData="ny.seriesData"
@@ -120,7 +120,7 @@
         <div class="col-lg-6 col-md-12 col-box-right">
           <chart-realtime-bar class="chart-box"
                               :titleText="realTimeToday + '能源费用(小时)'"
-                              yAxisTitle="千元/时"
+                              yAxisTitle="千元"
                               :xAxisData="fy.xAxisData"
                               :seriesData="fy.seriesData"
                               seriesName="费用"></chart-realtime-bar>
