@@ -55,7 +55,7 @@
                   <el-table-column
                     align="center"
                     prop="df"
-                    label="电费(千元)">
+                    label="电费(万元)">
                   </el-table-column>
                   <el-table-column
                     align="center"
@@ -105,8 +105,8 @@
         tableData: [],
         colors: ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3'],
         noBorder: true,
-        system_id: '',
-        selectDate: '',
+        system_id: ['3'],
+        selectDate: moment().subtract(1, 'months').format('YYYY-MM'),
         rData: {},
         year: '',
         month: '',

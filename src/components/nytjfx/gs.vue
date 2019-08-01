@@ -123,6 +123,7 @@
       ReportTable
     },
     created() {
+      this.fetchData()
     },
     data() {
       return {
@@ -143,8 +144,8 @@
         noBorder: true,
         calendarData: [],
         lx: '33',
-        system_id: [],
-        year: '',
+        system_id: ['42052'],
+        year: moment().format('YYYY') || '',
         month: '',
         rData: {},
         maxVal: 0,

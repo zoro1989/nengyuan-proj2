@@ -128,6 +128,7 @@
       ReportTable
     },
     created() {
+      this.onSearch()
     },
     data() {
       return {
@@ -138,8 +139,8 @@
         tableData: [],
         colors: chartColors,
         noBorder: true,
-        system_id: '',
-        year: '',
+        system_id: '3',
+        year: moment().format('YYYY') || '',
         rData: {},
         lx: 'tan',
         legendData: ['本期碳', '同期碳', '上月碳', '产量', '同期产量', '上月产量'],

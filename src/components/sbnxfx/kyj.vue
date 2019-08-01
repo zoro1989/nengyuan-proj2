@@ -139,6 +139,7 @@
                 :data="rData3"
                 key="table3"
                 border
+                :cell-style="cellStyle"
                 header-cell-class-name="header-cell-class-name"
                 style="width: 99%">
                 <el-table-column
@@ -158,84 +159,84 @@
                     align="center"
                     label="一月">
                     <template slot-scope="scope">
-                      <span class="yue-box" :class="cellStyle(scope.row['1yue'])">{{ scope.row['1yue'] ? scope.row['1yue'].split('_')[0] : '' }}</span>
+                      {{ scope.row['1yue'] ? scope.row['1yue'].split('_')[0] : '' }}
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="二月">
                     <template slot-scope="scope">
-                      <span class="yue-box" :class="cellStyle(scope.row['2yue'])">{{ scope.row['2yue'] ? scope.row['2yue'].split('_')[0] : '' }}</span>
+                      {{ scope.row['2yue'] ? scope.row['2yue'].split('_')[0] : '' }}
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="三月">
                     <template slot-scope="scope">
-                      <span class="yue-box" :class="cellStyle(scope.row['3yue'])">{{ scope.row['3yue'] ? scope.row['3yue'].split('_')[0] : '' }}</span>
+                      {{ scope.row['3yue'] ? scope.row['3yue'].split('_')[0] : '' }}
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="四月">
                     <template slot-scope="scope">
-                      <span class="yue-box" :class="cellStyle(scope.row['4yue'])">{{ scope.row['4yue'] ? scope.row['4yue'].split('_')[0] : '' }}</span>
+                      {{ scope.row['4yue'] ? scope.row['4yue'].split('_')[0] : '' }}
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="五月">
                     <template slot-scope="scope">
-                      <span class="yue-box" :class="cellStyle(scope.row['5yue'])">{{ scope.row['5yue'] ? scope.row['5yue'].split('_')[0] : '' }}</span>
+                      {{ scope.row['5yue'] ? scope.row['5yue'].split('_')[0] : '' }}
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="六月">
                     <template slot-scope="scope">
-                      <span class="yue-box" :class="cellStyle(scope.row['6yue'])">{{ scope.row['6yue'] ? scope.row['6yue'].split('_')[0] : '' }}</span>
+                      {{ scope.row['6yue'] ? scope.row['6yue'].split('_')[0] : '' }}
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="七月">
                     <template slot-scope="scope">
-                      <span class="yue-box" :class="cellStyle(scope.row['7yue'])">{{ scope.row['7yue'] ? scope.row['7yue'].split('_')[0] : '' }}</span>
+                      {{ scope.row['7yue'] ? scope.row['7yue'].split('_')[0] : '' }}
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="八月">
                     <template slot-scope="scope">
-                      <span class="yue-box" :class="cellStyle(scope.row['8yue'])">{{ scope.row['8yue'] ? scope.row['8yue'].split('_')[0] : '' }}</span>
+                      {{ scope.row['8yue'] ? scope.row['8yue'].split('_')[0] : '' }}
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="九月">
                     <template slot-scope="scope">
-                      <span class="yue-box" :class="cellStyle(scope.row['9yue'])">{{ scope.row['9yue'] ? scope.row['9yue'].split('_')[0] : '' }}</span>
+                      {{ scope.row['9yue'] ? scope.row['9yue'].split('_')[0] : '' }}
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="十月">
                     <template slot-scope="scope">
-                      <span class="yue-box" :class="cellStyle(scope.row['10yue'])">{{ scope.row['10yue'] ? scope.row['10yue'].split('_')[0] : '' }}</span>
+                      {{ scope.row['10yue'] ? scope.row['10yue'].split('_')[0] : '' }}
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="十一月">
                     <template slot-scope="scope">
-                      <span class="yue-box" :class="cellStyle(scope.row['11yue'])">{{ scope.row['11yue'] ? scope.row['11yue'].split('_')[0] : '' }}</span>
+                      {{ scope.row['11yue'] ? scope.row['11yue'].split('_')[0] : '' }}
                     </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
                     label="十二月">
                     <template slot-scope="scope">
-                      <span class="yue-box" :class="cellStyle(scope.row['12yue'])">{{ scope.row['12yue'] ? scope.row['12yue'].split('_')[0] : '' }}</span>
+                      {{ scope.row['12yue'] ? scope.row['12yue'].split('_')[0] : '' }}
                     </template>
                   </el-table-column>
                 </el-table-column>
@@ -311,6 +312,8 @@
             this.rData2 = []
             this.loading = false
           }).catch(() => {
+            this.rData = []
+            this.rData2 = []
             this.loading = false
           })
         }
@@ -320,16 +323,43 @@
           this.subTitle = this.rData[index].org
           this.rData2 = res.data
         }).catch(() => {
+          this.rData2 = []
         })
       },
-      cellStyle (value) {
+      cellStyle (cell) {
+        let value
+        if (cell.columnIndex === 2) {
+          value = cell.row['1yue']
+        } else if (cell.columnIndex === 3) {
+          value = cell.row['2yue']
+        } else if (cell.columnIndex === 4) {
+          value = cell.row['3yue']
+        } else if (cell.columnIndex === 5) {
+          value = cell.row['4yue']
+        } else if (cell.columnIndex === 6) {
+          value = cell.row['5yue']
+        } else if (cell.columnIndex === 7) {
+          value = cell.row['6yue']
+        } else if (cell.columnIndex === 8) {
+          value = cell.row['7yue']
+        } else if (cell.columnIndex === 9) {
+          value = cell.row['8yue']
+        } else if (cell.columnIndex === 10) {
+          value = cell.row['9yue']
+        } else if (cell.columnIndex === 11) {
+          value = cell.row['10yue']
+        } else if (cell.columnIndex === 12) {
+          value = cell.row['11yue']
+        } else if (cell.columnIndex === 13) {
+          value = cell.row['12yue']
+        }
         let status = value ? value.split('_').length === 2 ? value.split('_')[1] : '' : ''
         if (status === '1') {
-          return 'green'
+          return 'background: #67C23A'
         } else if (status === '2') {
-          return 'red'
+          return 'background: #F56C6C'
         } else if (status === '3') {
-          return 'yellow'
+          return 'background: #FFFF00'
         }
       },
       orgGsClick(index) {
@@ -361,6 +391,7 @@
           }
           this.loading = false
         }).catch(() => {
+          this.rData3 = []
           this.loading = false
         })
       },
@@ -382,21 +413,6 @@
       display: flex
       flex-direction: column
       min-width: 600px
-      .yue-box
-        position: absolute
-        top: 0
-        left: 0
-        right: 0
-        bottom: 0
-        display: flex
-        justify-content: center
-        align-items: center
-        &.red
-          background: #F56C6C
-        &.yellow
-          background: #FFFF00
-        &.green
-          background: #67C23A
       .org-title
         &:hover
           cursor: pointer

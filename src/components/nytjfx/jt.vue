@@ -148,6 +148,7 @@
       ReportTable
     },
     created() {
+      this.onSearch()
     },
     data() {
       return {
@@ -158,9 +159,9 @@
         tableData: [],
         colors: chartColors,
         noBorder: true,
-        system_id: '',
-        year: '',
-        lx: '',
+        system_id: '3',
+        year: moment().format('YYYY') || '',
+        lx: '33',
         rData: {},
         legendData: ['本期用量', '同期用量', '上月用量', '本期产量', '同期产量', '上月产量'],
         seriesData: []

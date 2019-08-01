@@ -36,7 +36,7 @@
               class="border-right"
               title="能源消耗总量"
               :data="pData.zhnh"
-              unit="万吨标煤"
+              unit="吨标煤"
               :tongbiData="pData.zhnh_tb"
               :huanbiData="pData.zhnh_hb"
               showType="column"
