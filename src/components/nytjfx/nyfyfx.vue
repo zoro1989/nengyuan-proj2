@@ -27,6 +27,7 @@
           <el-select
             slot="title3"
             v-model="lx"
+            @change="lxChange"
             placeholder="请选择"
             size="mini">
             <el-option
@@ -82,7 +83,7 @@
               <data-panel-title slot="title" title="分析结果" :noBorder="noBorder"></data-panel-title>
               <el-table
                 slot="table"
-                :data="rData.zfl"
+                :data="tableDataFilter2(rData.zfl, 100)"
                 border
                 header-cell-class-name="header-cell-class-name"
                 style="width: 99%">
@@ -114,7 +115,7 @@
   import { api } from '@/config'
   import fetch from 'utils/fetch'
   import {orgIdDic, lxfyDic, lxfyNoCarDic, chartColors} from 'utils/dic'
-  import {tableDataFilter} from 'utils/filter'
+  import {tableDataFilter, tableDataFilter2} from 'utils/filter'
   import ReportTable from 'base/report-table/report-table'
   let moment = require('moment')
   moment.locale('zh-cn')
@@ -204,6 +205,12 @@
       }
     },
     methods: {
+      lxChange() {
+        if (this.system_id && this.year) {
+          this.onSearch()
+        }
+      },
+      tableDataFilter2,
       systemChange(value) {
         this.lx = ''
         if (value === '1') {

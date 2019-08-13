@@ -43,7 +43,7 @@
               <report-table class="row" ref="row" className="table1" reportName="电价分析">
                 <el-table
                   slot="table"
-                  :data="rData.list"
+                  :data="tableDataFilter2(rData.list, 1000)"
                   border
                   header-cell-class-name="header-cell-class-name"
                   style="width: 99%">
@@ -85,6 +85,7 @@
   import fetch from 'utils/fetch'
   import {orgIdSimpleDic} from 'utils/dic'
   import ReportTable from 'base/report-table/report-table'
+  import {tableDataFilter2} from 'utils/filter'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -96,6 +97,7 @@
       ReportTable
     },
     created() {
+      this.onSearch()
     },
     data() {
       return {
@@ -106,7 +108,7 @@
         colors: ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3'],
         noBorder: true,
         system_id: ['3'],
-        selectDate: moment().subtract(1, 'months').format('YYYY-MM'),
+        selectDate: moment().format('DD') * 1 <= 10 ? moment().subtract(2, 'months').format('YYYY-MM') : moment().subtract(1, 'months').format('YYYY-MM'),
         rData: {},
         year: '',
         month: '',
@@ -130,6 +132,7 @@
       }
     },
     methods: {
+      tableDataFilter2,
       onSearch() {
         let dateArr = this.selectDate.split('-')
         if (dateArr.length > 0) {

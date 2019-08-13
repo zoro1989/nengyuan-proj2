@@ -45,6 +45,7 @@
               <data-panel
                 class="border-bottom"
                 title="产值碳排放量"
+                :isMathRound="true"
                 :data="pData.cztan"
                 unit="kgCO<sub>2</sub>/万元"
                 :tongbiData="pData.cztan_tb"
@@ -54,6 +55,7 @@
               <data-panel
                 class="border-left border-bottom"
                 title="产值耗电量"
+                :isMathRound="true"
                 :data="pData.czd"
                 unit="千瓦时/万元"
                 :tongbiData="pData.czd_tb"
@@ -73,6 +75,7 @@
               ></data-panel>
               <data-panel
                 title="产值耗水量"
+                :isMathRound="true"
                 :data="pData.czs"
                 unit="升（水）/万元"
                 :tongbiData="pData.czs_tb"
@@ -226,7 +229,7 @@ export default {
   },
   data() {
     return {
-      lastMonth: moment().subtract(1, 'months').format('MMMM'),
+      lastMonth: moment().format('DD') * 1 <= 10 ? moment().subtract(2, 'months').format('MMMM') : moment().subtract(1, 'months').format('MMMM'),
       quantityChartRadius: [0, '60%'],
       feeChartRadius: [0, '60%'],
       options1: [{
@@ -258,7 +261,7 @@ export default {
       zcData: {},
       lbjData: {},
       wlData: {},
-      dateTime: moment().subtract(1, 'months').format('YYYY-MM'),
+      dateTime: moment().format('DD') * 1 <= 10 ? moment().subtract(2, 'months').format('YYYY-MM') : moment().subtract(1, 'months').format('YYYY-MM'),
       lx: '40',
       yAxis: [{name: '吨标煤/万元'}, {name: '%'}],
       chartTitle: '产值综合能耗'

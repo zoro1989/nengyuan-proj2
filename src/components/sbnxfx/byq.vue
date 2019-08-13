@@ -155,6 +155,7 @@
                 </el-table-column>
                 <el-table-column
                   align="center"
+                  :render-header="renderHeader"
                   label="负载系数(β)">
                   <el-table-column
                     align="center"
@@ -267,6 +268,7 @@
       ChartBarLine
     },
     created() {
+      this.onSearch()
     },
     data() {
       return {
@@ -275,8 +277,8 @@
         options1: orgIdDic,
         tableData: [],
         noBorder: true,
-        system_id: '',
-        time: '',
+        system_id: '10',
+        time: moment().format('YYYY') || '',
         rData: [],
         rData2: [],
         rData3: [],
@@ -294,6 +296,26 @@
       }
     },
     methods: {
+      renderHeader (h, {column}) { // h即为cerateElement的简写，具体可看vue官方文档
+        return h(
+          'div',
+          [
+            h('span', column.label),
+            h('span', {
+              style: 'margin-left:30px; background: #67C23A;width: 30px;height: 10px;display: inline-block;'
+            }),
+            h('span', '合格'),
+            h('span', {
+              style: 'margin-left:10px; background: #F56C6C;width: 30px;height: 10px;display: inline-block;'
+            }),
+            h('span', '不合格'),
+            h('span', {
+              style: 'margin-left:10px; background: #FFFF00;width: 30px;height: 10px;display: inline-block;'
+            }),
+            h('span', '严重警告')
+          ]
+        )
+      },
       headerCellStyle(cell) {
         if (cell.rowIndex === 1 && cell.columnIndex === 0) {
           return 'background: #67C23A;'

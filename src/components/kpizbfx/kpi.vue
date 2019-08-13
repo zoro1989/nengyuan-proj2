@@ -102,6 +102,7 @@
                 </el-table-column>
                 <el-table-column
                   align="center"
+                  :render-header="renderHeader"
                   label="评价">
                   <el-table-column
                     align="center"
@@ -152,6 +153,7 @@
       ReportTable
     },
     created() {
+      this.onSearch()
     },
     data() {
       return {
@@ -165,7 +167,7 @@
         system_id: '42052',
         year: moment().format('YYYY') || '',
         rData: {},
-        legendData: ['产量（辆）', '本期产值（万元）', '计划单月万元产值能耗', '本期单月万元产值能耗', '计划累计万元产值能耗', '本期累计万元产值能耗'],
+        legendData: ['本期产量（辆）', '本期产值（万元）', '计划单月万元产值能耗', '本期单月万元产值能耗', '计划累计万元产值能耗', '本期累计万元产值能耗'],
         seriesData: [],
         rlist: []
       }
@@ -239,7 +241,7 @@
         if (this.lx === '1') {
           return '万元产值能耗'
         } else if (this.lx === '2') {
-          return '耗水量'
+          return '产值耗水量'
         } else if (this.lx === '3') {
           return '能源消耗总量'
         } else if (this.lx === '4') {
@@ -248,6 +250,24 @@
       }
     },
     methods: {
+      renderHeader (h, {column}) { // h即为cerateElement的简写，具体可看vue官方文档
+        return h(
+          'div',
+          [
+            h('span', column.label),
+            h('span', '（'),
+            h('span', '合格：'),
+            h('span', {
+              style: 'background: #67C23A; color: #fff;width: 10px;height: 10px;border-radius: 50%;display: inline-block;'
+            }),
+            h('span', '    不合格：'),
+            h('span', {
+              style: 'background: #F56C6C; color: #fff;width: 10px;height: 10px;border-radius: 50%;display: inline-block;'
+            }),
+            h('span', '）')
+          ]
+        )
+      },
       dblStyle(index) {
         let res = this.rlist[index]['JHCZNH'] * 1 - this.rlist[index]['SJCZNH'] * 1
         return res >= 0 ? 'background: #67C23A; color: #fff;' : 'background: #F56C6C; color: #fff;'
@@ -281,6 +301,15 @@
         fetch('get', api.kipList, {system_id: this.system_id, nian: this.year, lx: this.lx}).then((res) => {
           this.tableData = []
           let series = []
+          if (this.lx === '1') {
+            this.legendData = ['本期产量（辆）', '本期产值（万元）', '计划单月万元产值能耗', '本期单月万元产值能耗', '计划累计万元产值能耗', '本期累计万元产值能耗']
+          } else if (this.lx === '2') {
+            this.legendData = ['本期产量（辆）', '本期产值（万元）', '计划单月产值耗水量', '本期单月产值耗水量', '计划累计产值耗水量', '本期累计产值耗水量']
+          } else if (this.lx === '3') {
+            this.legendData = ['本期产量（辆）', '本期产值（万元）', '计划单月能源消耗总量', '本期单月能源消耗总量', '计划累计能源消耗总量', '本期累计能源消耗总量']
+          } else if (this.lx === '4') {
+            this.legendData = ['本期产量（辆）', '本期产值（万元）', '计划单月单车综合能耗', '本期单月单车综合能耗', '计划累计单车综合能耗', '本期累计单车综合能耗']
+          }
           if (res.data.cl && res.data.cl.length > 0) {
 //            series.push({
 //              name: '产量（辆）',
@@ -288,7 +317,7 @@
 //              data: res.data.cl
 //            })
             let obj = {}
-            obj.projectName = '产量（辆）'
+            obj.projectName = '本期产量（辆）'
             obj.yearTarget = '0'
             for (let i = 0; i < res.data.cl.length; i++) {
               let key = res.data.xAxisData[i] + 'yue'

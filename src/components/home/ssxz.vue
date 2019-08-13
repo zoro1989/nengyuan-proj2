@@ -297,7 +297,7 @@ export default {
     return {
       showArea: true,
       showflag: '1',
-      valueDate: '',
+      valueDate: [moment().format('YYYY-MM-DD'), moment().format('YYYY-MM-DD')],
       pickerOptions2: {
         shortcuts: [{
           text: '最近一周',
@@ -330,7 +330,7 @@ export default {
 //      selectedOptions: [],
       selectGroups: '',
       configTips: '',
-      system_id: [],
+      system_id: ['42052'],
       begin_time: '',
       end_time: '',
       bData: {},

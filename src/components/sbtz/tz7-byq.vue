@@ -141,6 +141,7 @@
       SelectTitle
     },
     created() {
+      this.onSearch()
     },
     data() {
       var validatePass = (rule, value, callback) => {
@@ -155,8 +156,8 @@
         options1: orgSystemIdDic,
         tableData: [],
         noBorder: true,
-        system_id: '',
-        date: '',
+        system_id: '41949',
+        date: moment().subtract(1, 'years').format('YYYY') || '',
         rList: [],
         form: {
           system_id: '',

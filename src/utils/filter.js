@@ -113,16 +113,33 @@ export function filter(str) {
   return resultStr
 }
 
-export function tableDataFilter(tableData) {
+export function tableDataFilter(tableData, fixNum = 100) {
+  if (!tableData || tableData.length === 0) {
+    return []
+  }
   let copyTableData = JSON.parse(JSON.stringify(tableData))
   return copyTableData.map((item) => {
     for (let i in item) {
       if (Object.prototype.toString.call(item[i]) === '[object Number]') {
         if (item[i] < 1) {
-          item[i] = Math.round(item[i] * 100) / 100
+          item[i] = Math.round(item[i] * fixNum) / fixNum
         } else {
           item[i] = Math.round(item[i])
         }
+      }
+    }
+    return item
+  })
+}
+export function tableDataFilter2(tableData, fixNum = 100) {
+  if (!tableData || tableData.length === 0) {
+    return []
+  }
+  let copyTableData = JSON.parse(JSON.stringify(tableData))
+  return copyTableData.map((item) => {
+    for (let i in item) {
+      if (Object.prototype.toString.call(item[i]) === '[object Number]') {
+        item[i] = Math.round(item[i] * fixNum) / fixNum
       }
     }
     return item

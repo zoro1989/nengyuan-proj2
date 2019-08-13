@@ -254,7 +254,7 @@ export default {
   },
   data() {
     return {
-      lastMonth: moment().subtract(1, 'months').format('MMMM'),
+      lastMonth: moment().format('DD') * 1 <= 10 ? moment().subtract(2, 'months').format('MMMM') : moment().subtract(1, 'months').format('MMMM'),
       quantityChartRadius: [0, '70%'],
       feeChartRadius: [0, '70%'],
       pieCenter: ['40%', '60%'],
@@ -279,7 +279,7 @@ export default {
       pieDl: {},
       pieDf: {},
       barDb: {},
-      dateTime: moment().subtract(1, 'months').format('YYYY-MM'),
+      dateTime: moment().format('DD') * 1 <= 10 ? moment().subtract(2, 'months').format('YYYY-MM') : moment().subtract(1, 'months').format('YYYY-MM'),
       lx: '33',
       pid: '2',
       pidmain: '1',

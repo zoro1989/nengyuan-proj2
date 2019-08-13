@@ -194,7 +194,7 @@
           }
           if (index === columns.length - 1) {
             let sumValue = 0
-            for (let i = 0; i < this.rList.length - 1; i++) {
+            for (let i = 0; i < this.rList.length; i++) {
               sumValue += Math.round((this.rList[i].fs * 1) * (this.rList[i].qz * 1) / 100)
             }
             sums[index] = sumValue + '分'

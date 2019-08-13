@@ -180,7 +180,7 @@ let lxDList = JSON.parse(JSON.stringify(lxList)).concat([
     label: '单车天然气'
   }, {
     value: '40_d',
-    label: '单车能源消耗总量'
+    label: '单车综合能耗'
   }
 ])
 export const lxdDic = lxDList
@@ -216,10 +216,10 @@ export const lxfyDic = lxfyCarList
 export const lxTanDic = [
   {
     value: 'tan',
-    label: '碳'
+    label: '碳排放量'
   }, {
     value: 'dtan',
-    label: '单车碳'
+    label: '单车碳排放量'
   }
 ]
 export const lxrdDic = [

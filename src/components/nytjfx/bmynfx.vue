@@ -59,7 +59,7 @@
               </el-table-column>
               <el-table-column
                 align="center"
-                label="产值耗水（吨/万元）">
+                label="产值耗水（立方米/万元）">
                 <el-table-column
                   align="center"
                   prop="s"
@@ -138,7 +138,7 @@
         colors: ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3'],
         noBorder: true,
         system_id: ['3'],
-        selectDate: moment().subtract(1, 'months').format('YYYY-MM'),
+        selectDate: moment().format('DD') * 1 <= 10 ? moment().subtract(2, 'months').format('YYYY-MM') : moment().subtract(1, 'months').format('YYYY-MM'),
         year: '',
         month: '',
         rData: [],

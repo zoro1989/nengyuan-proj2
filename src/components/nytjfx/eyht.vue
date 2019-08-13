@@ -83,7 +83,7 @@
               <data-panel-title slot="title" title="分析结果" :noBorder="noBorder"></data-panel-title>
               <el-table
                 slot="table"
-                :data="rData.zfl"
+                :data="tableDataFilter2(rData.zfl, 100)"
                 border
                 header-cell-class-name="header-cell-class-name"
                 style="width: 99%">
@@ -115,7 +115,7 @@
   import { api } from '@/config'
   import fetch from 'utils/fetch'
   import {orgIdDic, lxTanDic, chartColors} from 'utils/dic'
-  import {tableDataFilter} from 'utils/filter'
+  import {tableDataFilter, tableDataFilter2} from 'utils/filter'
   import ReportTable from 'base/report-table/report-table'
   let moment = require('moment')
   moment.locale('zh-cn')
@@ -143,7 +143,7 @@
         year: moment().format('YYYY') || '',
         rData: {},
         lx: 'tan',
-        legendData: ['本期碳', '同期碳', '上月碳', '产量', '同期产量', '上月产量'],
+        legendData: ['本期碳', '同期碳', '上月碳', '本期产量', '同期产量', '上月产量'],
         seriesData: [],
         y: [{name: '辆'}, {name: '亿元'}]
       }
@@ -188,12 +188,13 @@
       }
     },
     methods: {
+      tableDataFilter2,
       departmentStyle(index) {
         return `background: ${this.colors[index]}`
       },
       lxChange() {
-        if (this.tableData.length > 0) {
-          this.makeData()
+        if (this.system_id && this.year) {
+          this.onSearch()
         }
       },
       onSearch() {
@@ -212,6 +213,7 @@
         this.tableData = []
         let series = []
         if (this.lx === 'tan') {
+          this.legendData = ['本期碳', '同期碳', '上月碳', '本期产量', '同期产量', '上月产量']
           if (this.rData.tan && this.rData.tan.length > 0) {
             series.push({
               name: '本期碳',
@@ -255,6 +257,7 @@
             this.tableData.push(obj)
           }
         } else if (this.lx === 'dtan') {
+          this.legendData = ['本期单碳', '同期单碳', '上月单碳', '本期产量', '同期产量', '上月产量']
           if (this.rData.dtan && this.rData.dtan.length > 0) {
             series.push({
               name: '本期单碳',
@@ -300,12 +303,12 @@
         }
         if (this.rData.cl && this.rData.cl.length > 0) {
           series.push({
-            name: '产量',
+            name: '本期产量',
             type: 'line',
             data: this.rData.cl
           })
           let obj = {}
-          obj.projectName = '产量'
+          obj.projectName = '本期产量'
           for (let i = 0; i < this.rData.cl.length; i++) {
             let key = this.rData.xAxisData[i] + 'yue'
             obj[key] = this.rData.cl[i]

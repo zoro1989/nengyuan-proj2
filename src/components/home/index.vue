@@ -27,7 +27,7 @@
             <div class="row">
               <data-panel
                 class="border-right"
-                title="单车综合标煤"
+                title="单车综合能耗"
                 :data="data.zhnh_d"
                 unit="吨标煤/辆"
                 :tongbiData="data.zhnh_d_tb"
@@ -186,7 +186,7 @@
         // 三月能耗费用
         costPie: [],
         data: {},
-        lastMonth: moment().subtract(1, 'months').format('MMMM'),
+        lastMonth: moment().format('DD') * 1 <= 10 ? moment().subtract(2, 'months').format('MMMM') : moment().subtract(1, 'months').format('MMMM'),
         y: [{name: '万吨标煤'}, {name: '吨标煤/万元'}],
         jnBar: {},
         ny: {},

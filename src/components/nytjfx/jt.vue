@@ -84,7 +84,7 @@
             <el-table
               slot="table"
               v-if="lx.split('_').length !== 2"
-              :data="rData.zfl"
+              :data="tableDataFilter2(rData.zfl, 100)"
               border
               header-cell-class-name="header-cell-class-name"
               style="width: 99%">
@@ -103,7 +103,7 @@
             </el-table>
             <el-table
               slot="table"
-              :data="rData.zfl"
+              :data="tableDataFilter2(rData.zfl, 100)"
               v-if="lx.split('_').length === 2"
               border
               header-cell-class-name="header-cell-class-name"
@@ -135,7 +135,7 @@
   import { api } from '@/config'
   import fetch from 'utils/fetch'
   import {orgIdDic, lxdDic, getYAxis, chartColors} from 'utils/dic'
-  import {tableDataFilter} from 'utils/filter'
+  import {tableDataFilter, tableDataFilter2} from 'utils/filter'
   import ReportTable from 'base/report-table/report-table'
   let moment = require('moment')
   moment.locale('zh-cn')
@@ -181,6 +181,9 @@
         })
         let lxName = lxId >= 0 ? this.options2[lxId].label : ''
         if (this.year && orgName && lxName) {
+          if (lxName.indexOf('量') === lxName.length - 1) {
+            lxName = lxName.substring(0, lxName.length - 2)
+          }
           return orgName + this.year + '年产量与' + lxName + '量趋势分析'
         } else {
           return ''
@@ -201,6 +204,7 @@
       }
     },
     methods: {
+      tableDataFilter2,
       departmentStyle(index) {
         return `background: ${this.colors[index]}`
       },
@@ -213,15 +217,15 @@
         this.tableData = []
         let series = []
         if (this.lx.split('_').length === 2) {
-          this.legendData = ['单车本期用量', '单车同期用量', '单车上月用量', '本期产量', '同期产量', '上月产量']
+          this.legendData = ['本期单车用量', '同期单车用量', '上月单车用量', '本期产量', '同期产量', '上月产量']
           if (this.rData.dyl && this.rData.dyl.length > 0) {
             series.push({
-              name: '单车本期用量',
+              name: '本期单车用量',
               type: 'bar',
               data: this.rData.dyl
             })
             let obj = {}
-            obj.projectName = '单车本期用量'
+            obj.projectName = '本期单车用量'
             for (let i = 0; i < this.rData.dyl.length; i++) {
               let key = this.rData.xAxisData[i] + 'yue'
               obj[key] = this.rData.dyl[i]
@@ -230,12 +234,12 @@
           }
           if (this.rData.dtqyl && this.rData.dtqyl.length > 0) {
             series.push({
-              name: '单车同期用量',
+              name: '同期单车用量',
               type: 'bar',
               data: this.rData.dtqyl
             })
             let obj = {}
-            obj.projectName = '单车同期用量'
+            obj.projectName = '同期单车用量'
             for (let i = 0; i < this.rData.dtqyl.length; i++) {
               let key = this.rData.xAxisData[i] + 'yue'
               obj[key] = this.rData.dtqyl[i]
@@ -244,12 +248,12 @@
           }
           if (this.rData.dsyyl && this.rData.dsyyl.length > 0) {
             series.push({
-              name: '单车上月用量',
+              name: '上月单车用量',
               type: 'bar',
               data: this.rData.dsyyl
             })
             let obj = {}
-            obj.projectName = '单车上月用量'
+            obj.projectName = '上月单车用量'
             for (let i = 0; i < this.rData.dsyyl.length; i++) {
               let key = this.rData.xAxisData[i] + 'yue'
               obj[key] = this.rData.dsyyl[i]

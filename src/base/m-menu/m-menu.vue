@@ -23,7 +23,7 @@
         <el-menu-item index="/home/nyylfx"><i class="fa fa-bar-chart"></i><span>&nbsp;能源用量分析</span></el-menu-item>
         <el-menu-item index="/home/nyfyfx"><i class="fa fa-yen"></i><span>&nbsp;能源费用分析</span></el-menu-item>
         <el-menu-item index="/home/tjeyhtfx"><i class="fa fa-envira"></i><span>&nbsp;二氧化碳排放量分析</span></el-menu-item>
-        <el-menu-item index="/home/bmynfx"><i class="fa fa-institution"></i><span>&nbsp;部门用能分析</span></el-menu-item>
+        <el-menu-item index="/home/bmynfx"><i class="fa fa-institution"></i><span>&nbsp;部门对标分析</span></el-menu-item>
         <el-menu-item index="/home/nyfhfx"><i class="fa fa-bell-o"></i><span>&nbsp;能源负荷分析</span></el-menu-item>
         <el-menu-item index="/home/djfx"><i class="fa fa-flash"></i><span>&nbsp;电价分析</span></el-menu-item>
       </el-submenu>
@@ -59,7 +59,7 @@
         <el-menu-item index="/home/kyj"><i class="fa fa-industry"></i><span>&nbsp;空压机</span></el-menu-item>
         <el-menu-item index="/home/dj"><i class="fa fa-flash"></i><span>&nbsp;电机</span></el-menu-item>
       </el-submenu>
-      <el-menu-item index="/home/jhdr"><i class="fa fa-paper-plane"></i><span>&nbsp;计划导入</span></el-menu-item>
+      <el-menu-item index="/home/jhdr"><i class="fa fa-paper-plane"></i><span>&nbsp;计划值导入</span></el-menu-item>
       <el-submenu index="9" v-if="role">
         <template slot="title"><i class="fa fa-user-o"></i><span>&nbsp;系统管理</span></template>
         <el-menu-item index="/home/yhgl"><i class="fa fa-user-o"></i><span>&nbsp;用户管理</span></el-menu-item>
