@@ -59,11 +59,14 @@
                   </el-table-column>
                   <el-table-column
                     fixed
-                    width="50"
+                    width="65"
                     align="center"
                     prop="yearTarget"
                     :label="'年度\n目标'"
                   >
+                    <template slot-scope="scope">
+                      <span>{{ mubiao }}</span>
+                    </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
@@ -134,7 +137,7 @@
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-  import {orgSystemIdDic, lxfyDic, chartColors} from 'utils/dic'
+  import {orgSystemIdDic, chartColors} from 'utils/dic'
   import ReportTable from 'base/report-table/report-table'
   let moment = require('moment')
   moment.locale('zh-cn')
@@ -160,7 +163,6 @@
         loading: false,
         pieRadius: ['13%', '60%'],
         options1: orgSystemIdDic,
-        options2: lxfyDic,
         tableData: [],
         colors: chartColors,
         noBorder: true,
@@ -169,7 +171,8 @@
         rData: {},
         legendData: ['本期产量（辆）', '本期产值（万元）', '计划单月万元产值能耗', '本期单月万元产值能耗', '计划累计万元产值能耗', '本期累计万元产值能耗'],
         seriesData: [],
-        rlist: []
+        rlist: [],
+        mubiao: 0
       }
     },
     computed: {
@@ -298,6 +301,10 @@
       },
       onSearch() {
         this.loading = true
+        fetch('get', api.kpiNd, {system_id: this.system_id, nian: this.year, lx: this.lx}).then((res) => {
+          this.mubiao = res.data.mubiao || 0
+        }).catch(() => {
+        })
         fetch('get', api.kipList, {system_id: this.system_id, nian: this.year, lx: this.lx}).then((res) => {
           this.tableData = []
           let series = []

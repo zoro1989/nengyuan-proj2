@@ -47,6 +47,7 @@ const api = {
   dianjiUpdate: apiPath + 'api/dianji/update',
   dianjiCreate: apiPath + 'api/dianji/create',
   kipList: apiPath + 'api/kpi/list',
+  kpiNd: apiPath + 'api/kpi/nd',
   bjToken: apiPath + 'log/bj/token',
   bjList: apiPath + 'log/bj/list',
   zbKpiPjList: apiPath + 'api/ZbKpiPj/list',

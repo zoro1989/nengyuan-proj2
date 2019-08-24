@@ -204,13 +204,13 @@ let lxfyList = [
 ]
 export const lxfyNoCarDic = lxfyList
 let lxfyCarList = JSON.parse(JSON.stringify(lxfyList)).concat([
-  {
-    value: '202',
-    label: '乘用车费用'
-  }, {
-    value: '201',
-    label: '中重型车费用'
-  }
+  // {
+  //   value: '202',
+  //   label: '乘用车费用'
+  // }, {
+  //   value: '201',
+  //   label: '中重型车费用'
+  // }
 ])
 export const lxfyDic = lxfyCarList
 export const lxTanDic = [
@@ -302,7 +302,7 @@ export function getYAxis (lx) {
   } else if (lx === '33_d') {
     return [{name: '千瓦时/辆'}, {name: '产量(辆)'}]
   } else if (lx === '00_d') {
-    return [{name: '吨/辆'}, {name: '产量(辆)'}]
+    return [{name: '立方米/辆'}, {name: '产量(辆)'}]
   } else if (lx === '32_d') {
     return [{name: '吉焦/辆'}, {name: '产量(辆)'}]
   } else if (lx === '15_d') {

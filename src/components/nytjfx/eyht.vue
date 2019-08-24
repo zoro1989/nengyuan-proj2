@@ -2,7 +2,7 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <select-title title1="用能单位" title2="选择时间" title3="能源类型" @search="onSearch" :showSearch="true">
+        <select-title title1="用能单位" title2="选择时间" title3="碳排放类型" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
             v-model="system_id"
