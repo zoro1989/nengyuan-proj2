@@ -65,6 +65,7 @@ const api = {
   sbByqList: apiPath + 'sb/byq/list',
   sbByqCreate: apiPath + 'sb/byq/create',
   sbQtList: apiPath + 'sb/qt/list',
+  sbTj: apiPath + 'sb/tj',
   sbQtCreate: apiPath + 'sb/qt/create',
   jihuaCreate: apiPath + 'jihua/create',
   ycFind: apiPath + 'api/yc/find',

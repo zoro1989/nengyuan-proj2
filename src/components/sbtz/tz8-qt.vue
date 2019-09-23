@@ -2,7 +2,7 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <select-title title1="用能单位" title2="选择时间" @search="onSearch" :showSearch="true">
+        <select-title title1="用能单位" title2="选择时间" title3="安装时间" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
             v-model="system_id"
@@ -22,6 +22,14 @@
             size="mini"
             value-format="yyyy"
             placeholder="选择年">
+          </el-date-picker>
+          <el-date-picker
+            slot="title3"
+            v-model="azsj"
+            type="month"
+            size="mini"
+            value-format="yyyy-MM"
+            placeholder="选择安装年月">
           </el-date-picker>
         </select-title>
       </div>
@@ -207,6 +215,7 @@
         noBorder: true,
         system_id: '41949',
         date: moment().subtract(1, 'years').format('YYYY') || '',
+        azsj: '',
         rList: [],
         form: {
           system_id: '',
@@ -257,7 +266,7 @@
       onSearch() {
         this.loading = true
         this.tableData = []
-        fetch('get', api.sbQtList, {system_id: this.system_id, nian: this.date}).then((res) => {
+        fetch('get', api.sbQtList, {system_id: this.system_id, nian: this.date, azsj: this.azsj}).then((res) => {
           this.rList = res.data
           this.loading = false
         }).catch(() => {

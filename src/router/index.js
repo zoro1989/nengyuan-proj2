@@ -43,6 +43,7 @@ const Taizhang5Tfj = () => import('components/sbtz/tz5-tfj')
 const Taizhang6Sb = () => import('components/sbtz/tz6-sb')
 const Taizhang7Byq = () => import('components/sbtz/tz7-byq')
 const Taizhang8Qt = () => import('components/sbtz/tz8-qt')
+const Taizhang9Tj = () => import('components/sbtz/tz9-tj')
 
 const Warning = () => import('components/nyyjbj/warning')
 
@@ -246,6 +247,11 @@ export default new Router({
           path: 'tz8-qt',
           name: '台账',
           component: Taizhang8Qt
+        },
+        {
+          path: 'tz9-tj',
+          name: '台账',
+          component: Taizhang9Tj
         },
         {
           path: 'waning',

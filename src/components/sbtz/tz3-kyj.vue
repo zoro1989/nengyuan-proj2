@@ -2,7 +2,7 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <select-title title1="用能单位" title2="选择时间" @search="onSearch" :showSearch="true">
+        <select-title title1="用能单位" title2="选择时间" title3="类型" title4="功率" title5="安装时间" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
             v-model="system_id"
@@ -22,6 +22,32 @@
             size="mini"
             value-format="yyyy"
             placeholder="选择年">
+          </el-date-picker>
+          <el-select
+            slot="title3"
+            v-model="lx"
+            placeholder="请选择"
+            size="mini">
+            <el-option label="离心式" value="离心式"></el-option>
+            <el-option label="螺杆式" value="螺杆式"></el-option>
+          </el-select>
+          <el-select
+            slot="title4"
+            v-model="gl"
+            placeholder="请选择"
+            size="mini">
+            <el-option label=">=200" value=">=200"></el-option>
+            <el-option label="<200" value="<200"></el-option>
+            <el-option label=">=500" value=">=500"></el-option>
+            <el-option label="<500" value="<500"></el-option>
+          </el-select>
+          <el-date-picker
+            slot="title5"
+            v-model="azsj"
+            type="month"
+            size="mini"
+            value-format="yyyy-MM"
+            placeholder="选择安装年月">
           </el-date-picker>
         </select-title>
       </div>
@@ -111,6 +137,11 @@
                     prop="bz"
                     label="备注">
                   </el-table-column>
+                  <el-table-column
+                    align="center"
+                    prop="lx"
+                    label="设备类型">
+                  </el-table-column>
                 </el-table>
               </div>
             </div>
@@ -139,6 +170,16 @@
             value-format="yyyy"
             placeholder="选择年">
           </el-date-picker>
+        </el-form-item>
+        <el-form-item label="类型" :label-width="formLabelWidth" prop="lx">
+          <el-select
+            v-model="form.lx"
+            placeholder="请选择">
+            <el-option label=">=200" value=">=200"></el-option>
+            <el-option label="<200" value="<200"></el-option>
+            <el-option label=">=500" value=">=500"></el-option>
+            <el-option label="<500" value="<500"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="台账导入" :label-width="formLabelWidth" prop="file">
           <el-button class="search-btn" icon="el-icon-plus" type="primary" @click="onAdd">导入台账</el-button>
@@ -183,10 +224,14 @@
         noBorder: true,
         system_id: '41949',
         date: moment().subtract(1, 'years').format('YYYY') || '',
+        lx: '',
+        gl: '',
+        azsj: '',
         rList: [],
         form: {
           system_id: '',
-          date: ''
+          date: '',
+          lx: ''
         },
         rules: {
           'system_id': [
@@ -194,6 +239,9 @@
           ],
           'date': [
             { required: true, message: '请选择日期', trigger: 'blur' }
+          ],
+          'lx': [
+            { required: true, message: '请选择类型', trigger: 'blur' }
           ],
           'file': [
             { validator: validatePass, trigger: 'blur' }
@@ -233,7 +281,7 @@
       onSearch() {
         this.loading = true
         this.tableData = []
-        fetch('get', api.sbKyjList, {system_id: this.system_id, nian: this.date}).then((res) => {
+        fetch('get', api.sbKyjList, {system_id: this.system_id, nian: this.date, lx: this.lx, gl: this.gl, azsj: this.azsj}).then((res) => {
           this.rList = res.data
           this.loading = false
         }).catch(() => {
@@ -244,11 +292,12 @@
         this.$refs[formName].validate((valid) => {
             if (valid) {
               this.loading = true
-              fetch('post', api.sbKyjCreate, {system_id: this.form.system_id, nian: this.form.date, file: this.importFile}, true, true).then(() => {
+              fetch('post', api.sbKyjCreate, {system_id: this.form.system_id, nian: this.form.date, lx: this.form.lx, file: this.importFile}, true, true).then(() => {
                 this.dialogFormVisible = false
                 this.loading = false
                 this.date = this.form.date
                 this.system_id = this.form.system_id
+                this.lx = this.form.lx
                 this.onSearch()
               }).catch(() => {
                 this.loading = false

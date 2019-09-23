@@ -2,7 +2,7 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <select-title title1="用能单位" title2="选择时间" @search="onSearch" :showSearch="true">
+        <select-title title1="用能单位" title2="选择时间" title3="功率" title4="安装时间" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
             v-model="system_id"
@@ -22,6 +22,22 @@
             size="mini"
             value-format="yyyy"
             placeholder="选择年">
+          </el-date-picker>
+          <el-select
+            slot="title3"
+            v-model="gl"
+            placeholder="请选择"
+            size="mini">
+            <el-option label=">=100" value=">=100"></el-option>
+            <el-option label="<100" value="<100"></el-option>
+          </el-select>
+          <el-date-picker
+            slot="title4"
+            v-model="azsj"
+            type="month"
+            size="mini"
+            value-format="yyyy-MM"
+            placeholder="选择安装年月">
           </el-date-picker>
         </select-title>
       </div>
@@ -183,6 +199,8 @@
         noBorder: true,
         system_id: '41949',
         date: moment().subtract(1, 'years').format('YYYY') || '',
+        gl: '',
+        azsj: '',
         rList: [],
         form: {
           system_id: '',
@@ -233,7 +251,7 @@
       onSearch() {
         this.loading = true
         this.tableData = []
-        fetch('get', api.sbFjList, {system_id: this.system_id, nian: this.date}).then((res) => {
+        fetch('get', api.sbFjList, {system_id: this.system_id, nian: this.date, gl: this.gl, azsj: this.azsj}).then((res) => {
           this.rList = res.data
           this.loading = false
         }).catch(() => {

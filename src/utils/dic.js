@@ -292,17 +292,17 @@ export function getYAxis (lx) {
   if (lx === '33') {
     return [{name: '万千瓦时'}, {name: '产量(辆)'}]
   } else if (lx === '00') {
-    return [{name: '立方米'}, {name: '产量(辆)'}]
+    return [{name: '千立方米'}, {name: '产量(辆)'}]
   } else if (lx === '32') {
     return [{name: '吉焦'}, {name: '产量(辆)'}]
   } else if (lx === '15') {
     return [{name: '万立方米'}, {name: '产量(辆)'}]
   } else if (lx === '40') {
-    return [{name: '万吨标煤'}, {name: '产量(辆)'}]
+    return [{name: '吨标煤'}, {name: '产量(辆)'}]
   } else if (lx === '33_d') {
     return [{name: '千瓦时/辆'}, {name: '产量(辆)'}]
   } else if (lx === '00_d') {
-    return [{name: '立方米/辆'}, {name: '产量(辆)'}]
+    return [{name: '千立方米/辆'}, {name: '产量(辆)'}]
   } else if (lx === '32_d') {
     return [{name: '吉焦/辆'}, {name: '产量(辆)'}]
   } else if (lx === '15_d') {
