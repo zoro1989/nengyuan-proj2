@@ -14,7 +14,7 @@
                   style="width: 99%">
                   <el-table-column
                     prop="name"
-                    width="200"
+                    width="250"
                     label="公司名">
                   </el-table-column>
                   <el-table-column
@@ -115,7 +115,7 @@
         width: 25px
         height: 10px
       .panel-box > .row
-        min-height: calc(100vh - 160px)
+        min-height: calc(100vh - 140px)
       .chart-box
         min-height: 350px
         border-radius: 0px

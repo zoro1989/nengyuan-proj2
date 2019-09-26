@@ -23,14 +23,12 @@
             value-format="yyyy"
             placeholder="选择年">
           </el-date-picker>
-          <el-date-picker
+          <el-input
             slot="title3"
-            v-model="azsj"
-            type="month"
             size="mini"
-            value-format="yyyy-MM"
-            placeholder="选择安装年月">
-          </el-date-picker>
+            placeholder="输入安装时间"
+            v-model="azsj"
+            auto-complete="off"></el-input>
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
@@ -267,7 +265,9 @@
         this.loading = true
         this.tableData = []
         fetch('get', api.sbQtList, {system_id: this.system_id, nian: this.date, azsj: this.azsj}).then((res) => {
-          this.rList = res.data
+          this.rList = res.data.sort(function(a, b) {
+            return a.xuhao * 1 - b.xuhao * 1
+          })
           this.loading = false
         }).catch(() => {
           this.loading = false

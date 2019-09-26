@@ -2,7 +2,7 @@
  * Created by zhulin on 2018/11/5.
  */
 import {filter} from './filter'
-export const chartColors = ['#0a00dd', '#09cdf7', '#00ffc6', '#8c6be6', '#ff8dc2', '#ff9c00']
+export const chartColors = ['#0084ff', '#09cdf7', '#f8c1da', '#ff9c00', '#33f3ff', '#8c6be6']
 let orgList = [
   {
     id: '1',
@@ -292,7 +292,7 @@ export function getYAxis (lx) {
   if (lx === '33') {
     return [{name: '万千瓦时'}, {name: '产量(辆)'}]
   } else if (lx === '00') {
-    return [{name: '千立方米'}, {name: '产量(辆)'}]
+    return [{name: '立方米'}, {name: '产量(辆)'}]
   } else if (lx === '32') {
     return [{name: '吉焦'}, {name: '产量(辆)'}]
   } else if (lx === '15') {

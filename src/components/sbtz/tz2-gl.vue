@@ -2,7 +2,7 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <select-title title1="用能单位" title2="选择时间" title3="类型" title4="煤" title5="气" title6="安装时间" @search="onSearch" :showSearch="true">
+        <select-title title1="用能单位" title2="选择时间" title3="安装时间" title4="类型" title5="煤" title6="气" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
             v-model="system_id"
@@ -23,38 +23,43 @@
             value-format="yyyy"
             placeholder="选择年">
           </el-date-picker>
-          <el-select
+          <el-input
             slot="title3"
+            size="mini"
+            placeholder="输入安装时间"
+            v-model="azsj"
+            auto-complete="off"></el-input>
+          <el-select
+            slot="title4"
             v-model="lx"
+            class="small-width"
             placeholder="请选择"
             size="mini">
             <el-option label="燃气" value="燃气"></el-option>
             <el-option label="燃煤" value="燃煤"></el-option>
           </el-select>
           <el-select
-            slot="title4"
+            slot="title5"
             v-model="m"
+            class="small-width"
             placeholder="请选择"
             size="mini">
-            <el-option label=">=5" value=">=5"></el-option>
-            <el-option label="<5" value="<5"></el-option>
+            <el-option label="≥5t/h" value=">=5"></el-option>
+            <el-option label="<5t/h" value="<5"></el-option>
           </el-select>
           <el-select
-            slot="title5"
+            slot="title6"
             v-model="q"
+            class="small-width"
             placeholder="请选择"
             size="mini">
-            <el-option label=">=100" value=">=100"></el-option>
-            <el-option label="<100" value="<100"></el-option>
+            <el-option label="≥100m3h" value=">=100">
+              <div>&ge;100m<sup style="vertical-align: super;">3</sup>h</div>
+            </el-option>
+            <el-option label="<100m3h" value="<100">
+              <span>&lt;100m<sup style="vertical-align: super;">3</sup>h</span>
+            </el-option>
           </el-select>
-          <el-date-picker
-            slot="title6"
-            v-model="azsj"
-            type="month"
-            size="mini"
-            value-format="yyyy-MM"
-            placeholder="选择安装年月">
-          </el-date-picker>
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
@@ -176,14 +181,6 @@
             placeholder="选择年">
           </el-date-picker>
         </el-form-item>
-        <el-form-item label="类型" :label-width="formLabelWidth" prop="lx">
-          <el-select
-            v-model="form.lx"
-            placeholder="请选择">
-            <el-option label="燃气" value="燃气"></el-option>
-            <el-option label="燃煤" value="燃煤"></el-option>
-          </el-select>
-        </el-form-item>
         <el-form-item label="台账导入" :label-width="formLabelWidth" prop="file">
           <el-button class="search-btn" icon="el-icon-plus" type="primary" @click="onAdd">导入台账</el-button>
           <span>{{importFile ? importFile.name : ''}}</span>
@@ -234,8 +231,7 @@
         rList: [],
         form: {
           system_id: '',
-          date: '',
-          lx: ''
+          date: ''
         },
         rules: {
           'system_id': [
@@ -243,9 +239,6 @@
           ],
           'date': [
             { required: true, message: '请选择日期', trigger: 'blur' }
-          ],
-          'lx': [
-            { required: true, message: '请选择类型', trigger: 'blur' }
           ],
           'file': [
             { validator: validatePass, trigger: 'blur' }
@@ -286,7 +279,9 @@
         this.loading = true
         this.tableData = []
         fetch('get', api.sbGlList, {system_id: this.system_id, nian: this.date, lx: this.lx, m: this.m, q: this.q, azsj: this.azsj}).then((res) => {
-          this.rList = res.data
+          this.rList = res.data.sort(function(a, b) {
+            return a.xuhao * 1 - b.xuhao * 1
+          })
           this.loading = false
         }).catch(() => {
           this.loading = false
@@ -296,12 +291,11 @@
         this.$refs[formName].validate((valid) => {
             if (valid) {
               this.loading = true
-              fetch('post', api.sbGlCreate, {system_id: this.form.system_id, nian: this.form.date, lx: this.form.lx, file: this.importFile}, true, true).then(() => {
+              fetch('post', api.sbGlCreate, {system_id: this.form.system_id, nian: this.form.date, file: this.importFile}, true, true).then(() => {
                 this.dialogFormVisible = false
                 this.loading = false
                 this.date = this.form.date
                 this.system_id = this.form.system_id
-                this.lx = this.form.lx
                 this.onSearch()
               }).catch(() => {
                 this.loading = false

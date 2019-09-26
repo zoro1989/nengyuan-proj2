@@ -131,7 +131,7 @@ export default {
             scale: true,
             name: this.yAxisTitle,
 //            max: 30,
-//            min: 0,
+            min: 0,
             boundaryGap: [0.2, 0.2],
             axisLine: {
               lineStyle: {

@@ -95,6 +95,10 @@
         cursor: pointer
      .title-l
         line-height: 2.4
+        .small-width
+          width: 100px
+        .el-input
+          width: 150px
         > span
           white-space: nowrap
     .picker-txt

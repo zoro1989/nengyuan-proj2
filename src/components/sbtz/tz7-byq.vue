@@ -2,7 +2,7 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <select-title title1="用能单位" title2="选择时间" title3="容量" title4="安装时间" @search="onSearch" :showSearch="true">
+        <select-title title1="用能单位" title2="选择时间" title3="安装时间" title4="容量" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
             v-model="system_id"
@@ -23,22 +23,21 @@
             value-format="yyyy"
             placeholder="选择年">
           </el-date-picker>
-          <el-select
+          <el-input
             slot="title3"
+            size="mini"
+            placeholder="输入安装时间"
+            v-model="azsj"
+            auto-complete="off"></el-input>
+          <el-select
+            slot="title4"
             v-model="rl"
+            class="small-width"
             placeholder="请选择"
             size="mini">
-            <el-option label=">=2000" value=">=2000"></el-option>
-            <el-option label="<2000" value="<2000"></el-option>
+            <el-option label="≥2000KVA" value=">=2000"></el-option>
+            <el-option label="<2000KVA" value="<2000"></el-option>
           </el-select>
-          <el-date-picker
-            slot="title4"
-            v-model="azsj"
-            type="month"
-            size="mini"
-            value-format="yyyy-MM"
-            placeholder="选择安装年月">
-          </el-date-picker>
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
@@ -227,7 +226,9 @@
         this.loading = true
         this.tableData = []
         fetch('get', api.sbByqList, {system_id: this.system_id, nian: this.date, rl: this.rl, azsj: this.azsj}).then((res) => {
-          this.rList = res.data
+          this.rList = res.data.sort(function(a, b) {
+            return a.xuhao * 1 - b.xuhao * 1
+          })
           this.loading = false
         }).catch(() => {
           this.loading = false

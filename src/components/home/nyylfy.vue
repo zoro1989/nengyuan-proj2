@@ -467,7 +467,7 @@ export default {
           this.yAxis = [{name: '万千瓦时'}, {name: '万元'}]
           // 水
         } else if (value === '00') {
-          this.yAxis = [{name: '吨'}, {name: '万元'}]
+          this.yAxis = [{name: '千立方米'}, {name: '万元'}]
           // 热力
         } else if (value === '32') {
           this.yAxis = [{name: '吉焦'}, {name: '万元'}]
