@@ -66,7 +66,7 @@
               class="border-right"
               title="水量"
               :data="pData.s"
-              unit="吨"
+              unit="立方米"
               :tongbiData="pData.s_tb"
               :huanbiData="pData.s_hb"
               showType="column"
@@ -94,10 +94,10 @@
             ></data-panel>
             <data-panel
               title="清洁能源"
-              :data="4586"
+              :data="0"
               unit="吨标煤"
-              :tongbiData="-20.28"
-              :huanbiData="2.73"
+              :tongbiData="-0"
+              :huanbiData="0"
               showType="column"
               :isMathRound="true"
             ></data-panel>
@@ -459,7 +459,7 @@ export default {
       // 能源消耗总量
       if (value === '40') {
         this.chartTitle = '能源消耗总'
-        this.yAxis = [{name: '万吨标煤'}, {name: '万元'}]
+        this.yAxis = [{name: '吨标煤'}, {name: '万元'}]
       } else {
         this.chartTitle = this.options1[index].label
         // 电

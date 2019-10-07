@@ -53,7 +53,8 @@
                   style="width: 99%">
                   <el-table-column
                     prop="xuhao"
-                    width="50"
+                    width="80"
+                    align="center"
                     label="序号">
                   </el-table-column>
                   <el-table-column

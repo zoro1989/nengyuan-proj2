@@ -55,16 +55,16 @@
                                  seriesName="能耗"
                                  :xAxisData="ny.xAxisData"
                                  :seriesData="ny.seriesData"
-                                 chartColor="#2434e3" key="lineChart"></chart-realtime-line>
+                                 :showArea="false" key="lineChart"></chart-realtime-line>
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12">
             <chart-realtime-line class="chart-r"
                                  :titleText="chartTitle + realTimeToday + '能源费用(小时)'"
                                  yAxisTitle="千元"
-                                 seriesName="能耗"
+                                 seriesName="费用"
                                  :xAxisData="fy.xAxisData"
                                  :seriesData="fy.seriesData"
-                                 chartColor="#4b50e4"></chart-realtime-line>
+                                 :showArea="false"></chart-realtime-line>
           </div>
         </div>
         <div class="row">
@@ -156,7 +156,7 @@
                                  yAxisTitle="千元"
                                  :xAxisData="fy.xAxisData"
                                  :seriesData="fy.seriesData"
-                                 seriesName="能耗"></chart-realtime-bar>
+                                 seriesName="费用"></chart-realtime-bar>
           </div>
         </div>
         <div class="row">
@@ -475,6 +475,13 @@ export default {
     },
     channgeChart(status) {
       this.showflag = status
+      fetch('get', api.hourNy, {system_id: this.system_id[this.system_id.length - 1] || ''}).then((res) => {
+        this.ny = res.data.ny
+        this.fy = res.data.fy
+      }).catch(() => {
+        this.ny = {}
+        this.fy = {}
+      })
     },
     onClose() {
       this.$router.replace('/home/ss')

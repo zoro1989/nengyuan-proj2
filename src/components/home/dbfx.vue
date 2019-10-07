@@ -5,8 +5,9 @@
         <div class="title-l">
           <span class="picker-txt">选择日期：</span>
           <el-date-picker
+            type="month"
             v-model="time"
-            value-format="yyyy-MM-dd"
+            value-format="yyyy-MM"
             size="mini"
             placeholder="选择日期">
           </el-date-picker>
@@ -84,7 +85,7 @@ export default {
         value: 'Q_D',
         label: '单车耗气'
       }],
-      time: moment().format('YYYY-MM-DD'),
+      time: moment().format('YYYY-MM'),
       lx: 'D_D',
       data1: {},
       data2: {},
@@ -101,7 +102,7 @@ export default {
       if (this.lx === 'D_D') {
         return [{name: '千瓦时/辆'}]
       } else if (this.lx === 'S_D') {
-        return [{name: '吨/辆'}]
+        return [{name: '立方米/辆'}]
       } else if (this.lx === 'R_D') {
         return [{name: '吉焦/辆'}]
       } else if (this.lx === 'Q_D') {
@@ -116,7 +117,7 @@ export default {
       })
       let orgName = orgId >= 0 ? this.options1[orgId].label : ''
       if (this.time && this.lx) {
-        let monthText = moment(this.time).format('YYYY年MM月DD')
+        let monthText = moment(this.time).format('YYYY年MM月')
         return monthText + orgName + '日对比分析'
       } else {
         return ''

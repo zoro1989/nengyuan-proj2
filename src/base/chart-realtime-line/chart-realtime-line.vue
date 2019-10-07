@@ -174,7 +174,7 @@ export default {
               }
             },
             lineStyle: {
-              color: 'transparent'
+              color: this.showArea ? 'transparent' : '#18c1e3'
             },
             itemStyle: {
               color: '#e889b5'

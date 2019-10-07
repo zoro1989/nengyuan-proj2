@@ -180,7 +180,7 @@
         if (this.lx === '1') {
           return [{name: '吨标煤/万元'}]
         } else if (this.lx === '2') {
-          return [{name: '吨/万元'}]
+          return [{name: '立方米/万元'}]
         } else if (this.lx === '3') {
           return [{name: '吨标煤'}]
         } else if (this.lx === '4') {

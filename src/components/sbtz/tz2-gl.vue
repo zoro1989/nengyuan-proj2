@@ -75,7 +75,8 @@
                   style="width: 99%">
                   <el-table-column
                     prop="xuhao"
-                    width="50"
+                    width="80"
+                    align="center"
                     label="序号">
                   </el-table-column>
                   <el-table-column
@@ -124,6 +125,16 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    prop="dd"
+                    label="安装地点">
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    prop="azsj"
+                    label="安装时间">
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
                     prop="yt"
                     label="用途">
                   </el-table-column>
@@ -150,7 +161,7 @@
                   <el-table-column
                     align="center"
                     prop="lx"
-                    label="设备类型">
+                    label="锅炉类型">
                   </el-table-column>
                 </el-table>
               </div>

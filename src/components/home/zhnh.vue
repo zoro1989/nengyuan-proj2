@@ -31,7 +31,7 @@
       <div class="row">
         <div class="col-lg-5 col-md-12 col-box-left">
           <div class="panel-box home">
-            <data-panel-title :title="lastMonth + '能源绩效'"></data-panel-title>
+            <data-panel-title :title="lastMonth + '单位产值能耗指标'"></data-panel-title>
             <div class="row">
               <data-panel
                 class="border-right border-bottom"
@@ -96,7 +96,7 @@
         </div>
         <div class="col-lg-7 col-md-12 col-box-right">
           <div class="panel-box home">
-            <data-panel-title :title="lastMonth + '能耗信息'"></data-panel-title>
+            <data-panel-title :title="lastMonth + '单位产品能耗指标'"></data-panel-title>
             <div class="row">
               <data-panel
                 class="border-right border-bottom"
@@ -320,7 +320,7 @@ export default {
       } else if (value === '15') {
         this.yAxis = [{name: '立方米/万元'}, {name: '%'}]
       } else if (value === '00') {
-        this.yAxis = [{name: '吨（水）/万元'}, {name: '%'}]
+        this.yAxis = [{name: '立方米/万元'}, {name: '%'}]
       } else if (value === '32') {
         this.yAxis = [{name: '吉焦/万元'}, {name: '%'}]
       } else if (value === '102') {

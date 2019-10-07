@@ -78,7 +78,8 @@
                   style="width: 99%">
                   <el-table-column
                     prop="xuhao"
-                    width="50"
+                    width="80"
+                    align="center"
                     label="序号">
                   </el-table-column>
                   <el-table-column
@@ -178,7 +179,7 @@
                   <el-table-column
                     align="center"
                     prop="lx"
-                    label="设备类型">
+                    label="炉窑类型">
                   </el-table-column>
                 </el-table>
               </div>
