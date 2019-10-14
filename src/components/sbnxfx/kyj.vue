@@ -20,9 +20,9 @@
           <el-date-picker
             slot="title2"
             v-model="time"
-            :type="system_id !== '1' ? 'year' : 'month'"
+            type="month"
             size="mini"
-            :value-format="system_id !== '1' ? 'yyyy' : 'yyyy-MM'"
+            value-format="yyyy-MM"
             placeholder="选择日期">
           </el-date-picker>
         </select-title>
@@ -130,118 +130,47 @@
                   </el-table-column>
                 </el-table-column>
               </el-table>
-              <data-panel-title
-                v-if="system_id === '1' && (rData3 && rData3.length > 0)"
-                :title="subSubTitle + '变压器能效分析'"
-                :noBorder="noBorder"></data-panel-title>
-              <el-table
-                v-if="system_id !== '1' || (rData3 && rData3.length > 0)"
-                :data="rData3"
-                key="table3"
-                border
-                :cell-style="cellStyle"
-                header-cell-class-name="header-cell-class-name"
-                style="width: 99%">
-                <el-table-column
-                  prop="code"
-                  align="center"
-                  label="空压机编号">
-                </el-table-column>
-                <el-table-column
-                  prop="wz"
-                  align="center"
-                  label="所在位置">
-                </el-table-column>
-                <el-table-column
-                  align="center"
-                  :render-header="renderHeader"
-                  label="用电单耗">
+              <report-table className="table1" reportName="空压机">
+                <data-panel-title
+                  v-if="system_id === '1' && (rData3 && rData3.length > 0)"
+                  slot="title"
+                  :title="subSubTitle + '变压器能效分析'"
+                  :noBorder="noBorder"></data-panel-title>
+                <el-table
+                  v-if="system_id !== '1' || (rData3 && rData3.length > 0)"
+                  :data="rData3"
+                  key="table3"
+                  slot="table"
+                  border
+                  :cell-style="cellStyle"
+                  header-cell-class-name="header-cell-class-name"
+                  style="width: 100%">
                   <el-table-column
+                    prop="code"
                     align="center"
-                    label="一月">
-                    <template slot-scope="scope">
-                      {{ scope.row['1yue'] ? scope.row['1yue'].split('_')[0] : '' }}
-                    </template>
+                    label="空压机编号">
+                  </el-table-column>
+                  <el-table-column
+                    prop="wz"
+                    align="center"
+                    label="所在位置">
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    label="二月">
-                    <template slot-scope="scope">
-                      {{ scope.row['2yue'] ? scope.row['2yue'].split('_')[0] : '' }}
-                    </template>
+                    :render-header="renderHeader"
+                    label="用电单耗">
+                    <el-table-column
+                      v-for="(item, index) in lastDay"
+                      :key="index"
+                      align="center"
+                      :label="(index + 1) + '号'">
+                      <template slot-scope="scope">
+                        {{ scope.row[(index + 1) + 'ri'] ? scope.row[(index + 1) + 'ri'].split('_')[0] : '' }}
+                      </template>
+                    </el-table-column>
                   </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="三月">
-                    <template slot-scope="scope">
-                      {{ scope.row['3yue'] ? scope.row['3yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="四月">
-                    <template slot-scope="scope">
-                      {{ scope.row['4yue'] ? scope.row['4yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="五月">
-                    <template slot-scope="scope">
-                      {{ scope.row['5yue'] ? scope.row['5yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="六月">
-                    <template slot-scope="scope">
-                      {{ scope.row['6yue'] ? scope.row['6yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="七月">
-                    <template slot-scope="scope">
-                      {{ scope.row['7yue'] ? scope.row['7yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="八月">
-                    <template slot-scope="scope">
-                      {{ scope.row['8yue'] ? scope.row['8yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="九月">
-                    <template slot-scope="scope">
-                      {{ scope.row['9yue'] ? scope.row['9yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="十月">
-                    <template slot-scope="scope">
-                      {{ scope.row['10yue'] ? scope.row['10yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="十一月">
-                    <template slot-scope="scope">
-                      {{ scope.row['11yue'] ? scope.row['11yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="十二月">
-                    <template slot-scope="scope">
-                      {{ scope.row['12yue'] ? scope.row['12yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                </el-table-column>
-              </el-table>
+                </el-table>
+              </report-table>
             </div>
           </div>
         </div>
@@ -255,8 +184,9 @@
   import ChartPie from 'base/chart-pie/chart-pie'
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
-  import {orgIdDic} from 'utils/dic'
+  import {orgIdDicNx} from 'utils/dic'
   import fetch from 'utils/fetch'
+  import ReportTable from 'base/report-table/report-table'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -264,7 +194,8 @@
       SelectTitle,
       ChartPie,
       DataPanelTitle,
-      ChartBarLine
+      ChartBarLine,
+      ReportTable
     },
     created() {
       this.onSearch()
@@ -273,11 +204,11 @@
       return {
         loading: false,
         pieRadius: ['13%', '60%'],
-        options1: orgIdDic,
+        options1: orgIdDicNx,
         tableData: [],
         noBorder: true,
         system_id: '10',
-        time: moment().format('YYYY') || '',
+        time: moment().format('YYYY-MM') || '',
         rData: [],
         rData2: [],
         rData3: [],
@@ -292,6 +223,13 @@
         })
         let orgName = orgId >= 0 ? this.options1[orgId].label : ''
         return orgName + '空压机用电单耗能效分析'
+      },
+      lastDay() {
+        if (this.time) {
+          return moment(this.time).endOf('month').format('DD') * 1
+        } else {
+          return 31
+        }
       }
     },
     methods: {
@@ -351,29 +289,67 @@
       cellStyle (cell) {
         let value
         if (cell.columnIndex === 2) {
-          value = cell.row['1yue']
+          value = cell.row['1ri']
         } else if (cell.columnIndex === 3) {
-          value = cell.row['2yue']
+          value = cell.row['2ri']
         } else if (cell.columnIndex === 4) {
-          value = cell.row['3yue']
+          value = cell.row['3ri']
         } else if (cell.columnIndex === 5) {
-          value = cell.row['4yue']
+          value = cell.row['4ri']
         } else if (cell.columnIndex === 6) {
-          value = cell.row['5yue']
+          value = cell.row['5ri']
         } else if (cell.columnIndex === 7) {
-          value = cell.row['6yue']
+          value = cell.row['6ri']
         } else if (cell.columnIndex === 8) {
-          value = cell.row['7yue']
+          value = cell.row['7ri']
         } else if (cell.columnIndex === 9) {
-          value = cell.row['8yue']
+          value = cell.row['8ri']
         } else if (cell.columnIndex === 10) {
-          value = cell.row['9yue']
+          value = cell.row['9ri']
         } else if (cell.columnIndex === 11) {
-          value = cell.row['10yue']
+          value = cell.row['10ri']
         } else if (cell.columnIndex === 12) {
-          value = cell.row['11yue']
+          value = cell.row['11ri']
         } else if (cell.columnIndex === 13) {
-          value = cell.row['12yue']
+          value = cell.row['12ri']
+        } else if (cell.columnIndex === 14) {
+          value = cell.row['13ri']
+        } else if (cell.columnIndex === 15) {
+          value = cell.row['14ri']
+        } else if (cell.columnIndex === 16) {
+          value = cell.row['15ri']
+        } else if (cell.columnIndex === 17) {
+          value = cell.row['16ri']
+        } else if (cell.columnIndex === 18) {
+          value = cell.row['17ri']
+        } else if (cell.columnIndex === 19) {
+          value = cell.row['18ri']
+        } else if (cell.columnIndex === 20) {
+          value = cell.row['19ri']
+        } else if (cell.columnIndex === 21) {
+          value = cell.row['20ri']
+        } else if (cell.columnIndex === 22) {
+          value = cell.row['21ri']
+        } else if (cell.columnIndex === 23) {
+          value = cell.row['22ri']
+        } else if (cell.columnIndex === 24) {
+          value = cell.row['23ri']
+        } else if (cell.columnIndex === 25) {
+          value = cell.row['24ri']
+        } else if (cell.columnIndex === 26) {
+          value = cell.row['25ri']
+        } else if (cell.columnIndex === 27) {
+          value = cell.row['26ri']
+        } else if (cell.columnIndex === 28) {
+          value = cell.row['27ri']
+        } else if (cell.columnIndex === 29) {
+          value = cell.row['28ri']
+        } else if (cell.columnIndex === 30) {
+          value = cell.row['29ri']
+        } else if (cell.columnIndex === 31) {
+          value = cell.row['30ri']
+        } else if (cell.columnIndex === 32) {
+          value = cell.row['31ri']
         }
         let status = value ? value.split('_').length === 2 ? value.split('_')[1] : '' : ''
         if (status === '1') {
@@ -391,7 +367,8 @@
       byqList(orgId) {
         this.loading = true
         let nian = this.time.split('-').length > 0 ? this.time.split('-')[0] : ''
-        fetch('get', api.kyjList, {nian: nian, org_id: orgId}).then((res) => {
+        let yue = this.time.split('-').length > 0 ? this.time.split('-')[1] : ''
+        fetch('get', api.kyjList, {nian: nian, yue: yue, org_id: orgId}).then((res) => {
           this.rData3 = []
           for (let i = 0; i < res.data.length; i++) {
             let item = res.data[i]
@@ -402,12 +379,12 @@
               let obj = {}
               obj.code = item['CODE']
               obj.wz = item['WZ']
-              let key = item['YUE'] + 'yue'
+              let key = item['RI'] + 'ri'
               obj[key] = item['VALUE'] + '_' + item['STATE']
               this.rData3.push(obj)
             } else {
               let obj = this.rData3[index]
-              let key = item['YUE'] + 'yue'
+              let key = item['RI'] + 'ri'
               obj[key] = item['VALUE'] + '_' + item['STATE']
             }
           }

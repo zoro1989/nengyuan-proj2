@@ -67,7 +67,7 @@ const api = {
   sbQtList: apiPath + 'sb/qt/list',
   sbTj: apiPath + 'sb/tj',
   sbQtCreate: apiPath + 'sb/qt/create',
-  jihuaCreate: apiPath + 'jihua/create',
+  jihuaCreate: apiPath + 'jihuadaoru/create',
   ycFind: apiPath + 'api/yc/find',
   userList: apiPath + 'api/user/list',
   userFind: apiPath + 'api/user/find',

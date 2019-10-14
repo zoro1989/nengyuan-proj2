@@ -169,7 +169,7 @@
     },
     computed: {
       yAxis() {
-        return getYAxis(this.lx)
+        return getYAxis(this.lx, this.system_id)
       },
       chartTitle() {
         let orgId = this.options1.findIndex((item) => {

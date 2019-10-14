@@ -65,6 +65,10 @@ export default {
       type: Boolean,
       default: false
     },
+    isMathRound3: {
+      type: Boolean,
+      default: false
+    },
     isLinear: {
       type: Boolean,
       default: false
@@ -80,6 +84,8 @@ export default {
       } else {
         if (this.isMathRound) {
           return Math.round(this.data)
+        } else if (this.isMathRound3) {
+          return Math.round(this.data * 1000) / 1000
         } else {
           return this.data
         }

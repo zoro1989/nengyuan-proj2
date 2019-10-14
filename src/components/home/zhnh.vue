@@ -67,6 +67,7 @@
               <data-panel
                 class="border-right"
                 title="产值耗天然气量"
+                :isMathRound3="true"
                 :data="pData.czq"
                 unit="立方米/万元"
                 :tongbiData="pData.czq_tb"
@@ -191,7 +192,7 @@
                             :legendData="lbjData.legendData"
                             :series="lbjData.series"
                             :xAxisData="lbjData.xAxisData"
-                            :yAxis="yAxis"
+                            :yAxis="yAxis2"
                             :isHome="true"
                             :titleText="lastMonth + '零部件加工' + chartTitle"></chart-bar-line>
           </div>
@@ -200,7 +201,7 @@
                             :legendData="wlData.legendData"
                             :series="wlData.series"
                             :xAxisData="wlData.xAxisData"
-                            :yAxis="yAxis"
+                            :yAxis="yAxis2"
                             :isHome="true"
                             :titleText="lastMonth + '物流' + chartTitle"></chart-bar-line>
           </div>
@@ -252,10 +253,10 @@ export default {
         label: '产值耗热量'
       }, {
         value: '102',
-        label: '单车综合能耗'
+        label: '单位产品综合能耗'
       }, {
         value: '103',
-        label: '单车碳排放量'
+        label: '单位产品碳排放量'
       }],
       pData: {},
       zcData: {},
@@ -264,6 +265,7 @@ export default {
       dateTime: moment().format('DD') * 1 <= 10 ? moment().subtract(2, 'months').format('YYYY-MM') : moment().subtract(1, 'months').format('YYYY-MM'),
       lx: '40',
       yAxis: [{name: '吨标煤/万元'}, {name: '%'}],
+      yAxis2: [{name: '吨标煤/万元'}, {name: '%'}],
       chartTitle: '产值综合能耗'
     }
   },
@@ -312,21 +314,29 @@ export default {
       // 产值综合能耗
       if (value === '40') {
         this.yAxis = [{name: '吨标煤/万元'}, {name: '%'}]
+        this.yAxis2 = [{name: '吨标煤/万元'}, {name: '%'}]
         // 产值碳排放量
       } else if (value === '101') {
         this.yAxis = [{name: 'kgCO2/万元'}, {name: '%'}]
+        this.yAxis2 = [{name: 'kgCO2/万元'}, {name: '%'}]
       } else if (value === '33') {
         this.yAxis = [{name: '千瓦时/万元'}, {name: '%'}]
+        this.yAxis2 = [{name: '千瓦时/万元'}, {name: '%'}]
       } else if (value === '15') {
         this.yAxis = [{name: '立方米/万元'}, {name: '%'}]
+        this.yAxis2 = [{name: '立方米/万元'}, {name: '%'}]
       } else if (value === '00') {
         this.yAxis = [{name: '立方米/万元'}, {name: '%'}]
+        this.yAxis2 = [{name: '立方米/万元'}, {name: '%'}]
       } else if (value === '32') {
         this.yAxis = [{name: '吉焦/万元'}, {name: '%'}]
+        this.yAxis2 = [{name: '吉焦/万元'}, {name: '%'}]
       } else if (value === '102') {
         this.yAxis = [{name: '吨标煤/辆'}, {name: '%'}]
+        this.yAxis2 = [{name: '综合能耗/吨(台)'}, {name: '%'}]
       } else if (value === '103') {
         this.yAxis = [{name: 'kgCO2/辆'}, {name: '%'}]
+        this.yAxis2 = [{name: '碳排放量/吨(台)'}, {name: '%'}]
       }
       this.fetchChartData()
     }

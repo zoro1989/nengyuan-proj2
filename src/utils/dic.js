@@ -122,7 +122,7 @@ orgListCasc[4].children = [{
   value: '1546481',
   label: '大众汽车（长春）'
 }]
-export const orgSystemIdDicCasc = [orgListCasc[2], orgListCasc[3], orgListCasc[4], orgListCasc[5], orgListCasc[7]]
+export const orgSystemIdDicCasc = [orgListCasc[2], orgListCasc[5], orgListCasc[7]]
 let orgListNoJituan = JSON.parse(JSON.stringify(orgList))
 orgListNoJituan.shift()
 export const orgSystemIdDicNoJituan = orgListNoJituan
@@ -136,6 +136,7 @@ for (let i = 0; i < orgList.length; i++) {
   )
 }
 export const orgIdDic = orgIdDicList
+export const orgIdDicNx = [orgIdDicList[2], orgIdDicList[5], orgIdDicList[7]]
 let orgIdSimpleDicList = []
 for (let i = 0; i < orgList.length; i++) {
   orgIdSimpleDicList.push(
@@ -288,11 +289,11 @@ export const monthDic = [
     label: '十二月'
   }
 ]
-export function getYAxis (lx) {
+export function getYAxis (lx, systemId) {
   if (lx === '33') {
     return [{name: '万千瓦时'}, {name: '产量(辆)'}]
   } else if (lx === '00') {
-    return [{name: '立方米'}, {name: '产量(辆)'}]
+    return [{name: systemId === '1' ? '立方米' : '千立方米'}, {name: '产量(辆)'}]
   } else if (lx === '32') {
     return [{name: '吉焦'}, {name: '产量(辆)'}]
   } else if (lx === '15') {
@@ -302,7 +303,7 @@ export function getYAxis (lx) {
   } else if (lx === '33_d') {
     return [{name: '千瓦时/辆'}, {name: '产量(辆)'}]
   } else if (lx === '00_d') {
-    return [{name: '千立方米/辆'}, {name: '产量(辆)'}]
+    return [{name: systemId === '1' ? '立方米/辆' : '千立方米/辆'}, {name: '产量(辆)'}]
   } else if (lx === '32_d') {
     return [{name: '吉焦/辆'}, {name: '产量(辆)'}]
   } else if (lx === '15_d') {

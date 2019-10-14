@@ -131,118 +131,122 @@
                   </el-table-column>
                 </el-table-column>
               </el-table>
-              <data-panel-title
-                v-if="system_id === '1' && (rData3 && rData3.length > 0)"
-                :title="subSubTitle + '变压器能效分析'"
-                :noBorder="noBorder"></data-panel-title>
-              <el-table
-                v-if="system_id !== '1' || (rData3 && rData3.length > 0)"
-                :data="rData3"
-                key="table3"
-                border
-                :cell-style="cellStyle"
-                header-cell-class-name="header-cell-class-name"
-                style="width: 99%">
-                <el-table-column
-                  prop="code"
-                  align="center"
-                  label="电机编号">
-                </el-table-column>
-                <el-table-column
-                  prop="wz"
-                  align="center"
-                  label="所在位置">
-                </el-table-column>
-                <el-table-column
-                  align="center"
-                  :render-header="renderHeader"
-                  label="电机负荷率(%)">
+              <report-table className="table1" reportName="水泵">
+                <data-panel-title
+                  v-if="system_id === '1' && (rData3 && rData3.length > 0)"
+                  :title="subSubTitle + '变压器能效分析'"
+                  slot="title"
+                  :noBorder="noBorder"></data-panel-title>
+                <el-table
+                  v-if="system_id !== '1' || (rData3 && rData3.length > 0)"
+                  :data="rData3"
+                  key="table3"
+                  slot="table"
+                  border
+                  :cell-style="cellStyle"
+                  header-cell-class-name="header-cell-class-name"
+                  style="width: 100%">
                   <el-table-column
+                    prop="code"
                     align="center"
-                    label="一月">
-                    <template slot-scope="scope">
-                      {{ scope.row['1yue'] ? scope.row['1yue'].split('_')[0] : '' }}
-                    </template>
+                    label="电机编号">
+                  </el-table-column>
+                  <el-table-column
+                    prop="wz"
+                    align="center"
+                    label="所在位置">
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    label="二月">
-                    <template slot-scope="scope">
-                      {{ scope.row['2yue'] ? scope.row['2yue'].split('_')[0] : '' }}
-                    </template>
+                    :render-header="renderHeader"
+                    label="电机负荷率(%)">
+                    <el-table-column
+                      align="center"
+                      label="一月">
+                      <template slot-scope="scope">
+                        {{ scope.row['1yue'] ? scope.row['1yue'].split('_')[0] : '' }}
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      label="二月">
+                      <template slot-scope="scope">
+                        {{ scope.row['2yue'] ? scope.row['2yue'].split('_')[0] : '' }}
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      label="三月">
+                      <template slot-scope="scope">
+                        {{ scope.row['3yue'] ? scope.row['3yue'].split('_')[0] : '' }}
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      label="四月">
+                      <template slot-scope="scope">
+                        {{ scope.row['4yue'] ? scope.row['4yue'].split('_')[0] : '' }}
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      label="五月">
+                      <template slot-scope="scope">
+                        {{ scope.row['5yue'] ? scope.row['5yue'].split('_')[0] : '' }}
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      label="六月">
+                      <template slot-scope="scope">
+                        {{ scope.row['6yue'] ? scope.row['6yue'].split('_')[0] : '' }}
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      label="七月">
+                      <template slot-scope="scope">
+                        {{ scope.row['7yue'] ? scope.row['7yue'].split('_')[0] : '' }}
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      label="八月">
+                      <template slot-scope="scope">
+                        {{ scope.row['8yue'] ? scope.row['8yue'].split('_')[0] : '' }}
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      label="九月">
+                      <template slot-scope="scope">
+                        {{ scope.row['9yue'] ? scope.row['9yue'].split('_')[0] : '' }}
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      label="十月">
+                      <template slot-scope="scope">
+                        {{ scope.row['10yue'] ? scope.row['10yue'].split('_')[0] : '' }}
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      label="十一月">
+                      <template slot-scope="scope">
+                        {{ scope.row['11yue'] ? scope.row['11yue'].split('_')[0] : '' }}
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      align="center"
+                      label="十二月">
+                      <template slot-scope="scope">
+                        {{ scope.row['12yue'] ? scope.row['12yue'].split('_')[0] : '' }}
+                      </template>
+                    </el-table-column>
                   </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="三月">
-                    <template slot-scope="scope">
-                      {{ scope.row['3yue'] ? scope.row['3yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="四月">
-                    <template slot-scope="scope">
-                      {{ scope.row['4yue'] ? scope.row['4yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="五月">
-                    <template slot-scope="scope">
-                      {{ scope.row['5yue'] ? scope.row['5yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="六月">
-                    <template slot-scope="scope">
-                      {{ scope.row['6yue'] ? scope.row['6yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="七月">
-                    <template slot-scope="scope">
-                      {{ scope.row['7yue'] ? scope.row['7yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="八月">
-                    <template slot-scope="scope">
-                      {{ scope.row['8yue'] ? scope.row['8yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="九月">
-                    <template slot-scope="scope">
-                      {{ scope.row['9yue'] ? scope.row['9yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="十月">
-                    <template slot-scope="scope">
-                      {{ scope.row['10yue'] ? scope.row['10yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="十一月">
-                    <template slot-scope="scope">
-                      {{ scope.row['11yue'] ? scope.row['11yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="十二月">
-                    <template slot-scope="scope">
-                      {{ scope.row['12yue'] ? scope.row['12yue'].split('_')[0] : '' }}
-                    </template>
-                  </el-table-column>
-                </el-table-column>
-              </el-table>
+                </el-table>
+              </report-table>
             </div>
           </div>
         </div>
@@ -257,7 +261,8 @@
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-  import {orgIdDic} from 'utils/dic'
+  import {orgIdDicNx} from 'utils/dic'
+  import ReportTable from 'base/report-table/report-table'
   let moment = require('moment')
   moment.locale('zh-cn')
   export default {
@@ -265,7 +270,8 @@
       SelectTitle,
       ChartPie,
       DataPanelTitle,
-      ChartBarLine
+      ChartBarLine,
+      ReportTable
     },
     created() {
       this.onSearch()
@@ -274,7 +280,7 @@
       return {
         loading: false,
         pieRadius: ['13%', '60%'],
-        options1: orgIdDic,
+        options1: orgIdDicNx,
         tableData: [],
         lx: '2',
         noBorder: true,

@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
-import { apiStatus } from '@/config'
 
 axios.defaults.withCredentials = true
 
@@ -21,13 +20,7 @@ let fetch = (type, url, params, isFormData = true, showMessage = false) => {
   service.interceptors.response.use(response => {
     // 如果服务器出错，做出相应的处理，response.data后面的内容根据后端接口修改
     let res = response.data
-    if (res.status !== apiStatus.success) {
-      Message({
-        message: '错误：' + res.msg,
-        type: 'error'
-      })
-      return Promise.reject(res)
-    } else {
+    if (res.status === 0 || res.status === '0') {
       if (showMessage) {
         Message({
           message: res.msg || '操作成功',
@@ -35,6 +28,12 @@ let fetch = (type, url, params, isFormData = true, showMessage = false) => {
         })
       }
       return res
+    } else {
+      Message({
+        message: '错误：' + res.msg,
+        type: 'error'
+      })
+      return Promise.reject(res)
     }
   }, error => {
     console.log('response error', error)
