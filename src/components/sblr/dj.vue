@@ -140,7 +140,7 @@
       DataPanelTitle
     },
     created() {
-      // this.fetchData()
+      this.fetchData()
     },
     data() {
       return {
@@ -157,7 +157,7 @@
             label: '水泵'
           }
         ],
-        system_id: '',
+        system_id: '904489',
         formLabelWidth: '140px',
         isFormReadOnly: false,
         dialogFormVisible: false,

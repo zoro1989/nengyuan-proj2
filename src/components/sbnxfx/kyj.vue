@@ -207,7 +207,7 @@
         options1: orgIdDicNx,
         tableData: [],
         noBorder: true,
-        system_id: '10',
+        system_id: '15',
         time: moment().format('YYYY-MM') || '',
         rData: [],
         rData2: [],

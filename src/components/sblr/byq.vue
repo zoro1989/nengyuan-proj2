@@ -135,14 +135,14 @@
       DataPanelTitle
     },
     created() {
-      // this.fetchData()
+      this.fetchData()
     },
     data() {
       return {
         loading: false,
         tableData: [],
         options1: orgSystemIdDicNoJituan,
-        system_id: '',
+        system_id: '904489',
         formLabelWidth: '140px',
         isFormReadOnly: false,
         dialogFormVisible: false,
