@@ -26,12 +26,14 @@
           <el-input
             slot="title3"
             size="mini"
+            :clearable="true"
             placeholder="输入安装时间"
             v-model="azsj"
             auto-complete="off"></el-input>
           <el-select
             slot="title4"
             v-model="rl"
+            :clearable="true"
             class="small-width"
             placeholder="请选择"
             size="mini">

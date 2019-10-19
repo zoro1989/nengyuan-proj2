@@ -48,7 +48,7 @@ export default {
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
   .header
-    background-image: url(title.png)
+    background-image: url(title2.png)
     background-repeat: repeat-x
     height: 70px
     position: fixed

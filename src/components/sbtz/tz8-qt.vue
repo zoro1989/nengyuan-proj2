@@ -26,6 +26,7 @@
           <el-input
             slot="title3"
             size="mini"
+            :clearable="true"
             placeholder="输入安装时间"
             v-model="azsj"
             auto-complete="off"></el-input>

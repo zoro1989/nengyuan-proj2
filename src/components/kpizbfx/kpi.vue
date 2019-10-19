@@ -111,6 +111,7 @@
                     align="center"
                     :label="'单月\n达标率'">
                     <template slot-scope="scope">
+                      <span style="font-size: 0">{{dblData(scope.$index)}}</span>
                       <span class="dbl" :style="dblStyle(scope.$index)"></span>
                     </template>
                   </el-table-column>
@@ -118,6 +119,7 @@
                     align="center"
                     :label="'累计\n达标率'">
                     <template slot-scope="scope">
+                      <span style="font-size: 0">{{ljdblData(scope.$index)}}</span>
                       <span class="dbl" :style="ljdblStyle(scope.$index)"></span>
                     </template>
                   </el-table-column>
@@ -137,7 +139,7 @@
   import ChartBarLine from 'base/chart-bar-line/chart-bar-line'
   import { api } from '@/config'
   import fetch from 'utils/fetch'
-  import {orgSystemIdDic, chartColors} from 'utils/dic'
+  import {orgSystemIdDicNofengyue, chartColors} from 'utils/dic'
   import ReportTable from 'base/report-table/report-table'
   let moment = require('moment')
   moment.locale('zh-cn')
@@ -162,7 +164,7 @@
       return {
         loading: false,
         pieRadius: ['13%', '60%'],
-        options1: orgSystemIdDic,
+        options1: orgSystemIdDicNofengyue,
         tableData: [],
         colors: chartColors,
         noBorder: true,
@@ -270,6 +272,14 @@
             h('span', '）')
           ]
         )
+      },
+      dblData(index) {
+        let res = this.rlist[index]['JHCZNH'] * 1 - this.rlist[index]['SJCZNH'] * 1
+        return res >= 0 ? '合格' : '不合格'
+      },
+      ljdblData(index) {
+        let res = this.rlist[index]['JHLJCZNH'] * 1 - this.rlist[index]['SJLJCZNH'] * 1
+        return res >= 0 ? '合格' : '不合格'
       },
       dblStyle(index) {
         let res = this.rlist[index]['JHCZNH'] * 1 - this.rlist[index]['SJCZNH'] * 1

@@ -117,6 +117,9 @@ let orgList = [
   }
 ]
 export const orgSystemIdDic = orgList
+let orgListNofengyue = JSON.parse(JSON.stringify(orgList))
+orgListNofengyue.splice(2, 1)
+export const orgSystemIdDicNofengyue = orgListNofengyue
 let orgListCasc = JSON.parse(JSON.stringify(orgList))
 orgListCasc[4].children = [{
   value: '1546481',

@@ -297,7 +297,7 @@ export default {
     return {
       showArea: true,
       showflag: '1',
-      valueDate: [moment().format('YYYY-MM-DD'), moment().format('YYYY-MM-DD')],
+      valueDate: [moment().startOf('week').format('YYYY-MM-DD'), moment().endOf('week').format('YYYY-MM-DD')],
       pickerOptions2: {
         shortcuts: [{
           text: '最近一周',
@@ -330,7 +330,7 @@ export default {
 //      selectedOptions: [],
       selectGroups: '',
       configTips: '',
-      system_id: ['42052'],
+      system_id: ['904489'],
       begin_time: '',
       end_time: '',
       bData: {},
@@ -341,23 +341,7 @@ export default {
     }
   },
   created() {
-//    this.fetchData()
-//    setTimeout(() => {
-//      this.bData = Object.assign({}, this.bData, {nys: {
-//        y: [{name: '万千瓦时'}],
-//        seriesData: [
-//          {
-//            name: '生产能耗',
-//            data: [130, 150, 60, 200, 150, 110, 190]
-//          },
-//          {
-//            name: '非生产能耗',
-//            data: [80, 20, 40, 10, 60, 20, 10]
-//          }
-//        ],
-//        xAxisData: ['4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7']
-//      }})
-//    }, 300)
+    this.fetchData()
   },
   computed: {
     realTimeToday () {

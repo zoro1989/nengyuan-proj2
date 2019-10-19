@@ -27,11 +27,13 @@
             slot="title3"
             size="mini"
             placeholder="输入安装时间"
+            :clearable="true"
             v-model="azsj"
             auto-complete="off"></el-input>
           <el-select
             slot="title4"
             v-model="lx"
+            :clearable="true"
             class="small-width"
             placeholder="请选择"
             size="mini">
@@ -44,6 +46,7 @@
           <el-select
             slot="title5"
             v-model="d"
+            :clearable="true"
             class="small-width"
             placeholder="请选择"
             size="mini">
@@ -53,6 +56,7 @@
           <el-select
             slot="title6"
             v-model="q"
+            :clearable="true"
             class="small-width"
             placeholder="请选择"
             size="mini">

@@ -163,7 +163,7 @@
                       v-for="(item, index) in lastDay"
                       :key="index"
                       align="center"
-                      :label="(index + 1) + '号'">
+                      :label="(index + 1) + '日'">
                       <template slot-scope="scope">
                         {{ scope.row[(index + 1) + 'ri'] ? scope.row[(index + 1) + 'ri'].split('_')[0] : '' }}
                       </template>
@@ -350,6 +350,10 @@
           value = cell.row['30ri']
         } else if (cell.columnIndex === 32) {
           value = cell.row['31ri']
+        }
+        let data = value ? value.split('_').length === 2 ? value.split('_')[0] : '' : ''
+        if (data * 1 === 0) {
+          return 'background: #fff'
         }
         let status = value ? value.split('_').length === 2 ? value.split('_')[1] : '' : ''
         if (status === '1') {

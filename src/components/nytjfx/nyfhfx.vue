@@ -138,9 +138,9 @@
         colors: chartColors,
         noBorder: true,
         lx: '32',
-        system_id: ['42052'],
+        system_id: ['904489'],
         year: moment().format('YYYY') || '',
-        month: '',
+        month: moment().format('MM') || '',
         rData: {},
         legendData: ['用量'],
         seriesData: [],
@@ -153,7 +153,7 @@
     computed: {
       yAxis() {
         if (this.lx === '33') {
-          return [{name: '万千瓦时'}]
+          return [{name: '千瓦时'}]
         } else if (this.lx === '00') {
           return [{name: '立方米'}]
         } else if (this.lx === '32') {

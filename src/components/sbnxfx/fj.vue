@@ -383,6 +383,10 @@
         } else if (cell.columnIndex === 13) {
           value = cell.row['12yue']
         }
+        let data = value ? value.split('_').length === 2 ? value.split('_')[0] : '' : ''
+        if (data * 1 === 0) {
+          return 'background: #fff'
+        }
         let status = value ? value.split('_').length === 2 ? value.split('_')[1] : '' : ''
         if (status === '1') {
           return 'background: #67C23A'

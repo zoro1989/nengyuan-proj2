@@ -1,10 +1,10 @@
 <template>
   <div class="info-container">
     <el-tabs type="card" v-model="activeTab">
-      <el-tab-pane label="集团" name="jt">
+      <el-tab-pane label="集团" name="jt" :lazy="true">
         <jt></jt>
       </el-tab-pane>
-      <el-tab-pane label="公司" name="gs">
+      <el-tab-pane label="公司" name="gs" :lazy="true">
         <gs></gs>
       </el-tab-pane>
     </el-tabs>
