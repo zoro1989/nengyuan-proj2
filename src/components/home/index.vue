@@ -141,7 +141,7 @@
                           :xAxisData="jnBar.xAxisData"
                           :isHome="true"
                           :yAxis="y"
-                          :titleText="lastMonth + '能源用量与节能指标同比分析'"></chart-bar-line>
+                          :titleText="lastMonth + '能源用量与节能指标对比分析'"></chart-bar-line>
         </div>
         <div class="col-lg-3 col-md-12 col-box">
           <chart-pie class="chart-box"
