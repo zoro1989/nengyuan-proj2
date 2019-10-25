@@ -72,6 +72,7 @@
                   style="width: 100%">
                   <el-table-column
                     prop="ynbm"
+                    header-align="center"
                     width="150"
                     label="用能部门">
                     <template slot-scope="scope">

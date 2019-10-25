@@ -49,7 +49,7 @@
                   <el-table-column
                     prop="projectName"
                     header-align="center"
-                    min-width="220"
+                    min-width="180"
                     fixed
                     label="项目名称">
                     <template slot-scope="scope">
@@ -59,11 +59,13 @@
                   </el-table-column>
                   <el-table-column
                     fixed
-                    width="65"
+                    width="100"
                     align="center"
                     prop="yearTarget"
-                    :label="'年度\n目标'"
                   >
+                    <template slot="header" slot-scope="scope">
+                      <span>年度<br>目标</span>
+                    </template>
                     <template slot-scope="scope">
                       <span>{{ mubiao }}</span>
                     </template>
@@ -95,29 +97,37 @@
                 </el-table-column>
                 <el-table-column
                   align="center"
-                  prop="DBL"
-                  :label="'单月\n达标率'">
+                  prop="DBL">
+                  <template slot="header" slot-scope="scope">
+                    <span>单月<br>达标率</span>
+                  </template>
                 </el-table-column>
                 <el-table-column
                   align="center"
-                  prop="LJDBL"
-                  :label="'累计\n达标率'">
+                  prop="LJDBL">
+                  <template slot="header" slot-scope="scope">
+                    <span>累计<br>达标率</span>
+                  </template>
                 </el-table-column>
                 <el-table-column
                   align="center"
                   :render-header="renderHeader"
                   label="评价">
                   <el-table-column
-                    align="center"
-                    :label="'单月\n达标率'">
+                    align="center">
+                    <template slot="header" slot-scope="scope">
+                      <span>单月<br>达标率</span>
+                    </template>
                     <template slot-scope="scope">
                       <span style="font-size: 0">{{dblData(scope.$index)}}</span>
                       <span class="dbl" :style="dblStyle(scope.$index)"></span>
                     </template>
                   </el-table-column>
                   <el-table-column
-                    align="center"
-                    :label="'累计\n达标率'">
+                    align="center">
+                    <template slot="header" slot-scope="scope">
+                      <span>累计<br>达标率</span>
+                    </template>
                     <template slot-scope="scope">
                       <span style="font-size: 0">{{ljdblData(scope.$index)}}</span>
                       <span class="dbl" :style="ljdblStyle(scope.$index)"></span>

@@ -13,9 +13,9 @@
       <el-submenu index="1">
         <template slot="title"><i class="fa fa-battery-half"></i><span>&nbsp;能源综合分析</span></template>
         <el-menu-item index="/home/nyzlfx/nh"><i class="fa fa-list"></i><span>&nbsp;各类能耗占比分析</span></el-menu-item>
-        <el-menu-item index="/home/nybmfx/nh"><i class="fa fa-institution"></i><span>&nbsp;部门能耗占比分析</span></el-menu-item>
+        <el-menu-item index="/home/nybmfx/nh"><i class="fa fa-institution"></i><span>&nbsp;用能单位能耗占比分析</span></el-menu-item>
         <el-menu-item index="/home/nyzlfx/fy"><i class="fa fa-list"></i><span>&nbsp;各类能耗费用占比分析</span></el-menu-item>
-        <el-menu-item index="/home/nybmfx/fy"><i class="fa fa-institution"></i><span>&nbsp;部门能耗费用占比分析</span></el-menu-item>
+        <el-menu-item index="/home/nybmfx/fy"><i class="fa fa-institution"></i><span>&nbsp;用能单位能耗费用占比分析</span></el-menu-item>
         <el-menu-item index="/home/eyhtfx"><i class="fa fa-pie-chart"></i><span>&nbsp;碳排放量占比分析</span></el-menu-item>
       </el-submenu>
       <el-submenu index="2" v-if="role">

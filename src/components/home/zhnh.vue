@@ -78,7 +78,7 @@
                 title="产值耗水量"
                 :isMathRound="true"
                 :data="pData.czs"
-                unit="升（水）/万元"
+                unit="立方米（水）/万元"
                 :tongbiData="pData.czs_tb"
                 :huanbiData="pData.czs_hb"
                 showType="column"
@@ -141,7 +141,7 @@
                 class="border-right"
                 title="单车耗水量"
                 :data="pData.ds"
-                unit="升（水）/辆"
+                unit="立方米（水）/辆"
                 :tongbiData="pData.ds_tb"
                 :huanbiData="pData.ds_hb"
                 showType="column"
@@ -201,7 +201,7 @@
                             :legendData="wlData.legendData"
                             :series="wlData.series"
                             :xAxisData="wlData.xAxisData"
-                            :yAxis="yAxis2"
+                            :yAxis="yAxis3"
                             :isHome="true"
                             :titleText="lastMonth + '物流' + chartTitle"></chart-bar-line>
           </div>
@@ -264,8 +264,9 @@ export default {
       wlData: {},
       dateTime: moment().format('DD') * 1 <= 10 ? moment().subtract(2, 'months').format('YYYY-MM') : moment().subtract(1, 'months').format('YYYY-MM'),
       lx: '40',
-      yAxis: [{name: '吨标煤/万元'}, {name: '%'}],
+      yAxis: [{name: '吨标煤/万元', min: 0.005}, {name: '%'}],
       yAxis2: [{name: '吨标煤/万元'}, {name: '%'}],
+      yAxis3: [{name: '吨标煤/万元', min: 0.0009}, {name: '%'}],
       chartTitle: '产值综合能耗'
     }
   },
@@ -313,30 +314,38 @@ export default {
       this.chartTitle = this.options1[index].label
       // 产值综合能耗
       if (value === '40') {
-        this.yAxis = [{name: '吨标煤/万元'}, {name: '%'}]
+        this.yAxis = [{name: '吨标煤/万元', min: 0.005}, {name: '%'}]
         this.yAxis2 = [{name: '吨标煤/万元'}, {name: '%'}]
+        this.yAxis3 = [{name: '吨标煤/万元', min: 0.0009}, {name: '%'}]
         // 产值碳排放量
       } else if (value === '101') {
-        this.yAxis = [{name: 'kgCO2/万元'}, {name: '%'}]
+        this.yAxis = [{name: 'kgCO2/万元', min: 0.005}, {name: '%'}]
         this.yAxis2 = [{name: 'kgCO2/万元'}, {name: '%'}]
+        this.yAxis3 = [{name: 'kgCO2/万元', min: 0.0009}, {name: '%'}]
       } else if (value === '33') {
-        this.yAxis = [{name: '千瓦时/万元'}, {name: '%'}]
+        this.yAxis = [{name: '千瓦时/万元', min: 0.005}, {name: '%'}]
         this.yAxis2 = [{name: '千瓦时/万元'}, {name: '%'}]
+        this.yAxis3 = [{name: '千瓦时/万元', min: 0.0009}, {name: '%'}]
       } else if (value === '15') {
-        this.yAxis = [{name: '立方米/万元'}, {name: '%'}]
+        this.yAxis = [{name: '立方米/万元', min: 0.005}, {name: '%'}]
         this.yAxis2 = [{name: '立方米/万元'}, {name: '%'}]
+        this.yAxis3 = [{name: '立方米/万元', min: 0.0009}, {name: '%'}]
       } else if (value === '00') {
-        this.yAxis = [{name: '立方米/万元'}, {name: '%'}]
+        this.yAxis = [{name: '立方米/万元', min: 0.005}, {name: '%'}]
         this.yAxis2 = [{name: '立方米/万元'}, {name: '%'}]
+        this.yAxis3 = [{name: '立方米/万元', min: 0.0009}, {name: '%'}]
       } else if (value === '32') {
-        this.yAxis = [{name: '吉焦/万元'}, {name: '%'}]
+        this.yAxis = [{name: '吉焦/万元', min: 0.005}, {name: '%'}]
         this.yAxis2 = [{name: '吉焦/万元'}, {name: '%'}]
+        this.yAxis3 = [{name: '吉焦/万元', min: 0.0009}, {name: '%'}]
       } else if (value === '102') {
-        this.yAxis = [{name: '吨标煤/辆'}, {name: '%'}]
+        this.yAxis = [{name: '吨标煤/辆', min: 0.005}, {name: '%'}]
         this.yAxis2 = [{name: '综合能耗/吨(台)'}, {name: '%'}]
+        this.yAxis3 = [{name: '综合能耗/吨(台)', min: 0.0009}, {name: '%'}]
       } else if (value === '103') {
-        this.yAxis = [{name: 'kgCO2/辆'}, {name: '%'}]
+        this.yAxis = [{name: 'kgCO2/辆', min: 0.005}, {name: '%'}]
         this.yAxis2 = [{name: '碳排放量/吨(台)'}, {name: '%'}]
+        this.yAxis3 = [{name: '碳排放量/吨(台)', min: 0.0009}, {name: '%'}]
       }
       this.fetchChartData()
     }

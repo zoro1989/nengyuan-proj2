@@ -155,10 +155,9 @@ export default {
           let res = []
           for (let i = 0; i < this.yAxis.length; i++) {
             res.push({
-              type: 'value',
+              type: i === 0 ? 'log' : 'value',
               name: this.yAxis[i].name,
-              min: this.yAxis[i].min,
-              max: this.yAxis[i].max,
+              min: i === 0 ? (this.yAxis[i].min || 0.01) : this.yAxis[i].min,
               interval: this.yAxis[i].interval,
               axisLine: {
                 lineStyle: {
@@ -225,6 +224,7 @@ export default {
               item.itemStyle = {
                 barBorderRadius: [3, 3, 0, 0]
               }
+              item.barMaxWidth = 100
             }
             if (series[i].type === 'bar' && (series[i].name.indexOf('实际') >= 0 || series[i].name.indexOf('本期') >= 0) &&
               series[i + 1] && series[i].type === 'bar' && series[i + 1].name.indexOf('计划') >= 0) {

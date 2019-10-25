@@ -81,23 +81,31 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    prop="gl"
-                    :label="'额定功率\n(kw)'">
+                    prop="gl">
+                    <template slot="header" slot-scope="scope">
+                      <span>额定功率<br>(kw)</span>
+                    </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    prop="fl"
-                    :label="'风量\n(m3/h)'">
+                    prop="fl">
+                    <template slot="header" slot-scope="scope">
+                      <span>风量<br>(m3/h)</span>
+                    </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    prop="fy"
-                    :label="'风压\n(Pa)'">
+                    prop="fy">
+                    <template slot="header" slot-scope="scope">
+                      <span>风压<br>(Pa)</span>
+                    </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    prop="yxsj"
-                    :label="'年运行\n时间\n(h)'">
+                    prop="yxsj">
+                    <template slot="header" slot-scope="scope">
+                      <span>年运行<br>时间<br>(h)</span>
+                    </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
@@ -106,8 +114,10 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    prop="azsj"
-                    :label="'安装\n时间'">
+                    prop="azsj">
+                    <template slot="header" slot-scope="scope">
+                      <span>安装<br>时间</span>
+                    </template>
                   </el-table-column>
                   <el-table-column
                     align="center"

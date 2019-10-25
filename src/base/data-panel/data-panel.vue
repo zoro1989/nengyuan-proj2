@@ -11,7 +11,7 @@
             </linearGradient>
           </defs>
           <text text-anchor="middle" class="svg-txt" x="50%" y="34px">{{dataText}}</text>
-        </svg><span class="big" v-if="!isLinear">{{dataText}}</span><span v-html="unitTxt"></span>
+        </svg><span class="big" v-if="!isLinear">{{dataText}}</span><span v-if="showType === 'row'" v-html="unitTxt"></span><div v-if="showType === 'column'" v-html="unitTxt"></div>
       </span>
     </div>
     <template v-if="showType === 'row' && showBi === 'show'">
@@ -22,10 +22,10 @@
     </template>
     <template v-if="showType === 'column' && showBi === 'show'">
       <div class="row bili">
-        <span class="row-item bi">同比<span :class="tongbiStatus">&nbsp;<i :class="tongbiStatusCls"></i>&nbsp;</span>{{Math.abs(tongbiData || 0)}}%</span>
+        <span class="row-item bi column">同比<span :class="tongbiStatus">&nbsp;<i :class="tongbiStatusCls"></i>&nbsp;</span>{{Math.abs(tongbiData || 0)}}%</span>
       </div>
       <div class="row bili">
-        <span class="row-item bi">环比<span :class="huanbiStatus">&nbsp;<i :class="huanbiStatusCls"></i>&nbsp;</span>{{Math.abs(huanbiData || 0)}}%</span>
+        <span class="row-item bi column">环比<span :class="huanbiStatus">&nbsp;<i :class="huanbiStatusCls"></i>&nbsp;</span>{{Math.abs(huanbiData || 0)}}%</span>
       </div>
     </template>
   </div>
@@ -146,6 +146,13 @@ export default {
       &.xiazuan:hover
         color: $color-theme
       .row-item
+        text-align: center
+        &.column
+          display: inline-block
+          vertical-align: middle
+          width: 100%
+          padding-left: 60px
+          text-align: left
         .svg-txt
           fill:url(#SVGID_1_)
           font-size:40px

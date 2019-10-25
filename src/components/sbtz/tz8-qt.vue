@@ -69,33 +69,45 @@
                     label="动能消耗">
                     <el-table-column
                       align="center"
-                      prop="d"
-                      :label="'电\n(kw)'">
+                      prop="d">
+                      <template slot="header" slot-scope="scope">
+                        <span>电<br>(kw)</span>
+                      </template>
                     </el-table-column>
                     <el-table-column
                       align="center"
-                      prop="q"
-                      :label="'天然气\n(m3/h)'">
+                      prop="q">
+                      <template slot="header" slot-scope="scope">
+                        <span>天然气<br>(m3/h)</span>
+                      </template>
                     </el-table-column>
                     <el-table-column
                       align="center"
-                      prop="zq"
-                      :label="'蒸汽\n(kg/h)'">
+                      prop="zq">
+                      <template slot="header" slot-scope="scope">
+                        <span>蒸汽<br>(kg/h)</span>
+                      </template>
                     </el-table-column>
                     <el-table-column
                       align="center"
-                      prop="y"
-                      :label="'油\n(kg/h)'">
+                      prop="y">
+                      <template slot="header" slot-scope="scope">
+                        <span>油<br>(kg/h)</span>
+                      </template>
                     </el-table-column>
                     <el-table-column
                       align="center"
-                      prop="s"
-                      :label="'水\n(t/h)'">
+                      prop="s">
+                      <template slot="header" slot-scope="scope">
+                        <span>水<br>(t/h)</span>
+                      </template>
                     </el-table-column>
                     <el-table-column
                       align="center"
-                      prop="m"
-                      :label="'煤\n(t/h)'">
+                      prop="m">
+                      <template slot="header" slot-scope="scope">
+                        <span>煤<br>(t/h)</span>
+                      </template>
                     </el-table-column>
                     <el-table-column
                       align="center"
@@ -115,8 +127,10 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    prop="yxsj"
-                    :label="'年运行\n时间\n(h)'">
+                    prop="yxsj">
+                    <template slot="header" slot-scope="scope">
+                      <span>年运行<br>时间<br>(h)</span>
+                    </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
@@ -125,8 +139,10 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    prop="azsj"
-                    :label="'安装\n时间'">
+                    prop="azsj">
+                    <template slot="header" slot-scope="scope">
+                      <span>安装<br>时间</span>
+                    </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
@@ -135,8 +151,10 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    prop="xl"
-                    :label="'效率\n(%)'">
+                    prop="xl">
+                    <template slot="header" slot-scope="scope">
+                      <span>效率<br>(%)</span>
+                    </template>
                   </el-table-column>
                   <el-table-column
                     align="center"

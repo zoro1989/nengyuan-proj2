@@ -25,8 +25,10 @@
                   </el-table-column>
                   <el-table-column
                     min-width="50"
-                    align="center"
-                    :label="'通讯\n状态'">
+                    align="center">
+                    <template slot="header" slot-scope="scope">
+                      <span>通讯<br>状态</span>
+                    </template>
                     <template slot-scope="scope">
                       <span class="dbl" :style="dblStyle(scope.$index)"></span>
                     </template>
@@ -41,11 +43,13 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      width="80"
                       prop="dscl"
                       label="上传率">
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      width="80"
                       prop="dzql"
                       label="准确率">
                     </el-table-column>
@@ -65,11 +69,13 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      width="80"
                       prop="sscl"
                       label="上传率">
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      width="80"
                       prop="szql"
                       label="准确率">
                     </el-table-column>
@@ -89,11 +95,13 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      width="80"
                       prop="qscl"
                       label="上传率">
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      width="80"
                       prop="qzql"
                       label="准确率">
                     </el-table-column>
@@ -113,11 +121,13 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      width="80"
                       prop="rscl"
                       label="上传率">
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      width="80"
                       prop="rzql"
                       label="准确率">
                     </el-table-column>

@@ -103,29 +103,39 @@
                     label="动能消耗">
                     <el-table-column
                       align="center"
-                      prop="m"
-                      :label="'煤\n(t/h)'">
+                      prop="m">
+                      <template slot="header" slot-scope="scope">
+                        <span>煤<br>(t/h)</span>
+                      </template>
                     </el-table-column>
                     <el-table-column
                       align="center"
-                      prop="d"
-                      :label="'电\n(kw)'">
+                      prop="d">
+                      <template slot="header" slot-scope="scope">
+                        <span>电<br>(kw)</span>
+                      </template>
                     </el-table-column>
                     <el-table-column
                       align="center"
-                      prop="s"
-                      :label="'水\n(t/h)'">
+                      prop="s">
+                      <template slot="header" slot-scope="scope">
+                        <span>水<br>(t/h)</span>
+                      </template>
                     </el-table-column>
                     <el-table-column
                       align="center"
-                      prop="q"
-                      :label="'天然气\n(m3/h)'">
+                      prop="q">
+                      <template slot="header" slot-scope="scope">
+                        <span>天然气<br>(m3/h)</span>
+                      </template>
                     </el-table-column>
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    prop="yxsj"
-                    :label="'年运行\n时间\n(h)'">
+                    prop="yxsj">
+                    <template slot="header" slot-scope="scope">
+                      <span>年运行<br>时间<br>(h)</span>
+                    </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
@@ -144,13 +154,17 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    prop="srjlb"
-                    :label="'输入能源\n有无计量'">
+                    prop="srjlb">
+                    <template slot="header" slot-scope="scope">
+                      <span>输入能源<br>有无计量</span>
+                    </template>
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    prop="scjlb"
-                    :label="'产出能源\n有无计量'">
+                    prop="scjlb">
+                    <template slot="header" slot-scope="scope">
+                      <span>产出能源<br>有无计量</span>
+                    </template>
                   </el-table-column>
                   <el-table-column
                     align="center"

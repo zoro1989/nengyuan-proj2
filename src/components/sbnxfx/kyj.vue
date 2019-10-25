@@ -147,12 +147,14 @@
                   style="width: 100%">
                   <el-table-column
                     prop="code"
+                    width="120"
                     align="center"
                     label="空压机编号">
                   </el-table-column>
                   <el-table-column
                     prop="wz"
                     align="center"
+                    width="120"
                     label="所在位置">
                   </el-table-column>
                   <el-table-column
@@ -243,11 +245,11 @@
             }),
             h('span', '合格'),
             h('span', {
-              style: 'margin-left:10px; background: #F56C6C;width: 30px;height: 10px;display: inline-block;'
+              style: 'margin-left:10px; background: #FFFF00;width: 30px;height: 10px;display: inline-block;'
             }),
             h('span', '不合格'),
             h('span', {
-              style: 'margin-left:10px; background: #FFFF00;width: 30px;height: 10px;display: inline-block;'
+              style: 'margin-left:10px; background: #F56C6C;width: 30px;height: 10px;display: inline-block;'
             }),
             h('span', '严重警告')
           ]
@@ -257,9 +259,9 @@
         if (cell.rowIndex === 1 && cell.columnIndex === 0) {
           return 'background: #67C23A;'
         } else if (cell.rowIndex === 1 && cell.columnIndex === 1) {
-          return 'background: #F56C6C;'
-        } else if (cell.rowIndex === 1 && cell.columnIndex === 2) {
           return 'background: #FFFF00;'
+        } else if (cell.rowIndex === 1 && cell.columnIndex === 2) {
+          return 'background: #F56C6C;'
         }
       },
       onSearch() {
@@ -359,9 +361,9 @@
         if (status === '1') {
           return 'background: #67C23A'
         } else if (status === '2') {
-          return 'background: #F56C6C'
-        } else if (status === '3') {
           return 'background: #FFFF00'
+        } else if (status === '3') {
+          return 'background: #F56C6C'
         }
       },
       orgGsClick(index) {

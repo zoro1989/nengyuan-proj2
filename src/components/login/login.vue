@@ -75,6 +75,7 @@ export default {
           message: '登录成功',
           type: 'success'
         })
+        return
       }
       fetch('post', api.userUfind, {username: this.username, password: this.password}).then((res) => {
         setRole(res.data.role)
