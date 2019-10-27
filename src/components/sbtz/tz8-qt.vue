@@ -45,18 +45,20 @@
                   style="width: 99%">
                   <el-table-column
                     prop="xuhao"
-                    width="80"
+                    width="40"
                     align="center"
                     label="序号">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="code"
+                    width="100"
                     label="设备编号">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="name"
+                    width="120"
                     label="设备名称">
                   </el-table-column>
                   <el-table-column

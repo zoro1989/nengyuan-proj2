@@ -229,6 +229,7 @@
                         :xAxisData="barDb.xAxisData"
                         :yAxis="yAxis"
                         :isHome="true"
+                        :isLog="true"
                         titleText="能源用量与费用对比分析"></chart-bar-line>
       </div>
     </div>

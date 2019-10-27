@@ -60,6 +60,10 @@ export default {
     isHome: {
       type: Boolean,
       default: false
+    },
+    isLog: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
@@ -95,6 +99,7 @@ export default {
         toolbox: {
           feature: {
             saveAsImage: {
+              backgroundColor: this.isHome ? '#073bba' : '#fff',
               iconStyle: {
                 color: this.isHome ? '#fff' : '#666',
                 borderColor: this.isHome ? '#fff' : '#666'
@@ -155,9 +160,9 @@ export default {
           let res = []
           for (let i = 0; i < this.yAxis.length; i++) {
             res.push({
-              type: i === 0 ? 'log' : 'value',
+              type: this.isLog && i === 0 ? 'log' : 'value',
               name: this.yAxis[i].name,
-              min: i === 0 ? (this.yAxis[i].min || 0.01) : this.yAxis[i].min,
+              min: this.isLog && i === 0 ? (this.yAxis[i].min || 0.01) : this.yAxis[i].min,
               interval: this.yAxis[i].interval,
               axisLine: {
                 lineStyle: {

@@ -130,6 +130,7 @@ export default {
         toolbox: {
           feature: {
             saveAsImage: {
+              backgroundColor: this.isHome ? '#073bba' : '#fff',
               iconStyle: {
                 color: this.isHome ? '#fff' : '#666',
                 borderColor: this.isHome ? '#fff' : '#666'

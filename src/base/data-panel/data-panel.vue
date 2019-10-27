@@ -17,15 +17,15 @@
     <template v-if="showType === 'row' && showBi === 'show'">
       <div class="row bili">
         <span class="row-item bi">同比<span :class="tongbiStatus">&nbsp;<i :class="tongbiStatusCls"></i>&nbsp;</span>{{Math.abs(tongbiData || 0)}}%</span>
-        <span class="row-item bi">&nbsp;&nbsp;&nbsp;环比<span :class="huanbiStatus">&nbsp;<i :class="huanbiStatusCls"></i>&nbsp;</span>{{Math.abs(huanbiData || 0)}}%</span>
+        <span class="row-item bi">&nbsp;&nbsp;环比<span :class="huanbiStatus">&nbsp;<i :class="huanbiStatusCls"></i>&nbsp;</span>{{Math.abs(huanbiData || 0)}}%</span>
       </div>
     </template>
     <template v-if="showType === 'column' && showBi === 'show'">
       <div class="row bili">
-        <span class="row-item bi column">同比<span :class="tongbiStatus">&nbsp;<i :class="tongbiStatusCls"></i>&nbsp;</span>{{Math.abs(tongbiData || 0)}}%</span>
+        <span class="row-item bi column">同比<span :class="tongbiStatus">&nbsp;<i :class="tongbiStatusCls"></i>&nbsp;</span><span class="percent">{{Math.abs(tongbiData || 0)}}%</span></span>
       </div>
       <div class="row bili">
-        <span class="row-item bi column">环比<span :class="huanbiStatus">&nbsp;<i :class="huanbiStatusCls"></i>&nbsp;</span>{{Math.abs(huanbiData || 0)}}%</span>
+        <span class="row-item bi column">环比<span :class="huanbiStatus">&nbsp;<i :class="huanbiStatusCls"></i>&nbsp;</span><span class="percent">{{Math.abs(huanbiData || 0)}}%</span></span>
       </div>
     </template>
   </div>
@@ -148,11 +148,9 @@ export default {
       .row-item
         text-align: center
         &.column
-          display: inline-block
-          vertical-align: middle
-          width: 100%
-          padding-left: 60px
-          text-align: left
+          .percent
+            display: inline-block
+            width: 65px
         .svg-txt
           fill:url(#SVGID_1_)
           font-size:40px

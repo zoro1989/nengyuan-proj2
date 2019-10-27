@@ -160,7 +160,7 @@
                   <el-table-column
                     align="center"
                     :render-header="renderHeader"
-                    label="用电单耗">
+                    label="用电单耗（kWh/m3）">
                     <el-table-column
                       v-for="(item, index) in lastDay"
                       :key="index"

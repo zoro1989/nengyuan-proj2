@@ -63,13 +63,13 @@
                                 :titleText="chartTitle"></chart-bar-line>
               </div>
               <div class="row">
-                <div style="height: 50px; line-height: 50px">
+                <div style="height: 50px; line-height: 50px; width: 1143px; margin: 0 auto;">
                   <span>最大值：{{maxVal}}</span>
                   <span>最小值：{{minVal}}</span>
                   <span>平均值：{{avgVal}}</span>
                 </div>
               </div>
-              <report-table class="row" className="table1" reportName="能源负荷分析">
+              <report-table class="row" v-if="rData.xAxisData && rData.xAxisData.length > 0" className="table1" reportName="能源负荷分析" style="width: 1143px;margin: 0 auto;">
                 <el-table
                   slot="table"
                   :data="tableData"
@@ -79,7 +79,44 @@
                   <el-table-column
                     header-align="center"
                     prop="projectName"
-                    min-width="200"
+                    min-width="180"
+                    label="项目名称">
+                    <template slot-scope="scope">
+                      <span class="department-block" :style="departmentStyle(scope.$index)"></span>
+                      <span>{{ scope.row.projectName }}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    v-if="month"
+                    width="74"
+                    align="center"
+                    v-for="item in rData.xAxisData.slice(0, 13)"
+                    :key="item"
+                    :prop="item + 'ri'"
+                    :label="item + '日'">
+                  </el-table-column>
+                  <el-table-column
+                    v-if="!month"
+                    width="74"
+                    align="center"
+                    v-for="item in rData.xAxisData"
+                    :key="item"
+                    :prop="item + 'yue'"
+                    :label="item + '月'">
+                  </el-table-column>
+                </el-table>
+              </report-table>
+              <report-table v-if="month && rData.xAxisData && rData.xAxisData.length > 13" style="width: 1143px;margin: 0 auto;" class="row" className="table2" reportName="能源负荷分析">
+                <el-table
+                  slot="table"
+                  :data="tableData"
+                  border
+                  header-cell-class-name="header-cell-class-name"
+                  style="width: 99%">
+                  <el-table-column
+                    prop="projectName"
+                    header-align="center"
+                    width="180"
                     label="项目名称">
                     <template slot-scope="scope">
                       <span class="department-block" :style="departmentStyle(scope.$index)"></span>
@@ -88,10 +125,38 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    v-for="item in rData.xAxisData"
+                    width="74"
+                    v-for="item in rData.xAxisData.slice(13, 26)"
                     :key="item"
-                    :prop="month ? item + 'ri' : item + 'yue'"
-                    :label="month ? item + '日' : item + '月'">
+                    :prop="item + 'ri'"
+                    :label="item + '日'">
+                  </el-table-column>
+                </el-table>
+              </report-table>
+              <report-table v-if="month && rData.xAxisData && rData.xAxisData.length > 26" style="width: 1143px;margin: 0 auto;" class="row" className="table3" reportName="能源负荷分析">
+                <el-table
+                  slot="table"
+                  :data="tableData"
+                  border
+                  header-cell-class-name="header-cell-class-name"
+                  style="width: 99%">
+                  <el-table-column
+                    prop="projectName"
+                    header-align="center"
+                    width="180"
+                    label="项目名称">
+                    <template slot-scope="scope">
+                      <span class="department-block" :style="departmentStyle(scope.$index)"></span>
+                      <span>{{ scope.row.projectName }}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    width="74"
+                    v-for="item in rData.xAxisData.slice(26, rData.xAxisData.length)"
+                    :key="item"
+                    :prop="item + 'ri'"
+                    :label="item + '日'">
                   </el-table-column>
                 </el-table>
               </report-table>

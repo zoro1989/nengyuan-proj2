@@ -76,8 +76,8 @@
               ></data-panel>
               <data-panel
                 title="产值耗水量"
-                :isMathRound="true"
-                :data="pData.czs"
+                :isMathRound3="true"
+                :data="pData.czs * 0.001"
                 unit="立方米（水）/万元"
                 :tongbiData="pData.czs_tb"
                 :huanbiData="pData.czs_hb"
@@ -140,7 +140,7 @@
               <data-panel
                 class="border-right"
                 title="单车耗水量"
-                :data="pData.ds"
+                :data="pData.ds * 0.001"
                 unit="立方米（水）/辆"
                 :tongbiData="pData.ds_tb"
                 :huanbiData="pData.ds_hb"
@@ -183,6 +183,7 @@
                         :xAxisData="zcData.xAxisData"
                         :yAxis="yAxis"
                         :isHome="true"
+                        :isLog="true"
                         :titleText="lastMonth + '整车制造' + chartTitle"></chart-bar-line>
       </div>
       <div class="col-box-bottom">
@@ -194,6 +195,7 @@
                             :xAxisData="lbjData.xAxisData"
                             :yAxis="yAxis2"
                             :isHome="true"
+                            :isLog="true"
                             :titleText="lastMonth + '零部件加工' + chartTitle"></chart-bar-line>
           </div>
           <div class="col-lg-4 col-md-12">
@@ -203,6 +205,7 @@
                             :xAxisData="wlData.xAxisData"
                             :yAxis="yAxis3"
                             :isHome="true"
+                            :isLog="true"
                             :titleText="lastMonth + '物流' + chartTitle"></chart-bar-line>
           </div>
         </div>

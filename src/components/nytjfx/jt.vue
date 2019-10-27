@@ -90,6 +90,7 @@
               style="width: 99%">
               <el-table-column
                 align="center"
+                width="150"
                 prop="zl"
                 label="月">
               </el-table-column>
@@ -110,6 +111,7 @@
               style="width: 99%">
               <el-table-column
                 align="center"
+                width="150"
                 prop="zl"
                 label="月">
               </el-table-column>
