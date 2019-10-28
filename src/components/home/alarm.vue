@@ -169,7 +169,7 @@
                         </template>
                       </el-table-column>
                       <el-table-column
-                        width="180"
+                        width="240"
                         align="center"
                         prop="mc"
                         label="报警名称">

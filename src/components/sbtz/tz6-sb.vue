@@ -78,11 +78,13 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    width="200"
                     prop="xinghao"
                     label="电机型号">
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    width="75"
                     prop="gl">
                     <template slot="header" slot-scope="scope">
                       <span>额定功率<br>(kw)</span>
@@ -90,6 +92,7 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    width="60"
                     prop="gl">
                     <template slot="header" slot-scope="scope">
                       <span>流量<br>(m3/h)</span>
@@ -97,6 +100,7 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    width="60"
                     prop="yc">
                     <template slot="header" slot-scope="scope">
                       <span>扬程<br>(m)</span>
@@ -134,6 +138,7 @@
                   <el-table-column
                     align="center"
                     prop="xl"
+                    width="60"
                     label="效率(%)">
                   </el-table-column>
                   <el-table-column

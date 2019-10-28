@@ -79,27 +79,33 @@
                   <el-table-column
                     align="center"
                     prop="rl"
+                    width="80"
                     label="容量(KVA)">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="azdd"
+                    width="170"
                     label="安装地点">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="fzl"
+                    width="80"
                     label="负载率(%)">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="xl"
+                    width="80"
                     label="效率(%)">
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    prop="bcrl"
-                    label="无功补偿容量">
+                    prop="azsj">
+                    <template slot="header" slot-scope="scope">
+                      <span>安装<br>时间</span>
+                    </template>
                   </el-table-column>
                   <el-table-column
                     align="center"

@@ -308,21 +308,35 @@
           this.rData = res.data
           // 电
           if (this.lx === '33' && res.data.d) {
-            this.seriesData = [{
-              name: '本期电量',
-              type: 'bar',
-              data: res.data.d
-            }, {
-              name: '产量',
-              type: 'line',
-              data: res.data.cl
-            }]
             this.maxVal = res.data.dmax
             this.minVal = res.data.dmin
             this.avgVal = res.data.daverage
-            this.legendData = ['本期电量', '产量']
             let obj = {}
-            obj.projectName = '本期电量'
+            if (this.month) {
+              this.seriesData = [{
+                name: '日电量',
+                type: 'bar',
+                data: res.data.d
+              }, {
+                name: '日产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['日电量', '日产量']
+              obj.projectName = '日电量'
+            } else {
+              this.seriesData = [{
+                name: '本期电量',
+                type: 'bar',
+                data: res.data.d
+              }, {
+                name: '产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['本期电量', '产量']
+              obj.projectName = '本期电量'
+            }
             for (let i = 0; i < res.data.d.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -335,21 +349,35 @@
             this.tableData = [obj]
             // 水
           } else if (this.lx === '00' && res.data.s) {
-            this.seriesData = [{
-              name: '本期水量',
-              type: 'bar',
-              data: res.data.s
-            }, {
-              name: '产量',
-              type: 'line',
-              data: res.data.cl
-            }]
             this.maxVal = res.data.smax
             this.minVal = res.data.smin
             this.avgVal = res.data.saverage
             let obj = {}
-            this.legendData = ['本期水量', '产量']
-            obj.projectName = '本期水量'
+            if (this.month) {
+              this.seriesData = [{
+                name: '日水量',
+                type: 'bar',
+                data: res.data.s
+              }, {
+                name: '日产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['日水量', '日产量']
+              obj.projectName = '日水量'
+            } else {
+              this.seriesData = [{
+                name: '本期水量',
+                type: 'bar',
+                data: res.data.s
+              }, {
+                name: '产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['本期水量', '产量']
+              obj.projectName = '本期水量'
+            }
             for (let i = 0; i < res.data.s.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -362,21 +390,35 @@
             this.tableData = [obj]
             // 热力
           } else if (this.lx === '32' && res.data.r) {
-            this.seriesData = [{
-              name: '本期热量',
-              type: 'bar',
-              data: res.data.r
-            }, {
-              name: '产量',
-              type: 'line',
-              data: res.data.cl
-            }]
             this.maxVal = res.data.rmax
             this.minVal = res.data.rmin
             this.avgVal = res.data.raverage
             let obj = {}
-            this.legendData = ['本期热量', '产量']
-            obj.projectName = '本期热量'
+            if (this.month) {
+              this.seriesData = [{
+                name: '日热量',
+                type: 'bar',
+                data: res.data.r
+              }, {
+                name: '日产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['日热量', '日产量']
+              obj.projectName = '日热量'
+            } else {
+              this.seriesData = [{
+                name: '本期热量',
+                type: 'bar',
+                data: res.data.r
+              }, {
+                name: '产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['本期热量', '产量']
+              obj.projectName = '本期热量'
+            }
             for (let i = 0; i < res.data.r.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -389,21 +431,35 @@
             this.tableData = [obj]
             // 天然气
           } else if (this.lx === '15' && res.data.q) {
-            this.seriesData = [{
-              name: '本期气量',
-              type: 'bar',
-              data: res.data.q
-            }, {
-              name: '产量',
-              type: 'line',
-              data: res.data.cl
-            }]
             this.maxVal = res.data.qmax
             this.minVal = res.data.qmin
             this.avgVal = res.data.qaverage
             let obj = {}
-            this.legendData = ['本期气量', '产量']
-            obj.projectName = '本期气量'
+            if (this.month) {
+              this.seriesData = [{
+                name: '日天然气量',
+                type: 'bar',
+                data: res.data.q
+              }, {
+                name: '日产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['日天然气量', '日产量']
+              obj.projectName = '日天然气量'
+            } else {
+              this.seriesData = [{
+                name: '本期气量',
+                type: 'bar',
+                data: res.data.q
+              }, {
+                name: '产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['本期气量', '产量']
+              obj.projectName = '本期气量'
+            }
             for (let i = 0; i < res.data.q.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -416,21 +472,35 @@
             this.tableData = [obj]
             // 能源消耗总量
           } else if (this.lx === '40' && res.data.ny) {
-            this.seriesData = [{
-              name: '本期能源消耗总量',
-              type: 'bar',
-              data: res.data.ny
-            }, {
-              name: '产量',
-              type: 'line',
-              data: res.data.cl
-            }]
             this.maxVal = res.data.nymax
             this.minVal = res.data.nymin
             this.avgVal = res.data.nyaverage
             let obj = {}
-            this.legendData = ['本期能源消耗总量', '产量']
-            obj.projectName = '本期能源消耗总量'
+            if (this.month) {
+              this.seriesData = [{
+                name: '日能源消耗总量',
+                type: 'bar',
+                data: res.data.ny
+              }, {
+                name: '日产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['日能源消耗总量', '日产量']
+              obj.projectName = '日能源消耗总量'
+            } else {
+              this.seriesData = [{
+                name: '本期能源消耗总量',
+                type: 'bar',
+                data: res.data.ny
+              }, {
+                name: '产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['本期能源消耗总量', '产量']
+              obj.projectName = '本期能源消耗总量'
+            }
             for (let i = 0; i < res.data.ny.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -442,21 +512,35 @@
             }
             this.tableData = [obj]
           } else if (this.lx === '33_d' && res.data.dd) {
-            this.seriesData = [{
-              name: '本期单车电量',
-              type: 'bar',
-              data: res.data.dd
-            }, {
-              name: '产量',
-              type: 'line',
-              data: res.data.cl
-            }]
             this.maxVal = res.data.ddmax
             this.minVal = res.data.ddmin
             this.avgVal = res.data.ddaverage
             let obj = {}
-            this.legendData = ['本期单车电量', '产量']
-            obj.projectName = '本期单车电量'
+            if (this.month) {
+              this.seriesData = [{
+                name: '日单车电量',
+                type: 'bar',
+                data: res.data.dd
+              }, {
+                name: '日产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['日本期单车电量', '日产量']
+              obj.projectName = '日本期单车电量'
+            } else {
+              this.seriesData = [{
+                name: '本期单车电量',
+                type: 'bar',
+                data: res.data.dd
+              }, {
+                name: '产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['本期单车电量', '产量']
+              obj.projectName = '本期单车电量'
+            }
             for (let i = 0; i < res.data.dd.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -469,21 +553,35 @@
             this.tableData = [obj]
             // 单车水
           } else if (this.lx === '00_d' && res.data.sd) {
-            this.seriesData = [{
-              name: '本期单车水量',
-              type: 'bar',
-              data: res.data.sd
-            }, {
-              name: '产量',
-              type: 'line',
-              data: res.data.cl
-            }]
             this.maxVal = res.data.sdmax
             this.minVal = res.data.sdmin
             this.avgVal = res.data.sdaverage
             let obj = {}
-            this.legendData = ['本期单车水量', '产量']
-            obj.projectName = '本期单车水量'
+            if (this.month) {
+              this.seriesData = [{
+                name: '日单车水量',
+                type: 'bar',
+                data: res.data.sd
+              }, {
+                name: '日产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['日单车水量', '产量']
+              obj.projectName = '日单车水量'
+            } else {
+              this.seriesData = [{
+                name: '本期单车水量',
+                type: 'bar',
+                data: res.data.sd
+              }, {
+                name: '产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['本期单车水量', '产量']
+              obj.projectName = '本期单车水量'
+            }
             for (let i = 0; i < res.data.sd.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -496,21 +594,35 @@
             this.tableData = [obj]
             // 单车热力
           } else if (this.lx === '32_d' && res.data.rd) {
-            this.seriesData = [{
-              name: '本期单车热力',
-              type: 'bar',
-              data: res.data.rd
-            }, {
-              name: '产量',
-              type: 'line',
-              data: res.data.cl
-            }]
             this.maxVal = res.data.rdmax
             this.minVal = res.data.rdmin
             this.avgVal = res.data.rdaverage
             let obj = {}
-            this.legendData = ['本期单车热力', '产量']
-            obj.projectName = '本期单车热力'
+            if (this.month) {
+              this.seriesData = [{
+                name: '日单车热力',
+                type: 'bar',
+                data: res.data.rd
+              }, {
+                name: '日产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['日本期单车热力', '日产量']
+              obj.projectName = '日本期单车热力'
+            } else {
+              this.seriesData = [{
+                name: '本期单车热力',
+                type: 'bar',
+                data: res.data.rd
+              }, {
+                name: '产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['本期单车热力', '产量']
+              obj.projectName = '本期单车热力'
+            }
             for (let i = 0; i < res.data.rd.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -523,21 +635,35 @@
             this.tableData = [obj]
             // 单车天然气
           } else if (this.lx === '15_d' && res.data.qd) {
-            this.seriesData = [{
-              name: '本期单车天然气',
-              type: 'bar',
-              data: res.data.qd
-            }, {
-              name: '产量',
-              type: 'line',
-              data: res.data.cl
-            }]
             this.maxVal = res.data.qdmax
             this.minVal = res.data.qdmin
             this.avgVal = res.data.qdaverage
             let obj = {}
-            this.legendData = ['本期单车天然气', '产量']
-            obj.projectName = '本期单车天然气'
+            if (this.month) {
+              this.seriesData = [{
+                name: '日单车天然气量',
+                type: 'bar',
+                data: res.data.qd
+              }, {
+                name: '日产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['日单车天然气量', '日产量']
+              obj.projectName = '日单车天然气量'
+            } else {
+              this.seriesData = [{
+                name: '本期单车天然气',
+                type: 'bar',
+                data: res.data.qd
+              }, {
+                name: '产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['本期单车天然气', '产量']
+              obj.projectName = '本期单车天然气'
+            }
             for (let i = 0; i < res.data.qd.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -550,21 +676,35 @@
             this.tableData = [obj]
             // 单车能源消耗总量
           } else if (this.lx === '40_d' && res.data.nyd) {
-            this.seriesData = [{
-              name: '本期单车能源消耗总量',
-              type: 'bar',
-              data: res.data.nyd
-            }, {
-              name: '产量',
-              type: 'line',
-              data: res.data.cl
-            }]
             this.maxVal = res.data.nydmax
             this.minVal = res.data.nydmin
             this.avgVal = res.data.nydaverage
             let obj = {}
-            this.legendData = ['本期单车能源消耗总量', '产量']
-            obj.projectName = '本期单车能源消耗总量'
+            if (this.month) {
+              this.seriesData = [{
+                name: '日单车能源消耗总量',
+                type: 'bar',
+                data: res.data.nyd
+              }, {
+                name: '日产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['日单车能源消耗总量', '日产量']
+              obj.projectName = '日单车能源消耗总量'
+            } else {
+              this.seriesData = [{
+                name: '本期单车能源消耗总量',
+                type: 'bar',
+                data: res.data.nyd
+              }, {
+                name: '产量',
+                type: 'line',
+                data: res.data.cl
+              }]
+              this.legendData = ['本期单车能源消耗总量', '产量']
+              obj.projectName = '本期单车能源消耗总量'
+            }
             for (let i = 0; i < res.data.nyd.length; i++) {
               if (this.month) {
                 let key = res.data.xAxisData[i] + 'ri'
@@ -577,7 +717,7 @@
             this.tableData = [obj]
           }
           let obj2 = {}
-          obj2.projectName = '产量'
+          obj2.projectName = this.month ? '日产量' : '产量'
           for (let i = 0; i < res.data.xAxisData.length; i++) {
             if (this.month) {
               let key = res.data.xAxisData[i] + 'ri'
