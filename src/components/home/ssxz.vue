@@ -17,14 +17,17 @@
             :picker-options="pickerOptions2">
           </el-date-picker>
           <span class="picker-txt">用能单位：</span>
-          <el-cascader
-            change-on-select
-            :show-all-levels="false"
+          <el-select
             v-model="system_id"
             placeholder="请选择"
-            :options="options"
             size="mini">
-          </el-cascader>
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
           <!--<el-cascader-->
             <!--:options="options"-->
             <!--v-model="selectedOptions"-->
@@ -330,7 +333,7 @@ export default {
 //      selectedOptions: [],
       selectGroups: '',
       configTips: '',
-      system_id: ['904489'],
+      system_id: '904489',
       begin_time: '',
       end_time: '',
       bData: {},
@@ -348,20 +351,10 @@ export default {
       return moment().format('MMMM') + this.sectionToChinese(moment().format('D')) + '日'
     },
     chartTitle() {
-      let orgName = ''
-      this.options.map((item) => {
-        if (this.system_id.length > 0 && this.system_id[this.system_id.length - 1] === item.value) {
-          orgName = item.label
-        }
-        if (item.children && item.children.length > 0 && this.system_id.length > 1) {
-          item.children.map((i) => {
-            if (this.system_id.length > 0 && this.system_id[this.system_id.length - 1] === i.value) {
-              orgName = i.label
-            }
-          })
-        }
+      let orgId = this.options.findIndex((item) => {
+        return this.system_id === item.value
       })
-      return orgName
+      return orgId >= 0 ? this.options[orgId].label : ''
     }
   },
   methods: {
@@ -373,7 +366,7 @@ export default {
 //      if (this.selectedOptions.length > 0) {
 //        this.system_id = this.selectedOptions[this.selectedOptions.length - 1]
 //      }
-      fetch('get', api.dayNy, {system_id: this.system_id[this.system_id.length - 1] || '', begin_time: this.begin_time, end_time: this.end_time}).then((res) => {
+      fetch('get', api.dayNy, {system_id: this.system_id, begin_time: this.begin_time, end_time: this.end_time}).then((res) => {
         let data = res.data
         if (data.dnys && data.dnys.seriesData) {
           data.dnys.seriesData = [{
@@ -437,7 +430,7 @@ export default {
       }).catch(() => {
         this.bData = {}
       })
-      fetch('get', api.hourNy, {system_id: this.system_id[this.system_id.length - 1] || ''}).then((res) => {
+      fetch('get', api.hourNy, {system_id: this.system_id}).then((res) => {
         this.ny = res.data.ny
         this.fy = res.data.fy
       }).catch(() => {
@@ -459,7 +452,7 @@ export default {
     },
     channgeChart(status) {
       this.showflag = status
-      fetch('get', api.hourNy, {system_id: this.system_id[this.system_id.length - 1] || ''}).then((res) => {
+      fetch('get', api.hourNy, {system_id: this.system_id}).then((res) => {
         this.ny = res.data.ny
         this.fy = res.data.fy
       }).catch(() => {

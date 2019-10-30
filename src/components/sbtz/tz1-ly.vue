@@ -95,7 +95,7 @@
                   <el-table-column
                     align="center"
                     prop="name"
-                    width="120"
+                    width="140"
                     label="设备名称">
                   </el-table-column>
                   <el-table-column
@@ -181,6 +181,7 @@
                   <el-table-column
                     align="center"
                     prop="yt"
+                    width="100"
                     label="用途">
                   </el-table-column>
                   <el-table-column

@@ -105,6 +105,7 @@
       ChartBarLine
     },
     created() {
+      this.onSearch()
     },
     data() {
       return {
@@ -113,14 +114,13 @@
         options1: orgIdSimpleDic,
         tableData: [],
         noBorder: true,
-        org_id: '',
-        begin_time: '',
-        end_time: ''
+        org_id: '3',
+        begin_time: moment().format('YYYY-MM') || '',
+        end_time: moment().format('YYYY-MM') || ''
       }
     },
     methods: {
       onSearch() {
-        this.loading = true
         this.loading = true
         fetch('get', api.ycFind, {org_id: this.org_id, begin_time: this.begin_time, end_time: this.end_time}).then((res) => {
           this.tableData = res.data

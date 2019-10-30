@@ -2,15 +2,18 @@
   <div class="info">
     <div class="col-box">
       <select-title title1="用能单位" title2="选择时间" title3="能源类型" @search="onSearch" :showSearch="true">
-        <el-cascader
+        <el-select
           slot="title1"
-          change-on-select
-          :options="options1"
-          :show-all-levels="false"
           v-model="system_id"
           placeholder="请选择"
           size="mini">
-        </el-cascader>
+          <el-option
+            v-for="item in options1"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
         <span slot="title2">
           <el-date-picker
             v-model="year"
@@ -211,7 +214,7 @@
         noBorder: true,
         calendarData: [],
         lx: '33',
-        system_id: ['904489'],
+        system_id: '904489',
         year: moment().format('YYYY') || '',
         month: moment().format('MM') || '',
         rData: {},
@@ -247,22 +250,10 @@
         }
       },
       chartTitle() {
-//        let orgId = this.options1.findIndex((item) => {
-//          return this.system_id === item.value
-//        })
-        let orgName = ''
-        this.options1.map((item) => {
-          if (this.system_id.length > 0 && this.system_id[this.system_id.length - 1] === item.value) {
-            orgName = item.label
-          }
-          if (item.children && item.children.length > 0 && this.system_id.length > 1) {
-            item.children.map((i) => {
-              if (this.system_id.length > 0 && this.system_id[this.system_id.length - 1] === i.value) {
-                orgName = i.label
-              }
-            })
-          }
+        let orgId = this.options1.findIndex((item) => {
+          return this.system_id === item.value
         })
+        let orgName = orgId >= 0 ? this.options1[orgId].label : ''
         let lxId = this.options2.findIndex((item) => {
           return this.lx === item.value
         })
@@ -303,7 +294,7 @@
       },
       fetchData() {
         this.loading = true
-        fetch('get', api.nyylfxDay, {id: this.system_id[this.system_id.length - 1] || '', year: this.year, month: this.month}).then((res) => {
+        fetch('get', api.nyylfxDay, {id: this.system_id, year: this.year, month: this.month}).then((res) => {
           this.tableData = []
           this.rData = res.data
           // 电
