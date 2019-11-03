@@ -35,6 +35,7 @@ export default {
       border-bottom: none
     a
       color: $color-text
+      text-decoration: underline
     &.xiazuan:hover
       a
         color: $color-sub-text

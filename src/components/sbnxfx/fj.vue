@@ -28,7 +28,8 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <div class="row">
             <div class="table-box">
               <data-panel-title :title="chartTitle" :noBorder="noBorder"></data-panel-title>
@@ -38,8 +39,7 @@
                 v-if="system_id === '1'"
                 border
                 :header-cell-style="headerCellStyle"
-                header-cell-class-name="header-cell-class-name"
-                style="width: 99%">
+                header-cell-class-name="header-cell-class-name">
                 <el-table-column
                   prop="org"
                   align="center"
@@ -89,8 +89,7 @@
                 key="table2"
                 border
                 :header-cell-style="headerCellStyle"
-                header-cell-class-name="header-cell-class-name"
-                style="width: 99%">
+                header-cell-class-name="header-cell-class-name">
                 <el-table-column
                   prop="org"
                   align="center"
@@ -144,8 +143,7 @@
                   key="table3"
                   border
                   :cell-style="cellStyle"
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 100%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="code"
                     align="center"
@@ -458,8 +456,8 @@
         display: inline-block
         width: 25px
         height: 10px
-      .panel-box > .row
-        min-height: calc(100vh - 160px)
+      .panel-box
+        min-height: calc(100vh - 191px)
       .chart-box
         min-height: 350px
         border-radius: 0px

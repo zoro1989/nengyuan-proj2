@@ -32,7 +32,7 @@
       <div class="tripping-content">
         <div class="col-box-left-right-bottom">
           <chart-bar class="chart-box"
-                     :titleText="chartTitle"
+                     :titleText="chartTitleShow"
                      :yAxis="yAxis"
                      :series="seriesData1"
                      :xAxisData="data1.xAxisData"
@@ -44,7 +44,7 @@
         </div>
         <div class="col-box-left-right-bottom">
           <chart-bar class="chart-box"
-                     :titleText="chartTitle"
+                     :titleText="chartTitleShow"
                      :yAxis="yAxis"
                      :series="seriesData2"
                      :xAxisData="data2.xAxisData"
@@ -73,25 +73,26 @@ export default {
       showArea: true,
       selectedOptions: [],
       options1: [{
-        value: 'D_D',
+        value: 'D',
         label: '单车耗电'
       }, {
-        value: 'S_D',
+        value: 'S',
         label: '单车耗水'
       }, {
-        value: 'R_D',
+        value: 'R',
         label: '单车耗热'
       }, {
-        value: 'Q_D',
+        value: 'Q',
         label: '单车耗气'
       }],
       time: moment().format('YYYY-MM'),
-      lx: 'D_D',
+      lx: 'D',
       data1: {},
       data2: {},
       system_id: '41951',
       seriesData1: [],
-      seriesData2: []
+      seriesData2: [],
+      chartTitleShow: ''
     }
   },
   created() {
@@ -99,13 +100,13 @@ export default {
   },
   computed: {
     yAxis() {
-      if (this.lx === 'D_D') {
+      if (this.lx === 'D') {
         return [{name: '千瓦时/辆'}]
-      } else if (this.lx === 'S_D') {
+      } else if (this.lx === 'S') {
         return [{name: '立方米/辆'}]
-      } else if (this.lx === 'R_D') {
+      } else if (this.lx === 'R') {
         return [{name: '吉焦/辆'}]
-      } else if (this.lx === 'Q_D') {
+      } else if (this.lx === 'Q') {
         return [{name: '立方米/辆'}]
       } else {
         return []
@@ -118,7 +119,7 @@ export default {
       let orgName = orgId >= 0 ? this.options1[orgId].label : ''
       if (this.time && this.lx) {
         let monthText = moment(this.time).format('YYYY年MM月')
-        return monthText + orgName + '日对比分析'
+        return monthText + orgName + '对比分析'
       } else {
         return ''
       }
@@ -145,6 +146,7 @@ export default {
         this.data1 = {}
         this.data2 = {}
       })
+      this.chartTitleShow = this.chartTitle
     },
     channgeChart(status) {
       this.showflag = status

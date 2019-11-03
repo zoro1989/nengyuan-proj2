@@ -26,7 +26,8 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <div class="row">
             <div class="col-lg-12 col-md-12 table-box">
               <div class="row">
@@ -36,7 +37,7 @@
                                 :xAxisData="xAxisData"
                                 :yAxis="yAxis"
                                 :isOnlyLine="true"
-                                :titleText="chartTitle"></chart-bar-line>
+                                :titleText="chartTitleShow"></chart-bar-line>
               </div>
               <report-table class="row" className="table1" reportName="KPI">
                 <el-table
@@ -44,8 +45,7 @@
                   :data="tableData"
                   :span-method="arraySpanMethod"
                   border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="projectName"
                     header-align="center"
@@ -88,8 +88,7 @@
                 slot="table"
                 :data="rlist"
                 border
-                header-cell-class-name="header-cell-class-name"
-                style="width: 99%">
+                header-cell-class-name="header-cell-class-name">
                 <el-table-column
                   align="center"
                   prop="YUE"
@@ -184,7 +183,8 @@
         legendData: ['本期产量（辆）', '本期产值（万元）', '计划单月万元产值能耗', '本期单月万元产值能耗', '计划累计万元产值能耗', '本期累计万元产值能耗'],
         seriesData: [],
         rlist: [],
-        mubiao: 0
+        mubiao: 0,
+        chartTitleShow: ''
       }
     },
     computed: {
@@ -440,6 +440,7 @@
           this.seriesData = []
           this.loading = false
         })
+        this.chartTitleShow = this.chartTitle
       }
     }
   }
@@ -453,8 +454,6 @@
       display: flex
       flex-direction: column
       min-width: 600px
-      .panel-box
-        width: 100%
       .dbl
         width: 10px
         height: 10px
@@ -466,8 +465,9 @@
         display: inline-block
         width: 25px
         height: 10px
-      .table-box > .row:last-child
-        min-height: calc(100vh - 510px)
+      .panel-box
+        width: 100%
+        min-height: calc(100vh - 191px)
       .chart-box
         min-height: 350px
         border-radius: 0px

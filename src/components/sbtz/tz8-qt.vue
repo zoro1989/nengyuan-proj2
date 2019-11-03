@@ -1,5 +1,5 @@
 <template>
-  <div class="info-container">
+  <div id="qt" class="info-container">
     <div class="info">
       <div class="col-box">
         <select-title title1="用能单位" title2="选择时间" title3="安装时间" @search="onSearch" :showSearch="true">
@@ -33,7 +33,8 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <div class="row">
             <div class="table-box">
               <el-button class="search-btn" icon="el-icon-plus" type="primary" size="mini" @click="addFile">导入台账</el-button>
@@ -41,29 +42,29 @@
                 <el-table
                   :data="rList"
                   border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="xuhao"
-                    width="40"
+                    min-width="3%"
                     align="center"
                     label="序号">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="code"
-                    width="100"
+                    min-width="8%"
                     label="设备编号">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="name"
-                    width="120"
+                    min-width="11%"
                     label="设备名称">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="xinghao"
+                    min-width="8%"
                     label="设备型号">
                   </el-table-column>
                   <el-table-column
@@ -71,6 +72,7 @@
                     label="动能消耗">
                     <el-table-column
                       align="center"
+                      min-width="5%"
                       prop="d">
                       <template slot="header" slot-scope="scope">
                         <span>电<br>(kw)</span>
@@ -78,6 +80,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="5%"
                       prop="q">
                       <template slot="header" slot-scope="scope">
                         <span>天然气<br>(m3/h)</span>
@@ -85,6 +88,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="5%"
                       prop="zq">
                       <template slot="header" slot-scope="scope">
                         <span>蒸汽<br>(kg/h)</span>
@@ -92,6 +96,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="5%"
                       prop="y">
                       <template slot="header" slot-scope="scope">
                         <span>油<br>(kg/h)</span>
@@ -99,6 +104,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="5%"
                       prop="s">
                       <template slot="header" slot-scope="scope">
                         <span>水<br>(t/h)</span>
@@ -106,6 +112,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="5%"
                       prop="m">
                       <template slot="header" slot-scope="scope">
                         <span>煤<br>(t/h)</span>
@@ -113,6 +120,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="5%"
                       prop="qt"
                       label="其他">
                     </el-table-column>
@@ -122,6 +130,7 @@
                     label="外形尺寸">
                     <el-table-column
                       align="center"
+                      min-width="5%"
                       prop="cc"
                       width="100"
                       label="长✖️宽✖️高">
@@ -129,6 +138,7 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    min-width="5%"
                     prop="yxsj">
                     <template slot="header" slot-scope="scope">
                       <span>年运行<br>时间<br>(h)</span>
@@ -136,11 +146,13 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    min-width="5%"
                     prop="dd"
                     label="安装地点">
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    min-width="5%"
                     prop="azsj">
                     <template slot="header" slot-scope="scope">
                       <span>安装<br>时间</span>
@@ -148,11 +160,13 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    min-width="5%"
                     prop="yt"
                     label="用途">
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    min-width="5%"
                     prop="xl">
                     <template slot="header" slot-scope="scope">
                       <span>效率<br>(%)</span>
@@ -160,8 +174,11 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    prop="jlb"
-                    label="是否计量">
+                    min-width="5%"
+                    prop="jlb">
+                    <template slot="header" slot-scope="scope">
+                      <span>是否<br>计量</span>
+                    </template>
                   </el-table-column>
                 </el-table>
               </div>
@@ -326,16 +343,14 @@
       display: flex
       flex-direction: column
       min-width: 600px
-      .search-btn
-        margin: 10px 0
       .date-type
         width: 60px
       .department-block
         display: inline-block
         width: 25px
         height: 10px
-      .panel-box > .row
-        min-height: calc(100vh - 160px)
+      .panel-box
+        min-height: calc(100vh - 190px)
       .chart-box
         min-height: 350px
         border-radius: 0px

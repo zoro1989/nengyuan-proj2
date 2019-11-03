@@ -2,7 +2,8 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <div class="org-menu">
             <el-tree
               ref="tree"
@@ -229,8 +230,8 @@
         display: flex
         align-items: stretch
         padding-top: 10px
+        min-height: calc(100vh - 130px)
         .org-menu
-          min-height: calc(100vh - 110px)
           flex: 0 0 30%
           display: flex
           align-items: stretch

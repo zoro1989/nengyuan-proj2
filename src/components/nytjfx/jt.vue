@@ -25,7 +25,6 @@
         <el-select
           slot="title3"
           v-model="lx"
-          @change="lxChange"
           placeholder="请选择"
           size="mini">
           <el-option
@@ -38,7 +37,8 @@
       </select-title>
     </div>
     <div class="col-box-left-right-bottom">
-      <div class="panel-box" v-loading="loading">
+      <!--<div class="panel-box" v-loading="loading">-->
+      <div class="panel-box">
         <div class="row">
           <div class="col-lg-12 col-md-12 table-box">
             <div class="row">
@@ -47,15 +47,14 @@
                               :series="seriesData"
                               :xAxisData="xAxisData"
                               :yAxis="yAxis"
-                              :titleText="chartTitle"></chart-bar-line>
+                              :titleText="chartTitleShow"></chart-bar-line>
             </div>
             <report-table class="row" className="table1" reportName="集团用量">
               <el-table
                 :data="filterTableData"
                 slot="table"
                 border
-                header-cell-class-name="header-cell-class-name"
-                style="width: 99%">
+                header-cell-class-name="header-cell-class-name">
                 <el-table-column
                   header-align="center"
                   prop="projectName"
@@ -86,8 +85,7 @@
               v-if="lx.split('_').length !== 2"
               :data="tableDataFilter2(rData.zfl, 100)"
               border
-              header-cell-class-name="header-cell-class-name"
-              style="width: 99%">
+              header-cell-class-name="header-cell-class-name">
               <el-table-column
                 align="center"
                 width="150"
@@ -107,8 +105,7 @@
               :data="tableDataFilter2(rData.zfl, 100)"
               v-if="lx.split('_').length === 2"
               border
-              header-cell-class-name="header-cell-class-name"
-              style="width: 99%">
+              header-cell-class-name="header-cell-class-name">
               <el-table-column
                 align="center"
                 width="150"
@@ -166,7 +163,8 @@
         lx: '33',
         rData: {},
         legendData: ['本期用量', '同期用量', '上月用量', '本期产量', '同期产量', '上月产量'],
-        seriesData: []
+        seriesData: [],
+        chartTitleShow: ''
       }
     },
     computed: {
@@ -393,6 +391,7 @@
           this.tableData = []
           this.loading = false
         })
+        this.chartTitleShow = this.chartTitle
       }
     }
   }
@@ -411,8 +410,8 @@
       display: inline-block
       width: 25px
       height: 10px
-    .table-box > .row:last-child
-      min-height: calc(100vh - 566px)
+    .panel-box
+      min-height: calc(100vh - 247px)
     .chart-box
       min-height: 350px
       border-radius: 0px

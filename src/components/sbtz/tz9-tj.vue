@@ -2,7 +2,8 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <div class="row">
             <div class="table-box">
               <div class="row">
@@ -10,8 +11,7 @@
                   :data="rList"
                   :span-method="arraySpanMethod"
                   border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="name"
                     width="250"
@@ -106,16 +106,14 @@
       display: flex
       flex-direction: column
       min-width: 600px
-      .search-btn
-        margin: 10px 0
       .date-type
         width: 60px
       .department-block
         display: inline-block
         width: 25px
         height: 10px
-      .panel-box > .row
-        min-height: calc(100vh - 140px)
+      .panel-box
+        min-height: calc(100vh - 130px)
       .chart-box
         min-height: 350px
         border-radius: 0px

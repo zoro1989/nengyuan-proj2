@@ -24,7 +24,8 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <div class="row">
             <div class="col-lg-12 col-md-12 table-box">
               <div class="row">
@@ -110,8 +111,7 @@
                 slot="table"
                 :data="rData.zfl"
                 border
-                header-cell-class-name="header-cell-class-name"
-                style="width: 100%">
+                header-cell-class-name="header-cell-class-name">
                 <el-table-column
                   align="center"
                   prop="zl"
@@ -237,8 +237,8 @@
       display: flex
       flex-direction: column
       min-width: 600px
-      .table-box > .row:last-child
-        min-height: calc(100vh - 510px)
+      .panel-box
+        min-height: calc(100vh - 191px)
       .chart-box
         min-height: 350px
         border-radius: 0px

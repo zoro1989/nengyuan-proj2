@@ -2,7 +2,8 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <el-button type="primary" class="btn-add" size="mini" icon="el-icon-circle-plus-outline" @click="addStation">新增用户</el-button>
           <div class="row">
             <div class="table-box">
@@ -10,8 +11,7 @@
                 :data="tableData"
                 border
                 header-cell-class-name="header-cell-class-name"
-                :default-sort = "{prop: 'cjrq', order: 'descending'}"
-                style="width: 100%">
+                :default-sort = "{prop: 'cjrq', order: 'descending'}">
                 <el-table-column
                   label="用户名"
                   prop="userName">
@@ -194,8 +194,7 @@
           width: 120px
       .panel-box
         padding-top: 20px
-        >.row
-          min-height: calc(100vh - 150px)
+        min-height: calc(100vh - 130px)
       .chart-box
         min-height: 350px
         border-radius: 0px

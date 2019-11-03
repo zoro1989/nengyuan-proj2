@@ -77,6 +77,7 @@
 <style scoped lang="stylus">
   .select-title
     min-height: 50px
+    line-height: 50px
     display: flex
     align-items: center
     width: 100%
@@ -102,7 +103,7 @@
         > span
           white-space: nowrap
     .picker-txt
-      padding: 0 5px 0 15px
+      padding: 0 5px 0 8px
     .search-btn
       margin-left: 15px
 </style>

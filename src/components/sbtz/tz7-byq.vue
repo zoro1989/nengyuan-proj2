@@ -1,5 +1,5 @@
 <template>
-  <div class="info-container">
+  <div id="byq" class="info-container">
     <div class="info">
       <div class="col-box">
         <select-title title1="用能单位" title2="选择时间" title3="安装时间" title4="容量" @search="onSearch" :showSearch="true">
@@ -43,7 +43,8 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <div class="row">
             <div class="table-box">
               <el-button class="search-btn" icon="el-icon-plus" type="primary" size="mini" @click="addFile">导入台账</el-button>
@@ -51,57 +52,58 @@
                 <el-table
                   :data="rList"
                   border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="xuhao"
-                    width="40"
+                    min-width="5%"
                     align="center"
                     label="序号">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="code"
-                    width="100"
+                    min-width="12%"
                     label="变压器编号">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="name"
-                    width="120"
+                    min-width="14%"
                     label="变压器名称">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="xinghao"
+                    min-width="10%"
                     label="型号规格">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="rl"
-                    width="80"
+                    min-width="8%"
                     label="容量(KVA)">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="azdd"
-                    width="170"
+                    min-width="15%"
                     label="安装地点">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="fzl"
-                    width="80"
+                    min-width="8%"
                     label="负载率(%)">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="xl"
-                    width="80"
+                    min-width="8%"
                     label="效率(%)">
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    min-width="10%"
                     prop="azsj">
                     <template slot="header" slot-scope="scope">
                       <span>安装<br>时间</span>
@@ -109,6 +111,7 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    min-width="10%"
                     prop="bz"
                     label="备注">
                   </el-table-column>
@@ -276,16 +279,14 @@
       display: flex
       flex-direction: column
       min-width: 600px
-      .search-btn
-        margin: 10px 0
       .date-type
         width: 60px
       .department-block
         display: inline-block
         width: 25px
         height: 10px
-      .panel-box > .row
-        min-height: calc(100vh - 160px)
+      .panel-box
+        min-height: calc(100vh - 190px)
       .chart-box
         min-height: 350px
         border-radius: 0px

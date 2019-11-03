@@ -37,7 +37,8 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <div class="row">
             <div class="table-box">
               <div class="row chart-container">
@@ -68,8 +69,7 @@
                   v-if="type === 'nh'"
                   :data="sortTable(rData.list)"
                   border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 100%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="ynbm"
                     header-align="center"
@@ -114,8 +114,7 @@
                   v-if="type === 'fy'"
                   :data="sortTable(rData.list)"
                   border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 100%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="ynbm"
                     width="150"
@@ -304,8 +303,8 @@
         display: inline-block
         width: 25px
         height: 10px
-      .table-box > .row:last-child
-        min-height: calc(100vh - 510px)
+      .panel-box
+        min-height: calc(100vh - 191px)
       .chart-box
         min-height: 350px
         border-radius: 0px

@@ -60,6 +60,9 @@ export default {
     this.chart = {}
   },
   mounted() {
+    if (!this.series.length) {
+      return
+    }
     clearTimeout(this.timer)
     this.timer = setTimeout(() => {
       this.makeChart(this.series)

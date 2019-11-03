@@ -2,7 +2,8 @@
   <div class="info-container">
     <div class="info">
       <div class="col-box">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <el-form :model="form" :rules="rules" ref="ruleForm">
             <el-form-item label="公司" :label-width="formLabelWidth" prop="org_id">
               <el-select
@@ -132,7 +133,7 @@
       flex-direction: column
       min-width: 600px
       .panel-box
-        min-height: calc(100vh - 90px)
+        min-height: calc(100vh - 130px)
         padding: 30px
       .chart-box
         min-height: 350px

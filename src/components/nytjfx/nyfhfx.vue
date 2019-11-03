@@ -41,7 +41,6 @@
           <el-select
             slot="title3"
             v-model="lx"
-            @change="lxChange"
             placeholder="请选择"
             size="mini">
             <el-option
@@ -54,7 +53,8 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <div class="row">
             <div class="table-box">
               <div class="row">
@@ -63,26 +63,25 @@
                                 :series="seriesData"
                                 :xAxisData="xAxisData"
                                 :yAxis="yAxis"
-                                :titleText="chartTitle"></chart-bar-line>
+                                :titleText="chartTitleShow"></chart-bar-line>
               </div>
               <div class="row">
-                <div style="height: 50px; line-height: 50px; width: 1143px; margin: 0 auto;">
+                <div style="height: 40px; line-height: 40px;">
                   <span>最大值：{{maxVal}}</span>
                   <span>最小值：{{minVal}}</span>
                   <span>平均值：{{avgVal}}</span>
                 </div>
               </div>
-              <report-table class="row" v-if="rData.xAxisData && rData.xAxisData.length > 0" className="table1" reportName="能源负荷分析" style="width: 1143px;margin: 0 auto;">
+              <report-table class="row" v-if="rData.xAxisData && rData.xAxisData.length > 0" className="table1" reportName="能源负荷分析">
                 <el-table
                   slot="table"
                   :data="tableData"
                   border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     header-align="center"
                     prop="projectName"
-                    min-width="180"
+                    min-width="12.9%"
                     label="项目名称">
                     <template slot-scope="scope">
                       <span class="department-block" :style="departmentStyle(scope.$index)"></span>
@@ -91,16 +90,16 @@
                   </el-table-column>
                   <el-table-column
                     v-if="month"
-                    width="74"
+                    min-width="6.7%"
                     align="center"
                     v-for="item in rData.xAxisData.slice(0, 13)"
                     :key="item"
-                    :prop="item + 'ri'"
-                    :label="item + '日'">
+                    :prop="item === undefined ? '' : item + 'ri'"
+                    :label="item === undefined ? '' : item + '日'">
                   </el-table-column>
                   <el-table-column
                     v-if="!month"
-                    width="74"
+                    min-width="6.7%"
                     align="center"
                     v-for="item in rData.xAxisData"
                     :key="item"
@@ -109,17 +108,16 @@
                   </el-table-column>
                 </el-table>
               </report-table>
-              <report-table v-if="month && rData.xAxisData && rData.xAxisData.length > 13" style="width: 1143px;margin: 0 auto;" class="row" className="table2" reportName="能源负荷分析">
+              <report-table v-if="month && rData.xAxisData && rData.xAxisData.length > 13" class="row" className="table2" reportName="能源负荷分析">
                 <el-table
                   slot="table"
                   :data="tableData"
                   border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="projectName"
                     header-align="center"
-                    width="180"
+                    min-width="12.9%"
                     label="项目名称">
                     <template slot-scope="scope">
                       <span class="department-block" :style="departmentStyle(scope.$index)"></span>
@@ -128,25 +126,24 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    width="74"
+                    min-width="6.7%"
                     v-for="item in rData.xAxisData.slice(13, 26)"
                     :key="item"
-                    :prop="item + 'ri'"
-                    :label="item + '日'">
+                    :prop="item === undefined ? '' : item + 'ri'"
+                    :label="item === undefined ? '' : item + '日'">
                   </el-table-column>
                 </el-table>
               </report-table>
-              <report-table v-if="month && rData.xAxisData && rData.xAxisData.length > 26" style="width: 1143px;margin: 0 auto;" class="row" className="table3" reportName="能源负荷分析">
+              <report-table v-if="month && rData.xAxisData && rData.xAxisData.length > 26" class="row" className="table3" reportName="能源负荷分析">
                 <el-table
                   slot="table"
                   :data="tableData"
                   border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="projectName"
                     header-align="center"
-                    width="180"
+                    min-width="12.9%"
                     label="项目名称">
                     <template slot-scope="scope">
                       <span class="department-block" :style="departmentStyle(scope.$index)"></span>
@@ -155,11 +152,11 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
-                    width="74"
+                    min-width="6.7%"
                     v-for="item in rData.xAxisData.slice(26, rData.xAxisData.length)"
                     :key="item"
-                    :prop="item + 'ri'"
-                    :label="item + '日'">
+                    :prop="item === undefined ? '' : item + 'ri'"
+                    :label="item === undefined ? '' : item + '日'">
                   </el-table-column>
                 </el-table>
               </report-table>
@@ -215,7 +212,8 @@
         y: [{name: '产量'}],
         maxVal: 0,
         minVal: 0,
-        avgVal: 0
+        avgVal: 0,
+        chartTitleShow: ''
       }
     },
     computed: {
@@ -265,14 +263,17 @@
       },
       xAxisData() {
         if (this.rData.xAxisData && this.rData.xAxisData.length > 0) {
-          let copyArr = JSON.parse(JSON.stringify(this.rData.xAxisData))
-          return copyArr.map((item) => {
-            if (this.month) {
-              return item + '日'
-            } else {
-              return item + '月'
+          let copyArr = []
+          this.rData.xAxisData.forEach((item) => {
+            if (item !== undefined) {
+              if (this.month) {
+                copyArr.push(item + '日')
+              } else {
+                copyArr.push(item + '月')
+              }
             }
           })
+          return copyArr
         } else {
           return []
         }
@@ -300,20 +301,20 @@
             let obj = {}
             if (this.month) {
               this.seriesData = [{
-                name: '日电量',
+                name: '日电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.d
               }]
-              this.legendData = ['日电量']
-              obj.projectName = '日电量'
+              this.legendData = ['日电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '日电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期电量',
+                name: '本期电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.d
               }]
-              this.legendData = ['本期电量']
-              obj.projectName = '本期电量'
+              this.legendData = ['本期电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '本期电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.d.length; i++) {
               if (this.month) {
@@ -333,20 +334,20 @@
             let obj = {}
             if (this.month) {
               this.seriesData = [{
-                name: '日水量',
+                name: '日水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.s
               }]
-              this.legendData = ['日水量']
-              obj.projectName = '日水量'
+              this.legendData = ['日水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '日水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期水量',
+                name: '本期水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.s
               }]
-              this.legendData = ['本期水量']
-              obj.projectName = '本期水量'
+              this.legendData = ['本期水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '本期水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.s.length; i++) {
               if (this.month) {
@@ -366,20 +367,20 @@
             let obj = {}
             if (this.month) {
               this.seriesData = [{
-                name: '日热量',
+                name: '日热量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.r
               }]
-              this.legendData = ['日热量']
-              obj.projectName = '日热量'
+              this.legendData = ['日热量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '日热量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期热量',
+                name: '本期热量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.r
               }]
-              this.legendData = ['本期热量']
-              obj.projectName = '本期热量'
+              this.legendData = ['本期热量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '本期热量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.r.length; i++) {
               if (this.month) {
@@ -399,20 +400,20 @@
             let obj = {}
             if (this.month) {
               this.seriesData = [{
-                name: '日天然气量',
+                name: '日天然气量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.q
               }]
-              this.legendData = ['日天然气量']
-              obj.projectName = '日天然气量'
+              this.legendData = ['日天然气量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '日天然气量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期气量',
+                name: '本期气量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.q
               }]
-              this.legendData = ['本期气量']
-              obj.projectName = '本期气量'
+              this.legendData = ['本期气量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '本期气量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.q.length; i++) {
               if (this.month) {
@@ -432,20 +433,20 @@
             let obj = {}
             if (this.month) {
               this.seriesData = [{
-                name: '日能源消耗总量',
+                name: '日能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.ny
               }]
-              this.legendData = ['日能源消耗总量']
-              obj.projectName = '日能源消耗总量'
+              this.legendData = ['日能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '日能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期能源消耗总量',
+                name: '本期能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.ny
               }]
-              this.legendData = ['本期能源消耗总量']
-              obj.projectName = '本期能源消耗总量'
+              this.legendData = ['本期能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '本期能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.ny.length; i++) {
               if (this.month) {
@@ -464,20 +465,20 @@
             let obj = {}
             if (this.month) {
               this.seriesData = [{
-                name: '日单车电量',
+                name: '日单车电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.dd
               }]
-              this.legendData = ['日单车电量']
-              obj.projectName = '日单车电量'
+              this.legendData = ['日单车电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '日单车电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期单车电量',
+                name: '本期单车电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.dd
               }]
-              this.legendData = ['本期单车电量']
-              obj.projectName = '本期单车电量'
+              this.legendData = ['本期单车电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '本期单车电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.dd.length; i++) {
               if (this.month) {
@@ -497,20 +498,20 @@
             let obj = {}
             if (this.month) {
               this.seriesData = [{
-                name: '日单车水量',
+                name: '日单车水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.sd
               }]
-              this.legendData = ['日单车水量']
-              obj.projectName = '日单车水量'
+              this.legendData = ['日单车水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '日单车水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期单车水量',
+                name: '本期单车水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.sd
               }]
-              this.legendData = ['本期单车水量']
-              obj.projectName = '本期单车水量'
+              this.legendData = ['本期单车水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '本期单车水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.sd.length; i++) {
               if (this.month) {
@@ -530,20 +531,20 @@
             let obj = {}
             if (this.month) {
               this.seriesData = [{
-                name: '日单车热力',
+                name: '日单车热力(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.rd
               }]
-              this.legendData = ['日单车热力']
-              obj.projectName = '日单车热力'
+              this.legendData = ['日单车热力(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '日单车热力(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期单车热力',
+                name: '本期单车热力(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.rd
               }]
-              this.legendData = ['本期单车热力']
-              obj.projectName = '本期单车热力'
+              this.legendData = ['本期单车热力(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '本期单车热力(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.rd.length; i++) {
               if (this.month) {
@@ -563,20 +564,20 @@
             let obj = {}
             if (this.month) {
               this.seriesData = [{
-                name: '日单车天然气',
+                name: '日单车天然气(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.qd
               }]
-              this.legendData = ['日单车天然气']
-              obj.projectName = '日单车天然气'
+              this.legendData = ['日单车天然气(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '日单车天然气(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期单车天然气',
+                name: '本期单车天然气(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.qd
               }]
-              this.legendData = ['本期单车天然气']
-              obj.projectName = '本期单车天然气'
+              this.legendData = ['本期单车天然气(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '本期单车天然气(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.qd.length; i++) {
               if (this.month) {
@@ -596,20 +597,20 @@
             let obj = {}
             if (this.month) {
               this.seriesData = [{
-                name: '日单车能源消耗总量',
+                name: '日单车能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.nyd
               }]
-              this.legendData = ['日单车能源消耗总量']
-              obj.projectName = '日单车能源消耗总量'
+              this.legendData = ['日单车能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '日单车能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期单车能源消耗总量',
+                name: '本期单车能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.nyd
               }]
-              this.legendData = ['本期单车能源消耗总量']
-              obj.projectName = '本期单车能源消耗总量'
+              this.legendData = ['本期单车能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')']
+              obj.projectName = '本期单车能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.nyd.length; i++) {
               if (this.month) {
@@ -622,12 +623,20 @@
             }
             this.tableData = [obj]
           }
+          if (this.month) {
+            let param = res.data.xAxisData.length % 13
+            if (param === 0) {
+              param = 13
+            }
+            res.data.xAxisData[res.data.xAxisData.length - 1 + 13 - param] = undefined
+          }
           this.loading = false
         }).catch(() => {
           this.tableData = []
           this.rData = {}
           this.loading = false
         })
+        this.chartTitleShow = this.chartTitle
       }
     }
   }
@@ -651,8 +660,8 @@
         display: inline-block
         width: 25px
         height: 10px
-      .table-box > .row:last-child
-        min-height: calc(100vh - 560px)
+      .panel-box
+        min-height: calc(100vh - 191px)
       .chart-box
         min-height: 350px
         border-radius: 0px

@@ -43,7 +43,8 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <div class="row">
             <div class="table-box">
               <el-button class="search-btn" icon="el-icon-plus" type="primary" size="mini" @click="addFile">导入台账</el-button>
@@ -51,8 +52,7 @@
                 <el-table
                   :data="rList"
                   border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="xuhao"
                     width="40"
@@ -305,16 +305,14 @@
       display: flex
       flex-direction: column
       min-width: 600px
-      .search-btn
-        margin: 10px 0
       .date-type
         width: 60px
       .department-block
         display: inline-block
         width: 25px
         height: 10px
-      .panel-box > .row
-        min-height: calc(100vh - 160px)
+      .panel-box
+        min-height: calc(100vh - 190px)
       .chart-box
         min-height: 350px
         border-radius: 0px

@@ -29,7 +29,8 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box" ref="panel">
           <div class="row">
             <div class="table-box">
               <div class="row">
@@ -40,13 +41,12 @@
                                 :yAxis="y"
                                 :titleText="chartTitle"></chart-bar-line>
               </div>
-              <report-table class="row" ref="row" className="table1" reportName="电价分析">
+              <report-table class="row" className="table1" reportName="电价分析">
                 <el-table
                   slot="table"
                   :data="tableDataFilter2(rData.list, 1000)"
                   border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     align="center"
                     prop="org"
@@ -155,7 +155,12 @@
       },
       selectChange() {
         setTimeout(() => {
-          this.$refs.row.style['min-height'] = 'calc(100vh - 360px - ' + this.$refs.select.$el.getBoundingClientRect().height + 'px)'
+          this.$refs.panel.style['min-height'] = 'calc(100vh - 140px - ' + this.$refs.select.$el.getBoundingClientRect().height + 'px)'
+        }, 100)
+      },
+      mounted() {
+        setTimeout(() => {
+          this.$refs.panel.style['min-height'] = 'calc(100vh - 140px - ' + this.$refs.select.$el.getBoundingClientRect().height + 'px)'
         }, 100)
       }
     }
@@ -178,8 +183,6 @@
         display: inline-block
         width: 25px
         height: 10px
-      .table-box > .row:last-child
-        min-height: calc(100vh - 410px)
       .chart-box
         min-height: 250px
         border-radius: 0px

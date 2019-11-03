@@ -27,7 +27,6 @@
             slot="title3"
             v-model="lx"
             placeholder="请选择"
-            @change="lxChange"
             size="mini">
             <el-option
               v-for="item in options2"
@@ -39,7 +38,8 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <div class="row">
             <div class="col-lg-12 col-md-12 table-box">
               <div class="row">
@@ -48,15 +48,14 @@
                                 :series="seriesData"
                                 :xAxisData="xAxisData"
                                 :yAxis="yAxis"
-                                :titleText="chartTitle"></chart-bar-line>
+                                :titleText="chartTitleShow"></chart-bar-line>
               </div>
               <report-table class="row" className="table1" reportName="二氧化碳分析">
                 <el-table
                   slot="table"
                   :data="filterTableData"
                   border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     header-align="center"
                     prop="projectName"
@@ -85,8 +84,7 @@
                 slot="table"
                 :data="tableDataFilter2(rData.zfl, 100)"
                 border
-                header-cell-class-name="header-cell-class-name"
-                style="width: 99%">
+                header-cell-class-name="header-cell-class-name">
                 <el-table-column
                   align="center"
                   prop="zl"
@@ -145,7 +143,8 @@
         lx: 'tan',
         legendData: ['本期碳', '同期碳', '上月碳', '本期产量', '同期产量', '上月产量'],
         seriesData: [],
-        y: [{name: '辆'}, {name: '亿元'}]
+        y: [{name: '辆'}, {name: '亿元'}],
+        chartTitleShow: ''
       }
     },
     computed: {
@@ -168,7 +167,7 @@
         })
         let lxName = lxId >= 0 ? this.options2[lxId].label : ''
         if (this.year && orgName && lxName) {
-          return orgName + this.year + '年产量与' + lxName + '排放量分析'
+          return orgName + this.year + '年产量与' + lxName + '分析'
         } else {
           return ''
         }
@@ -208,6 +207,7 @@
           this.tableData = []
           this.loading = false
         })
+        this.chartTitleShow = this.chartTitle
       },
       makeData() {
         this.tableData = []
@@ -257,15 +257,15 @@
             this.tableData.push(obj)
           }
         } else if (this.lx === 'dtan') {
-          this.legendData = ['本期单碳', '同期单碳', '上月单碳', '本期产量', '同期产量', '上月产量']
+          this.legendData = ['本期单车碳', '同期单车碳', '上月单车碳', '本期产量', '同期产量', '上月产量']
           if (this.rData.dtan && this.rData.dtan.length > 0) {
             series.push({
-              name: '本期单碳',
+              name: '本期单车碳',
               type: 'bar',
               data: this.rData.dtan
             })
             let obj = {}
-            obj.projectName = '本期单碳'
+            obj.projectName = '本期单车碳'
             for (let i = 0; i < this.rData.dtan.length; i++) {
               let key = this.rData.xAxisData[i] + 'yue'
               obj[key] = this.rData.dtan[i]
@@ -274,12 +274,12 @@
           }
           if (this.rData.dtqtan && this.rData.dtqtan.length > 0) {
             series.push({
-              name: '同期单碳',
+              name: '同期单车碳',
               type: 'bar',
               data: this.rData.dtqtan
             })
             let obj = {}
-            obj.projectName = '同期单碳'
+            obj.projectName = '同期单车碳'
             for (let i = 0; i < this.rData.dtqtan.length; i++) {
               let key = this.rData.xAxisData[i] + 'yue'
               obj[key] = this.rData.dtqtan[i]
@@ -288,12 +288,12 @@
           }
           if (this.rData.dsytan && this.rData.dsytan.length > 0) {
             series.push({
-              name: '上月单碳',
+              name: '上月单车碳',
               type: 'bar',
               data: this.rData.dsytan
             })
             let obj = {}
-            obj.projectName = '上月单碳'
+            obj.projectName = '上月单车碳'
             for (let i = 0; i < this.rData.dsytan.length; i++) {
               let key = this.rData.xAxisData[i] + 'yue'
               obj[key] = this.rData.dsytan[i]
@@ -388,8 +388,8 @@
         display: inline-block
         width: 25px
         height: 10px
-      .table-box > .row:last-child
-        min-height: calc(100vh - 510px)
+      .panel-box
+        min-height: calc(100vh - 191px)
       .chart-box
         min-height: 350px
         border-radius: 0px

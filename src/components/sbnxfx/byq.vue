@@ -28,7 +28,8 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <div class="row">
             <div class="table-box">
               <data-panel-title :title="chartTitle" :noBorder="noBorder"></data-panel-title>
@@ -38,8 +39,7 @@
                 key="table1"
                 border
                 :header-cell-style="headerCellStyle"
-                header-cell-class-name="header-cell-class-name"
-                style="width: 99%">
+                header-cell-class-name="header-cell-class-name">
                 <el-table-column
                   prop="org"
                   align="center"
@@ -89,8 +89,7 @@
                 key="table2"
                 border
                 :header-cell-style="headerCellStyle"
-                header-cell-class-name="header-cell-class-name"
-                style="width: 99%">
+                header-cell-class-name="header-cell-class-name">
                 <el-table-column
                   align="center"
                   prop="org"
@@ -144,18 +143,17 @@
                   slot="table"
                   border
                   :cell-style="cellStyle"
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 100%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
-                    align="center"
+                    header-align="center"
                     prop="code"
-                    width="110"
+                    min-width="8%"
                     label="变压器编号">
                   </el-table-column>
                   <el-table-column
-                    align="center"
+                    header-align="center"
                     prop="wz"
-                    width="90"
+                    min-width="14%"
                     label="所在位置">
                   </el-table-column>
                   <el-table-column
@@ -164,6 +162,7 @@
                     label="负载系数(β)">
                     <el-table-column
                       align="center"
+                      min-width="6.5%"
                       label="一月">
                       <template slot-scope="scope">
                         {{ scope.row['1yue'] ? scope.row['1yue'].split('_')[0] : '' }}
@@ -171,6 +170,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="6.5%"
                       label="二月">
                       <template slot-scope="scope">
                         {{ scope.row['2yue'] ? scope.row['2yue'].split('_')[0] : '' }}
@@ -178,6 +178,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="6.5%"
                       label="三月">
                       <template slot-scope="scope">
                         {{ scope.row['3yue'] ? scope.row['3yue'].split('_')[0] : '' }}
@@ -185,6 +186,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="6.5%"
                       label="四月">
                       <template slot-scope="scope">
                         {{ scope.row['4yue'] ? scope.row['4yue'].split('_')[0] : '' }}
@@ -192,6 +194,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="6.5%"
                       label="五月">
                       <template slot-scope="scope">
                         {{ scope.row['5yue'] ? scope.row['5yue'].split('_')[0] : '' }}
@@ -199,6 +202,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="6.5%"
                       label="六月">
                       <template slot-scope="scope">
                         {{ scope.row['6yue'] ? scope.row['6yue'].split('_')[0] : '' }}
@@ -206,6 +210,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="6.5%"
                       label="七月">
                       <template slot-scope="scope">
                         {{ scope.row['7yue'] ? scope.row['7yue'].split('_')[0] : '' }}
@@ -213,6 +218,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="6.5%"
                       label="八月">
                       <template slot-scope="scope">
                         {{ scope.row['8yue'] ? scope.row['8yue'].split('_')[0] : '' }}
@@ -220,6 +226,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="6.5%"
                       label="九月">
                       <template slot-scope="scope">
                         {{ scope.row['9yue'] ? scope.row['9yue'].split('_')[0] : '' }}
@@ -227,6 +234,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="6.5%"
                       label="十月">
                       <template slot-scope="scope">
                         {{ scope.row['10yue'] ? scope.row['10yue'].split('_')[0] : '' }}
@@ -234,6 +242,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="6.5%"
                       label="十一月">
                       <template slot-scope="scope">
                         {{ scope.row['11yue'] ? scope.row['11yue'].split('_')[0] : '' }}
@@ -241,6 +250,7 @@
                     </el-table-column>
                     <el-table-column
                       align="center"
+                      min-width="6.5%"
                       label="十二月">
                       <template slot-scope="scope">
                         {{ scope.row['12yue'] ? scope.row['12yue'].split('_')[0] : '' }}
@@ -458,8 +468,8 @@
         display: inline-block
         width: 25px
         height: 10px
-      .panel-box > .row
-        min-height: calc(100vh - 160px)
+      .panel-box
+        min-height: calc(100vh - 191px)
       .chart-box
         min-height: 350px
         border-radius: 0px

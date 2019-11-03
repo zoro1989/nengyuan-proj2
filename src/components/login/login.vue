@@ -109,7 +109,6 @@ export default {
       width: 100%
       background: url(bghead.png) $color-theme-d no-repeat
       background-size:cover
-      background-position: right
       .text
         color: #f5f4f4
         font-size: 25px

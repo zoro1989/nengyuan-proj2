@@ -1,5 +1,5 @@
 <template>
-  <div class="info-container">
+  <div id="kyj" class="info-container">
     <div class="info">
       <div class="col-box">
         <select-title title1="用能单位" title2="选择时间" title3="安装时间" title4="类型" title5="功率" @search="onSearch" :showSearch="true">
@@ -55,7 +55,8 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <div class="row">
             <div class="table-box">
               <el-button class="search-btn" icon="el-icon-plus" type="primary" size="mini" @click="addFile">导入台账</el-button>
@@ -63,8 +64,7 @@
                 <el-table
                   :data="rList"
                   border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="xuhao"
                     width="40"
@@ -136,6 +136,7 @@
                   <el-table-column
                     align="center"
                     prop="yt"
+                    width="100"
                     label="用途">
                   </el-table-column>
                   <el-table-column
@@ -156,6 +157,7 @@
                   <el-table-column
                     align="center"
                     prop="lx"
+                    width="100"
                     label="空压机类型">
                   </el-table-column>
                 </el-table>
@@ -314,25 +316,23 @@
     }
   }
 </script>
-<style lang="stylus" scoped>
+<style lang="stylus">
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
-  .info-container
+  #kyj.info-container
     .info
       background-color: $color-background-sub
       display: flex
       flex-direction: column
       min-width: 600px
-      .search-btn
-        margin: 10px 0
       .date-type
         width: 60px
       .department-block
         display: inline-block
         width: 25px
         height: 10px
-      .panel-box > .row
-        min-height: calc(100vh - 160px)
+      .el-table__body-wrapper
+        min-height: calc(100vh - 307px)
       .chart-box
         min-height: 350px
         border-radius: 0px

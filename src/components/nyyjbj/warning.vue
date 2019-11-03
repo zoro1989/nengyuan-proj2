@@ -35,13 +35,13 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <div class="row">
             <el-table
               :data="tableData"
               border
-              header-cell-class-name="header-cell-class-name"
-              style="width: 99%">
+              header-cell-class-name="header-cell-class-name">
               <el-table-column
                 align="center"
                 width="250"
@@ -63,13 +63,13 @@
                 </template>
               </el-table-column>
               <el-table-column
-                align="center"
+                align="left"
                 prop="mc"
                 width="180"
                 label="报警名称">
               </el-table-column>
               <el-table-column
-                align="center"
+                align="left"
                 prop="nr"
                 label="报警内容">
               </el-table-column>
@@ -149,6 +149,5 @@
         height: 10px
       .panel-box
         padding-top: 10px
-        > .row
-          min-height: calc(100vh - 170px)
+        min-height: calc(100vh - 191px)
 </style>

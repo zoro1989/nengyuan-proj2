@@ -1,8 +1,8 @@
 <template>
-  <div class="info-container">
+  <div id="gl" class="info-container">
     <div class="info">
       <div class="col-box">
-        <select-title title1="用能单位" title2="选择时间" title3="安装时间" title4="类型" title5="煤" title6="气" @search="onSearch" :showSearch="true">
+        <select-title ref="select" title1="用能单位" title2="选择时间" title3="安装时间" title4="类型" title5="煤" title6="气" @search="onSearch" :showSearch="true">
           <el-select
             slot="title1"
             v-model="system_id"
@@ -67,7 +67,8 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box" ref="panel">
           <div class="row">
             <div class="table-box">
               <el-button class="search-btn" icon="el-icon-plus" type="primary" size="mini" @click="addFile">导入台账</el-button>
@@ -75,8 +76,7 @@
                 <el-table
                   :data="rList"
                   border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="xuhao"
                     width="40"
@@ -337,28 +337,31 @@
           }
         )
       }
+    },
+    mounted() {
+      setTimeout(() => {
+        this.$refs.panel.style['min-height'] = 'calc(100vh - 140px - ' + this.$refs.select.$el.getBoundingClientRect().height + 'px)'
+      }, 100)
     }
   }
 </script>
-<style lang="stylus" scoped>
+<style lang="stylus">
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
-  .info-container
+  #gl.info-container
     .info
       background-color: $color-background-sub
       display: flex
       flex-direction: column
       min-width: 600px
-      .search-btn
-        margin: 10px 0
       .date-type
         width: 60px
       .department-block
         display: inline-block
         width: 25px
         height: 10px
-      .panel-box > .row
-        min-height: calc(100vh - 160px)
+      .el-table__body-wrapper
+        min-height: calc(100vh - 346px)
       .chart-box
         min-height: 350px
         border-radius: 0px

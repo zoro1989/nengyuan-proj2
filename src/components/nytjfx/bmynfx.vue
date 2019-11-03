@@ -29,14 +29,14 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
-          <report-table class="row" ref="row" className="table1" reportName="部门用能分析">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box" ref="panel" >
+          <report-table class="row" className="table1" reportName="部门用能分析">
             <el-table
               slot="table"
               :data="filterRData"
               border
-              header-cell-class-name="header-cell-class-name"
-              style="width: 99%">
+              header-cell-class-name="header-cell-class-name">
               <el-table-column
                 prop="org"
                 align="center"
@@ -137,7 +137,7 @@
         tableData: [],
         colors: ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3'],
         noBorder: true,
-        system_id: ['3'],
+        system_id: ['1', '35', '15', '3', '4', '10', '16', '17', '19', '25', '26', '32', '33'],
         selectDate: moment().format('DD') * 1 <= 10 ? moment().subtract(2, 'months').format('YYYY-MM') : moment().subtract(1, 'months').format('YYYY-MM'),
         year: '',
         month: '',
@@ -170,9 +170,14 @@
       },
       selectChange() {
         setTimeout(() => {
-          this.$refs.row.style['min-height'] = 'calc(100vh - 110px - ' + this.$refs.select.$el.getBoundingClientRect().height + 'px)'
+          this.$refs.panel.style['min-height'] = 'calc(100vh - 140px - ' + this.$refs.select.$el.getBoundingClientRect().height + 'px)'
         }, 100)
       }
+    },
+    mounted() {
+      setTimeout(() => {
+        this.$refs.panel.style['min-height'] = 'calc(100vh - 140px - ' + this.$refs.select.$el.getBoundingClientRect().height + 'px)'
+      }, 100)
     }
   }
 </script>
@@ -193,6 +198,4 @@
         display: inline-block
         width: 25px
         height: 10px
-      .panel-box > .row
-        min-height: calc(100vh - 160px)
 </style>

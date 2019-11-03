@@ -1,5 +1,5 @@
 <template>
-  <div class="info-container">
+  <div id="alert" class="info-container">
     <div class="info">
       <div class="col-box">
         <select-title>
@@ -7,7 +7,8 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <div class="row">
             <div class="table-box">
               <div class="row">
@@ -15,8 +16,7 @@
                   class="token-table"
                   :data="rToken"
                   border
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 99%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="org"
                     align="center"
@@ -146,8 +146,7 @@
                       class="token-table"
                       :data="wList"
                       border
-                      header-cell-class-name="header-cell-class-name"
-                      style="width: 99%">
+                      header-cell-class-name="header-cell-class-name">
                       <el-table-column
                         align="center"
                         width="250"
@@ -191,8 +190,7 @@
                     <el-table
                       :data="rList"
                       border
-                      header-cell-class-name="header-cell-class-name"
-                      style="width: 99%">
+                      header-cell-class-name="header-cell-class-name">
                       <el-table-column
                         align="center"
                         prop="org"
@@ -277,10 +275,10 @@
     }
   }
 </script>
-<style lang="stylus" scoped>
+<style lang="stylus">
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
-  .info-container
+  #alert.info-container
     .info
       background: $color-sub-text
       display: flex
@@ -289,20 +287,10 @@
       .panel-box
         width: 100%
         padding-top: 10px
+        min-height: calc(100vh - 150px)
       .dbl
         width: 10px
         height: 10px
         border-radius: 50%
         display: inline-block
-      .date-type
-        width: 60px
-      .department-block
-        display: inline-block
-        width: 25px
-        height: 10px
-      .table-box > .row
-        min-height: calc(50vh - 85px)
-      .chart-box
-        min-height: 350px
-        border-radius: 0px
 </style>

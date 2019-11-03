@@ -6,7 +6,7 @@ import XLSX from 'xlsx'
 export const exportTb = (id, title) => {
   /* generate workbook object from table */
   // 判断要导出的节点中是否有fixed的表格，如果有，转换excel时先将该dom移除，然后append回去，
-  var fix = document.querySelector(id + '> .el-table__fixed')
+  var fix = document.querySelector(id + ' .el-table__fixed')
   var wb
   if (fix) {
     wb = XLSX.utils.table_to_book(document.querySelector(id).removeChild(fix))

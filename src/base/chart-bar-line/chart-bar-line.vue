@@ -174,7 +174,7 @@ export default {
               },
               splitLine: {
                 lineStyle: {
-                  color: '#2e77d8'
+                  color: this.isHome ? '#2e77d8' : 'rgba(127, 127, 127, 0.8)'
                 }
               }
             })

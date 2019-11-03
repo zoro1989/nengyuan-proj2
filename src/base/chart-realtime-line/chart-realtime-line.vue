@@ -54,6 +54,15 @@ export default {
   created() {
     this.chart = {}
   },
+  mounted() {
+    if (!this.seriesData.length) {
+      return
+    }
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      this.makeChart(this.seriesData)
+    }, 20)
+  },
   watch: {
     seriesData: function (newData) {
       clearTimeout(this.timer)

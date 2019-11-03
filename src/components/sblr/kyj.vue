@@ -19,7 +19,8 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <el-button type="primary" class="btn-add" size="mini" icon="el-icon-circle-plus-outline" @click="addStation">新增空压机</el-button>
           <div class="row">
             <div class="table-box">
@@ -27,8 +28,7 @@
                 :data="tableData"
                 border
                 header-cell-class-name="header-cell-class-name"
-                :default-sort = "{prop: 'cjrq', order: 'descending'}"
-                style="width: 100%">
+                :default-sort = "{prop: 'cjrq', order: 'descending'}">
                 <el-table-column
                   label="公司">
                   <template slot-scope="scope">
@@ -215,8 +215,8 @@
         .btn-add
           margin: 10px 0
           width: 120px
-      .panel-box > .row
-        min-height: calc(100vh - 210px)
+      .panel-box
+        min-height: calc(100vh - 190px)
       .chart-box
         min-height: 350px
         border-radius: 0px

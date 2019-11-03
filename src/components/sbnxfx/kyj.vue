@@ -1,5 +1,5 @@
 <template>
-  <div class="info-container">
+  <div id="kyjlr" class="info-container">
     <div class="info">
       <div class="col-box">
         <select-title title1="用能单位" title2="选择日期" @search="onSearch" :showSearch="true">
@@ -28,7 +28,8 @@
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
-        <div class="panel-box" v-loading="loading">
+        <!--<div class="panel-box" v-loading="loading">-->
+        <div class="panel-box">
           <div class="row">
             <div class="table-box">
               <data-panel-title :title="chartTitle" :noBorder="noBorder"></data-panel-title>
@@ -38,8 +39,7 @@
                 v-if="system_id === '1'"
                 border
                 :header-cell-style="headerCellStyle"
-                header-cell-class-name="header-cell-class-name"
-                style="width: 99%">
+                header-cell-class-name="header-cell-class-name">
                 <el-table-column
                   prop="org"
                   align="center"
@@ -89,8 +89,7 @@
                 key="table2"
                 border
                 :header-cell-style="headerCellStyle"
-                header-cell-class-name="header-cell-class-name"
-                style="width: 99%">
+                header-cell-class-name="header-cell-class-name">
                 <el-table-column
                   prop="org"
                   align="center"
@@ -130,7 +129,7 @@
                   </el-table-column>
                 </el-table-column>
               </el-table>
-              <report-table className="table1" reportName="空压机">
+              <report-table className="kyjfxtable1" reportName="空压机">
                 <data-panel-title
                   v-if="system_id === '1' && (rData3 && rData3.length > 0)"
                   slot="title"
@@ -143,8 +142,7 @@
                   slot="table"
                   border
                   :cell-style="cellStyle"
-                  header-cell-class-name="header-cell-class-name"
-                  style="width: 100%">
+                  header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="code"
                     width="120"
@@ -409,10 +407,10 @@
     }
   }
 </script>
-<style lang="stylus" scoped>
+<style lang="stylus">
   @import "~common/stylus/variable.styl"
   @import "~common/stylus/mixin.styl"
-  .info-container
+  #kyjlr.info-container
     .info
       background-color: $color-background-sub
       display: flex
@@ -428,8 +426,10 @@
         display: inline-block
         width: 25px
         height: 10px
-      .panel-box > .row
-        min-height: calc(100vh - 160px)
+      .panel-box
+        min-height: calc(100vh - 191px)
+      .el-table__body-wrapper
+        min-height: calc(100vh - 339px)
       .chart-box
         min-height: 350px
         border-radius: 0px

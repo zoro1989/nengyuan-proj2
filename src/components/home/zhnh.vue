@@ -268,7 +268,7 @@ export default {
       dateTime: moment().format('DD') * 1 <= 10 ? moment().subtract(2, 'months').format('YYYY-MM') : moment().subtract(1, 'months').format('YYYY-MM'),
       lx: '40',
       yAxis: [{name: '吨标煤/万元', min: 0.005}, {name: '%'}],
-      yAxis2: [{name: '吨标煤/万元'}, {name: '%'}],
+      yAxis2: [{name: '吨标煤/万元', min: 0.0001}, {name: '%'}],
       yAxis3: [{name: '吨标煤/万元', min: 0.0009}, {name: '%'}],
       chartTitle: '产值综合能耗'
     }
