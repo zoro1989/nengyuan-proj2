@@ -20,7 +20,7 @@
             v-model="date"
             class="date-year"
             size="mini"
-            type="month"
+            type="year"
             value-format="yyyy-MM"
             placeholder="选择年">
           </el-date-picker>

@@ -51,23 +51,27 @@
               <div class="row">
                 <el-table
                   :data="rList"
+                  height="calc(100vh - 242px)"
                   border
                   header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="xuhao"
                     min-width="5%"
                     align="center"
+                    fixed
                     label="序号">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="code"
+                    fixed
                     min-width="12%"
                     label="变压器编号">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="name"
+                    fixed
                     min-width="14%"
                     label="变压器名称">
                   </el-table-column>
@@ -286,7 +290,7 @@
         width: 25px
         height: 10px
       .panel-box
-        min-height: calc(100vh - 190px)
+        padding-top: 10px
       .chart-box
         min-height: 350px
         border-radius: 0px

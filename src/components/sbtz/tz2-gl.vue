@@ -75,23 +75,27 @@
               <div class="row">
                 <el-table
                   :data="rList"
+                  height="calc(100vh - 268px)"
                   border
                   header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="xuhao"
                     width="40"
+                    fixed
                     align="center"
                     label="序号">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     prop="code"
+                    fixed
                     width="100"
                     label="设备编号">
                   </el-table-column>
                   <el-table-column
                     align="center"
                     width="120"
+                    fixed
                     prop="name"
                     label="锅炉名称">
                   </el-table-column>
@@ -360,8 +364,8 @@
         display: inline-block
         width: 25px
         height: 10px
-      .el-table__body-wrapper
-        min-height: calc(100vh - 346px)
+      .panel-box
+        padding-top: 10px
       .chart-box
         min-height: 350px
         border-radius: 0px

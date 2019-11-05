@@ -113,6 +113,7 @@
                                :titleText="realTimeToday + '能源用量(小时)'"
                                yAxisTitle="吨标煤"
                                seriesName="能耗"
+                               :isXiazuan="true"
                                :xAxisData="ny.xAxisData"
                                :seriesData="ny.seriesData"
                                :showArea="showArea"></chart-realtime-line>
@@ -121,6 +122,7 @@
           <chart-realtime-bar class="chart-box"
                               :titleText="realTimeToday + '能源费用(小时)'"
                               yAxisTitle="千元"
+                              :isXiazuan="true"
                               :xAxisData="fy.xAxisData"
                               :seriesData="fy.seriesData"
                               seriesName="费用"></chart-realtime-bar>
@@ -178,8 +180,8 @@
     },
     data() {
       return {
-        analyzeChartRadius: ['13%', '60%'],
-        feeChartRadius: ['30%', '60%'],
+        analyzeChartRadius: ['13%', '50%'],
+        feeChartRadius: ['30%', '50%'],
         showArea: true,
         // 三月能耗结构
         strucPie: [],

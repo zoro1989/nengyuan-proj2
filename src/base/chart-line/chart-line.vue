@@ -125,7 +125,9 @@ export default {
             axisTick: {
               alignWithLabel: true
             },
-            data: this.xAxisData
+            data: this.xAxisData && this.xAxisData.map((item) => {
+              return item + '日'
+            })
           }
         ],
         yAxis: [

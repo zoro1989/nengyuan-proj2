@@ -3,7 +3,7 @@
     <div class="info">
       <div class="col-box">
         <select-title>
-          <el-button slot="title1" size="mini" @click="goHome" icon="el-icon-back" plain>返回首页</el-button>
+          <el-button slot="title1" class="goHomeBtn" size="mini" @click="goHome" icon="el-icon-back" plain>返回首页</el-button>
         </select-title>
       </div>
       <div class="col-box-left-right-bottom">
@@ -19,6 +19,7 @@
                   header-cell-class-name="header-cell-class-name">
                   <el-table-column
                     prop="org"
+                    fixed
                     align="center"
                     min-width="220"
                     label="公司名称">
@@ -193,16 +194,19 @@
                       header-cell-class-name="header-cell-class-name">
                       <el-table-column
                         align="center"
+                        min-width="30%"
                         prop="org"
                         label="分子公司">
                       </el-table-column>
                       <el-table-column
                         align="center"
+                        min-width="20%"
                         prop="createdAt"
                         label="日志时间">
                       </el-table-column>
                       <el-table-column
                         align="center"
+                        min-width="50%"
                         prop="content"
                         label="日志内容">
                       </el-table-column>
@@ -284,6 +288,8 @@
       display: flex
       flex-direction: column
       min-width: 600px
+      .goHomeBtn
+        margin-left: 10px
       .panel-box
         width: 100%
         padding-top: 10px

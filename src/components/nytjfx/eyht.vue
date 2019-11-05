@@ -87,6 +87,7 @@
                 header-cell-class-name="header-cell-class-name">
                 <el-table-column
                   align="center"
+                  min-width="120"
                   prop="zl"
                   label="月">
                 </el-table-column>

@@ -114,6 +114,7 @@
         height: 10px
       .panel-box
         min-height: calc(100vh - 130px)
+        padding-top: 10px
       .chart-box
         min-height: 350px
         border-radius: 0px

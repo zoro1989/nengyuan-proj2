@@ -2,27 +2,27 @@
   <div class="select-title">
     <div class="title-l">
       <span>
-        <span class="picker-txt">{{title1}}：</span>
+        <span class="picker-txt">{{title1}}<span v-if="!!title1">：</span></span>
         <slot name="title1"></slot>
       </span>
       <span v-if="title2">
-        <span class="picker-txt">{{title2}}：</span>
+        <span class="picker-txt">{{title2}}<span v-if="!!title2">：</span></span>
         <slot name="title2"></slot>
       </span>
       <span v-if="title3">
-        <span class="picker-txt">{{title3}}：</span>
+        <span class="picker-txt">{{title3}}<span v-if="!!title3">：</span></span>
         <slot name="title3"></slot>
       </span>
       <span v-if="title4">
-        <span class="picker-txt">{{title4}}：</span>
+        <span class="picker-txt">{{title4}}<span v-if="!!title4">：</span></span>
         <slot name="title4"></slot>
       </span>
       <span v-if="title5">
-        <span class="picker-txt">{{title5}}：</span>
+        <span class="picker-txt">{{title5}}<span v-if="!!title5">：</span></span>
         <slot name="title5"></slot>
       </span>
       <span v-if="title6">
-        <span class="picker-txt">{{title6}}：</span>
+        <span class="picker-txt">{{title6}}<span v-if="!!title6">：</span></span>
         <slot name="title6"></slot>
       </span>
       <el-button class="search-btn" v-if="showSearch" type="primary" icon="el-icon-search" size="mini" @click="onSearch">搜索</el-button>

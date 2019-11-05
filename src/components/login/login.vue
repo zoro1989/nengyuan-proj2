@@ -25,9 +25,9 @@
                 </div>
                 <div class="panel-item">
                   <label class="panel-label"><i class="fa fa-lock"></i></label>
-                  <input class="panel-input" v-model="password" type="password" placeholder="输入密码"/>
+                  <input class="panel-input" v-model="password" type="password" @keyup.enter.native="onLogin" placeholder="输入密码"/>
                 </div>
-                <div class="btn-login" @click="onLogin">登录</div>
+                <div class="btn-login" @click="onLogin" @keyup.enter.native="onLogin">登录</div>
               </div>
             </div>
           </div>
@@ -49,9 +49,26 @@ export default {
       password: ''
     }
   },
+  created() {
+    var _self = this
+    document.onkeydown = function(e) {
+      let key = null
+      if (window.event === undefined) {
+        key = e.keyCode
+      } else {
+        key = window.event.keyCode
+      }
+      if (key === 13) {
+        _self.onLogin()
+      }
+    }
+  },
   methods: {
     tabChange(index) {
       this.tabIndex = index
+    },
+    onKeydown() {
+      this.onLogin()
     },
     onLogin() {
       if (!this.username) {

@@ -48,7 +48,7 @@
                     <el-table-column
                       align="center"
                       prop="nybm"
-                      label="能源部门">
+                      label="用能单位">
                     </el-table-column>
                     <el-table-column
                       align="center"
@@ -85,7 +85,7 @@
                     <el-table-column
                       align="center"
                       prop="nybm"
-                      label="能源部门">
+                      label="用能单位">
                     </el-table-column>
                     <el-table-column
                       align="center"
@@ -115,7 +115,7 @@
                 <el-table-column
                   align="center"
                   prop="zl"
-                  label="能源部门">
+                  label="用能单位">
                 </el-table-column>
                 <el-table-column
                   align="center"

@@ -89,7 +89,7 @@
                     </template>
                   </el-table-column>
                   <el-table-column
-                    v-if="month"
+                    v-if="monthShow"
                     min-width="6.7%"
                     align="center"
                     v-for="item in rData.xAxisData.slice(0, 13)"
@@ -98,7 +98,7 @@
                     :label="item === undefined ? '' : item + '日'">
                   </el-table-column>
                   <el-table-column
-                    v-if="!month"
+                    v-if="!monthShow"
                     min-width="6.7%"
                     align="center"
                     v-for="item in rData.xAxisData"
@@ -108,7 +108,7 @@
                   </el-table-column>
                 </el-table>
               </report-table>
-              <report-table v-if="month && rData.xAxisData && rData.xAxisData.length > 13" class="row" className="table2" reportName="能源负荷分析">
+              <report-table v-if="monthShow && rData.xAxisData && rData.xAxisData.length > 13" class="row" className="table2" reportName="能源负荷分析">
                 <el-table
                   slot="table"
                   :data="tableData"
@@ -134,7 +134,7 @@
                   </el-table-column>
                 </el-table>
               </report-table>
-              <report-table v-if="month && rData.xAxisData && rData.xAxisData.length > 26" class="row" className="table3" reportName="能源负荷分析">
+              <report-table v-if="monthShow && rData.xAxisData && rData.xAxisData.length > 26" class="row" className="table3" reportName="能源负荷分析">
                 <el-table
                   slot="table"
                   :data="tableData"
@@ -213,7 +213,8 @@
         maxVal: 0,
         minVal: 0,
         avgVal: 0,
-        chartTitleShow: ''
+        chartTitleShow: '',
+        monthShow: ''
       }
     },
     computed: {
@@ -631,6 +632,7 @@
             res.data.xAxisData[res.data.xAxisData.length - 1 + 13 - param] = undefined
           }
           this.loading = false
+          this.monthShow = this.month
         }).catch(() => {
           this.tableData = []
           this.rData = {}

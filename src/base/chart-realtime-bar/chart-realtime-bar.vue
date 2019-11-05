@@ -1,6 +1,6 @@
 <template>
   <div class="chart-realtime-bar" >
-    <span class="title" @click="titleClick">{{titleText}}</span>
+    <span class="title" @click="titleClick" :class="isXiazuan ? 'xiazuan' : ''">{{titleText}}</span>
     <div class="chart" ref="chart" v-show="seriesData.length !== 0"></div>
     <no-result v-show="seriesData.length === 0"></no-result>
   </div>
@@ -42,6 +42,10 @@ export default {
       default: function () {
         return []
       }
+    },
+    isXiazuan: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
@@ -241,6 +245,8 @@ export default {
       align-items: center
       justify-content: center
       cursor: pointer
+      &.xiazuan
+        text-decoration: underline
       a
         color: $color-text
       &:hover
