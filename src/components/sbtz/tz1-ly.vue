@@ -41,7 +41,7 @@
             <el-option label="箱式渗碳炉" value="箱式渗碳炉"></el-option>
             <el-option label="箱式回火炉" value="箱式回火炉"></el-option>
             <el-option label="强冷室" value="强冷室"></el-option>
-            <el-option label="其他" value="其他"></el-option>
+            <el-option label="其它" value="其它"></el-option>
           </el-select>
           <el-select
             slot="title5"

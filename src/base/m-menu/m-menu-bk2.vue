@@ -68,7 +68,7 @@
           <el-menu-item index="5-5">通风机台账</el-menu-item>
           <el-menu-item index="5-6">水泵台账</el-menu-item>
           <el-menu-item index="5-7">变压器台账</el-menu-item>
-          <el-menu-item index="5-8">其他台账</el-menu-item>
+          <el-menu-item index="5-8">其它台账</el-menu-item>
         </el-submenu>
         <el-menu-item index="6">能源预警报警</el-menu-item>
       </el-menu>

@@ -50,7 +50,7 @@
         <el-menu-item index="/home/tz5-tfj"><i class="fa fa-file-text-o"></i><span>&nbsp;通风机台账</span></el-menu-item>
         <el-menu-item index="/home/tz6-sb"><i class="fa fa-file-text-o"></i><span>&nbsp;水泵台账</span></el-menu-item>
         <el-menu-item index="/home/tz7-byq"><i class="fa fa-file-text-o"></i><span>&nbsp;变压器台账</span></el-menu-item>
-        <el-menu-item index="/home/tz8-qt"><i class="fa fa-file-text-o"></i><span>&nbsp;其他台账</span></el-menu-item>
+        <el-menu-item index="/home/tz8-qt"><i class="fa fa-file-text-o"></i><span>&nbsp;其它台账</span></el-menu-item>
         <el-menu-item index="/home/tz9-tj"><i class="fa fa-file-text-o"></i><span>&nbsp;设备统计</span></el-menu-item>
       </el-submenu>
       <el-menu-item index="/home/waning"><i class="fa fa-bell-o"></i><span>&nbsp;能源预警报警</span></el-menu-item>

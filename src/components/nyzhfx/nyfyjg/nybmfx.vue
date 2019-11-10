@@ -74,7 +74,7 @@
                     prop="ynbm"
                     header-align="center"
                     width="150"
-                    label="用能部门">
+                    label="用能单位">
                     <template slot-scope="scope">
                       <span class="department-block" :style="departmentStyle(scope.$index)"></span>
                       <span>{{ filterName(scope.row.ynbm) }}</span>
@@ -118,7 +118,7 @@
                   <el-table-column
                     prop="ynbm"
                     width="150"
-                    label="用能部门">
+                    label="用能单位">
                     <template slot-scope="scope">
                       <span class="department-block" :style="departmentStyle(scope.$index)"></span>
                       <span>{{ filterName(scope.row.ynbm) }}</span>
@@ -183,8 +183,8 @@
     },
     created() {
 //      setTimeout(() => {
-//        this.strucPie1 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
-//        this.strucPie2 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+//        this.strucPie1 = [{value: 274, name: '水'}, {value: 168, name: '其它'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+//        this.strucPie2 = [{value: 274, name: '水'}, {value: 168, name: '其它'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
 //      }, 20)
       this.fetchData()
     },
@@ -215,7 +215,7 @@
           label: '零部件加工'
         }, {
           value: '30',
-          label: '物流'
+          label: '其它公司'
         }],
         colors: ['#5967f1', '#06e56d', '#7dd1ff', '#ff8e06', '#1196de', '#0c1994', '#8c6be6', '#ffc300', '#4472c6', '#838389', '#1096df'],
         noBorder: true,

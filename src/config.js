@@ -52,6 +52,7 @@ const api = {
   bjList: apiPath + 'log/bj/list',
   zbKpiPjList: apiPath + 'api/ZbKpiPj/list',
   zbKpiPjCreate: apiPath + 'api/ZbKpiPj/create',
+  zbKpiPjDelete: apiPath + 'api/ZbKpiPj/delete',
   sbLyList: apiPath + 'sb/ly/list',
   sbLyCreate: apiPath + 'sb/ly/create',
   sbGlList: apiPath + 'sb/gl/list',

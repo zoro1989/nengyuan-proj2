@@ -32,8 +32,8 @@
           <div class="row">
             <div class="table-box">
               <el-button class="search-btn" icon="el-icon-plus" type="primary" size="mini" @click="onAdd">新增</el-button>
-              <el-button class="search-btn" type="primary" size="mini" @click="onSave">
-                <i class="fa fa-save"></i>保存</el-button>
+              <el-button class="search-btn" type="primary" size="mini" @click="onSave"><i class="fa fa-save"></i>保存</el-button>
+              <el-button class="search-btn" type="primary" icon="el-icon-delete" size="mini" @click="onDelete">删除</el-button>
               <report-table class="row" className="table1" reportName="评价考核表">
                 <el-table
                   slot="table"
@@ -112,6 +112,16 @@
       }
     },
     methods: {
+      onDelete() {
+        this.$confirm('确认要删除吗？')
+          .then(_ => {
+            fetch('get', api.zbKpiPjDelete, {system_id: this.system_id, date: this.date}).then((res) => {
+              this.onSearch()
+            }).catch(() => {
+            })
+          })
+          .catch(_ => {})
+      },
       onSearch() {
         this.loading = true
         this.rList = []

@@ -268,7 +268,7 @@ export default {
 //            data: [
 //              {value: 274, name: '水', label: {position: this.position}},
 //              {value: 168,
-//                name: '其他',
+//                name: '其它',
 //                label: this.othersData.length > 0 ? {
 //                  position: this.position,
 //                  normal: {

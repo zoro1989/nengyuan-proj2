@@ -232,12 +232,23 @@ export default {
               item.barMaxWidth = 100
             }
             if (series[i].type === 'bar' && (series[i].name.indexOf('实际') >= 0 || series[i].name.indexOf('本期') >= 0) &&
-              series[i + 1] && series[i].type === 'bar' && series[i + 1].name.indexOf('计划') >= 0) {
+              series[i + 1] && series[i + 1].type === 'bar' && series[i + 1].name.indexOf('计划') >= 0) {
               for (let j = 0; j < series[i].data.length; j++) {
                 if (series[i].data[j] !== 0 && series[i + 1].data[j] !== 0 &&
                   series[i].data[j] > series[i + 1].data[j]) {
                   series[i].data[j] = {
                     value: series[i].data[j],
+                    itemStyle: {color: '#e7251e'}
+                  }
+                }
+              }
+            } else if (series[i].type === 'bar' && series[i].name.indexOf('计划') >= 0 &&
+              series[i + 1] && series[i + 1].type === 'bar' && (series[i + 1].name.indexOf('实际') >= 0 || series[i + 1].name.indexOf('本期') >= 0)) {
+              for (let j = 0; j < series[i].data.length; j++) {
+                if (series[i].data[j] !== 0 && series[i + 1].data[j] !== 0 &&
+                  series[i].data[j] < series[i + 1].data[j]) {
+                  series[i + 1].data[j] = {
+                    value: series[i + 1].data[j],
                     itemStyle: {color: '#e7251e'}
                   }
                 }

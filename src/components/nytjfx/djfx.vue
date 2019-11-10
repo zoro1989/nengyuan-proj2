@@ -107,7 +107,7 @@
         tableData: [],
         colors: ['#066090', '#1196de', '#7ed2ff', '#ff8e06', '#666666', '#2436e3'],
         noBorder: true,
-        system_id: ['1', '35', '15', '3', '4', '10', '16', '17', '19', '25', '26', '34', '32', '33'],
+        system_id: ['1', '35', '3', '4', '10', '16', '17', '19', '25', '26', '34', '32', '33'],
         selectDate: moment().format('DD') * 1 <= 10 ? moment().subtract(2, 'months').format('YYYY-MM') : moment().subtract(1, 'months').format('YYYY-MM'),
         rData: {},
         year: '',

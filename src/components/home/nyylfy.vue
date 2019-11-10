@@ -178,7 +178,7 @@
                 showBi="hide"
               ></data-panel>
               <data-panel
-                title="其他费"
+                title="其它费"
                 :data="pData.qtje"
                 :isMathRound="true"
                 class="data-content-simple"
@@ -291,8 +291,8 @@ export default {
   created() {
 //    setTimeout(() => {
 //      this.strucPie1 = [{value: 274, name: '零部件、物流研发'}, {value: 168, name: '整车制造'}]
-//      this.strucPie2 = [{value: 274, name: '水'}, {value: 168, name: '其他'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
-//      this.legendData = ['水', '其他', '一汽解放', '天津丰田', '天津夏利', '长春丰越', '一汽通用', '高温水', '原煤', '天然气', '电']
+//      this.strucPie2 = [{value: 274, name: '水'}, {value: 168, name: '其它'}, {value: 335, name: '高温水'}, {value: 235, name: '原煤'}, {value: 310, name: '天然气'}, {value: 400, name: '电'}]
+//      this.legendData = ['水', '其它', '一汽解放', '天津丰田', '天津夏利', '长春丰越', '一汽通用', '高温水', '原煤', '天然气', '电']
 //    })
     this.fetchPanelData()
     this.fetchChartData()
@@ -344,10 +344,10 @@ export default {
             }
           }
           let legendData = res.data.legendData
-          legendData.push('其他')
+          legendData.push('其它公司')
           let seriesData = res.data.seriesData
           seriesData.push({
-            name: '其他',
+            name: '其它公司',
             value: othervalue
           })
           this.pieDl.legendData = legendData
@@ -360,10 +360,10 @@ export default {
             }
           }
           let legendData = res.data.legendData
-          legendData.push('其他')
+          legendData.push('其它公司')
           let seriesData = res.data.seriesData
           seriesData.push({
-            name: '其他',
+            name: '其它公司',
             value: othervalue
           })
           this.pieDl.legendData = legendData
@@ -371,15 +371,15 @@ export default {
         } else if (this.pid === '30') {
           let othervalue = 0
           for (let i = 0; i < this.pieDl.seriesData.length; i++) {
-            if (this.pieDl.seriesData[i].name !== '物流') {
+            if (this.pieDl.seriesData[i].name !== '其它公司') {
               othervalue += this.pieDl.seriesData[i].value * 1
             }
           }
           let legendData = res.data.legendData
-          legendData.push('其他')
+          legendData.push('其它公司')
           let seriesData = res.data.seriesData
           seriesData.push({
-            name: '其他',
+            name: '其它公司',
             value: othervalue
           })
           this.pieDl.legendData = legendData
@@ -396,10 +396,10 @@ export default {
             }
           }
           let legendData = res.data.legendData
-          legendData.push('其他')
+          legendData.push('其它公司')
           let seriesData = res.data.seriesData
           seriesData.push({
-            name: '其他',
+            name: '其它公司',
             value: othervalue
           })
           this.pieDf.legendData = legendData
@@ -412,10 +412,10 @@ export default {
             }
           }
           let legendData = res.data.legendData
-          legendData.push('其他')
+          legendData.push('其它公司')
           let seriesData = res.data.seriesData
           seriesData.push({
-            name: '其他',
+            name: '其它公司',
             value: othervalue
           })
           this.pieDf.legendData = legendData
@@ -423,15 +423,15 @@ export default {
         } else if (this.pid === '30') {
           let othervalue = 0
           for (let i = 0; i < this.pieDf.seriesData.length; i++) {
-            if (this.pieDf.seriesData[i].name !== '物流') {
+            if (this.pieDf.seriesData[i].name !== '其它公司') {
               othervalue += this.pieDf.seriesData[i].value * 1
             }
           }
           let legendData = res.data.legendData
-          legendData.push('其他')
+          legendData.push('其它公司')
           let seriesData = res.data.seriesData
           seriesData.push({
-            name: '其他',
+            name: '其它公司',
             value: othervalue
           })
           this.pieDf.legendData = legendData
@@ -488,7 +488,7 @@ export default {
         this.pid = '23'
         this.pidmain = '23'
         this.fetchSubPieData()
-      } else if (param.data.name === '物流') {
+      } else if (param.data.name === '其它公司') {
         this.pid = '30'
         this.pidmain = '30'
         this.fetchSubPieData()

@@ -220,7 +220,7 @@
         } else if (param.data.name === '零部件加工') {
           this.org_pid = '23'
           this.fetchData()
-        } else if (param.data.name === '物流') {
+        } else if (param.data.name === '其它公司') {
           this.org_pid = '30'
           this.fetchData()
         }

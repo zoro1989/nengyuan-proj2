@@ -126,7 +126,7 @@
                       align="center"
                       min-width="5%"
                       prop="qt"
-                      label="其他">
+                      label="其它">
                     </el-table-column>
                   </el-table-column>
                   <el-table-column

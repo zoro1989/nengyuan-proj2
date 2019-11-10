@@ -43,7 +43,7 @@
         top: 0
         font-size: 16px
         position: absolute
-        z-index: 20
+        z-index: 5
         .home-class
           color: #fff
 </style>

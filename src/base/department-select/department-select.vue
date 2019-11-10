@@ -103,7 +103,7 @@
           }]
         }, {
           id: 3,
-          label: '其他',
+          label: '其它',
           children: [{
             id: 23,
             label: '动能分公司'

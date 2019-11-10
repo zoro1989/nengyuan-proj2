@@ -116,7 +116,9 @@ let orgList = [
     label: '动能分公司'
   }
 ]
-export const orgSystemIdDic = orgList
+let orgSystemIdDicOrigin = JSON.parse(JSON.stringify(orgList))
+orgSystemIdDicOrigin.splice(2, 1)
+export const orgSystemIdDic = orgSystemIdDicOrigin
 let orgListNofengyue = JSON.parse(JSON.stringify(orgList))
 orgListNofengyue.splice(2, 1)
 export const orgSystemIdDicNofengyue = orgListNofengyue
@@ -136,7 +138,9 @@ for (let i = 0; i < orgList.length; i++) {
     }
   )
 }
-export const orgIdDic = orgIdDicList
+let orgIdDicOrigin = JSON.parse(JSON.stringify(orgIdDicList))
+orgIdDicOrigin.splice(2, 1)
+export const orgIdDic = orgIdDicOrigin
 export const orgIdDicNx = [orgIdDicList[2], orgIdDicList[5], orgIdDicList[7]]
 let orgIdSimpleDicList = []
 for (let i = 0; i < orgList.length; i++) {
@@ -147,6 +151,7 @@ for (let i = 0; i < orgList.length; i++) {
     }
   )
 }
+orgIdSimpleDicList.splice(2, 1)
 export const orgIdSimpleDic = orgIdSimpleDicList
 let lxList = [
   {

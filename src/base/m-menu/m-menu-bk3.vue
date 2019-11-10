@@ -82,7 +82,7 @@
             <li><span @click="changeRoute('/home/tz5-tfj', 5)"><i class="fa fa-file-text-o"></i>通风机台账</span></li>
             <li><span @click="changeRoute('/home/tz6-sb', 5)"><i class="fa fa-file-text-o"></i>水泵台账</span></li>
             <li><span @click="changeRoute('/home/tz7-byq', 5)"><i class="fa fa-file-text-o"></i>变压器台账</span></li>
-            <li><span @click="changeRoute('/home/tz8-qt', 5)"><i class="fa fa-file-text-o"></i>其他台账</span></li>
+            <li><span @click="changeRoute('/home/tz8-qt', 5)"><i class="fa fa-file-text-o"></i>其它台账</span></li>
           </ul>
         </li>
         <li v-if="role">

@@ -206,7 +206,7 @@
                             :yAxis="yAxis3"
                             :isHome="true"
                             :isLog="true"
-                            :titleText="lastMonth + '物流' + chartTitle"></chart-bar-line>
+                            :titleText="lastMonth + '其它公司' + chartTitle"></chart-bar-line>
           </div>
         </div>
       </div>
