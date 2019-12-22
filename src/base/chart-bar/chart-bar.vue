@@ -71,6 +71,10 @@ export default {
       default: function () {
         return []
       }
+    },
+    suffix: {
+      type: String,
+      default: ''
     }
   },
   components: {
@@ -146,7 +150,7 @@ export default {
               alignWithLabel: true
             },
             data: this.xAxisData && this.xAxisData.map((item) => {
-              return item + '日'
+              return item + this.suffix
             })
           }
         ],

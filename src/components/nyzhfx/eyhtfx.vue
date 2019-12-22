@@ -54,7 +54,7 @@
                       align="center"
                       width="110"
                       prop="tan"
-                      label="二氧化碳排放">
+                      label="二氧化碳排放（吨CO2）">
                     </el-table-column>
                     <el-table-column
                       align="center"
@@ -91,7 +91,7 @@
                       align="center"
                       prop="tan"
                       width="110"
-                      label="二氧化碳排放">
+                      label="二氧化碳排放（吨CO2）">
                     </el-table-column>
                     <el-table-column
                       align="center"

@@ -318,7 +318,7 @@
               obj.projectName = '日电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
+                name: '月电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.d
               }, {
@@ -326,8 +326,8 @@
                 type: 'line',
                 data: res.data.cl
               }]
-              this.legendData = ['本期电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
-              obj.projectName = '本期电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
+              this.legendData = ['月电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
+              obj.projectName = '月电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.d.length; i++) {
               if (this.month) {
@@ -359,7 +359,7 @@
               obj.projectName = '日水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
+                name: '月水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.s
               }, {
@@ -367,8 +367,8 @@
                 type: 'line',
                 data: res.data.cl
               }]
-              this.legendData = ['本期水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
-              obj.projectName = '本期水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
+              this.legendData = ['月水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
+              obj.projectName = '月水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.s.length; i++) {
               if (this.month) {
@@ -400,7 +400,7 @@
               obj.projectName = '日热量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期热量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
+                name: '月热量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.r
               }, {
@@ -408,8 +408,8 @@
                 type: 'line',
                 data: res.data.cl
               }]
-              this.legendData = ['本期热量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
-              obj.projectName = '本期热量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
+              this.legendData = ['月热量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
+              obj.projectName = '月热量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.r.length; i++) {
               if (this.month) {
@@ -441,7 +441,7 @@
               obj.projectName = '日天然气量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期气量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
+                name: '月气量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.q
               }, {
@@ -449,8 +449,8 @@
                 type: 'line',
                 data: res.data.cl
               }]
-              this.legendData = ['本期气量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
-              obj.projectName = '本期气量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
+              this.legendData = ['月气量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
+              obj.projectName = '月气量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.q.length; i++) {
               if (this.month) {
@@ -482,7 +482,7 @@
               obj.projectName = '日能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
+                name: '月能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.ny
               }, {
@@ -490,8 +490,8 @@
                 type: 'line',
                 data: res.data.cl
               }]
-              this.legendData = ['本期能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
-              obj.projectName = '本期能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
+              this.legendData = ['月能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
+              obj.projectName = '月能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.ny.length; i++) {
               if (this.month) {
@@ -518,11 +518,11 @@
                 type: 'line',
                 data: res.data.cl
               }]
-              this.legendData = ['日本期单车电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '日产量']
-              obj.projectName = '日本期单车电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
+              this.legendData = ['日单车电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '日产量']
+              obj.projectName = '日单车电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期单车电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
+                name: '月单车电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.dd
               }, {
@@ -530,8 +530,8 @@
                 type: 'line',
                 data: res.data.cl
               }]
-              this.legendData = ['本期单车电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
-              obj.projectName = '本期单车电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
+              this.legendData = ['月单车电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
+              obj.projectName = '月单车电量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.dd.length; i++) {
               if (this.month) {
@@ -563,7 +563,7 @@
               obj.projectName = '日单车水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期单车水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
+                name: '月单车水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.sd
               }, {
@@ -571,8 +571,8 @@
                 type: 'line',
                 data: res.data.cl
               }]
-              this.legendData = ['本期单车水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
-              obj.projectName = '本期单车水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
+              this.legendData = ['月单车水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
+              obj.projectName = '月单车水量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.sd.length; i++) {
               if (this.month) {
@@ -600,11 +600,11 @@
                 type: 'line',
                 data: res.data.cl
               }]
-              this.legendData = ['日本期单车热力(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '日产量']
-              obj.projectName = '日本期单车热力(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
+              this.legendData = ['日单车热力(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '日产量']
+              obj.projectName = '日单车热力(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期单车热力(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
+                name: '月单车热力(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.rd
               }, {
@@ -612,8 +612,8 @@
                 type: 'line',
                 data: res.data.cl
               }]
-              this.legendData = ['本期单车热力(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
-              obj.projectName = '本期单车热力(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
+              this.legendData = ['月单车热力(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
+              obj.projectName = '月单车热力(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.rd.length; i++) {
               if (this.month) {
@@ -645,7 +645,7 @@
               obj.projectName = '日单车天然气量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期单车天然气(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
+                name: '月单车天然气(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.qd
               }, {
@@ -653,8 +653,8 @@
                 type: 'line',
                 data: res.data.cl
               }]
-              this.legendData = ['本期单车天然气(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
-              obj.projectName = '本期单车天然气(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
+              this.legendData = ['月车天然气(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
+              obj.projectName = '月单车天然气(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.qd.length; i++) {
               if (this.month) {
@@ -682,11 +682,11 @@
                 type: 'line',
                 data: res.data.cl
               }]
-              this.legendData = ['日单车能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '日产量']
-              obj.projectName = '日单车能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
+              this.legendData = ['日单车综合能耗(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '日产量']
+              obj.projectName = '日单车综合能耗(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             } else {
               this.seriesData = [{
-                name: '本期单车能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
+                name: '月单车综合能耗(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')',
                 type: 'bar',
                 data: res.data.nyd
               }, {
@@ -694,8 +694,8 @@
                 type: 'line',
                 data: res.data.cl
               }]
-              this.legendData = ['本期单车能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
-              obj.projectName = '本期单车能源消耗总量(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
+              this.legendData = ['月单车综合能耗(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')', '产量']
+              obj.projectName = '月单车综合能耗(' + (this.yAxis && this.yAxis.length > 0 ? this.yAxis[0].name : '') + ')'
             }
             for (let i = 0; i < res.data.nyd.length; i++) {
               if (this.month) {

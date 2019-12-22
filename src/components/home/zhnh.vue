@@ -257,9 +257,6 @@ export default {
       }, {
         value: '102',
         label: '单位产品综合能耗'
-      }, {
-        value: '103',
-        label: '单位产品碳排放量'
       }],
       pData: {},
       zcData: {},
@@ -322,9 +319,9 @@ export default {
         this.yAxis3 = [{name: '吨标煤/万元', min: 0.0009}, {name: '%'}]
         // 产值碳排放量
       } else if (value === '101') {
-        this.yAxis = [{name: 'kgCO2/万元', min: 0.005}, {name: '%'}]
-        this.yAxis2 = [{name: 'kgCO2/万元', min: 0.0001}, {name: '%'}]
-        this.yAxis3 = [{name: 'kgCO2/万元', min: 0.0009}, {name: '%'}]
+        this.yAxis = [{name: '吨CO2/万元', min: 0.005}, {name: '%'}]
+        this.yAxis2 = [{name: '吨CO2/万元', min: 0.0001}, {name: '%'}]
+        this.yAxis3 = [{name: '吨CO2/万元', min: 0.0009}, {name: '%'}]
       } else if (value === '33') {
         this.yAxis = [{name: '千瓦时/万元', min: 0.005}, {name: '%'}]
         this.yAxis2 = [{name: '千瓦时/万元', min: 0.0001}, {name: '%'}]
@@ -346,9 +343,9 @@ export default {
         this.yAxis2 = [{name: '综合能耗/吨(台)', min: 0.0001}, {name: '%'}]
         this.yAxis3 = [{name: '综合能耗/吨(台)', min: 0.0009}, {name: '%'}]
       } else if (value === '103') {
-        this.yAxis = [{name: 'kgCO2/辆', min: 0.005}, {name: '%'}]
-        this.yAxis2 = [{name: '碳排放量/吨(台)', min: 0.0001}, {name: '%'}]
-        this.yAxis3 = [{name: '碳排放量/吨(台)', min: 0.0009}, {name: '%'}]
+        this.yAxis = [{name: '吨CO2/辆', min: 0.005}, {name: '%'}]
+        this.yAxis2 = [{name: '吨CO2/吨(台)', min: 0.0001}, {name: '%'}]
+        this.yAxis3 = [{name: '吨CO2/吨(台)', min: 0.0009}, {name: '%'}]
       }
       this.fetchChartData()
     }

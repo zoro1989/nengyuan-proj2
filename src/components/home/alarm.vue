@@ -250,7 +250,27 @@
     },
     methods: {
       dblStyle(index) {
-        return moment().isAfter(this.rToken[index].validTime) ? 'background: #F56C6C; color: #fff;' : 'background: #67C23A; color: #fff;'
+        if (moment().isAfter(this.rToken[index].validTime)) {
+          this.rToken[index].dcj = ''
+          this.rToken[index].dscl = ''
+          this.rToken[index].dzql = ''
+          this.rToken[index].dzc = ''
+          this.rToken[index].scj = ''
+          this.rToken[index].sscl = ''
+          this.rToken[index].szql = ''
+          this.rToken[index].szc = ''
+          this.rToken[index].qcj = ''
+          this.rToken[index].qscl = ''
+          this.rToken[index].qzql = ''
+          this.rToken[index].qzc = ''
+          this.rToken[index].rcj = ''
+          this.rToken[index].rscl = ''
+          this.rToken[index].rzql = ''
+          this.rToken[index].rzc = ''
+          return 'background: #F56C6C; color: #fff;'
+        } else {
+          return 'background: #67C23A; color: #fff;'
+        }
       },
       goHome() {
         this.$router.replace('/home/ss')

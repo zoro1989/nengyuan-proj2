@@ -188,7 +188,6 @@
         // 三月能耗费用
         costPie: [],
         data: {},
-        lastMonth: moment().format('DD') * 1 <= 10 ? moment().subtract(2, 'months').format('MMMM') : moment().subtract(1, 'months').format('MMMM'),
         y: [{name: '万吨标煤'}, {name: '吨标煤/万元'}],
         jnBar: {},
         ny: {},
@@ -221,6 +220,9 @@
     computed: {
       realTimeToday () {
         return moment().format('MMMM') + this.sectionToChinese(moment().format('D')) + '日'
+      },
+      lastMonth() {
+        return this.sectionToChinese(this.data.yue) + '月'
       }
     },
     methods: {
